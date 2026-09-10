@@ -1,7 +1,8 @@
-// v88.9 - Grado Superior PDFs en visor
+// v1.2 - Grado Superior PDFs en visor
+const APP_VERSION = 'v1.2';
 const BUILD_TIMESTAMP = '20260910-gs-pdf-viewer';
-const CACHE_NAME = `universae-gs-v88.9-${BUILD_TIMESTAMP}`;
-const OFFLINE_CACHE = `universae-gs-offline-v88.9`;
+const CACHE_NAME = `universae-gs-${APP_VERSION}-${BUILD_TIMESTAMP}`;
+const OFFLINE_CACHE = `universae-gs-offline-${APP_VERSION}`;
 
 // ARCHIVOS CRÍTICOS - DEBEN estar en caché siempre
 const CRITICAL_ASSETS = [
@@ -36,9 +37,9 @@ const ASSETS_TO_CACHE = [
   './img/t3-domotica-u1-topologia-anillo.png',
 ];
 
-// INSTALACIÓN v69.0: Cache offline-first mejorado
+// INSTALACIÓN: Cache offline-first mejorado
 self.addEventListener('install', (e) => {
-  console.log('⚡ INSTALANDO Universae GS v88.1 - Bloque 1 PDFs...');
+  console.log(`⚡ INSTALANDO Universae GS ${APP_VERSION} - Bloque 1 PDFs...`);
   console.log('📦 Cache:', CACHE_NAME);
 
   e.waitUntil(
@@ -80,7 +81,7 @@ self.addEventListener('install', (e) => {
             )
           );
         }).then(() => {
-          console.log('✅ Instalación completada - Universae GS v88.1 ready offline');
+          console.log(`✅ Instalación completada - Universae GS ${APP_VERSION} ready offline`);
           return self.skipWaiting();
         });
       })
@@ -91,9 +92,9 @@ self.addEventListener('install', (e) => {
   );
 });
 
-// ACTIVACIÓN v88.1: Limpieza y notificación
+// ACTIVACIÓN: Limpieza y notificación
 self.addEventListener('activate', (e) => {
-  console.log('✨ ACTIVANDO Universae GS v88.1...');
+  console.log(`✨ ACTIVANDO Universae GS ${APP_VERSION}...`);
 
   e.waitUntil(
     caches.keys()
@@ -114,12 +115,12 @@ self.addEventListener('activate', (e) => {
       })
       .then(() => self.clients.matchAll())
       .then(clients => {
-        console.log('📲 Service Worker Universae GS v88.1 activo - Clientes notificados:', clients.length);
+        console.log(`📲 Service Worker Universae GS ${APP_VERSION} activo - Clientes notificados:`, clients.length);
         clients.forEach(client => {
           client.postMessage({
             type: 'FORCE_RELOAD_NOW',
-            version: 'v88.1-gs',
-            message: 'Universae GS v88.1 activado - Bloque 1 PDFs'
+            version: `${APP_VERSION}-gs`,
+            message: `Universae GS ${APP_VERSION} activado - Bloque 1 PDFs`
           });
         });
       })

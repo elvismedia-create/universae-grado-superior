@@ -45,7 +45,7 @@ body.dark-mode {
   -webkit-tap-highlight-color: transparent;
 }
 
-/* Transiciones suaves dark mode v67.24 */
+/* Transiciones suaves dark mode GS */
 body,
 .card,
 .opcion,
@@ -91,7 +91,7 @@ button { -webkit-appearance: none; appearance: none; border: none; cursor: point
 .btn-tool { background: var(--bg); color: var(--text-light); border: 1px solid var(--border); padding: 8px 12px; font-size: 0.9rem; border-radius: 10px; display: flex; align-items: center; gap: 5px; font-weight: 600; }
 .btn-theme { font-size: 1.1rem; padding: 6px 10px; }
 
-/* === NAVEGACIÓN CON TABS (v67.24) === */
+/* === NAVEGACIÓN CON TABS (GS) === */
 .tabs-container {
   margin-bottom: 30px;
   border-bottom: 2px solid var(--border);
@@ -251,14 +251,14 @@ button { -webkit-appearance: none; appearance: none; border: none; cursor: point
   position: relative;
 }
 
-/* Animación gradiente v67.24 */
+/* Animación gradiente GS */
 @keyframes shimmerProgress {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
 
-/* Brillo que recorre v67.24 */
+/* Brillo que recorre GS */
 .barra-relleno::after {
   content: '';
   position: absolute;
@@ -424,7 +424,7 @@ button { -webkit-appearance: none; appearance: none; border: none; cursor: point
   padding: 6px;
 }
 
-/* Hover ELIMINADO v67.24 - mejor sin hover que con bug */
+/* Hover ELIMINADO GS - mejor sin hover que con bug */
 
 /* Seleccionada */
 .opcion.seleccionada{ 
@@ -436,7 +436,7 @@ button { -webkit-appearance: none; appearance: none; border: none; cursor: point
   box-shadow: 0 8px 25px rgba(37, 99, 235, 0.4);
 }
 
-/* Correcta - Pulse animado v67.24 */
+/* Correcta - Pulse animado GS */
 .opcion.correcta {
   background: var(--success) !important;
   border-color: var(--success) !important;
@@ -460,7 +460,7 @@ button { -webkit-appearance: none; appearance: none; border: none; cursor: point
   }
 }
 
-/* Incorrecta - Shake animado v67.24 */
+/* Incorrecta - Shake animado GS */
 .opcion.incorrecta {
   background: var(--danger) !important;
   border-color: var(--danger) !important;
@@ -475,7 +475,7 @@ button { -webkit-appearance: none; appearance: none; border: none; cursor: point
   20%, 40%, 60%, 80% { transform: translateX(12px); }
 }
 
-/* Ripple effect v67.24 */
+/* Ripple effect GS */
 .opcion::after {
   content: '';
   position: absolute;
@@ -745,7 +745,7 @@ button:active, .opcion:active, .btn-tool:active, .selector-btn:active { transfor
   z-index: 1;
 }
 
-/* === SKELETON SCREENS v67.24 === */
+/* === SKELETON SCREENS GS === */
 .skeleton {
   background: linear-gradient(90deg, 
     var(--bg) 0%, 
@@ -793,7 +793,7 @@ button:active, .opcion:active, .btn-tool:active, .selector-btn:active { transfor
   margin-top: 15px;
 }
 
-/* === FIX HOVER EN SVG v67.24 === */
+/* === FIX HOVER EN SVG GS === */
 svg, svg * {
   pointer-events: none !important;
   -webkit-tap-highlight-color: transparent !important;
@@ -807,7 +807,7 @@ svg, svg * {
   pointer-events: auto;
 }
 
-/* @media (hover: none) ELIMINADO v67.24 - sin hover = sin bugs */
+/* @media (hover: none) ELIMINADO GS - sin hover = sin bugs */
 
 </style>
 
@@ -857,7 +857,7 @@ svg, svg * {
     <div style="display:flex; align-items:center; gap:16px;">
       <img src="img/universae-shield-logo.png?v=20260909090000" alt="Universae Logo" style="height:64px; width:64px; flex-shrink:0; object-fit:contain;">
       <div>
-        <h1 style="margin:0;">Universae GS <span style="font-size:0.6em; background:#0f766e; color:white; padding:6px 16px; border-radius:25px; font-weight:900; margin-left:8px;">Bloque 1</span></h1>
+        <h1 style="margin:0;">Universae GS <span style="font-size:0.6em; background:#0f766e; color:white; padding:6px 16px; border-radius:25px; font-weight:900; margin-left:8px;">Bloque 1</span> <span style="font-size:0.5em; background:#1e293b; color:white; padding:5px 12px; border-radius:20px; font-weight:800; margin-left:6px;">v1.2</span></h1>
         <p class="subtitle" style="margin:4px 0 0 0;">Grado Superior · Anual · Examen en mayo</p>
       </div>
     </div>
@@ -885,7 +885,7 @@ svg, svg * {
     <div class="trimestre-btns" id="selector-trimestres"></div>
   </div>
 
-  <!-- Tabs de navegación v67.24 -->
+  <!-- Tabs de navegación GS -->
   <div class="tabs-container">
     <div id="tabs-bloques" class="tabs-scroll"></div>
   </div>
@@ -957,12 +957,12 @@ svg, svg * {
 <!-- MOTOR PRINCIPAL -->
 <script src="motor.js?v=20260909092000"></script>
 
-<!-- Auto-actualización NUCLEAR v67.24 -->
+<!-- Auto-actualización GS v1.2 -->
 <script>
-console.log('🚀 v67.40 - Sistema NUCLEAR de actualización');
+console.log('🚀 Universae GS v1.2 - Sistema de actualización');
 
 if ('serviceWorker' in navigator) {
-  // Escuchar mensajes del SW v69.0 mejorado
+  // Escuchar mensajes del SW de Grado Superior
   navigator.serviceWorker.addEventListener('message', (event) => {
     const msg = event.data;
     console.log('📨 Mensaje del SW:', msg);
@@ -974,9 +974,9 @@ if ('serviceWorker' in navigator) {
       console.log('🔥 RECARGA FORZADA por', msg.version || 'antigua');
       setTimeout(() => location.reload(true), 500);
     }
-    // Tipo 2: Service Worker actualizado (v69.0 - sin recarga agresiva)
+    // Tipo 2: Service Worker actualizado
     else if (msg.type === 'SERVICE_WORKER_UPDATED') {
-      console.log('✅ SW v69.0 activado -', msg.message);
+      console.log('✅ SW GS activado -', msg.message);
       // No recargar, esperar a que usuario lo haga o la siguiente navegación
       if (window.showNotification) {
         showNotification('Universae actualizado - Recarga para cambios', 'info');
@@ -995,24 +995,24 @@ if ('serviceWorker' in navigator) {
   // Función agresiva de actualización
   function forceUpdateCheck() {
     navigator.serviceWorker.ready.then((registration) => {
-      console.log('🔍 Verificando v67.40...');
+      console.log('🔍 Verificando Universae GS v1.2...');
       registration.update().catch(err => console.error('Error update:', err));
 
       // Si hay SW esperando, activarlo INMEDIATAMENTE
       if (registration.waiting) {
-        console.log('⚠️ SW v67.40 esperando → Activando');
+        console.log('⚠️ SW GS v1.2 esperando → Activando');
         registration.waiting.postMessage('SKIP_WAITING');
         setTimeout(() => location.reload(true), 100);
       }
 
       // Detectar nueva instalación
       registration.addEventListener('updatefound', () => {
-        console.log('📦 v67.40 detectado en instalación');
+        console.log('📦 GS v1.2 detectado en instalación');
         const newWorker = registration.installing;
 
         newWorker.addEventListener('statechange', () => {
           if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-            console.log('✅ v67.40 instalado → Recargando');
+            console.log('✅ GS v1.2 instalado → Recargando');
             newWorker.postMessage('SKIP_WAITING');
             setTimeout(() => location.reload(true), 100);
           }
@@ -1028,7 +1028,7 @@ if ('serviceWorker' in navigator) {
   let checkCount = 0;
   const checkInterval = setInterval(() => {
     if (checkCount < 5) {
-      console.log('🔄 Auto-check v67.40 #' + (++checkCount));
+      console.log('🔄 Auto-check GS v1.2 #' + (++checkCount));
       forceUpdateCheck();
     } else {
       clearInterval(checkInterval);
@@ -1120,7 +1120,7 @@ generarTabsParaTrimestre(trimestreActual);
 
 
 
-// LOGICA FILTRADO v67.24
+// LOGICA FILTRADO GS
 
 function filtrarBloque(bid) {
   window.currentBid = bid;
@@ -1138,7 +1138,7 @@ function filtrarBloque(bid) {
     }
   });
 
-  // Mostrar skeleton screens mientras carga v67.24
+  // Mostrar skeleton screens mientras carga GS
   grid.innerHTML = `
     ${[1, 2, 3].map(() => `
       <div class="skeleton-card">
@@ -1183,11 +1183,11 @@ function filtrarBloque(bid) {
     const card = document.createElement("div");
     card.className = "asig-card"; 
     
-    // Verificar si hay preguntas IA generadas para este tema v67.24
+    // Verificar si hay preguntas IA generadas para este tema GS
     const preguntasIA = preguntasIAStorage ? preguntasIAStorage.filter(p => p.tema === asig.nombre).length : 0;
     const totalConIA = totalPreg + preguntasIA;
     
-    // Contar dominadas IA desde estructura separada v67.24
+    // Contar dominadas IA desde estructura separada GS
     let dominadasIA = 0;
     if (preguntasIA > 0) {
       const dominadasIAStorage = JSON.parse(localStorage.getItem("mastertest_ia_dominadas")) || {};
@@ -1199,12 +1199,12 @@ function filtrarBloque(bid) {
     // Total dominadas = normales + IA
     const totalDominadas = numDominadas + dominadasIA;
     
-    // Texto claro v67.24
+    // Texto claro GS
     const textoDominadas = preguntasIA > 0 
       ? `${totalDominadas} de ${totalConIA} dominadas (${numDominadas} normales + ${dominadasIA} IA)`
       : `${numDominadas} de ${totalPreg} dominadas`;
     
-    // Mostrar botón IA siempre que tenga al menos 30% dominado (v67.24)
+    // Mostrar botón IA siempre que tenga al menos 30% dominado (GS)
     const mostrarBotonIA = porcentaje >= 30;
     
     card.innerHTML = `
@@ -1232,7 +1232,7 @@ function filtrarBloque(bid) {
     `;
     grid.appendChild(card);
     
-    // DEBUG v67.24: Logging extremo
+    // DEBUG GS: Logging extremo
     console.log('🔍 Card agregada, idx:', idx, 'tema:', asig.nombre, 'mostrarBotonIA:', mostrarBotonIA);
     
     // Agregar evento al botón IA inmediatamente después de crear la card
@@ -1626,7 +1626,7 @@ function filtrarBloque(bid) {
 
   grid.appendChild(stripContainer);
   
-  }, 150); // Delay para mostrar skeleton screen v67.24
+  }, 150); // Delay para mostrar skeleton screen GS
 }
 
 // Inicialización con restauración de contexto
@@ -1682,9 +1682,9 @@ setTimeout(() => {
   }
 }, 50);
 
-// DEBUG v67.24: Test de verificación
+// DEBUG GS: Test de verificación
 setTimeout(() => {
-  console.log('🔍 TEST v67.24: Verificando sistema IA');
+  console.log('🔍 TEST GS: Verificando sistema IA');
   console.log('✓ generarPreguntasIA existe:', typeof generarPreguntasIA);
   console.log('✓ Botones IA en página:', document.querySelectorAll('[class*="btn-ia-"]').length);
   
@@ -1719,7 +1719,7 @@ if ('serviceWorker' in navigator) {
 
 // Función para mostrar notificación de actualización
 function mostrarNotificacionActualizacion(version) {
-  const versionActual = 'v68.0';
+  const versionActual = 'v1.2-gs';
   
   // Solo mostrar si hay una versión diferente
   if (version && version !== versionActual) {
