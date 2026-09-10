@@ -1,0 +1,4281 @@
+MD.PlantillaTexto(01)Esp.dot
+
+
+
+
+                                                           MÓDULO
+
+                                    INSTALACIONES ELÉCTRICAS EN
+                                           EDIFICIOS DE VIVIENDAS
+
+
+
+
+                               UNIDAD 1
+
+                               INSTALACIONES DE ENLACE
+UD005878_V(02)
+                                                                                               INSTALACIONES DE ENLACE
+
+
+
+
+                                                                                                                ÍNDICE
+
+MOTIVACIÓN ............................................................................................. 5
+PROPÓSITOS ............................................................................................. 6
+PREPARACIÓN PARA LA UNIDAD ............................................................. 7
+1. LÍNEA GENERAL DE ALIMENTACIÓN (ITC-BT-11, ITC-BT-13, ITC-
+   BT-14, ITC-BT-15) .................................................................................. 9
+   1.1. ACOMETIDA (ITC-BT-11) .............................................................................. 11
+      1.1.1. ACOMETIDA AÉREA POSADA SOBRE FACHADA ........................................... 12
+      1.1.2. ACOMETIDA AÉREA TENSADA SOBRE POSTES ............................................ 13
+      1.1.3. ACOMETIDA SUBTERRÁNEA ...................................................................... 13
+           1.1.3.1. Materiales ................................................................................................. 13
+           1.1.3.2. Instalación................................................................................................. 15
+           1.1.3.3. Cruzamientos............................................................................................ 17
+      1.1.4. ACOMETIDA AEROSUBTERRÁNEA .............................................................. 18
+   1.2. CAJA GENERAL DE PROTECCIÓN (CGP) .................................................... 18
+   1.3. CAJAS DE PROTECCIÓN Y MEDIDA ............................................................ 20
+   1.4. LÍNEA GENERAL DE ALIMENTACIÓN (LGA) ............................................... 22
+   1.5. CONTADORES (CC) ....................................................................................... 23
+   1.6. DERIVACIÓN INDIVIDUAL (DI)...................................................................... 25
+      1.6.1. CABLES .................................................................................................. 25
+      1.6.2. TUBOS Y CANALIZACIONES ....................................................................... 27
+      1.6.3. CANALADURAS........................................................................................ 28
+   1.7. DISPOSITIVOS GENERALES E INDIVIDUALES DE MANDO
+        Y PROTECCIÓN ............................................................................................. 29
+   1.8. INTERRUPTOR DE CONTROL DE POTENCIA .............................................. 34
+
+
+
+
+                                                                                                                              1
+INSTALACIONES DE ENLACE
+
+
+
+
+2. CARACTERÍSTICAS Y TIPOS DE ELEMENTOS ..................................... 35
+      2.1. GRADOS DE PROTECCIÓN ........................................................................... 35
+      2.2. CUADRO DE DISTRIBUCIÓN ......................................................................... 39
+      2.3. ELEMENTOS DE MANDO Y PROTECCIÓN .................................................. 41
+         2.3.1. INTERRUPTOR AUTOMÁTICO..................................................................... 42
+         2.3.2. ELECCIÓN DEL INTERRUPTOR EN FUNCIÓN DE LA LÍNEA .............................. 44
+         2.3.3. CARACTERÍSTICAS PRINCIPALES DE UN INTERRUPTOR AUTOMÁTICO ........... 44
+         2.3.4. INTERRUPTOR DIFERENCIAL ..................................................................... 47
+         2.3.5. FUSIBLE.................................................................................................. 50
+               2.3.5.1. Clasificación .............................................................................................. 52
+      2.4. TUBOS Y CANALIZACIONES ........................................................................ 54
+         2.4.1. TUBOS.................................................................................................... 55
+         2.4.2. CANALIZACIONES ELÉCTRICAS PREFABRICADAS ........................................ 56
+      2.5. CAJAS ............................................................................................................ 60
+      2.6. CONDUCTORES ELÉCTRICOS ...................................................................... 63
+         2.6.1. INTENSIDAD MÁXIMA ADMISIBLE EN UN CONDUCTOR ................................. 64
+         2.6.2. MATERIALES AISLANTES .......................................................................... 65
+         2.6.3. DESIGNACIÓN DE CONDUCTORES .............................................................. 66
+         2.6.4. COLORES NORMALIZADOS DE CONDUCTORES ............................................ 68
+      2.7. ELEMENTOS DE MANIOBRA Y DE CONEXIÓN ........................................... 71
+         2.7.1. ELEMENTOS DE MANIOBRA ...................................................................... 71
+               2.7.1.1. Interruptores .............................................................................................. 72
+               2.7.1.2. Conmutadores simples............................................................................. 75
+               2.7.1.3. Conmutadores de cruzamiento o dobles ................................................ 76
+               2.7.1.4. Pulsadores ................................................................................................. 78
+               2.7.1.5. Telerruptores ............................................................................................. 80
+               2.7.1.6. Interruptores automáticos de escalera.................................................... 81
+          2.7.2. ELEMENTOS DE CONEXIÓN ....................................................................... 83
+               2.7.2.1. Cajas de protección .................................................................................. 83
+               2.7.2.2. Portalámparas ........................................................................................... 84
+               2.7.2.3. Regletas de conexión ................................................................................ 85
+3. EMPLAZAMIENTO Y MONTAJE DE LAS INSTALACIONES
+   DE ENLACE........................................................................................... 87
+      3.1. CAJAS GENERALES DE PROTECCIÓN ........................................................ 88
+      3.2. CONTADORES Y CENTRALIZACIÓN ............................................................ 89
+         3.2.1. COLOCACIÓN EN FORMA INDIVIDUAL......................................................... 90
+         3.2.2. COLOCACIÓN EN FORMA CONCENTRADA ................................................... 91
+               3.2.2.1. En local....................................................................................................... 95
+               3.2.2.2. En armario ................................................................................................. 96
+      3.3. DISPOSITIVOS DE MANDO Y PROTECCIÓN (ITC-BT-16, ITC-BT-17) ........ 97
+
+
+
+
+  2
+                                                                            INSTALACIONES DE ENLACE
+
+
+
+
+CONCLUSIONES ...................................................................................... 99
+RECAPITULACIÓN ................................................................................. 100
+AUTOCOMPROBACIÓN.......................................................................... 101
+SOLUCIONARIO ..................................................................................... 105
+PROPUESTAS DE AMPLIACIÓN ............................................................. 106
+BIBLIOGRAFÍA ....................................................................................... 107
+
+
+
+
+                                                                                                    3
+                                                            INSTALACIONES DE ENLACE
+
+
+
+
+                                                            MOTIVACIÓN
+
+Todas las instalaciones eléctricas en edificios de viviendas tienen su instalación
+de enlace.
+
+
+Con el estudio de este tema serás capaz de identificar las partes y las caracterís-
+ticas de los componentes de este tipo de instalaciones y así poder realizar ta-
+reas de inspección, verificación, instalación o mantenimiento de manera correc-
+ta y segura.
+
+
+
+
+                                                                                5
+INSTALACIONES DE ENLACE
+
+
+
+
+                                                            PROPÓSITOS
+
+         Identificar las partes que componen una instalación de enlace.
+
+         Aprender cual es el emplazamiento de cada uno de los componentes
+          de la instalación de enlace.
+
+         Conocer los parámetros a tener en cuenta en el montaje e instalación
+          de estos elementos.
+
+         Recordar cuáles son los dispositivos del cuadro de mando y protección.
+
+         Recordar las caídas máximas de tensión permitidas tanto para línea
+          general de alimentación como para derivación individual.
+
+
+
+
+ 6
+                                                        INSTALACIONES DE ENLACE
+
+
+
+
+                          PREPARACIÓN PARA LA UNIDAD
+
+Es recomendable hacer una lectura de las principales Instrucciones Comple-
+mentarias del RBT, a las que hace referencia este tema: ITC-BT-11, ITC-BT-12,
+ITC-BT-13, ITC-BT-14, ITC-BT-15, ITC-BT-16 e ITC-BT-17.
+
+
+
+
+                                                                            7
+                                                              INSTALACIONES DE ENLACE
+
+
+
+
+               1. LÍNEA GENERAL DE ALIMENTACIÓN
+          (ITC-BT-11, ITC-BT-13, ITC-BT-14, ITC-BT-15)
+
+
+                             Las instalaciones de enlace son las que unen la caja
+                             general de protección de la acometida, incluida ésta,
+                             con las instalaciones interiores o receptoras del
+                             usuario.
+
+
+
+
+Están formadas por los siguientes componentes:
+
+        Caja General de Protección (CGP): aloja elementos de protección de
+         las líneas generales de alimentación y marcan el principio de la propie-
+         dad de las instalaciones de los usuarios.
+
+        Línea General de Alimentación (LGA): enlaza la caja general de pro-
+         tección con las derivaciones individuales.
+
+        Elementos para la ubicación de Contadores (CC).
+
+        Derivación individual (DI): parte de la línea general de alimentación y
+         comprende los aparatos de medida, mando y control.
+
+        Caja para Interruptor de Control de Potencia (ICP).
+
+        Dispositivos Generales de Mando y Protección (DGMP).
+
+
+
+
+                                                                                     9
+INSTALACIONES DE ENLACE
+
+
+
+
+                          Las instalaciones de enlace se encontrarán en zonas
+                          de uso común y son propiedad de los usuarios. Por
+                          tanto son ellos los responsables de su conservación y
+                          mantenimiento.
+
+
+
+
+ 10
+                                                               INSTALACIONES DE ENLACE
+
+
+
+
+                              Las compañías suministradoras facilitarán los valores
+                              máximos previsibles de las potencias o corrientes de
+                              cortocircuito de sus redes de distribución, con el fin
+                              de que el proyectista tenga en cuenta este dato en
+                              sus cálculos.
+
+
+
+
+Como vemos la instalación de enlace comienza en el final de la acometida y
+termina en los dispositivos privados de mando y protección.
+
+
+Aunque la acometida no forma parte de la instalación de enlace, consideramos
+necesario incluir un apartado dedicado a ella antes de entrar a detallar las ca-
+racterísticas de los componentes de las instalaciones de enlace.
+
+
+
+
+1.1. ACOMETIDA (ITC-BT-11)
+
+                              Se denomina acometida a la parte de instalación
+                              comprendida entre la red de distribución y la CGP
+                              (Caja General de Protección). Cuando el suministro se
+                              realice directamente desde un Centro de Transfor-
+                              mación será “Alimentación Directa”.
+
+
+
+
+En función del sistema de instalación adoptado y las zonas por las que discurra,
+se distinguen los siguientes tipos de acometidas:
+
+        Aéreas:
+
+            Posada sobre fachada.
+
+            Tensada sobre poste.
+
+        Subterráneas:
+
+            Con entrada y salida.
+
+            En derivación.
+
+
+
+
+                                                                                   11
+INSTALACIONES DE ENLACE
+
+
+
+
+         Mixtas:
+
+             Aerosubterráneas.
+
+
+Las acometidas se realizarán siguiendo los trazados más cortos y las conexiones
+que sean necesarias, se realizarán de forma que el aislamiento de los conducto-
+res se mantenga hasta los elementos de conexión de la CGP.
+
+
+Los conductores de la acometida discurrirán por terreno público excepto las
+acometidas aéreas o subterráneas que hayan sido autorizadas las correspon-
+dientes servidumbres de paso.
+
+
+En general habrá una acometida por edificio o finca.
+
+
+Los conductores serán de cobre o aluminio y estarán aislados. Las secciones de
+los conductores y el número de estos se calcularán teniendo en cuenta los si-
+guientes aspectos:
+
+         Máxima carga prevista (ITC-BT-10).
+
+         Tensión de suministro.
+
+         Intensidades máximas admisibles.
+
+         Caída de tensión máxima admisible. Esta será la que la empresa distri-
+          buidora tenga establecida.
+
+
+
+1.1.1. ACOMETIDA AÉREA POSADA SOBRE FACHADA
+
+Antes de realizarse hay que estudiar, si es posible, la fachada para que éstas se
+vean afectadas lo menos posible por el recorrido de los conductores. En edifi-
+cios de interés histórico o artístico se tratará de evitar este tipo de acometidas.
+
+
+Los cables posados serán aislados de tensión asignada 0,6/1 kV y su instalación
+se hará preferentemente bajo conductos cerrados o canales protectoras con
+tapa desmontable con la ayuda de un útil.
+
+
+Cuando la acometida quede a una altura sobre el suelo inferior a 2,5 m, debe-
+rá protegerse con tubos o canales rígidos y se tomarán las medidas para evitar
+que se produzca el almacenamiento de agua en dichos tubos o canales de
+protección.
+
+
+
+
+ 12
+                                                              INSTALACIONES DE ENLACE
+
+
+
+
+                             En los cruces de vías públicas y espacios sin edifi-
+                             car y dependiendo de la longitud del vano, los ca-
+                             bles podrán instalarse amarrados directamente en
+                             ambos extremos. Estos cruces se harán de modo
+                             que el vano sea lo más corto posible y la altura mí-
+                             nima sobre calles y carreteras no será en ningún
+                             caso inferior a 6 m.
+
+
+
+
+1.1.2. ACOMETIDA AÉREA TENSADA SOBRE POSTES
+
+Los cables serán aislados de tensión asignada 0,6/1kV y podrán instalarse suspen-
+didos de un cable fiador, independiente y debidamente tensado o mediante la utili-
+zación de un conductor neutro fiador con una adecuada resistencia mecánica.
+
+
+
+
+                             Cuando los cables crucen sobre vías públicas o
+                             zonas de posible circulación rodada, la altura mí-
+                             nima sobre calles y carreteras no será en ningún
+                             caso inferior a 6 m.
+
+
+
+
+1.1.3. ACOMETIDA SUBTERRÁNEA
+
+1.1.3.1. Materiales
+
+
+                             Las líneas subterráneas se emplean en redes secun-
+                             darias cuando están en el interior de las ciudades, y
+                             en líneas de baja tensión, en el caso de que quiera
+                             evitarse la falta de estética en las líneas aéreas.
+
+
+
+
+                                                                                     13
+INSTALACIONES DE ENLACE
+
+
+
+
+Los cables empleados están, en general, formados por tres o cuatro conducto-
+res, uno para cada fase en el primer caso, y otro más, para el neutro, en el se-
+gundo, aislados entre sí mediante papel impregnado de aceite; el conjunto se
+encierra dentro de un tubo protector de plomo.
+
+
+Sección mínima del conductor de fase: en cobre, 6 mm2 y en aluminio,
+16 mm2.
+
+
+Sección mínima del neutro:
+
+         Con dos o tres conductores, igual la de los conductores de fase.
+
+         Con cuatro conductores la sección será como mínimo las indicadas en
+          la tabla siguiente.
+
+
+          Conductores de fase mm2                        Sección neutro mm2
+
+                   6 Cu                                             6
+
+                   10 Cu                                           10
+
+                   16 Cu                                           16
+
+                   16 Al                                           16
+
+                    25                                             16
+
+                    35                                             16
+
+                    50                                             25
+
+                    70                                             35
+
+                    95                                             50
+
+                    120                                            70
+
+                    150                                            70
+
+                    185                                            95
+
+                    240                                           120
+
+                    300                                           150
+
+                    400                                           185
+                  TABLA I. Sección mínima del conductor neutro en función
+                          de la sección de los conductores de fase
+
+
+
+
+ 14
+                                                             INSTALACIONES DE ENLACE
+
+
+
+
+1.1.3.2. Instalación
+
+
+                            Los cables subterráneos suelen colocarse directa-
+                            mente sobre el terreno, en el fondo de una zanja
+                            practicada en el mismo y rodeados de tierra vegetal
+                            que conserva la humedad y, por tanto, disipa el calor
+                            que por efecto Joule se genera en el cable (siguiente
+                            figura). Para cruzar ríos, carreteras u otros obstácu-
+                            los, se instalan los cables dentro de tubos de cemen-
+                            to para darles mejor protección.
+
+
+
+
+La profundidad mínima de las zanjas será de 0,60 m en acera y 0,80 m en calza-
+da, deberá colocarse una “cobertura de aviso” a 10 cm de la superficie.
+
+
+
+
+                                                                                 15
+INSTALACIONES DE ENLACE
+
+
+
+
+El tendido de cables en estaciones y cabinas se realiza empleando estantes me-
+tálicos o sujetándolos en la pared mediante bridas, tal como muestra la siguien-
+te figura:
+
+
+
+
+Los empalmes y derivaciones son uno de los puntos más delicados en las insta-
+laciones de cables subterráneos, ya que la necesaria discontinuidad del aislante,
+por otra parte imposible de evitar, presenta un peligro evidente de dificultades.
+Los empalmes y derivaciones suelen realizarse en cajas especiales de hierro
+fundido (siguiente figura), las cuales se rellenan de resinas o ceras fundidas una
+vez realizada la unión de los conductores, y se mantienen durante unas horas a
+100 AC para que se disipe toda la humedad. Las resinas solidifican al enfriarse,
+formando un buen aislante de los conductores que se han unido o derivado.
+
+
+
+
+ 16
+                                                           INSTALACIONES DE ENLACE
+
+
+
+
+La unión entre una línea aérea y subterránea se lleva a cabo mediante uno de
+los sistemas mostrados en la siguiente figura. Esencialmente consisten en unos
+aisladores cogidos a una caja metálica, por cuyo interior pasa una varilla con-
+ductora que une la línea subterránea con la aérea.
+
+
+
+
+1.1.3.3. Cruzamientos
+
+La distancia mínima entre líneas distintas y entre líneas y otros accidentes será
+la indicada a continuación:
+
+        Cruzamiento con calles: 0,8 m.
+
+        Cruzamiento con ferrocarriles: 1,3 m.
+
+        Cruzamiento con otras líneas: 0,25 m.
+
+        Cruzamiento con canalizaciones de agua: 0,2 m.
+
+        Cruzamiento con líneas AT: 0,25 m.
+
+        Cruzamiento con líneas BT: 0,10 m.
+
+        Canalizaciones de agua: 0,2 m.
+
+        Canalizaciones de gas: 0,2 m.
+
+        Canalizaciones de telecomunicaciones: 0,2 m.
+
+
+
+
+                                                                              17
+INSTALACIONES DE ENLACE
+
+
+
+
+1.1.4. ACOMETIDA AEROSUBTERRÁNEA
+
+Son aquellas acometidas que se realizan parte en instalación aérea y parte en
+instalación subterránea.
+
+
+
+
+                            En el paso de acometidas subterráneas a aéreas, el
+                            cable irá protegido hasta una altura mínima de 2,5
+                            m por encima del nivel de suelo, mediante un con-
+                            ducto rígido.
+
+
+
+
+En las siguientes páginas veremos las características de los componentes de las
+instalaciones de enlace.
+
+
+
+
+                            ¿Estás preparado para enfrentarte a esta unidad?
+                            Tómatelo en serio, pero sin agobios. Se trata de
+                            comprender los conceptos, no de memorizarlos.
+
+
+
+
+1.2. CAJA GENERAL DE PROTECCIÓN (CGP)
+
+
+                            Las cajas generales de protección (CGP) son las
+                            que alojan los elementos de protección de las líneas
+                            generales de alimentación.
+
+
+
+
+ 18
+                                                              INSTALACIONES DE ENLACE
+
+
+
+
+El tipo de caja a utilizar corresponderá a uno de los recogidos en las especifica-
+ciones técnicas de la empresa suministradora.
+
+Dentro de las cajas generales de protección se instalarán cortacircuitos fusibles
+en todos los conductores de fase o polares, con poder de corte al menos igual
+a la corriente de cortocircuito prevista en el punto de su instalación.
+
+El neutro incluirá una conexión amovible situada a la izquierda de las fases y
+también dispondrá de un borne de conexión para su puesta a tierra si procede.
+
+
+
+
+                             El esquema de caja general de protección a utilizar lo
+                             determinará la empresa suministradora y estará en
+                             función de:
+                                 Las necesidades del suministro solicitado.
+                                 El tipo de red de alimentación.
+
+
+
+
+Las cajas cumplirán todo lo que sobre el particular se indica en la Norma UNE-
+EN 60.439-1, serán precintables y tendrán:
+
+        Un grado de impermeabilidad según la norma UNE-EN 60.439-3.
+        Un grado de protección IP43 según UNE EN-20.324 e IK8 según
+         UNE-EN 50.102.
+
+
+
+
+                                                                                  19
+INSTALACIONES DE ENLACE
+
+
+
+
+1.3. CAJAS DE PROTECCIÓN Y MEDIDA
+
+
+                           La caja de protección y medida alberga en un mis-
+                           mo elemento la caja general de protección y el equi-
+                           po de medida.
+
+
+
+
+                           Este caso particular lo encontramos cuando el su-
+                           ministro es para un único usuario o varios alimen-
+                           tados desde el mismo lugar, al no existir línea ge-
+                           neral de alimentación la instalación puede simplifi-
+                           carse de esta manera.
+
+
+
+
+                          Esquema para un solo usuario
+
+
+
+
+ 20
+                                                                INSTALACIONES DE ENLACE
+
+
+
+
+              Esquema. Para dos usuarios alimentados desde el mismo lugar
+
+
+
+
+Las cajas de protección y medida cumplirán con lo indicado para las cajas gene-
+rales de protección, y además:
+
+        Grado de protección IK09 según UNE-EN 50.102.
+
+        La envolvente deberá disponer de la ventilación interna necesaria que
+         garantice la no formación de condensaciones.
+
+        El material transparente para la lectura será resistente a la acción de
+         los rayos ultravioleta.
+
+En cuanto al emplazamiento y el montaje es aplicable lo indicado para las
+cajas generales de protección, salvo que no se admitirá el montaje superficial.
+Además los dispositivos de lectura de los equipos de medida deberán estar ins-
+talados a una altura entre 0,7 m y 1,80 m.
+
+
+
+
+                                                                                   21
+INSTALACIONES DE ENLACE
+
+
+
+
+1.4. LÍNEA GENERAL DE ALIMENTACIÓN (LGA)
+
+
+                              La línea general de alimentación (LGA) es la parte
+                              de las instalaciones de enlace que tiene su origen en
+                              la caja general de protección (CGP) y termina en una
+                              o varias centralizaciones de contadores (CC).
+
+
+
+
+                             Línea general de alimentación
+
+
+
+La sección de los cables será:
+
+         Uniforme en todo su recorrido
+         Sin empalmes, exceptuando las derivaciones realizadas en el interior de
+          cajas para la alimentación de centralizaciones de contadores.
+         Mínimo 10 mm2 en cobre o 16 mm2 en aluminio.
+
+
+
+
+                              El cálculo de la sección se realizará teniendo en
+                              cuenta la máxima caída de tensión permitida como la
+                              intensidad máxima admisible.
+                              La caída de tensión máxima permitida será:
+                                  Para LGA destinadas a contadores totalmente
+                                     centralizados: 0,5%
+                                  Para LGA destinadas a contadores individuales
+                                     o centralizados parcialmente por plantas: 1%
+                              La intensidad máxima admisible a considerar será
+                              la fijada en la UNE 20460-5-523 de acuerdo con la
+                              previsión de potencias establecidas en la ITC-BT-10 y
+                              aplicando los factores de corrección correspondien-
+                              tes a cada tipo de montaje.
+
+
+
+
+ 22
+                                                              INSTALACIONES DE ENLACE
+
+
+
+
+El conductor neutro tendrá una sección de aproximadamente el 50% de la co-
+rrespondiente al conductor de fase, no siendo inferior a los valores especifica-
+dos en la siguiente tabla.
+
+
+                   Secciones (mm2)                        Diámetro exterior de los
+           Fase                       Neutro                   tubos (mm)
+
+            10                           10                          75
+
+            16                           16                          75
+
+            25                           25                         110
+
+            50                           25                         125
+
+            95                           50                         140
+
+            150                          95                         160
+
+            240                          150                        200
+                                Tabla 1 de la ITC-BT-14
+
+
+
+
+1.5. CONTADORES (CC)
+
+
+                              El contador eléctrico es un dispositivo electromecá-
+                              nico o electrotécnico cuya misión es la de medir la
+                              energía eléctrica consumida por un usuario durante
+                              un periodo de tiempo determinado.
+
+
+
+
+Los contadores y demás dispositivos para la medida de la energía eléctrica de-
+ben cumplir la norma UNE 20324 y UNE-EN 50.102, siendo el grado de protec-
+ción mínimo de:
+
+        IP40 / IK09.- para instalaciones interiores.
+
+        IP43 / IK09.- para instalaciones exteriores.
+
+Se permitirá la lectura de los contadores e interruptores horarios de forma di-
+recta.
+
+
+
+
+                                                                                 23
+INSTALACIONES DE ENLACE
+
+
+
+
+Las partes transparentes que permitan la lectura directa, deberán ser resisten-
+tes a los rayos ultravioleta.
+
+Cada derivación individual llevará asociado en su origen su propia protección
+compuesta por fusibles de seguridad, con independencia de las protecciones
+correspondientes a la instalación interior de cada suministro.
+
+Dichos fusibles se instalarán antes del contador en cada uno de los hilos de fase
+o polares y estarán precintados por la empresa distribuidora.
+
+
+
+
+                              La sección de los cables será de 6 mm2, salvo cuan-
+                              do incumplan las prescripciones reglamentarias que
+                              afectan a previsión de cargas y caídas de tensión, en
+                              cuyo caso la sección será mayor.
+
+
+
+
+Los conductores serán de cobre. A continuación indicamos algunas de sus ca-
+racterísticas:
+
+         Tensión asignada de 450/750 V.
+         De clase 2 según norma UNE-21022.
+         Aislamiento seco.
+         No propagadores de incendios.
+         Emisión de humos y opacidad reducida.
+
+
+
+
+                              El cableado para los circuitos de mando y control se-
+                              rán de color rojo y con una sección de 1,5 mm2.
+
+
+
+
+Las conexiones de los conductores se efectuarán directamente y no requerirán
+preparación especial o terminales.
+
+
+
+
+ 24
+                                                               INSTALACIONES DE ENLACE
+
+
+
+
+1.6. DERIVACIÓN INDIVIDUAL (DI)
+
+                              Denominamos derivación individual a la parte de la
+                              instalación que enlaza el contador o contadores de
+                              cada cliente, con los dispositivos privados de mando
+                              y protección instalados en el interior de cada vivien-
+                              da, local comercial u oficina.
+
+
+
+
+                              Derivaciones individuales
+
+
+
+
+                              Se inicia en el embarrado general y comprende los
+                              fusibles de seguridad, el conjunto de medida y los
+                              dispositivos generales de mando y protección.
+
+
+
+
+1.6.1. CABLES
+
+El número conductores vendrá fijado por el de fases necesarias para la utiliza-
+ción de los receptores del cliente y según su potencia, llevando cada línea su
+correspondiente conductor neutro y de protección.
+
+
+El hilo de mando para posibilitar la aplicación de diferentes tarifas será incluido
+en todas las derivaciones individuales.
+
+
+
+
+                                                                                   25
+INSTALACIONES DE ENLACE
+
+
+
+
+Los colores de las cubiertas serán:
+
+         Negro, marrón o gris para las fases.
+
+         Azul claro para el neutro.
+
+         Amarillo-verde (bicolor) para el conductor de protección.
+
+Algunas de las características de los conductores son:
+
+         Tensión asignada de 450/750 kV.
+
+         Tensión asignada de 0.6/1 kV para cables multiconductores o deriva-
+          ciones individuales en el interior de tubos enterrados.
+
+         De cobre o aluminio.
+
+         Normalmente unipolares.
+
+         Aislados.
+
+         No propagadores de incendios.
+
+         Con emisión de humos y opacidad reducida.
+
+La sección de los cables será:
+
+         Uniforme en todo su recorrido
+
+         Sin empalmes, exceptuando las conexiones realizadas en la ubicación
+          de los contadores y en los dispositivos de protección.
+
+         Mínimo 6 mm2 para los cables de fase, polares, neutro y protección.
+
+         1,5 mm2 para el hilo de mando que será de color rojo.
+
+Aunque lo veremos con más detenimiento en los siguientes temas para el
+cálculo de la sección de los conductores se tendrá en cuenta lo siguiente:
+
+      a) La demanda prevista por cada usuario, que será como mínimo fijada
+         por la ITC-BT-010.
+
+      b) La caída de tensión máxima admisible será:
+
+             Para contadores concentrados en más de un lugar: 0,5%.
+
+             Para contadores totalmente concentrados: 1%.
+
+             Para derivaciones individuales que suministran a un único usuario
+               y que no existe la línea general de alimentación: 1,5%.
+
+
+
+
+ 26
+                                                                  INSTALACIONES DE ENLACE
+
+
+
+
+         La caída de tensión se entiende desde el punto de la derivación indivi-
+         dual hasta el punto de conexión del dispositivo privado de mando y
+         protección del cliente.
+
+      c) La máxima intensidad admisible por conductor se ajustará a los valo-
+         res indicados en la instrucción ITC-BT-19 y para el caso de cables aisla-
+         dos en el interior de tubos enterrados, lo dispuesto en la ITC-BT-07.
+
+
+            DVD012764
+
+
+
+
+                              En el siguiente vídeo puedes ver cómo se manipulan
+                              los cables, y qué herramientas se usan para ello. ¡Es-
+                              peramos que lo disfrutes!
+                              (Tienes el vídeo en el Campus Virtual).
+
+
+
+
+1.6.2. TUBOS Y CANALIZACIONES
+
+Los conductores constitutivos de cada derivación individual irán protegidos en
+el interior de un tubo aislante de PVC, autoextinguible, rígido o flexible, de grado
+mínimo de protección 7, en las condiciones establecidas en la ITC-BT-15.
+
+
+En los tubos rígidos, las uniones entre los distintos tramos serán roscadas o
+embutidas, de forma que no puedan separarse.
+
+
+En los tubos flexibles no se permitirá unión en todo su recorrido.
+
+
+Los diámetros nominales serán tales que permitan ampliar un 100 % la sección
+de los conductores inicialmente instalados.
+
+
+En cualquier caso, es recomendable disponer algún tubo más de reserva desde
+la concentración de contadores hasta las viviendas o locales, para poder aten-
+der fácilmente posibles ampliaciones.
+
+
+
+
+                                                                                       27
+INSTALACIONES DE ENLACE
+
+
+
+
+1.6.3. CANALADURAS
+
+Las derivaciones individuales se alojarán en canaladuras rectilíneas y uniformes
+a lo largo de la caja de escalera.
+
+
+Ninguna otra canalización se admitirá en el interior de esta canaladura.
+
+
+Para evitar caídas de objetos y la propagación de llamas, se dispondrán en cada
+planta elementos cortafuegos y tapas de registro.
+
+
+Las dimensiones mínimas de las canaladuras se ajustarán a lo indicado en la
+tabla 1 (NTE -IEB- 39).
+
+
+                                  Dimensiones
+
+                                                 Anchura L
+ Numero de derivaciones
+                              Profundidad P=0,15          Profundidad P=0,30
+
+          Hasta 12                    0,65                       0,50
+
+           13-24                      1,25                       0,65
+
+           25-36                      1,85                       0,95
+
+           36-48                      2,45                       1,35
+
+
+
+Las paredes interiores de las canaladuras se alisarán mediante enlucido de yeso
+o mortero hidráulico.
+
+
+
+
+ 28
+                                                             INSTALACIONES DE ENLACE
+
+
+
+
+1.7. DISPOSITIVOS GENERALES E INDIVIDUALES
+     DE MANDO Y PROTECCIÓN
+
+A efectos de la Norma 510006.3 ERZ, se entenderá como Dispositivo General de
+Mando y Protección cualquiera de los siguientes:
+
+        CGP: Caja General de Protección.
+
+         Son las cajas que alojan los elementos de protección de las líneas ge-
+         nerales de alimentación.
+
+         Se colocarán en un lugar de tránsito general y de fácil y libre acceso.
+
+         Las cajas a utilizar corresponderán a uno de los tipos establecidos por
+         la empresa suministradora.
+
+         Veamos cuál es la normativa aplicada por la empresa para los Dispositi-
+         vos Generales de Protección.
+
+        AGP: Armario General de Protección.
+
+         Es el armario donde están ubicadas las cajas generales de protección.
+
+        CSP: Conjunto de seccionamiento y protección.
+
+         Está constituido por 2 armarios unidos, uno de los cuales aloja las cu-
+         chillas para los seccionamientos de entrada y salida de línea, y el otro,
+         los fusibles para protección de hasta 2 líneas generales de alimentación
+         susceptibles de instalarse como máximo en su interior (pudiendo in-
+         corporar, en su caso, los fusibles de protección para la alimentación a
+         las instalaciones del Servicio de extinción de incendios).
+
+        A.S.P: Armario de seccionamiento y protección
+
+         Con idénticas funciones que el CSP se ofrece como solución alternativa,
+         para el mismo número de salidas o para un número mayor de ellas
+         (hasta cuatro máximo). Consta de bases tripolares verticales de 630 A
+         para la entrada y salida de línea provistas de cuchillas de seccionamien-
+         to, y otras con la capacidad adecuada de la línea general de alimenta-
+         ción que protegen (salvo la destinada a la alimentación de las instala-
+         ciones del Servicio de extinción contra incendios, que será de 250 pro-
+         vistas de los fusibles de protección adecuados.
+
+
+
+
+                                                                                   29
+INSTALACIONES DE ENLACE
+
+
+
+
+Designación
+
+
+CGP, AGP Y CSP.
+
+
+Las cajas generales de protección (CGP), armarios generales de protección
+(AGP) y conjuntos de seccionamiento y protección (CSP), se designarán de
+acuerdo con lo expuesto en la tabla 1.
+
+
+
+ Significado                                  Designación
+ de las siglas    Cgp- (1)-(2) *       Cgp- (1)-(2)/(3) *       Cgp- (1)-(2)/(3)/(4) *
+
+      CGP *                           Caja General de Protección *
+
+      (1) **                        Esquemas según páginas 12 a 17
+
+                    Int. de las        Int. de las bases        Int. de las bases de
+       (2)            bases         cortacircuitos en Amp.      cortacircuitos de un
+                  cortacircuitos             ****                 circuito en Amp.
+
+                                                                 Int. de las bases de
+                                    Int. máxima de paso en
+       (3)                                                      cortacircuitos de un
+                                           amperios
+                                                                segundo circuito ***
+
+       (4)                         Int. máx. de paso en Amp.
+
+nº de circuitos
+ protegidos               1                    1                          2
+     ****
+                                         Tabla 1
+
+
+
+* En caso de tratarse de armario general de protección, las siglas serán AGP, y si
+se trata de un conjunto de seccionamiento y protección, CSP.
+** Los esquemas aplicables a cada Dispositivo General de Protección son los
+indicados en las figuras que se citan. La letra “E” que sigue al número de alguno
+de ellos quiere representar a aquellos esquemas que no están en correspon-
+dencia exacta con la RU 1403.
+*** En los dispositivos CSP-11EAI, CSP-11EDI, CSP-10EI y CSP-14EI no se indica-
+rá la intensidad nominal de las bases del circuito de alimentación a los servicios
+de extinción de incendios, cuyo valor es en todos los casos de 100 A.
+**** En el caso de tratarse de CSP, el número de circuitos protegidos podrá ser
+el señalado en la tabla o uno más (alimentación incendios), indicándose única-
+mente esta circunstancia mediante la sigla “I” que sigue al número de esquema
+que se trate (10E, 11E y 14E).
+
+
+
+
+ 30
+                                                              INSTALACIONES DE ENLACE
+
+
+
+
+                             CGP-7-250:
+                             Corresponde a una caja general de protección, equi-
+                             pada con un juego de bases cortacircuitos de 250 A,
+                             esquema 7.
+                             AGP-12-250/250/400:
+                             Corresponde a un armario general de protección
+                             equipado con un juego de bases cortacircuitos fusi-
+                             bles de 250 A, un segundo juego de 250 A, esquema
+                             12 y apto para una intensidad de paso de 400 A.
+                             CSP-11EA-250/240/400:
+                             Corresponde a un conjunto de seccionamiento y pro-
+                             tección formado por 2 armarios. En el inferior, 2 jue-
+                             gos de bases de 400 A para la entrada y salida de lí-
+                             nea. En el superior 2 juegos de bases de cortacircui-
+                             tos de 250 A cada uno, esquema 11Ea (salidas por
+                             arriba intensidad de paso del conjunto de 400 A.
+                             CSP-11EDI-250/250/400:
+                             Corresponde a un conjunto de seccionamiento y pro-
+                             tección constituido por 2 armarios. En el inferior 2
+                             juegos de bases de 400 A para la entrada y salida de
+                             línea. En el inferior 2 juegos de bases c/c fusibles de
+                             250 A cada uno y 3 bases 22 x 58 de 100 A para la
+                             alimentación de incendios (“I”).
+                             El conjunto está previsto para una intensidad de paso
+                             de 400 A, y corresponde al esquema 11EDI (2 sali-
+                             das + incendios, por la parte de abajo).
+
+
+
+
+ASP.
+
+
+Los armarios de seccionamiento y protección se designarán mediante las siglas
+ASP seguidas de 1, 2, 3 ó 4 grupos de números (según el número de bases tri-
+polares verticales que incorpore) que indican la intensidad nominal de las bases
+tripolares de cada salida. A continuación y, separada por una barra inclinada, se
+indicará la intensidad nominal de las dos bases tripolares verticales para la en-
+trada y salida de línea, que será en todos los casos de 630 A.
+
+
+
+
+                                                                                   31
+INSTALACIONES DE ENLACE
+
+
+
+
+                                    ASP-400-400-250/630:
+                                    Corresponde a un armario de seccionamiento y pro-
+                                    tección, equipado con bases tripolares verticales de
+                                    630 A previstas para alojar las cuchillas de seccio-
+                                    namiento de entrada y salida de línea, así como 3
+                                    bases tripolares verticales de 400, 440, y 250 A res-
+                                    pectivamente, previstas para alojar los fusibles de
+                                    protección de las líneas generales de alimentación
+                                    que alimenten.
+
+
+
+
+Dispositivos generales de protección normalizados
+
+
+En las siguientes tablas, se especifican el tipo, número y tamaño de las bases de
+los cortacircuitos fusibles, así como la capacidad de los bornes y designación de
+cada uno de los DGP seleccionados.
+
+
+                                                              CAPACIDAD DE LOS BORNES
+                     CORTACIRCUITOS FUSIBLES               según la sección de los conductores
+                                                                          (mm2)
+ Designación
+     del                                                                           L. General de
+                            Bases              Fusibles       Acometida
+    DGP                                                                            alimentación
+
+                                               I máx.
+                 Tipo       Número Tamaño                  Fases     Neutro       Fases     Neutro
+                                                 (A)
+
+ CGP-1-100     Unipolares     1      22 x 58     100        6-25       6-25       6-25        6-25
+
+ CGP-7-100     Unipolares     3      22 x 58     100        6-50      6-54,6      6-50       6-54,6
+
+ CGP-7-160     Unipolares     3         0        160       16-95      16,54,6     16-95     16,54,6
+
+ CGP-7-250     Unipolares     3         1        250      25-150      16-95      25-150      16-95
+
+ CGP-9-160     Unipolares     3         0        160       16-95     16-54,6      16-95     16-54,6
+
+ CGP-9-250     Unipolares     3         1        250      25-150      16-95      25-150      16-95
+
+ CGP-9-400     Unipolares     3         2        40       50-250      50-250     50-250     50-250
+
+                                                           2 taladros, distantes más de 40 mm para
+ CGP-9-630     Unipolares     3         3        630      tornillos de M10 para las bases y 1 para el
+                                                                             neutro
+
+  AGP-12-
+            Unipolares       3/3        1      250/250    50-250      50-250     50-250     50-250
+250/250/400
+
+
+
+
+ 32
+           Designación                           CORTACIRCUITOS FUSIBLES                                CAPACIDAD BORNES según sección de los conductores (mm 2)
+                del                                 BASES                            FUSIBLES                   ACOMETIDA                       L. REPARTIDORA/S
+               DGP                 TIPO        NÚMERO           TAMAÑO                I máx (A)            FASES            NEUTRO             FASES          NEUTRO
+     CGP-8a-100            (1)   Unipolares     3             22x58             80                          6-50              6-54,6            6-50            6-54,6
+     CSP-11EA-250/250/400        Unipolares     3/3-3/3       2/2-1/1           250/250                    50-240            50-240            25-150            16-95
+     CSP-11EAI-250/250/400       Unipolares     3/3-3/3/3     2/2-1/1/22x58     250/250/100                50-240            50-240          25-150 (2)        16-95 (2)
+     CSP-11ED-250/250/400        Unipolares     3/3-3/3       2/2-1/1           250/250                    50-240            50-240            25-150            16-95
+     CSP-11EDI-250/250/400       Unipolares     3/3-3/3/3     2/2-1/1/22x58     250/250/100                50-240            50-240          25-150 (2)        16-95 (2)
+     CSP-10E-250/400             Unipolares     3/3-3         2/2-1             250                        50-240            50-240            25-150            16-95
+     CSP-10EI-250/400            Unipolares     3/3-3/3       2/2-1/22x58       250/100                    50-240            50-240          25-150 (2)        16-95 (2)
+     CSP-14E-250/400             Unipolares     3/3-3         2/2-1             250                        50-240            50-240            25-150            16-95
+     CSP-14EI-250/400            Unipolares     3/3-3/3       2/2-1/22x58       250/100                    50-240            50-240          25-150 (2)        16-95 (2)
+     ASP-250/630                 Tripolares     1/1-1         3/3-1             250                        50-240            50-240            25-150            16-95
+     ASP-400/630                 Tripolares     1/1-1         3/3-2             400                        50-240            50-240            50-240           50-240
+     ASP-250-250/630             Tripolares     1/1-2         3/3-1/1           250/250                    50-240            50-240            25-150            16-95
+     ASP-250-400/630             Tripolares     1/1-2         3/3-1/2           250/400                    50-240            50-240              (3)              (3)
+     ASP-250-250-250/630         Tripolares     1/1-3         3/3-1/1/1         250/250/250                50-240            50-240            25-150            16-95
+     ASP-250-250-400/630         Tripolares     1/1-3         3/3-1/1/2         250/250/400                50-240            50-240              (3)              (3)
+     ASP-250-400-400/630         Tripolares     1/1-3         3/3-1/2/2         250/400/400                50-240            50-240              (3)              (3)
+     ASP-250-250-250-250/630     Tripolares     1/1-4         3/3-1/1/1/1       250/250/250/250            50-240            50-240            25-150            16-95
+     ASP-250-250-250-400/630     Tripolares     1/1-4         3/3-1/1/1/1       250/250/250/400            50-240            50-240              (3)              (3)
+     ASP-250-250-400-400/630     Tripolares     1/1-4         3/3-1/1/1/1       250/250/400/400            50-240            50-240              (3)              (3)
+     ASP-250-400-400-400/630     Tripolares     1/1-4         3/3-1/1/1/1       250/400/400/400            50-240            50-240              (3)              (3)
+
+     (1) Se utilizarán preferente y habitualmente en zonas rurales y urbanizaciones con tendidos aéreos.
+     (2) Los bornes de las bases tamaño 22 x 58, para la alimentación de incendios tendrán una capacidad entre 6 y 25 mm 2.
+     (3) La capacidad para las de 250 A será entre 25 y 150 y entre 16 y 95, y para las de 400 A será entre 50 y 240 mm 2, tanto para las fases como para el neutro.
+
+
+
+
+33
+                                                                                                                                                                           INSTALACIONES DE ENLACE
+INSTALACIONES DE ENLACE
+
+
+
+
+1.8. INTERRUPTOR DE CONTROL DE POTENCIA
+
+
+                             Es el principal elemento de protección y control de
+                             una instalación eléctrica y es un dispositivo diseñado
+                             para la protección de conductores y aparatos contra
+                             sobrecargas eléctricas y cortocircuitos.
+
+
+
+
+Desde aquellos interruptores de cuchilla con los hilos de cobre como fusibles de
+protección, todo el conjunto montado en una gruesa placa de pizarra, ha llovido
+mucho. Ahora, los interruptores realizan, además de la función de conexión y
+desconexión manual, el disparo automático en cuanto la intensidad nominal
+sobrepasa los valores preestablecidos en la instalación. Por tanto, el interruptor
+de control de potencia es un interruptor automático que se coloca a la entrada
+de la instalación.
+
+
+
+
+                               Interruptor automático
+
+
+
+
+Básicamente, constan de una parte magnética y otra térmica. La parte magnéti-
+ca se encarga de la protección frente a cortocircuitos y la térmica protege frente
+a las sobrecargas de corriente. Por eso son también llamados interruptores
+magnetotérmicos.
+
+
+
+
+ 34
+                                                                INSTALACIONES DE ENLACE
+
+
+
+
+  2. CARACTERÍSTICAS Y TIPOS DE ELEMENTOS
+Una instalación eléctrica es como un gran puzle con multitud de piezas que de-
+ben encajar entre sí y ser compatibles, en este caso en términos de intensidad,
+tensión, etc. Es importante que domines la terminología y que sepas cuáles son
+los parámetros característicos más relevantes de cada equipo, para que en el
+futuro sepas llevar a cabo la elección de elementos adecuados para cada insta-
+lación concreta.
+
+
+
+
+2.1. GRADOS DE PROTECCIÓN
+
+A la hora de elegir los elementos eléctricos que compondrán nuestra instalación
+es importante fijarnos en el ambiente en el que estarán ubicados para elegir los
+que puedan trabajar de manera óptima en ese contexto.
+
+El grado de protección es una condición importante para la elección del apare-
+llaje eléctrico, una vez concluida su definición técnica específica (tensión, poten-
+cia y corriente).
+
+
+
+
+                              El grado de protección define las condiciones de se-
+                              guridad de funcionamiento, en función de la agresivi-
+                              dad del ambiente y de la seguridad de las personas,
+                              en lo referente a la posibilidad de acceder al aparella-
+                              je poniendo en riesgo su vida.
+
+
+
+
+                                                                                     35
+INSTALACIONES DE ENLACE
+
+
+
+
+La publicación UNE 20324, entre otras, indica con las siglas IP los grados de pro-
+tección que ofrece el envolvente del material eléctrico frente al acceso de las per-
+sonas a las partes peligrosas y frente a la penetración de agua y objetos sólidos.
+
+
+Estas normas no deben ser tenidas en cuenta contra la protección de los ries-
+gos de explosión, o contra la humedad, los vapores corrosivos, los hongos o los
+parásitos.
+
+
+En algunos materiales el grado de protección indicado corresponde al que su
+montaje en un envolvente permite obtener después de instalado.
+
+
+El código IP está formado por dos cifras características, aunque puede ser am-
+pliado con una tercera letra adicional. En la siguiente tabla vienen especificados
+los índices de protección.
+
+
+
+
+                                 Las características del grado de protección IP que se
+                                 reflejan a continuación son aplicables a todos los
+                                 componentes.
+
+
+
+
+                                                  2.ª cifra
+          1.ª cifra característica                                     Letra adicional
+                                               característica
+
+  Protección del
+                         Protección de las   Protección del          Protección de las
+ material contra la
+                        personas contra el  material contra la      personas contra el
+  penetración de
+                          acceso a partes  penetración de agua        acceso a partes
+ cuerpos sólidos
+                            peligrosas     con efectos nocivos          peligrosas
+     extraños
+
+                                                                          Dorso de la
+ 0    No protegido        No protegido     0     No protegido      A
+                                                                            mano
+
+      Mayor o igual a                           Gotas de agua
+ 1                      Dorso de la mano   1                       B         Dedo
+        50 mm                                    verticales
+
+      Mayor o igual a                          Gotas de agua 15º
+ 2                            Dedo         2                     C        Herramienta
+       12,5 mm                                   inclinación
+
+
+
+
+ 36
+                                                                   INSTALACIONES DE ENLACE
+
+
+
+
+                                                   2.ª cifra
+         1.ª cifra característica                                       Letra adicional
+                                                característica
+
+    Mayor o igual a
+3                        Herramienta        3                     Lluvia
+      2,5 mm 
+
+    Mayor o igual a                               Proyección de
+4                        Hilo 1 mm         4                       D      Hilo 1 mm 
+      1 mm                                           agua
+
+      Protegido
+5                        Hilo 1 mm         5          Proyección con lanza de agua
+    contra el polvo
+6   Estanco al polvo     Hilo 1 mm         6          Proyección potente con lanza
+
+                                            7               Inmersión temporal
+
+                                            8              Inmersión prolongada
+                                    Cifras del código IP
+
+
+
+
+                                Por ejemplo, una envolvente que sea una serigrafía
+                                IP-54 indica que el grado de protección es contra la
+                                penetración de polvo y proyecciones de agua.
+
+
+
+
+Cuanto más altos sean estos niveles, más protección tiene el elemento y más
+caro es, por supuesto.
+
+
+
+
+                                                                                          37
+INSTALACIONES DE ENLACE
+
+
+
+
+Los símbolos utilizados para representar estas protecciones son:
+
+
+
+
+                          Símbolos utilizados para el código IP
+
+
+
+
+ 38
+                                                                  INSTALACIONES DE ENLACE
+
+
+
+
+2.2. CUADRO DE DISTRIBUCIÓN
+
+También se le conoce como cuadro general de mando y protección. A él llegan
+los conductores de la derivación individual (desde los contadores), pasando por
+el ICP.
+
+
+
+
+                              El cuadro de distribución es donde están ubicados
+                              los dispositivos encargados de proteger la instalación
+                              eléctrica contra cortocircuitos, sobreintensidades y
+                              tensiones de defecto.
+
+
+
+
+                  Fotografía de cuadro de distribución de una vivienda
+
+
+
+
+                                                                                     39
+INSTALACIONES DE ENLACE
+
+
+
+
+Incluirá como mínimo los siguientes dispositivos generales e individuales de
+mando y protección:
+
+         IGA: Interruptor General Automático de corte omnipolar que permite
+          su accionamiento manual y esté dotado de elementos de protección
+          contra sobrecarga y cortacircuitos. Será independiente del ICPM. Ten-
+          drá corte suficiente para la intensidad de cortocircuito que pueda pro-
+          ducirse en el punto de su instalación, de 4.500 A como mínimo.
+
+         ICPM: Interruptor de Control de Protección Máxima, colocado de forma
+          que se pueda precintar, estará provisto para una intensidad de corte
+          suficiente en caso de cortocircuito, que se produzca en el punto de ins-
+          talación. Sus características y tipo corresponderán a un modelo oficial-
+          mente aprobado.
+
+         ID: Interruptor Diferencial general. Destinado a la protección contra
+          contactos indirectos de todos los circuitos. Si se instala un ID por cada
+          circuito o grupo de circuitos se puede prescindir del ID general. Si se
+          instalan interruptores diferenciales en serie, existirá una selectividad
+          entre ellos.
+
+         PIA: Pequeño Interruptor Automático de corte omnipolar, destinado a
+          la protección contra sobrecargas y cortocircuitos de los circuitos inte-
+          riores de la vivienda o local.
+
+Los interruptores automáticos y diferenciales deberán resistir las corrientes de
+cortocircuito que puedan presentarse en el punto de su instalación.
+
+
+Los dispositivos de protección contra sobrecargas y cortocircuitos de los circui-
+tos interiores serán de corte omnipolar y tendrán los polos protegidos que co-
+rresponda al número de fases del circuito que protegen. Sus parámetros de
+interrupción estarán de acuerdo con las corrientes admisibles de los conducto-
+res del circuito que protegen.
+
+
+El cuadro de distribución stará identificado de forma indeleble con los
+siguientes datos:
+
+         Fecha en que se realizó la instalación.
+
+         Grado de electrificación de la vivienda.
+
+         El instalador autorizado que la realizó.
+
+
+
+
+ 40
+                                                                INSTALACIONES DE ENLACE
+
+
+
+
+Generalmente a este cuadro le llega también la derivación de la línea principal
+de tierra, que se conecta a un borne de conexión, desde el que parten los
+conductores de protección para todos los circuitos.
+
+
+Dentro del cuadro se colocarán los perfiles. El perfil es una pletina metálica
+doblada utilizada para la fijación de los elementos al cuadro. Se fija a la placa del
+cuadro con remaches tornillos... Según la silueta que presente este perfil se
+denominará de una manera o de otra. Los más comunes son el denominado
+carril DIN y el denominado carril en C. Sus medidas constructivas están
+reguladas según la norma EN 50022, para el primero y EN 50035, para el
+segundo.
+
+
+
+
+                                      Carril DIN
+
+
+
+
+                                     Carril en C
+
+
+
+
+                              ¿Cómo va tu trabajo respecto a plan fijado al principio?
+                              Recuerda que el objetivo que nos hemos planteado
+                              contigo es una carrera de fondo.
+
+
+
+
+2.3. ELEMENTOS DE MANDO Y PROTECCIÓN
+
+Los conductores deben protegerse del sobrecalentamiento mediante dispositi-
+vos de protección contra sobreintensidades. El origen de la anomalía puede
+deberse a una sobrecarga o a un cortocircuito.
+
+
+
+
+                                                                                     41
+INSTALACIONES DE ENLACE
+
+
+
+
+                             La intensidad máxima admisible en conductores vie-
+                             ne determinada en el Reglamento de Baja Tensión.
+                             Depende del tipo de aislamiento, de la caída de ten-
+                             sión admisible (dependiendo de su aplicación: el 3%
+                             para alumbrado y el 5% para fuerza), y de las pres-
+                             cripciones particulares que en su caso refleje el re-
+                             glamento anteriormente citado.
+
+
+
+
+Para la protección contra sobrecargas se utilizará la combinación de interrupto-
+res automáticos y fusibles según la sección instalada.
+
+
+Los valores vienen determinados por las compañías suministradoras; no obs-
+tante, los fabricantes facilitan los datos correspondientes.
+
+
+
+
+2.3.1. INTERRUPTOR AUTOMÁTICO
+
+
+                             Es el principal elemento de protección y control de
+                             una instalación eléctrica y es un dispositivo diseñado
+                             para la protección de conductores y aparatos contra
+                             sobrecargas eléctricas y cortocircuitos.
+
+
+
+
+Desde aquellos interruptores de cuchilla con los hilos de cobre como fusibles de
+protección, todo el conjunto montado en una gruesa placa de pizarra, ha llovido
+mucho. Ahora, los interruptores realizan, además de la función de conexión y
+desconexión manual, el disparo automático en cuanto la intensidad nominal
+sobrepasa los valores preestablecidos en la instalación.
+
+
+
+
+ 42
+                                                            INSTALACIONES DE ENLACE
+
+
+
+
+                               Interruptor automático
+
+
+
+
+Básicamente, constan de una parte magnética y otra térmica. La parte magnéti-
+ca se encarga de la protección frente a cortocircuitos y la térmica protege frente
+a las sobrecargas de corriente. Por eso son también llamados interruptores
+magnetotérmicos.
+
+En la siguiente figura se muestra internamente un interruptor automático mag-
+netotérmico.
+
+
+
+
+                             Interruptor magnetotérmico
+
+
+
+
+La protección contra sobrecargas se efectúa a través de la lámina bimetálica (A).
+
+La protección contra cortocircuitos la proporciona el dispositivo magnético (B).
+
+
+
+
+                                                                               43
+INSTALACIONES DE ENLACE
+
+
+
+
+El disparo térmico se efectúa a través del bimetal, que es ajustado por medio
+del tornillo (C) de forma que el bimetal, al paso de la corriente, se calienta pro-
+duciéndose un pandeo que al llegar a determinados valores actúa sobre el apo-
+yo del trinquete (G), dando lugar al disparo del interruptor.
+
+
+El disparo magnético regulado a través del muelle (F) tiene lugar por medio del
+inducido (E), de forma tal que cuando la fuerza de atracción de la bobina (B) es
+suficientemente grande, el inducido (E) se desplaza venciendo la resistencia del
+muelle, y actúa sobre el apoyo del trinquete (G).
+
+
+La apertura del interruptor (D) y la extinción del arco eléctrico (H) se realizan en
+cortocircuito en un tiempo inferior a 10 milisegundos. Esta alta velocidad de
+respuesta garantiza la seguridad en las instalaciones a proteger en tales casos.
+
+
+
+
+2.3.2. ELECCIÓN DEL INTERRUPTOR EN FUNCIÓN DE LA LÍNEA
+
+El interruptor automático debe impedir que la intensidad que circula por la línea
+supere los valores máximos admisibles por los conductores.
+
+
+Estos valores máximos dependen de:
+
+         La naturaleza de los conductores.
+
+         La sección de los mismos.
+
+         El tipo de aislamiento (goma, PRC, PVC, etc.).
+
+         Las condiciones de colocación (al aire, empotrados, etc.).
+
+         La temperatura.
+
+
+
+2.3.3. CARACTERÍSTICAS PRINCIPALES DE UN INTERRUPTOR
+           AUTOMÁTICO
+
+Los interruptores automáticos serán de corte omnipolar, tendrán los polos pro-
+tegidos tanto los que corresponden al número de fases de la instalación como
+al conductor neutro cuando sea necesaria la protección de este.
+
+
+
+
+ 44
+                                                             INSTALACIONES DE ENLACE
+
+
+
+
+                             Un elemento de protección o maniobra es de corte
+                             omnipolar cuando corta todos los conductores acti-
+                             vos (fases y neutro en CA o polares y compensador
+                             en CC).
+
+
+
+
+Si la intensidad de cortocircuito en un punto de la instalación fuese superior al
+poder de corte del interruptor automático, será preciso instalar un cortacircuito
+de acompañamiento, adecuado y debidamente combinado con el interruptor.
+
+
+
+
+                             El poder de corte de un aparato se expresa por la in-
+                             tensidad de corriente que este dispositivo es capaz
+                             de cortar, bajo una tensión de restablecimiento de-
+                             terminada, y en las condiciones prescritas de funcio-
+                             namiento.
+
+
+
+
+                               Interruptor automático
+
+
+
+
+Hay que distinguir tres tipos de interruptores automáticos: H, para usos domés-
+ticos; L, para protección de líneas y G, para protecciones de aparatos. Sus prin-
+cipales ventajas son:
+
+        Disponibilidad constante para el servicio sin cambios ni repuestos.
+
+        Protección segura contra tensión de contacto demasiado alta.
+
+
+
+
+                                                                                  45
+INSTALACIONES DE ENLACE
+
+
+
+
+         Dos órganos de desenganche distintos: uno bimetálico, que tiene una
+          característica de desenganche diferida y que, en caso de una descarga
+          en servicio, evita innecesarios disparos prematuros; otro, electromag-
+          nético, de desenganche rápido, que tiene por encima de sus límites de
+          reacción unos tiempos de disparo muy cortos, de unos pocos milise-
+          gundos. De esta manera se consigue una desconexión extraordinaria-
+          mente rápida del circuito averiado, no solo en caso de cortocircuito,
+          sino también de contacto a tierra.
+
+
+
+
+                                 Cuando aparece un término nuevo o que no conoz-
+                                 cas hay que investigar, preguntar..., lo que sea, pero
+                                 no hay que quedarse con la duda.
+
+
+
+
+El interruptor, en su parte frontal, indica: marca, tipo, tensión nominal en voltios,
+intensidad nominal en amperios, poder de cortocircuito, naturaleza de la co-
+rriente, frecuencia, designación según dispositivo de desconexión y número de
+orden de fabricación. Existen unipolares, bipolares, tripolares y tetrapolares.
+
+
+
+
+                          Pequeños interruptores automáticos (PIA)
+
+
+
+
+ 46
+                                                                  INSTALACIONES DE ENLACE
+
+
+
+
+2.3.4. INTERRUPTOR DIFERENCIAL
+
+                                El interruptor diferencial tiene como misión desco-
+                                nectar la instalación eléctrica de forma rápida cuando
+                                existe una fuga a tierra, con lo que la instalación se
+                                desconectará antes de que alguien toque el aparato
+                                averiado. En caso de que alguien toque una parte ac-
+                                tiva, el interruptor diferencial desconectará la instala-
+                                ción en un tiempo lo suficientemente corto como pa-
+                                ra no provocar daños graves a la persona.
+
+
+
+
+Los interruptores diferenciales se caracterizan por tener diferentes sensibilidades.
+
+
+
+
+                                La sensibilidad es el valor que aparece en catálogo y
+                                que identifica al modelo, sirve para diferenciar el va-
+                                lor de la corriente a la que se quiere que dispare el
+                                diferencial.
+
+
+
+
+Las diferentes sensibilidades son:
+
+         Muy alta sensibilidad: 10 mA.
+
+         Alta sensibilidad: 30 mA.
+
+         Sensibilidad normal: 100 y 300 mA.
+
+         Baja sensibilidad: 0,5 y 1 A.
+
+
+
+
+                                                                                          47
+INSTALACIONES DE ENLACE
+
+
+
+
+                            En el interruptor diferencial hay un pulsador de
+                            prueba (botón indicado con una T o una P), que si-
+                            mula un defecto en la instalación y, por lo tanto, al
+                            ser pulsado, la instalación deberá desconectarse, ya
+                            que hace una derivación a tierra. Es recomendable
+                            apretar el pulsador periódicamente.
+
+
+
+
+                              Interruptor diferencial
+
+
+
+
+Esta protección consiste en hacer pasar los conductores de alimentación por el
+interior de un transformador de núcleo toroidal. La suma vectorial de las co-
+rrientes que circulan por los conductores activos de un circuito en funciona-
+miento sin defecto es cero. Cuando aparece un defecto, esta suma no es cero y
+se induce una tensión en el secundario, constituido por un arrollamiento situa-
+do en el núcleo, que actúa sobre el mecanismo de disparo, desconectando el
+circuito cuando la corriente derivada a tierra es superior al umbral de funcio-
+namiento del dispositivo diferencial.
+
+
+
+
+ 48
+                                                                  INSTALACIONES DE ENLACE
+
+
+
+
+                         Interior de un interruptor diferencial
+
+
+
+
+El relé diferencial debe asegurar, por una parte, la apertura del circuito cuando
+la intensidad derivada a tierra alcance un valor superior a la sensibilidad del
+aparato, y por otra que no se dispare para una intensidad menor de la mitad de
+su sensibilidad.
+
+
+           DVD006046
+
+
+
+
+                              A continuación puedes ver un vídeo sobre el inte-
+                              rruptor automático y el interruptor diferencial, seguro
+                              que resulta práctico en tu estudio:
+                              (Tienes el vídeo en el Campus Virtual).
+
+
+
+
+Conviene destacar que los interruptores diferenciales de alta sensibilidad apor-
+tan una protección muy eficaz contra incendios, al limitar a potencias muy bajas
+las eventuales fugas de energía eléctrica por defecto de aislamiento.
+
+
+
+
+                              El diferencial es un elemento que protege contra con-
+                              tactos indirectos. Los contactos indirectos se dan, por
+                              ejemplo, cuando existe un conductor activo pelado que
+                              toca con la parte metálica de la envolvente, y el usuario
+                              toca esta y deriva a través de su cuerpo la tensión a tie-
+                              rra; entonces, el diferencial será el encargado del dispa-
+                              ro del circuito para eliminar la circulación de tensión.
+
+
+
+
+                                                                                       49
+INSTALACIONES DE ENLACE
+
+
+
+
+2.3.5. FUSIBLE
+
+                              Estos elementos de protección se emplean princi-
+                              palmente para proteger los circuitos contra sobrein-
+                              tensidades y cortocircuitos a causa de la elevada co-
+                              rriente que circula por un conductor cuando sucede
+                              este fenómeno siendo válidos tanto para corriente al-
+                              terna (CA) como para corriente continua (CC).
+                              La misión del fusible es proteger las líneas de sumi-
+                              nistro de corriente ante posibles cortocircuitos.
+
+
+
+
+Su principio de funcionamiento se basa en el efecto Joule, es decir, cuando los
+dos puntos sometidos a tensión (ddp) tienen una resistencia nula (cortocircuito),
+la intensidad que por ellos pasa es máxima. Como consecuencia, el desprendi-
+miento de calor es muy grande y llega a fundir el conductor. Esto es aprovecha-
+do para la protección de circuitos y para la inserción de fusibles. Si existe una
+sobreintensidad, no afectará a ningún componente del circuito, puesto que el
+primer elemento que la sufre es el fusible y al partirse, no deja pasar la corriente
+a los demás componentes.
+
+
+
+
+                              Un cortocircuito es la unión directa de dos o más
+                              conductores activos de diferente potencial.
+
+
+
+
+                             Detalle de un fusible fundido
+
+
+
+
+ 50
+                                                              INSTALACIONES DE ENLACE
+
+
+
+
+En la figura anterior observamos un fusible fundido, donde el filamento interno
+se ha roto debido a una sobreintensidad.
+
+
+
+
+                             La ley de Joule dice: “La energía eléctrica disipada en
+                             calor en un receptor es proporcional a la resistencia
+                             de ese receptor, al cuadrado de la corriente que lo
+                             atraviesa y al tiempo que está pasando dicha corrien-
+                             te”. Por lo tanto, es fácilmente comprensible el fun-
+                             cionamiento del fusible: en caso de cortocircuito la
+                             resistencia es cero, lo que hace que la intensidad sea
+                             máxima y, por el calor, el filamento se parte, impi-
+                             diendo el paso de corriente.
+
+
+
+
+A diferencia de los relés de sobreintensidad, los fusibles actúan instantánea-
+mente con el cortocircuito, podemos decir que actúa en valores de milisegundos.
+
+
+Cuando la corriente de cortocircuito es muy alta, los fusibles se funden tan rápi-
+damente que la corriente de choque IS no puede ser alcanzada. El valor momen-
+táneo de corriente más alto que puede alcanzar se denomina: corriente de cor-
+tocircuito limitada. Los valores de esta corriente vienen determinados por los
+fabricantes en sus catálogos.
+
+
+Debido a su limitación de la corriente, los fusibles tienen la capacidad de mane-
+jar corrientes de cortocircuito sumamente altas —de entre 10 y 14 veces la
+nominal del fusible—, en un espacio de extinción pequeño. Cuanto más efecti-
+va sea la limitación de la corriente, mayores capacidades de ruptura se obtienen
+en espacios de extinción iguales.
+
+
+La efectiva limitación de la corriente y la alta capacidad de ruptura están estre-
+chamente ligadas a las características propias de los fusibles, que son impres-
+cindibles en la técnica de protección contra cortocircuitos.
+
+
+Cuanto menos se calientan los fusibles, menor es la temperatura en sus bornes
+y, por tanto, menores son los esfuerzos térmicos a los que se ven sometidos los
+cables y/o los conductores conectados.
+
+
+
+
+                                                                                   51
+INSTALACIONES DE ENLACE
+
+
+
+
+                              Recuerda que aunque en ocasiones te resulte dura
+                              esta fase del estudio, tu confianza, tu actitud positiva
+                              y tu perseverancia son los argumentos clave para el
+                              triunfo.
+                              Son tu propio sistema P8.10.
+
+
+
+
+2.3.5.1. Clasificación
+
+Los fusibles de baja tensión se clasifican de acuerdo a sus características de
+funcionamiento y a su forma constructiva.
+
+
+La clase de funcionamiento g caracteriza a los fusibles de rango completo, los
+cuales pueden ser cargados permanentemente con su corriente nominal, y es-
+tas pueden interrumpir corrientes desde su menor corriente de fusión hasta su
+capacidad nominal de ruptura.
+
+
+A esta clase de funcionamiento pertenecen los fusibles gl, para la protección de
+cables y conductores.
+
+
+La clase de funcionamiento a caracteriza a los fusibles de rango parcial pueden
+ser cargados con su corriente nominal permanentemente, e interrumpen co-
+rrientes desde un múltiplo determinado de su intensidad nominal hasta su ca-
+pacidad nominal de ruptura. El tiempo que necesitan para fundir es mayor, evi-
+tando los problemas que se detectan en el arranque de los motores eléctricos.
+
+
+Los fusibles de rango completo g se subdividen, según su aplicación, en:
+
+         gl: Cables y conductores (alumbrado, calefacción, protección general).
+
+         Gr: Semiconductores.
+
+         Gb: Equipos de minas.
+
+Los fusibles de rango parcial a se subdividen, según su aplicación, en:
+
+         aM: Aparatos de maniobra (motores).
+
+         aR: Semiconductores.
+
+
+
+
+ 52
+                                                         INSTALACIONES DE ENLACE
+
+
+
+
+Por su forma constructiva se clasifican en:
+
+        Fusibles del tipo neozed.
+
+
+
+
+                                     Fusible neozed
+
+
+
+        Fusibles del tipo NH.
+
+
+
+
+                                      Fusible NH
+
+
+
+        Fusibles seccionables o de cartucho.
+
+
+
+
+                                 Fusible seccionable
+
+
+
+
+Dependiendo del tipo de fusible, los soportes que los contienen son diferentes,
+así que cada tipo lleva un aparellaje distinto y no intercambiable.
+
+
+
+
+                                                                            53
+INSTALACIONES DE ENLACE
+
+
+
+
+2.4. TUBOS Y CANALIZACIONES
+
+
+                              La normativa sobre canalizaciones eléctricas según el
+                              Reglamento Electrotécnico de Baja Tensión se en-
+                              cuentra detallada en la Instrucción ITC-BT-21.
+
+
+
+
+Si las canalizaciones se encuentran en locales húmedos o locales con riesgo de
+explosión, deberán protegerse de acuerdo con las normas establecidas para
+estos casos.
+
+
+
+
+                              Recuerda que los locales húmedos o aquellos locales
+                              que tengan riesgo de incendio o explosión, las insta-
+                              laciones eléctricas se regirán según las instrucciones
+                              del Reglamento Electrotécnico de Baja Tensión ITC-
+                              BT-29 y ITC-BT-30.
+
+
+
+
+La línea de distribución no será única sino múltiple, de cada una de ellas parte
+un grupo determinado de receptores.
+
+
+La conducción de conductores puede hacerse de dos formas principalmente:
+
+         Con tubos de acero o plástico.
+
+         Con canalizaciones prefabricadas.
+
+
+
+
+ 54
+                                                                 INSTALACIONES DE ENLACE
+
+
+
+
+2.4.1. TUBOS
+
+Los dos tipos de tubos más empleados en las instalaciones son:
+
+        Tubo de plástico.
+
+         Son tubos de resinas sintéticas. Generalmente, están hechos con poli-
+         cloruro de vinilo (normalmente en tubos corrugados) o de polietileno
+         (habitualmente para tubos lisos); ambos pueden usarse tanto empo-
+         trados (siguiente figura) como en montaje saliente.
+
+
+
+
+                          Tubos de plástico corrugados o lisos
+
+
+
+        Tubo de acero
+
+         Se emplean tanto en montaje saliente como empotrados, sobre todo
+         en instalaciones industriales.
+
+
+
+
+                                    Tubos de acero
+
+
+
+         Las ventajas que presentan son: resistencia al fuego y a la intemperie y
+         gran resistencia mecánica.
+
+         Pueden llevar, o no, aislamiento interior y los hay de rosca métrica o de
+         rosca Whitworth. Se da por supuesto que las uniones entre tubos o en-
+         tre tubos y derivaciones son roscadas.
+
+         Existen también tubos de acero flexibles para realizar curvas difíciles.
+
+
+
+
+                                                                                    55
+INSTALACIONES DE ENLACE
+
+
+
+
+2.4.2. CANALIZACIONES ELÉCTRICAS PREFABRICADAS
+
+Actualmente se fabrican numerosos modelos para dar solución a multitud de
+aplicaciones.
+
+
+Las distribuciones con canalizaciones prefabricadas, instaladas de forma des-
+centralizada, cubren cualquier necesidad de derivación, actual o futura. Cuando
+se desee, se puede modificar el número de derivaciones así como el trazado,
+variando el número y disposición de los elementos que constituyen la canaliza-
+ción, con sencillas operaciones y poca pérdida de materiales.
+
+
+Otra particularidad importante es la alimentación de galerías, cuadros de distri-
+bución, etc., con una utilización más racional del espacio disponible.
+
+
+Estas canalizaciones se fabrican con elementos desde 50 cm a 5 m de longitud
+(siguiente figura). Las derivaciones se efectúan por medio de cajas especiales
+con dispositivos de protección o sin ellos.
+
+
+
+
+                             Detalle canal sobre pared
+
+
+
+
+La colocación puede ser en el techo, sobre paredes, sobre columnas metálicas,
+etc.
+
+
+
+
+ 56
+                                                                INSTALACIONES DE ENLACE
+
+
+
+
+                          Visión de canalizaciones eléctricas
+
+
+
+
+En las canalizaciones prefabricadas la conducción puede ser por cables o por
+barras de cobre o aluminio desnudos, bajo envolventes protectoras metálicas.
+
+
+Para salvar todo tipo de obstáculos constructivos que se presentan en las insta-
+laciones las canalizaciones se pueden adaptar con formatos diferentes.
+
+
+
+
+                           Canal con cambio de dirección
+
+
+
+
+                                                                                   57
+INSTALACIONES DE ENLACE
+
+
+
+
+                              Canal con cambio de plano
+
+
+
+
+Los tipos de canalizaciones son muy extensos y variados en función de las apli-
+caciones:
+
+         Canalización semihermética:
+
+          Es aquella que, aun estando cerrada, no es estanca y permite la airea-
+          ción interior de los conductores, por lo tanto, su refrigeración.
+
+
+
+
+                                 Canal semihermética
+
+
+
+         Canalizaciones electrificadas con elementos para comercios y
+          oficinas:
+
+          Las canalizaciones electrificadas requieren una inversión de instalación
+          mucho mayor, pero en determinadas instalaciones se amortizan por la
+          comodidad y la versatilidad que ofrecen a la hora de posibles modifica-
+          ciones de ubicación de los elementos conectados.
+
+
+
+
+ 58
+                                                          INSTALACIONES DE ENLACE
+
+
+
+
+                       Canalizaciones electrificadas
+
+
+
+
+                        Seguro que en estos momentos estarás pensando
+                        “¿dónde he visto yo alguna canaleta electrificada?”
+                        ¿No lo recuerdas?
+                        Pues en alguna oficina, establecimiento comercial, etc.,
+                        o aún más cercano a ti, seguro que tienes cerca una
+                        regleta de conexiones para la torre del PC, para el
+                        monitor, para impresora, etc., pues en cierta medida
+                        no deja de ser una canalización (móvil) electrificada.
+
+
+
+
+   Canalizaciones cerradas para alojar cableados:
+
+    Las canalizaciones cerradas son de más utilidad en aquellas instalacio-
+    nes con ambientes polvorientos y sucios para evitar la entrada de estos
+    elementos al interior.
+
+
+
+
+                          Canalización cerrada
+
+
+
+
+                                                                               59
+INSTALACIONES DE ENLACE
+
+
+
+
+         Canalizaciones de PVC simples:
+
+          Se utilizan para los cuadros eléctricos o en instalaciones donde la pro-
+          tección mecánica no tenga especial importancia.
+
+
+
+
+                                Canalizaciones de PVC
+
+
+
+
+2.5. CAJAS
+
+                              Reglamentariamente está prohibido realizar empal-
+                              mes y derivaciones en el interior de los tubos protec-
+                              tores para conductores eléctricos, por lo que las ca-
+                              jas son de uso imprescindible para tal finalidad en
+                              instalaciones eléctricas.
+
+
+
+
+Las cajas de derivación suelen utilizarse tanto en montajes empotrados como
+en los salientes.
+
+
+
+
+ 60
+                                                               INSTALACIONES DE ENLACE
+
+
+
+
+La siguiente figura nos muestra varios tipos de cajas de derivación.
+
+
+
+
+                           Cajas de derivación rectangulares
+
+
+
+
+                             Cajas de derivación estancas
+
+
+
+
+Estas cajas se construyen con diversos materiales, siendo los más importantes:
+
+        Materiales plásticos.
+        Chapa de acero.
+
+        Fundición de aluminio.
+
+        Fundición de hierro.
+
+
+
+
+                                                                                  61
+INSTALACIONES DE ENLACE
+
+
+
+
+Las cajas de plástico, que utilizan materiales como el nailon, neopreno, etc., son
+las más empleadas en las instalaciones industriales, pues además de sus exce-
+lentes propiedades aislantes, son resistentes a humedad, polvo, ácidos, etc.
+
+
+En cuanto a su forma, pueden ser redondas, cuadradas o rectangulares, según
+el número de conductores que hay que empalmar. Para conductores de pe-
+queña sección se usan redondas; para secciones medias, cuadradas; y para
+grandes secciones, rectangulares.
+
+
+
+
+                                Caja de derivación redonda
+
+
+
+
+Las conexiones de los conductores en el interior de estas cajas se realizarán por
+medio de bornas o fichas, pudiendo colocar, a su vez, en el interior de estas
+cajas elementos de protección, como fusibles, etc.
+
+
+
+
+          Interior de una caja de derivación con empalmes correctamente realizados
+
+
+
+
+ 62
+                                                              INSTALACIONES DE ENLACE
+
+
+
+
+                              Recuerda hacer uso de los servicios que ponemos a
+                              tu disposición.
+                              El campus virtual es un complemento muy importan-
+                              te para tu formación.
+
+
+
+
+2.6. CONDUCTORES ELÉCTRICOS
+
+Los suministros monofásicos estarán constituidos por un conductor de fase,
+uno de neutro y uno de protección.
+
+
+Los suministros trifásicos estarán constituidos por tres conductores de fase
+(con o sin neutro) y uno de protección.
+
+
+Los conductores para instalaciones interiores pueden ser en forma de hilos o
+bien de cables.
+
+
+
+
+                              Se denomina hilo a una varilla metálica que tiene una
+                              longitud grande en comparación con su sección.
+                              Mientras que el cable estará constituido por un gru-
+                              po de hilos, que normalmente irán trenzados o re-
+                              torcidos juntos.
+
+
+
+
+El cable tiene la propiedad de ser más flexible que el hilo, por lo que es más fácil
+de trabajar e instalar.
+
+
+Estructuralmente un conductor para instalaciones consta de las siguientes partes:
+
+      1. El conductor propiamente dicho, que llevará su propio aislamiento pa-
+         ra aislarlo eléctricamente de los demás.
+
+      2. Un relleno, que ocupa los espacios que quedan vacíos entre los con-
+         ductores cableados y que confiere al conjunto una forma cilíndrica.
+
+
+
+
+                                                                                  63
+INSTALACIONES DE ENLACE
+
+
+
+
+      3. Pantallas de protección, envolturas metálicas con sustancias higros-
+         cópicas, destinadas a evitar el paso de la humedad, además de prote-
+         ger el hilo o cable contra acciones mecánicas exteriores. En instalacio-
+         nes interiores los cables provistos de armaduras metálicas (3) se em-
+         plean solamente en casos especiales.
+
+      4. Cubierta, que recubre exteriormente el cable y está formada por ma-
+         teriales textiles, derivados del caucho, materiales termoplásticos, etc.
+
+
+
+
+                               Partes de un conductor
+
+
+
+
+Según las normas UNE, los hilos o cables pueden ser de 1, 2, 3, 4 o más conduc-
+tores iguales, o de 3 conductores iguales y uno de sección más reducida para el
+conductor neutro.
+
+
+En instalaciones interiores, para tener en cuenta las corrientes armónicas debi-
+das a cargas no lineales y posibles desequilibrios, salvo justificación por cálculo,
+la sección del conductor neutro será como mínimo igual a la de las fases.
+
+
+
+
+2.6.1. INTENSIDAD MÁXIMA ADMISIBLE EN UN CONDUCTOR
+
+Según la ley de Joule, en un conductor de resistencia R por el que circula una
+intensidad I se genera cada segundo, cantidad de calor Q que puede calcularse
+mediante la siguiente fórmula:
+
+
+
+
+ 64
+                                                                INSTALACIONES DE ENLACE
+
+
+
+
+Para estudiar las vicisitudes que sigue este calor generado, recordaremos, antes
+que nada, los dos fenómenos siguientes:
+
+         Cuando a un cuerpo se le comunica calor su temperatura aumen-
+          ta. Para comprender mejor el fenómeno, puede asimilarse el calor al lí-
+          quido que llena un depósito (es decir, el cuerpo), y la temperatura al ni-
+          vel que alcanza dentro de él (que evidentemente aumenta a medida
+          que va entrando el líquido).
+         Si un cuerpo caliente está rodeado de un ambiente a menor tem-
+          peratura, transmite calor al mismo en una cantidad tanto mayor
+          cuanto mayor es la diferencia entre la temperatura del cuerpo y
+          del ambiente. Siguiendo la semejanza del punto anterior, este fenó-
+          meno es similar a lo que ocurre con un depósito lleno y con un agujero
+          en el fondo; por él irá saliendo tanto más líquido (calor) cuanto más alto
+          sea el nivel (temperatura).
+
+
+
+
+                               Esta temperatura no debe sobrepasar unos determi-
+                               nados valores prefijados, pues de lo contrario se co-
+                               rrería el peligro de deteriorar el propio conductor y
+                               los aislantes que están en contacto con él.
+
+
+
+
+Para el cálculo de la intensidad máxima admisible de un conductor hay que te-
+ner en cuenta una serie de factores, tal y como se indica en la ITC-BT-19.
+
+
+
+
+2.6.2. MATERIALES AISLANTES
+
+En los conductores de baja tensión empleados en instalaciones interiores, los
+materiales aislantes más empleados son los que se indican a continuación:
+
+
+                                           Policloruro de vinilo (PVC)
+         Plásticos
+                                          Polietileno reticulado (XLPE)
+
+                                            Caucho natural (goma)
+     Elastómeros                          Poliscloropreno (neopreno)
+                                   Polisobutileno-isopreno (caucho butílico)
+
+
+
+
+                                                                                   65
+INSTALACIONES DE ENLACE
+
+
+
+
+2.6.3. DESIGNACIÓN DE CONDUCTORES
+
+Para que puedan identificarse fácilmente, las normas UNE establecen una de-
+signación por medio de siglas que indican:
+
+         Tipo constructivo del cable o hilo.
+
+         Número de conductores, sección nominal, naturaleza y forma de los
+          conductores.
+
+         Tensión nominal en voltios (V).
+
+         Otras indicaciones.
+
+El tipo constructivo se indica por un grupo de letras. La primera indica el tipo de
+aislamiento:
+
+         P: papel impregnado.
+
+         V: policloruro de vinilo.
+
+         E: polietileno.
+
+         G: caucho natural vulcanizado (goma).
+
+         B: caucho butílico.
+
+La segunda letra indica la forma en que están dispuestos los conductores, y se
+emplean:
+
+         Sin indicación: conductores cilíndricos.
+
+         K: conductores concéntricos.
+
+         D: conductores situados en un mismo plano.
+
+
+
+
+                                ¿Otra vez te lo tenemos que recordar?
+                                Cuando salga algún término nuevo o que no conoz-
+                                cas tienes que investigar, preguntar..., lo que sea, pe-
+                                ro nunca te quedes con la duda.
+
+
+
+
+ 66
+                                                              INSTALACIONES DE ENLACE
+
+
+
+
+La letra siguiente indica la naturaleza de la envoltura que rodea los aislamientos
+de los conductores, siendo los empleados:
+
+        P: tubo continuo de plomo.
+
+        Al: tubo continuo de aluminio.
+
+Las demás letras se refieren a protecciones mecánicas, químicas, etc., y son pa-
+ra armaduras:
+
+        F: flejes de hierro o acero.
+
+        M: alambres de hierro o acero.
+
+        Q: pletinas de hierro o acero.
+
+Las cubiertas se indican con:
+
+        J: fibras textiles impregnadas.
+
+        V: policloruro de vinilo.
+
+        G: caucho natural vulcanizado.
+
+        N: policloropreno (neopreno o equivalente).
+
+        X: cubierta común a varios conductores.
+
+En cuanto a indicaciones relativas a conductores, se expresan:
+
+        1.º: La cifra que corresponde al número de conductores, seguida de
+         una X.
+
+        2.º: Sección nominal de un conductor, en mm².
+
+        3.º: El material constituyente de los conductores.
+
+             Sin indicación: cobre.
+
+             F: conductor flexible.
+
+             E: conductor estañado.
+
+
+
+
+                                                                                 67
+INSTALACIONES DE ENLACE
+
+
+
+
+                                      Por ejemplo, GFGN, 3 x 16 + 1 x 10.250 FE indica que
+                                      es un conductor de cobre tripolar con neutro y esta-
+                                      ñado, de 16 mm2, con doble aislamiento de goma,
+                                      armadura de flejes de acero, cubierta de neopreno,
+                                      para tensión nominal de 250 V.
+
+
+
+
+   Determina, con las indicaciones anteriores, cuál es el tipo de conductor que está
+   definido por las siglas PKG 3·6 F.
+
+
+      Solución:
+      Conductor de cobre trifásico flexible sin neutro de 6 mm2 con aislante de PVC y cubierta de
+      caucho.
+
+
+
+
+2.6.4. COLORES NORMALIZADOS DE CONDUCTORES
+
+Los conductores de la instalación deben ser fácilmente identificables, especial-
+mente por lo que respecta al conductor neutro y al conductor de protección.
+Esta identificación se realizará por los colores que presenten sus aislamientos.
+
+
+Según el reglamento electrotécnico de baja tensión en su Instrucción ICT-BT-19,
+se establecen los siguientes colores de identificación.
+
+
+Cuando exista conductor neutro en la instalación o se prevea para un conduc-
+tor de fase su pase posterior a conductor neutro, se identificarán estos por el
+color azul claro.
+
+
+Al conductor de protección se le identificará por el color verde-amarillo.
+
+
+Todos los conductores de fase o, en su caso, aquellos para los que no se prevea
+su pase posterior a neutro, se identificarán por los colores marrón o negro.
+
+
+
+
+ 68
+                                                                INSTALACIONES DE ENLACE
+
+
+
+
+Cuando se considere necesario identificar tres fases diferentes, se utilizará tam-
+bién el color gris.
+
+        Neutro: azul claro.
+
+        Fase: negros, marrones o grises.
+
+        Tierra: bandas amarillas y verdes.
+
+Si en la canalización hay una sola fase el color es negro, si hay dos, uno es negro
+y el otro marrón. En el caso en que la instalación carezca de neutro, puede utili-
+zarse el conductor azul claro como fase.
+
+
+
+
+                               En la siguiente ilustración se muestran distintos tipos
+                               de cables con sus colores normalizados.
+
+
+
+
+                                                                                     69
+INSTALACIONES DE ENLACE
+
+
+
+
+                           Colores de conductores
+
+
+
+            DVD013371
+
+
+
+
+                          A continuación puedes encontrar un vídeo sobre el
+                          dimensionamiento de los conductores (elección de
+                          su sección).
+                          (Tienes el vídeo en el Campus Virtual)
+
+
+
+
+ 70
+                                                              INSTALACIONES DE ENLACE
+
+
+
+
+2.7. ELEMENTOS DE MANIOBRA Y DE CONEXIÓN
+
+En este punto vas a poder estudiar en detalle cada elemento por separado, re-
+cuerda que debes de ser capaz de identificar y distinguir cada elemento, para
+ser capaz de diseñar por ti mismo los diferentes circuitos, sin olvidar ningún
+elemento vital o imprescindible.
+
+
+
+
+2.7.1. ELEMENTOS DE MANIOBRA
+
+
+                             Los aparatos de maniobra son todos aquellos meca-
+                             nismos destinados a interrumpir o facilitar el paso de
+                             corriente entre el generador y un receptor, a volun-
+                             tad del usuario de una instalación.
+
+
+
+
+Los más comunes en instalaciones de edificios son:
+
+        Interruptores.
+
+        Conmutadores simples.
+
+        Conmutadores de cruzamiento o dobles.
+
+        Pulsadores.
+
+        Telerruptores.
+
+        Interruptores automáticos de escalera.
+
+Su constitución y características se exponen a continuación.
+
+
+
+
+                             Este apartado es importante y queremos que lo co-
+                             nozcas bien.
+                             ¡Ánimo!
+
+
+
+
+                                                                                  71
+INSTALACIONES DE ENLACE
+
+
+
+
+2.7.1.1. Interruptores
+
+
+
+                                  Los interruptores son elementos electromecánicos
+                                  de accionamiento manual, encargados de seccionar
+                                  suministro eléctrico o no a un circuito.
+
+
+
+
+El accionamiento de un interruptor es de enclavamiento, es decir, que una vez
+activado, conserva la posición hasta que no es desenclavado con una segunda
+acción. Un interruptor tiene dos posiciones:
+
+         Abierto: sus contactos internos están separados y no permite el paso
+          de corriente en su interior, por tanto el receptor al que alimenta estará
+          parado.
+
+         Cerrado: sus contactos internos están unidos, permitiendo el paso de
+          corriente y en consecuencia el receptor al que alimenta está en funcio-
+          namiento.
+
+
+
+
+                          Funcionamiento y símbolo de un interruptor
+
+
+
+
+La distribución de estos elementos será lo más cercana a la accesibilidad de las
+personas y en lugares de fácil localización.
+
+
+Su número dependerá del tipo de instalación efectuada y de la función que de-
+ba ejecutar.
+
+
+
+
+ 72
+                                                              INSTALACIONES DE ENLACE
+
+
+
+
+Para la fijación de estos elementos existen diversos métodos, desde los clásicos
+con tornillos de apriete, hasta los de enganche rápido tipo “click”.
+
+
+
+
+                          Parte posterior de un interruptor
+
+
+
+
+Su colocación es generalmente en cajas empotradas, de características seme-
+jantes a las de derivación, aunque de formas diferentes pudiendo colocarse uno
+o varios dispositivos en cada caja.
+
+
+
+
+                                  Caja empotrada
+
+
+
+
+                                                                                 73
+INSTALACIONES DE ENLACE
+
+
+
+
+En instalaciones donde los agentes externos polvo, humedad, etc., pueden ata-
+car a los interruptores, se pueden utilizar interruptores herméticos y con tapa
+de protección.
+
+
+
+
+                              Interruptor con protección
+
+
+
+
+Se puden classificar atendiendo a los siguientes criterios:
+
+         Según el número de polos:
+
+             Unipolares. Si corta el paso de corriente por un conductor.
+
+             Bipolares. Si corta el paso de corriente por dos conductores.
+
+             Tripolares. Si corta el paso de corriente por tres conductores.
+
+         Según la intensidad de trabajo:
+
+             Hasta 6 A.
+
+             Hasta 10 A.
+
+             Hasta 16 A.
+
+         Según la forma de montaje:
+
+             Interruptores de superficie o panelables: son aquellos cuya
+               envolvente aislante está preparada para su fijación directa me-
+               diante tornillos a una superficie plana, como paredes, tabiques y
+               paneles.
+
+
+
+
+ 74
+                                                            INSTALACIONES DE ENLACE
+
+
+
+
+            Interruptores empotrables en caja: son los que han sido dise-
+             ñados para colocarlos dentro de una caja de mecanismos espe-
+             cial, para alojar en un muro, pared maestra, tabique, etc. de una
+             edificación.
+
+            Interruptores móviles: son pequeños interruptores apropiados
+             para su instalación sobre los conductores de una instalación mó-
+             vil. Como lámparas de sobremesa o algunos electrodomésticos
+             de poca potencia.
+
+
+
+2.7.1.2. Conmutadores simples
+
+
+                            Un conmutador simple es un mecanismo electrome-
+                            cánico que nos permite alimentar dos receptores de
+                            forma alternativa, según la posición del accionamien-
+                            to, imposibilitando que funcionen o se paren los dos
+                            a la vez.
+
+
+
+
+Externamente son muy parecidos a los interruptores y sólo se diferencian en su
+mecánica interna y por el número de bornes de conexión. Tiene tres contactos,
+uno es el común o puente y dos independientes de salida que nunca pueden
+estar comunicados entre sí.
+
+
+
+
+                                                                                75
+INSTALACIONES DE ENLACE
+
+
+
+
+La combinación de dos conmutadores nos da el típico esquema para el accio-
+namiento de un punto de luz desde dos lugares diferentes.
+
+
+
+
+             Esquemas para el encendido de una luz desde dos puntos distintos
+
+
+
+
+Se fabrican para su instalación empotrada o superficial.
+
+
+
+
+2.7.1.3. Conmutadores de cruzamiento o dobles
+
+
+                                El conmutador de cruzamiento o doble es un disposi-
+                                tivo electromecánico que permite conectar sus cua-
+                                tro bornes, dos de entrada y dos de salida, de dos en
+                                dos, cada vez que cambiamos de posición la palanca
+                                de accionamiento.
+
+
+
+
+Externamente también son como los interruptores o cruzamientos simples, así
+que su diferencia se encuentra en el interior con cuatro bornes de conexión.
+
+
+
+
+ 76
+                                                                 INSTALACIONES DE ENLACE
+
+
+
+
+                              Conmutador de cruzamiento
+
+
+
+
+Siempre se emplea combinado con dos conmutadores simples, por lo que el
+circuito dispondrá siempre como mínimo de tres o más puntos para su accio-
+namiento. Para que funcione la instalación, el cruzamiento se instalará entre los
+conmutadores simples de manera que la luz se encenderá o apagará cada vez
+que accionemos cualquiera de los dispositivos (el cruzamiento o los conmuta-
+dores simples).
+
+
+También se fabrican para su instalación empotrada o superficial.
+
+
+A continuación vemos el cableado que habría que realizar para el control de una
+luz desde tres puntos mediante conmutadores.
+
+
+
+
+            Esquema para el encendido de una luz desde tres puntos distintos
+
+
+
+
+                                                                                    77
+INSTALACIONES DE ENLACE
+
+
+
+
+2.7.1.4. Pulsadores
+
+
+                            Los pulsadores son elementos electromecánicos
+                            ideados para ser accionados manualmente, caracte-
+                            rizándose por precisar de una acción constante para
+                            el mantenimiento de la posición, o lo que es lo mis-
+                            mo, elementos con posición estable a la cual retor-
+                            nan en caso de que la acción de conmutación cese.
+
+
+
+
+Los pulsadores están compuestos de dos partes: por un lado, el dispositivo de
+mando y, por otro, los contactos.
+
+
+
+
+                                   Pulsador
+
+
+
+
+Se tiene la posibilidad de montarlos con los contactos bien normalmente abier-
+tos y normalmente cerrados.
+
+
+En la figura siguiente se muestra una estructura interna básica correspondiente
+a un pulsador normalmente abierto.
+
+
+
+
+ 78
+                                                          INSTALACIONES DE ENLACE
+
+
+
+
+                           Pulsador normalmente abierto
+
+
+
+
+En la figura siguiente se muestra una estructura interna básica correspondiente
+a un pulsador normalmente cerrado.
+
+
+
+
+                          Pulsador normalmente cerrado
+
+
+
+
+Hay muchas formas y modelos y se fabrican para su instalación empotrada, de
+superficie y móviles.
+
+
+
+
+                                                                             79
+INSTALACIONES DE ENLACE
+
+
+
+
+Algunos incorporan un pequeño piloto, generalmente una lámpara de neón, que
+permanece encendida cuando el pulsador está en reposo, para indicarnos donde
+está situado. Es muy práctico en lugares oscuros como pasillos, escaleras y garajes.
+
+
+
+
+                              Visita a menudo el Campus Virtual que hemos puesto
+                              a tu disposición; allí encontrarás información adicio-
+                              nal del curso.
+
+
+
+
+2.7.1.5. Telerruptores
+
+
+                              El telerruptor es un dispositivo electromecánico que
+                              cambia de posición de sus contactos internos cada
+                              vez que recibe un pulso de corriente, permanecien-
+                              do en esta posición hasta recibir el pulso siguiente.
+                              Estos pulsos se realizan desde puntos separados
+                              del mecanismo.
+
+
+
+
+Está formado por uno o más contactos eléctricos accionados por un electro-
+imán un conjunto de bornes (entrada y salida) alojado en una envolvente de
+material aislante.
+
+
+
+
+                                     Telerruptor
+
+
+
+
+ 80
+                                                               INSTALACIONES DE ENLACE
+
+
+
+
+Por tanto tiene internamente dos circuitos eléctricos claramente diferenciados:
+
+        El de mando que alimenta la bobina.
+
+        El de potencia que alimenta el receptor.
+
+
+
+
+                          Símbolo y partes de un telerruptor
+
+
+
+
+Los pulsos de corriente que recibe la bobina del electroimán proceden de un
+polsador, por lo que con un telerruptor se puede mandar un punto de luz des-
+de tantos lugares distintos como pulsadores se instalen.
+
+
+Existen multitud de modelos en cuanto a formes, tamaños, tensiones de bobina
+y número de contactos, por lo que debemos elegir el que mayor se adapte a las
+necesidades de nuestra instalación.
+
+
+
+
+2.7.1.6. Interruptores automáticos de escalera
+
+
+                             El interruptor automático de escalera está formado
+                             por un conjunto de elementos electromecánicos que
+                             regulan el tiempo de funcionamiento del alumbrado
+                             de un recinto.
+
+
+
+
+                                                                                  81
+INSTALACIONES DE ENLACE
+
+
+
+
+Se acciona mediante pulsadores situados en distintos puntos que dan un pulso
+de corriente al interruptor automático el cual enciende la iluminación del recinto
+y la mantiene durante un tiempo que puede regularse a voluntad, dentro de
+unos márgenes definidos por el fabricante.
+
+
+
+
+                          Interruptores automáticos de escalera
+
+
+
+
+Se utilizan para iluminación de un pasillo, una escalera, garaje, etc.
+
+
+Estos dispositivos también tienen dos circuitos eléctricos diferentes:
+
+         El circuito de potencia que alimenta los puntos de luz.
+
+         El circuito de maniobra que pone en marcha los mecanismos.
+
+
+
+
+                   Esquema del control de la iluminación de una escalera
+                     a través de interruptores automáticos de escalera
+
+
+
+
+ 82
+                                                               INSTALACIONES DE ENLACE
+
+
+
+
+Los interruptores automáticos de escalera incorporan en su cara frontal un re-
+gulador para ajustar el tiempo de funcionamiento a las necesidades del lugar de
+la instalación y un mando manual de tres posiciones:
+
+        Una para que la instalación funcione de manera permanente.
+
+        Otra de apagado, anulando la acción de los pulsadores.
+
+        La última de funcionamiento automático.
+
+
+
+2.7.2. ELEMENTOS DE CONEXIÓN
+
+
+                             Los elementos para el conexionado son todos los
+                             dispositivos destinados a facilitar la unión entre los
+                             conductores y receptores.
+
+
+
+
+Están diseñados para proteger los elementos conductores depositados en su
+interior y a las personas de contactos directos con las partes con tensión.
+
+        Los principales elementos son:
+
+        Las cajas de protección.
+
+        Portalámparas.
+
+        Regletas de conexión.
+
+
+
+2.7.2.1. Cajas de protección
+
+
+                             Las cajas de protección de abonados están destina-
+                             das a recoger en su interior los dispositivos de pro-
+                             tección de una instalación, como son ICP, ID, PIAS,
+                             etc.
+
+
+
+
+                                                                                      83
+INSTALACIONES DE ENLACE
+
+
+
+
+                                Caja de protección
+
+
+
+
+Son rectangulares y se sitúan al comienzo del circuito, lo más cerca posible del
+punto de alimentación.
+
+
+Se construyen en policloruro de vinilo (PVC) o metal, dependiendo del tipo de
+instalación.
+
+
+
+
+2.7.2.2. Portalámparas
+
+
+
+                             El portalámparas es un dispositivo que permite la fi-
+                             jación y la conexión a la red de una lámpara.
+
+
+
+
+                                  Portalámparas
+
+
+
+
+ 84
+                                                               INSTALACIONES DE ENLACE
+
+
+
+
+Generalmente está formado por:
+
+        Un casquillo metálico roscado para la sujeción de las lámparas y su co-
+         nexión al neutro de la instalación.
+
+        Una base de material aislante, resistente al calor y fabricada con mate-
+         riales cerámicos o similares, para la sujeción del casquillo. En el centro
+         de esta pieza se sitúa un segundo borne para la conexión de la lámpara
+         con la fase de la red.
+
+        Una envolvente de protección contra contactos con las partes con tensión.
+
+
+
+2.7.2.3. Regletas de conexión
+
+
+                              Las regletas de conexión son unos dispositivos auxi-
+                              liares utilizados para realizar el conexionado de los
+                              conductores de un circuito eléctrico en el interior de
+                              las cajas de empalmes.
+
+
+
+
+Constan de un pequeño tubo metálico con dos agujeros roscados y tornillos en
+sus extremos, para fijar los cables una vez situados en su interior. Las partes
+metálicas están protegidas con material aislante de forma rectangular, forman-
+do tiras fácilmente divisibles.
+
+
+
+
+                                 Fichas de conexión
+
+
+
+
+El tamaño de la regleta depende de la sección de los cables a conectar, se fabri-
+can para secciones de 4, 6, 10, 16 y 25 mm2.
+
+
+
+
+                                                                                       85
+INSTALACIONES DE ENLACE
+
+
+
+
+Últimamente se están popularizando otro tipo de fichas de empalme rápido,
+también disponibles para varios calibres y para diferente número de conductores:
+
+
+
+
+                     Regletas, fichas o conectores de conexión rápida
+
+
+
+
+ 86
+                                                                   INSTALACIONES DE ENLACE
+
+
+
+
+                        3. EMPLAZAMIENTO Y MONTAJE
+                      DE LAS INSTALACIONES DE ENLACE
+
+En toda instalación eléctrica debe existir un control tanto operativo como refe-
+rente a mediciones. Además, existen unas normas sobre dónde y cómo colocar
+las cajas que albergan estos elementos de medición y de control.
+
+
+
+
+              Caja General de Protección para medida, control y protección.
+
+
+
+
+                                                                                      87
+INSTALACIONES DE ENLACE
+
+
+
+
+3.1. CAJAS GENERALES DE PROTECCIÓN
+
+
+                              Con las cajas generales de protección se establece el
+                              límite de la propiedad de la instalación, entre la em-
+                              presa suministradora y los abonados.
+
+
+
+
+Su situación se fijará de común acuerdo entre la propiedad y la empresa sumi-
+nistradora. Eligiendo de manera preferente su instalación sobre las fachadas
+exteriores de los edificios, en lugares de libre acceso y permanente acceso.
+
+
+Sólo tendrán acceso a ella los usuarios o el instalador electricista autorizado, los
+cuales podrán actuar sobre las conexiones con la línea general de alimentación,
+previa comunicación a la empresa suministradora.
+
+
+
+
+                              En el caso particular en el que el edificio albergue en
+                              su interior un centro de transformación para distri-
+                              bución en baja tensión, los fusibles del cuadro de ba-
+                              ja tensión de dicho centro pueden utilizarse como
+                              protección de la línea general de alimentación, cum-
+                              pliendo la función de la caja general de protección.
+                              En este caso la propiedad y el mantenimiento de la
+                              protección son de la empresa suministradora.
+
+
+
+
+A la hora de instalar la Caja General de Protección (CGP) deberemos tener en
+cuenta diversas consideraciones:
+
+         Siempre se procurará que esté lo más próxima posible a la red de dis-
+          tribución pública y que quede alejada o al menos protegida adecuada-
+          mente de otras instalaciones como agua, gas, teléfono, etc., según indi-
+          ca la ITC-BT-06 y la ITC-BT-07.
+
+
+
+
+ 88
+                                                              INSTALACIONES DE ENLACE
+
+
+
+
+        La instalación elegida para la CGP dependerá del tipo de acometida:
+
+             Acometida aérea: puede ser un montaje superficial a una altura
+               entre 3 y 4 m sobre el suelo.
+
+             Acometida subterránea: siempre se instalará en un nicho ce-
+               rrado en pared, con una puerta preferentemente metálica cuya
+               parte inferior estará a mínimo 30 cm del suelo y tendrá las si-
+               guientes características.
+
+                     Grado de protección IK10 según UE-EN 50102.
+
+                     Revestimiento exterior de acuerdo con las características
+                      del entorno.
+
+                     Protección contra la corrosión.
+
+                     Cerradura o candado normalizado por la empresa suminis-
+                      tradora.
+
+        Si la fachada no linda con la vía pública, se situará en el límite entre las
+         propiedades públicas y privadas.
+
+        No se alojarán más de dos cajas generales de protección en un mismo
+         nicho.
+
+        Una caja por cada línea general de alimentación.
+
+
+
+3.2. CONTADORES Y CENTRALIZACIÓN
+
+Podrán ser ubicados en módulos (cajas con tapas precintables), paneles o
+armarios.
+
+
+Cuando se utilicen módulos o armarios, estos deberán disponer de ventilación
+interna evitando condensaciones sin que disminuya su grado de protección.
+
+
+
+
+                               Los contadores se instalarán sobre bases de materia-
+                               les no inflamables y podrán colocarse de forma in-
+                               dividual o concentrados.
+
+
+
+
+                                                                                  89
+INSTALACIONES DE ENLACE
+
+
+
+
+La elección del sistema se realizará entre la Empresa Suministradora y la pro-
+piedad. En caso de discrepancia resolverá el Organismo Competente de la
+Administración.
+
+
+
+
+3.2.1. COLOCACIÓN EN FORMA INDIVIDUAL
+
+
+                               Se utilizará cuando el suministro se realice a un úni-
+                               co usuario independiente o a dos usuarios ali-
+                               mentados desde un mismo lugar.
+
+
+
+
+En este caso se utilizará la Caja de Protección y Medida compuesta por:
+
+         Los fusibles generales de protección (coinciden con los fusibles de
+          seguridad).
+         El contador.
+         El dispositivo para discriminación horaria.
+
+Para suministros industriales, comerciales o de servicios, la empresa suminis-
+tradora definirá para cada caso concreto la solución a adoptar cumpliendo los
+siguientes principios:
+
+         Fácil lectura del equipo de medida.
+         Acceso permanente a los fusibles generales de protección.
+         Garantías de seguridad y mantenimiento.
+
+
+
+
+                               El usuario es el responsable del quebrantamiento de
+                               los precintos colocados por los organismos oficiales o
+                               las empresas suministradoras, así como de la rotura
+                               de cualquiera de los elementos que queden instala-
+                               dos dentro de su local o vivienda.
+                               Si el contador se instala fuera, el responsable será el
+                               propietario del edificio.
+
+
+
+
+ 90
+                                                                   INSTALACIONES DE ENLACE
+
+
+
+
+3.2.2. COLOCACIÓN EN FORMA CONCENTRADA
+
+                               Los contadores y demás dispositivos para la medi-
+                               ción de la energía eléctrica se concentrarán en uno
+                               o varios lugares en los edificios destinados a vivien-
+                               das y locales comerciales, edificios comerciales o des-
+                               tinados a una concentración de industrias.
+
+
+
+
+Para la colocación de los contadores de esta forma habrá que prever en el edifi-
+cio un armario o local adecuado a este fin.
+
+En función de la naturaleza, número de contadores y plantas del edificio, la
+concentración de los contadores se realizará de distintas formas:
+
+        Edificios de hasta 12 plantas. Se colocarán en la planta baja, entre-
+         suelo o primer sótano.
+
+
+
+
+                Contadores centralizados en la planta baja o en el sótano
+
+
+
+
+                                                                                      91
+INSTALACIONES DE ENLACE
+
+
+
+
+         Edificios superiores a 12 plantas. Se podrá concentrar en plantas in-
+          termedias, comprendiendo cada concentración los contadores de 6 o
+          más plantas.
+
+
+
+
+                     Contadores centralizados en plantas intermedias
+
+
+
+
+ 92
+                                                                INSTALACIONES DE ENLACE
+
+
+
+
+        Podrán realizarse concentraciones por plantas cuando el número de
+         contadores en cada una de las concentraciones sea superior a 16.
+
+
+
+
+                         Contadores centralizados por plantas
+
+
+
+
+Los elementos que lo precisen estarán marcados de forma visible para que
+permitan una fácil y correcta identificación del suministro a que corresponde.
+
+
+
+
+                              Desde la parte inferior de la concentración de los con-
+                              tadores hasta el suelo habrá como mínimo una altura
+                              de 0,25 m y el cuadrante de lectura del aparato de
+                              medida situado más alto no superará el 1,80 m.
+
+
+
+
+Las concentraciones de contadores estarán formadas por los siguientes ele-
+mentos:
+
+        Interruptor general de maniobra: su misión es dejar fuera de servi-
+         cio, cuando sea necesario, toda la concentración de contadores. Será
+         obligatorio para concentraciones de más de dos usuarios y se instalará
+         entre la línea general de alimentación (LGA) y el embarrado de los con-
+         tadores. Se colocará un interruptor por cada línea general de alimenta-
+         ción, en caso de que existan varias. El interruptor será, como mínimo,
+         de 160 A para previsiones de carga hasta 90 kW, y de 250 A para las
+         superiores a ésta, hasta 150 kW.
+
+
+
+
+                                                                                    93
+INSTALACIONES DE ENLACE
+
+
+
+
+         Embarrado general y fusibles de seguridad: está formado por cuatro
+          barras (tres fases y una de neutro) que conectan la línea general de
+          alimentación con los fusibles de seguridad. Las barras están aisladas
+          para evitar accidentes al acceder a los fusibles de seguridad.
+
+         Unidad de medida: incluye los contadores, interruptores horarios y/o
+          dispositivos de mando para la medida de la energía eléctrica.
+
+         Unidad de mando (opcional): contiene los dispositivos de mando pa-
+          ra el cambio de tarifa de cada suministro.
+
+         Embarrado de protección y bornes de salida: en dicho embarrado se
+          conectarán los cables de protección de cada derivación individual, así
+          como los bornes de salida de las derivaciones individuales. El embarra-
+          do de protección deberá estar señalizado con el símbolo normalizado
+          de puesta a tierra y conectado a tierra.
+
+         Unidad funcional de telecomunicaciones (opcional): contiene el es-
+          pacio para el equipo de comunicación y adquisición de datos.
+
+
+
+
+                             Centralización de contadores
+
+
+
+
+                              ¿Has visitado ya el Campus Virtual que ponemos a
+                              tu disposición? Recuerda que en él tienes informa-
+                              ción complementaria del curso que te puede ayudar
+                              notablemente en tu estudio. No dejes de visitarlo.
+
+
+
+
+ 94
+                                                              INSTALACIONES DE ENLACE
+
+
+
+
+Los contadores colocados en forma concentrada podrán colocarse en local o en
+armario. A continuación veremos cuándo debemos elegir cada una de estas
+opciones.
+
+
+
+
+3.2.2.1. En local
+
+
+
+                            Será obligatoria la colocación de los contadores en un
+                            local cuando haya que instalar más de 16 unidades.
+
+
+
+
+El local estará dedicado única y exclusivamente a este fin y podrá albergar un
+equipo de comunicación y adquisición de datos a instalar por la Compañía Eléc-
+trica, así como el cuadro general de mando y protección de los servicios comu-
+nes del edificio, siempre que las dimensiones reglamentarias lo permitan.
+
+
+
+
+                            El local cumplirá lo siguiente:
+                                Las condiciones de protección contra incen-
+                                  dios que establece la NBE-CPI-96.
+                                Estará situado en la planta baja, entresuelo o
+                                  primer sótano (salvo cuando existan concen-
+                                  traciones por plantas).
+                                En un lugar lo más próximo posible a la entra-
+                                  da al edificio y a la canalización de las deriva-
+                                  ciones individuales.
+                                De fácil y libre acceso.
+                                Nunca coincidirá con el de otros servicios co-
+                                  mo cuarto de calderas, concentraciones de
+                                  contadores de agua, gas, etc.
+                                No servirá nunca de paso ni de acceso a otros
+                                  locales.
+                                Estará construido con paredes de clase M0 y
+                                  suelos de clase M1.
+
+
+
+
+                                                                                      95
+INSTALACIONES DE ENLACE
+
+
+
+
+                              Dispondrá de ventilación y de iluminación su-
+                                ficiente para la comprobación del buen fun-
+                                cionamiento de todos los componentes de la
+                                concentración.
+                              Cuando la cota del suelo sea inferior o igual a
+                                la de los pasillos o locales colindantes deberán
+                                disponerse sumideros de desagüe.
+                              La altura mínima del local será de 2,30 m y la
+                                anchura mínima en paredes ocupadas de 1,50
+                                m. Desde la pared ocupada por contadores
+                                hasta el primer obstáculo que tenga enfrente
+                                habrá mínimo 1,10 m.
+                              La puerta de acceso abrirá hacia el exterior y
+                                tendrá una dimensión mínima de 0,70 x 2 m.
+
+
+
+
+3.2.2.2. En armario
+
+
+                          Si el número de contadores a centralizar es igual o
+                          inferior a 16, además de poderse instalar en un local
+                          con las características descritas anteriormente, la
+                          concentración podrá ubicarse en un armario desti-
+                          nado única y exclusivamente a este fin.
+
+
+
+
+                           Contadores en armario
+
+
+
+
+ 96
+                                                              INSTALACIONES DE ENLACE
+
+
+
+
+                             Algunas de las características del armario serán:
+                                 Estará situado en la planta baja, entresuelo o
+                                   primer sótano del edificio, salvo cuando exis-
+                                   tan concentraciones por plantas.
+                                 No tendrá bastidores intermedios que dificul-
+                                   ten la instalación o lectura de los contadores y
+                                   demás dispositivos.
+                                 Desde la parte más saliente del armario hasta
+                                   la pared opuesta deberá respetarse un pasillo
+                                   de 1,5 m como mínimo.
+                                 Los armarios tendrán una característica para
+                                   llamas mínima PF 30.
+                                 Las puertas de cierre, dispondrán de la cerra-
+                                   dura que tenga normalizada la empresa sumi-
+                                   nistradora.
+                                 Dispondrá de ventilación y de iluminación sufi-
+                                   ciente y en sus inmediaciones.
+
+
+
+
+3.3. DISPOSITIVOS DE MANDO Y PROTECCIÓN
+     (ITC-BT-16, ITC-BT-17)
+
+
+                             Los dispositivos generales de mando y protección se
+                             situarán lo más cerca posible del punto de entrada
+                             de la derivación individual en el local o vivienda del
+                             usuario.
+
+
+
+
+En viviendas y en locales comerciales e industriales, se colocará una caja para el
+interruptor de control de potencia, inmediatamente antes de los demás disposi-
+tivos, en compartimento independiente y precintable.
+
+
+
+
+                                                                                      97
+INSTALACIONES DE ENLACE
+
+
+
+
+                         Cuadro de dispositivos de mando y protección
+
+
+
+
+La situación de los dispositivos generales de mando y protección será:
+
+         En viviendas: junto a la puerta de entrada, no podrá colocarse en
+          dormitorios, baños, aseos, etc.
+         En locales comerciales o para actividades industriales: lo más pró-
+          ximo posible a una puerta de entrada. En locales de uso común o pú-
+          blica concurrencia, los dispositivos se instalarán de manera que no
+          serán accesibles al público en general.
+
+
+
+
+                                  Los dispositivos individuales de mando y protección
+                                  de cada uno de los circuitos, podrán instalarse en
+                                  cuadros separados y en otros lugares.
+
+
+
+
+La altura a la que se situarán los dispositivos generales e individuales de mando
+y protección medida desde el nivel del suelo será:
+
+         Viviendas: comprendida entre 1,4 y 2 m.
+         Locales comerciales: mínimo de 1 m.
+
+
+             DVD010366
+
+
+
+
+                                  Para finalizar el estudio de la Unidad, te recomenda-
+                                  mos que veas el siguiente vídeo sobre un montaje
+                                  real de una instalación de enlace. ¡Que lo disfrutes!
+                                  (Tienes el vídeo en el Campus Virtual).
+
+
+
+
+ 98
+                                                       INSTALACIONES DE ENLACE
+
+
+
+
+                                                   CONCLUSIONES
+
+Este es un tema importante por lo que es recomendable que realices varias
+lecturas del mismo con el objeto de que asimiles los conocimientos que en él
+encuentras.
+
+
+
+
+                                                                          99
+INSTALACIONES DE ENLACE
+
+
+
+
+                                                      RECAPITULACIÓN
+
+         La línea de enlace está formada por:
+
+             Caja General de Protección (CGP).
+
+             Línea General de Alimentación (LGA).
+
+             Elementos para la ubicación de Contadores (CC).
+
+             Derivación individual (DI)
+
+             Caja para Interruptor de Control de Potencia (ICP).
+
+             Dispositivos Generales de Mando y Protección (DGMP).
+
+         El reglamento establece las directrices en cuanto al montaje y empla-
+          zamiento de las partes que componen la línea de enlace.
+
+         Existen numerosos accesorios y dispositivos en el mercado para la rea-
+          lización de instalaciones eléctricas, que tienen formas y colores diferen-
+          tes dependiendo del fabricante, pero en todos los casos su utilización
+          es muy parecida.
+
+         Los colores normalizados para los conductores eléctricos serán negro,
+          marrón o gris para las fases, azul claro para el neutro y amarillo-verde
+          para el conductor de protección.
+
+
+
+
+100
+                                                             INSTALACIONES DE ENLACE
+
+
+
+
+                                              AUTOCOMPROBACIÓN
+
+1.   ¿Qué es un contacto directo?
+
+     a) Cuando se toca el conductor neutro.
+
+     b) Cuando se toca el conductor de fase.
+
+     c) Cuando se toca la toma de tierra.
+
+     d) Cuando se toca el grifo del agua.
+
+
+2.   ¿Para qué se utilizan los señalizadores de cables?
+
+     a) Para identificar cada cable.
+
+     b) Para que queden más bonitos.
+
+     c) Para indicar la tensión que tienen.
+
+     d) Para saber quién los ha instalado.
+
+
+3.   La derivación individual…
+
+     a) Enlaza la caja general de protección con la acometida.
+
+     b) Aloja elementos de protección de las líneas generales de alimentación.
+
+     c) Parte de la línea general de alimentación y comprende los aparatos de
+        medida, mando y control.
+
+     d) Marca el principio de la propiedad de las instalaciones de los usuarios.
+
+
+
+
+                                                                                101
+INSTALACIONES DE ENLACE
+
+
+
+
+4.    Las acometidas pueden ser:
+
+      a) Aéreas.
+
+      b) Subterráneas.
+
+      c) Mixtas.
+
+      d) Todas las respuestas son correctas.
+
+
+5.    En la caja general de protección, el neutro:
+
+      a) Incluirá una conexión movible situada a la izquierda de las fases.
+
+      b) Incluirá una conexión amovible situada a la izquierda de las fases.
+
+      c) Incluirá una conexión movible situada a la derecha de las fases.
+
+      d) Incluirá una conexión amovible situada a la derecha de las fases.
+
+
+6.    La sección de la línea general de alimentación será como mínimo:
+
+      a) 10 mm2 en cobre o aluminio.
+
+      b) 10 mm2 en cobre o 16 mm2 en aluminio.
+
+      c) 10 mm2en aluminio o 16 mm2 en cobre.
+
+      d) No existe mínimo, la sección la marcarán los cálculos realizados en el
+         proyecto de la instalación.
+
+
+7.    Las letras que identifican a conductores ¿qué significan?
+
+      a) La 1ª cifra es la sección del conductor, la 2ª el número de conductores y
+         la 3ª el material constituyente de los conductores.
+
+      b) La 1ª cifra es el material constituyente de los conductores, la 2ª el núme-
+         ro de conductores y la 3ª la sección del conductor.
+
+      c) La 1ª cifra es la sección del conductor, la 2ª el material constituyente de
+         los conductores y la 3ª el número de conductores.
+
+      d) La 1ª cifra es el número de conductores, la 2ª la sección del conductor y
+         la 3ª el material constituyente de los conductores.
+
+
+
+
+102
+                                                         INSTALACIONES DE ENLACE
+
+
+
+
+8.   Para el alumbrado de un pasillo controlado desde cuatro puntos dis-
+     tintos ¿cuál sería la manera más adecuada de hacerlo?
+
+     a) Utilizando conmutadores de cruce dobles y simples alternados.
+
+     b) Utilizando sólo conmutadores de cruce dobles.
+
+     c) Con un telerruptor y cuatro pulsadores.
+
+     d) Con cuatro conmutadores de cruce simples.
+
+
+9.   ¿Cuándo se colocarán los contadores de forma concentrada?
+
+     a) Cuando haya un usuario.
+
+     b) Cuando haya dos usuarios.
+
+     c) En los edificios destinados a viviendas.
+
+     d) En una empresa.
+
+
+10. ¿A qué altura se situarán los dispositivos generales e individuales de
+    mando y protección medida desde el nivel del suelo?
+
+     a) Locales comerciales: mínimo 1,5 m.
+
+     b) Viviendas: mínimo 1 m.
+
+     c) Viviendas: entres 1,4 y 2 metros.
+
+     d) Locales comerciales: entre 1 y 2 metros.
+
+
+
+
+                                                                            103
+                                 INSTALACIONES DE ENLACE
+
+
+
+
+                                SOLUCIONARIO
+
+1.   b   2.   a   3.   c   4.     d      5.        b
+
+6.   b   7.   d   8.   a   9.     c      10.       c
+
+
+
+
+                                                    105
+INSTALACIONES DE ENLACE
+
+
+
+
+                                PROPUESTAS DE AMPLIACIÓN
+
+         Para ampliar información te recomendamos que utilices Internet para
+          buscar información sobre los elementos que hemos explicado a lo lar-
+          go de este tema.
+
+         Busca proveedores de dispositivos de líneas de enlace y estudia sus ca-
+          tálogos. Verás que en ellos aparece información muy valiosa sobre el
+          comportamiento y tipos de dispositivos existentes.
+
+         Ten en cuenta que este es un campo que está en continua evolución,
+          por lo que tendrás que estar siempre al tanto de los nuevos dispositi-
+          vos que aparezcan en el mercado.
+
+         Te recomendamos que como curiosidad visites la siguiente página web
+          para observar distintos aspectos propuestos en este tema.
+
+             www.ifent.org/lecciones/
+
+
+
+
+106
+                                                          INSTALACIONES DE ENLACE
+
+
+
+
+                                                        BIBLIOGRAFÍA
+
+   Reglamento Electrotécnico para baja tensión. Texto oficial. Liteam ediciones.
+
+   JOSÉ MORENO GIL – DAVID LASSO TÁRRAGA – CARLOS FERNÁNDEZ
+    GARCÍA. Instalaciones Eléctricas de Interior. Thomson Paraninfo. 2004.
+
+   JOSÉ M. SEBASTIAN – PEDRO GONZÁLEZ. Instalaciones eléctricas interio-
+    res. Marcombo, 2009.
+
+   Instalaciones básicas. McGraw-Hill.
+
+
+
+
+                                                                             107
+

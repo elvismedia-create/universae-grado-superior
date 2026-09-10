@@ -1,0 +1,1233 @@
+                                                  Electricidad básica
+DV.TextoHTML(01).Esp.dot   |   UD014854_V03_T01
+ÍNDICE
+1. Tu comienzo en la electricidad                                      4
+  1.1. Definición                                                       4
+  1.2. ¿Qué es un circuito eléctrico?                                   5
+  1.3. Elementos fundamentales de un circuito eléctrico                 5
+  1.4. ¿Qué es una instalación eléctrica?                               6
+2. ¿Cómo se genera la electricidad y cómo llega a nuestra casa?        7
+  2.1. Generación                                                       7
+  2.2. Transformación                                                   8
+  2.3. Distribución                                                     9
+  2.4. Llegada al punto de consumo                                      9
+3. Magnitudes eléctricas más comunes                                   10
+  3.1. Tensión (V)                                                     10
+  3.2. Intensidad (I)                                                  10
+  3.3. Resistencia (R)                                                 11
+  3.4. Potencia (P)                                                    11
+4. La Ley de Ohm                                                       12
+  4.1. Definición                                                      12
+  4.2. Relación entre la potencia, la tensión y la intensidad          13
+5. Tipos de circuitos                                                  14
+  5.1. Circuito serie                                                  14
+  5.2. Circuito en paralelo                                            15
+  5.3. Circuito mixto                                                  15
+6. Corriente alterna y corriente continua                              16
+  6.1. Corriente continua                                              16
+  6.2. Corriente alterna                                               17
+7. Sistemas eléctricos de corriente alterna según el número de fases   18
+  7.1. Sistemas monofásicos                                            18
+  7.2. Sistema trifásico                                               18
+ 8. Instalaciónes eléctricas: nociones básicas                                       19
+    8.1. Ejemplo de una instalación eléctrica en una vivienda                        20
+    8.2. Definiciones                                                                22
+ 9. Esquemas y planos eléctricos                                                     25
+    9.1. Tipos de esquemas                                                           25
+      9.1.1. Esquema unifilar                                                        25
+      9.1.2. Esquema multifilar                                                      26
+    9.2. Plano                                                                       26
+10. Cable de toma de tierra o cable de protección eléctrica                          26
+  10.1. Definición                                                                   26
+  10.2. Objetivo del cable de toma de tierra                                         27
+  10.3. Funcionamiento                                                               27
+     10.3.1. ¿Cómo se disipan las tensiones peligrosas en caso de fallo eléctrico?   28
+
+11. ¿Qué has aprendido??                                                             29
+12. Bibliografía                                                                     30
+ 4
+
+
+
+                   Electricidad básica
+
+
+
+
+1. Tu comienzo en la electricidad
+Comenzamos con una frase célebre:
+
+
+                 La electricidad ni se crea ni se destruye, la electricidad se transforma.
+
+
+Un ejemplo de que la electricidad se transforma es un calefactor.
+
+
+
+
+                                Figura 1
+
+
+
+La electricidad llega a las resistencias del calefactor transformando la energía eléctrica en calor. Por
+tanto la electricidad es transformada en calor.
+
+Por otra parte, hoy en día, no es muy rentable almacenar electricidad en grandes cantidades para poder
+utilizarla, aunque existen grandes sistemas de acumulación en baterías de litio, de manera experimental.
+Por eso, la electricidad que se genera debe ser consumida instantáneamente (en el acto), acorde a la
+demanda que existe en cada momento.
+
+
+
+     1.1. Definición
+Existen diferentes explicaciones complejas, pero lo que realmente necesitas saber es que la electricidad
+la producen partículas como los electrones, protones y neutrones, que juntos en diversa proporción
+componen un átomo, y se manifiestan en forma de electricidad.
+
+No es necesario entender a la perfección este concepto, pero sí saber que cuando la electricidad circula
+por un cable están circulando electrones, que son los encargados de, por ejemplo, que se encienda una
+bombilla, que puedas cargar la batería de tu móvil en un enchufe, o de que tu frigorífico mantenga la
+comida en su temperatura adecuada.
+                                                                                                       5
+
+
+
+             Electricidad básica
+
+
+
+
+   1.2. ¿Qué es un circuito eléctrico?
+Es un conjunto de dispositivos o receptores eléctricos, unidos y conectados entre ellos de forma que
+permiten el paso de electricidad (electrones) para conseguir algún efecto útil, como luz, calor,
+movimiento, etcétera. La electricidad, pues, realiza un TRABAJO en los receptores.
+
+
+
+
+                              Figura 2
+
+
+
+
+   1.3. Elementos fundamentales de un circuito eléctrico
+
+ ELEMENTOS          FUNCIÓN QUE REALIZAN
+
+
+ Fuente de          Es el elemento que suministra electricidad al
+ tensión            circuito
+
+
+
+
+                    Es el cable, generalmente de cobre, ya que es muy
+ Conductor
+                    buen conductor de la electricidad
+
+
+
+
+                    Es el material que recubre el cable. Sirve para
+ Aislante           impedir a personas o animales tener un contacto
+                    directo con la electricidad
+ 6
+
+
+
+                  Electricidad básica
+
+
+
+
+ ELEMENTOS         FUNCIÓN QUE REALIZAN
+
+
+
+                   Son todos los elementos que consumen
+ Receptores        electricidad y que la transforman en otro tipo de
+                   energía
+
+
+
+
+ Elementos de      Son dispositivos que permiten accionar receptores
+ maniobra          en un momento determinado
+
+
+
+
+                   Protegen el circuito ante cualquier imprevisto
+ Elementos de      eléctrico. Permiten que cuando haya un fallo se
+ protección        interrumpa la electricidad y no se produzca un
+                   daño mayor.
+
+
+
+
+     1.4. ¿Qué es una instalación eléctrica?
+Es un conjunto de circuitos eléctricos que tiene por objetivo dotar de electricidad a edificios, viviendas,
+locales comerciales, diferentes infraestructuras, etcétera. Incluye los siguientes elementos eléctricos:
+
+     • Dispositivos de maniobra: son interruptores, conmutadores y demás dispositivos que permiten
+        controlar la instalación y hacerla funcionar cuando se quiera.
+
+     • Receptores eléctricos: incluyen todos los aparatos eléctricos que consuman electricidad y la
+        transformen en otro tipo de energía. Por ejemplo, una bombilla, que recibe electricidad y la
+        transforma en luz.
+
+     • Dispositivos de protección eléctrica: son los encargados de proteger la instalación eléctrica, los
+        receptores y las personas. Cuando se detecta un fallo en la instalación, como por ejemplo una
+        sobrecarga o un cortocircuito, estos dispositivos disparan, interrumpiendo el paso de la
+        corriente eléctrica (abriendo el circuito) y asegurando así el buen estado de los receptores y la
+        seguridad de los usuarios.
+                                                                                                         7
+
+
+
+             Electricidad básica
+
+
+
+
+                                   Ejemplo
+                                   La instalación eléctrica de tu vivienda es un conjunto de circuitos
+                                   (iluminación, tomas de corriente, cocina y más) que dispone de:
+
+                                       • Receptores, como las bombillas o enchufes.
+
+                                       • Dispositivos de maniobra, como los interruptores o
+                                          conmutadores.
+
+                                       • Elementos de Protección eléctrica, como los aparatos que
+                                          tienes en el cuadro eléctrico general (interruptores
+                                          magnetotérmicos, interruptor diferencial, protector ante
+                                          sobretensiones transitorias y permanentes, ...).
+
+
+
+
+Siguiendo este ejemplo de la instalación eléctrica de tu vivienda, debes saber que la compañía eléctrica
+suministradora (Distribuidora) de tu zona es la encargada de hacerte llegar o suministrar la electricidad
+hasta la vivienda o edificio de viviendas en el que vivas.
+
+Más adelante veremos que el Reglamento Electrotécnico de Baja Tensión (REBT) nos marca las normas
+técnicas de cómo y de qué manera debemos hacer las instalaciones, para garantizar la calidad y
+seguridad de las mismas. Es la norma de obligado cumplimiento.
+
+
+
+2. ¿Cómo se genera la electricidad y cómo llega
+a nuestra casa?
+Desde el lugar en el que se genera la electricidad hasta que llega al punto de consumo existen varias
+fases, que son: generación, transformación, distribución y llegada al punto de consumo. Vamos a verlas
+con más detalle.
+
+
+
+   2.1. Generación
+Existen múltiples tipos de centrales (térmicas, hidroeléctricas, solares…) que, aunque funcionan de
+diferente manera, comparten el objetivo de generar electricidad. Desde hace tiempo se apuesta por la
+generación de energía de forma sostenible, como las centrales eólicas o las solares fotovoltaicas.
+
+Por tanto, el primer paso es generar o fabricar la electricidad en una central generadora.
+ 8
+
+
+
+                    Electricidad básica
+
+
+
+
+         Figura 3
+
+
+
+
+     2.2. Transformación
+Una vez generada la electricidad en las centrales, se debe adecuar para su transporte a distancias muy
+lejanas. Esto sucede en las Estaciones Transformadoras, normalmente adosadas a las Centrales
+Generadoras, donde se eleva la tensión de la energía generada, para su transporte a decenas o cientos
+de kilómetros. Para que lo vayas entendiendo, la tensión es el cómo se transporta la energía, mientras
+que la intensidad (amperios) es el cuánto.
+
+Un símil adecuado sería este: el transporte de electricidad es como una autopista: la tensión sería el
+número de carriles, mientras que la intensidad o corriente sería el número de coches que circulan por ella.
+
+
+
+
+         Figura 4
+                                                                                                       9
+
+
+
+              Electricidad básica
+
+
+
+
+   2.3. Distribución
+La electricidad se transporta a través de torres de alta tensión. Como la distancia que recorren es muy
+larga (de muchos kilómetros), se necesita elevar esa tensión o electricidad a través de subestaciones
+eléctricas y transformadores para transportarla. A mayor tensión, menor intensidad a igualdad de
+potencia, es por ello que la electricidad se transporta a kV (kilovoltios, miles de voltios) de tensión.
+
+Como curiosidad, debes saber que existe también el transporte de electricidad en alta tensión continua
+(HVDC), además de la alta tensión en alterna que ya conocíamos.
+
+
+
+
+         Figura 5
+
+
+
+
+   2.4. Llegada al punto de consumo
+Por lo que te contábamos en el apartado anterior, en la mayoría de las viviendas la tensión de la
+electricidad que entra en nuestro cuadro eléctrico general es de 230 voltios (V).
+
+Más adelante veremos los grados de electrificación a la hora de realizar la previsión de potencia prevista
+para una vivienda, en función de su superficie y de los consumos o cargas que vaya a haber en la misma.
+De momento, te adelantamos que son dos:
+
+    • Grado de electrificación básico.
+
+    • Grado de electrificación elevado.
+ 10
+
+
+
+                   Electricidad básica
+
+
+
+
+Veamos el siguiente video de uno de tus profesores donde repasa lo visto hasta ahora:
+
+
+
+
+                                Video
+                                Electricidad básica 1.
+
+                                (Tienes el material en el Campus Virtual).
+
+
+
+
+3. Magnitudes eléctricas más comunes
+De momento no vamos a mostrarte todas las magnitudes eléctricas, sino las más importantes, que son:
+tensión, intensidad, resistencia y potencia. Con ellas podrás ya desenvolverte cómodamente en los
+módulos que están por venir.
+
+
+
+   3.1. Tensión (V)
+Se mide en voltios (su símbolo es V) y se define como la diferencia de nivel eléctrico que podemos
+encontrar entre dos puntos de un circuito. También se le llama diferencia de potencial (d. d. p.).
+
+Si existe tensión entre dos puntos, existe diferencia de potencial entre esos dos puntos, y entonces la
+corriente, la intensidad, puede fluir.
+
+Acuérdate de este símil: si entre un punto más alto que otro existe, efectivamente, una diferencia de
+altura (diferencia de potencial), podrá fluir un líquido por una tubería que conecte ambos puntos
+(podrá circular corriente). Sin embargo, si ambos puntos están a la misma altura (están al mismo
+potencial), no podrá fluir el líquido por esa tubería (no podrá circular corriente o intensidad eléctrica).
+
+
+
+   3.2. Intensidad (I)
+Se mide en amperios (símbolo I) y se define como la cantidad de corriente eléctrica (electrones) que
+atraviesa un conductor en un periodo de tiempo determinado. Por ejemplo, un microondas doméstico
+consume aproximadamente 4 amperios (A) cuando está funcionando. Es el resultado de dividir su
+potencia (900 W) entre el voltaje de la red (230 V), lo que arroja un resultado de 3,91 amperios.
+                                                                                                        11
+
+
+
+              Electricidad básica
+
+
+
+
+   3.3. Resistencia (R)
+Se mide en ohmios y su símbolo es la letra griega Ω (omega). Se define como la mayor o menor
+dificultad que ofrece un conductor al paso de la corriente eléctrica.
+
+Será importante, por ejemplo, en los cables de protección que unen las masas metálicas de nuestra
+instalación con las picas de tierra de nuestro edificio. Dicha resistencia deberá ser baja, para que en caso
+de tener que evacuar la intensidad por un fallo, el cable a tierra tenga poca resistencia y deje fluir la
+intensidad a tierra para ser disipada.
+
+
+
+   3.4. Potencia (P)
+Está directamente relacionada con la intensidad, ya que a mayor intensidad, mayor potencia. Por
+ejemplo, una bombilla led típica de un salón consume una potencia de 5 vatios (W).
+
+
+
+
+                                    Reto
+                                    En este apartado, hemos hablado de la intensidad de un
+                                    microondas y de la potencia de una bombilla de salón.
+
+                                    ¿Sabes cuánta intensidad consume tu microondas a pleno
+                                    funcionamiento? ¿Y la potencia de las bombillas de tu casa?
+
+                                    Puedes aprovechar que estás casi a la mitad de esta unidad
+                                    didáctica, para hacer una pausa y averiguarlo. Es importante que
+                                    comiences a saber cuánto consumen los equipos cotidianos que
+                                    tienes a tu alrededor.
+
+
+
+
+El siguiente video, te ayudará a entender los conceptos de las magnitudes eléctricas de una forma más
+fácil.
+
+
+
+
+                                    Video
+                                    Electricidad básica 2.
+
+                                    (Tienes el material en el Campus Virtual).
+ 12
+
+
+
+                  Electricidad básica
+
+
+
+
+4. La Ley de Ohm
+Se llama así, porque fue una idea defendida por el físico Georg Simon Ohm. Esta ley, trata de una
+fórmula muy utilizada en electricidad y que relaciona estas magnitudes, de tal forma que:
+
+
+
+
+                            Figura 6
+
+
+
+
+                                                    V=RxI
+
+                                        Tensión = Resistencia X Intensidad
+
+
+
+   4.1. Definición
+Mediante esta teoría, podemos afirmar que el voltaje o la tensión de un conductor es proporcional a la
+intensidad que circula por dicho conductor. Cuanto mayor es la intensidad que circula por el conductor,
+mayor es la tensión. A igualdad de resistencia, al aumentar una de ellas, aumenta la otra. Por eso se dice
+que son directamente proporcionales.
+                                                                                                        13
+
+
+
+             Electricidad básica
+
+
+
+
+   4.2. Relación entre la potencia, la tensión y la intensidad
+Otra fórmula muy utilizada y que te va a servir para entender el concepto de potencia eléctrica es la
+siguiente:
+
+
+                                                       P=VxI
+
+                                           Potencia = Tensión x Intensidad
+
+
+También aquí podemos comprobar que, a mayor Intensidad, mayor es la potencia que tenemos en un
+circuito. Será muy útil cuando hablemos de paneles solares, ya que sus rasgos más característicos serán
+su potencia, y su intensidad y voltaje en el punto de máxima potencia. Por ejemplo, un panel solar de
+400W puede tener, por ejemplo, un voltaje de 40 voltios y una intensidad, cuando le da el sol, de 10
+amperios. Su producto, V x I, nos da 400 vatios.
+
+
+
+
+                                   Ejemplo
+                                   Mirando una factura de la luz al azar, hemos visto que hay una
+                                   potencia contratada con la compañía eléctrica de 5.750 W. ¿Cuál
+                                   es la tuya?
+
+
+
+
+A continuación veamos un video con ejercicio resuelto:
+
+
+
+
+                                   Video
+                                   La ley de Ohm.
+
+                                   (Tienes el material en el Campus Virtual).
+ 14
+
+
+
+                   Electricidad básica
+
+
+
+
+5. Tipos de circuitos
+Tanto en instalaciones eléctricas como automatizadas, nos encontramos tres tipos de circuitos que
+debemos conocer y, sobre todo, entender. Son los siguientes:
+
+      • Circuito serie.
+
+      • Circuito paralelo.
+
+      • Circuito mixto.
+
+
+   5.1. Circuito serie
+Son aquellos circuitos en los que los dispositivos o receptores que intervienen se encuentran
+conectados de forma seguida entre ellos.
+
+Por ejemplo, fíjate en la siguiente imagen:
+
+
+
+
+Como vemos en la imagen, cada resistencia "R" tiene dos bornes (uno a cada lado, entrada y salida).
+Pues bien, R1, R2 Y R3 están conectadas entre ellas en serie, es decir, la salida de una con la entrada de
+otra. Puedes imaginarte bombillas en una guirnalda de las de antes: si se fundía una y estaban en serie,
+dejaba de lucir la guirnalda.
+
+
+
+
+                                + Info
+                                En circuitos en serie, la intensidad es la misma en todos los puntos
+                                del circuito.
+
+
+
+
+Con los módulos o paneles solares pasará lo mismo: cuando los conectemos en serie (lo cual es lo más
+común actualmente), la intensidad que pasa por la serie es la nominal de uno de los paneles, no se
+sumarán intensidades aunque haya varios módulos.
+                                                                                                           15
+
+
+
+             Electricidad básica
+
+
+
+
+   5.2. Circuito en paralelo
+En este caso, la conexión de las resistencias (o cargas, o generadores de tensión) es diferente. Por su
+forma de conexión, tendrían la misma entrada las tres resistencias y también la misma salida. Estas
+conexiones se pueden realizar a través de fichas o regletas de conexión.
+
+
+
+
+                                   + Info
+                                   En circuitos en paralelo, la tensión es la misma en todos los puntos
+                                   del circuito, y la intensidad resultante será la suma de todas ellas.
+
+
+
+
+La ventaja de este tipo de circuito es que si se rompe o deja de funcionar una o varias resistencias, las
+demás siguen funcionando sin problemas, no afectando al circuito eléctrico. Volvemos al ejemplo de las
+guirnaldas de luces: si están en paralelo, aunque se fundiese una, el resto seguiría funcionando (de
+hecho es así como se conectan).
+
+
+  ¿Te imaginas que en una vivienda se fundiese una bombilla y dejasen de funcionar todas las demás?
+
+
+Esto no ocurre gracias a que su conexión es en paralelo.
+
+
+
+   5.3. Circuito mixto
+Son aquellos circuitos que componen serie y paralelo en un mismo circuito.
+ 16
+
+
+
+                  Electricidad básica
+
+
+
+
+Como puedes ver en la imagen, R2 y R3 están conectadas en paralelo y éstas a R1. R1 está en serie con
+el grupo R2//R3.
+
+
+
+6. Corriente alterna y corriente continua
+Cuando estamos ante un circuito o instalación eléctrica, debemos saber que existen dos tipos de
+corriente, alterna y continua. Las dos proporcionan electricidad, sí, pero no son lo mismo.
+
+Si te estás preguntando por qué podemos utilizar dos tipos de corriente, la respuesta es sencilla:
+dependiendo del dispositivo o receptor que corresponda en cada circuito o instalación, funcionan con
+un tipo de corriente o con otra.
+
+
+
+
+                               Ejemplo
+                               El enchufe al que conectas tu ordenador funciona con corriente
+                               alterna. Sin embargo, en un cuadro de automatización dentro de
+                               una empresa, muchos autómatas programables funcionan con
+                               corriente continua.
+
+                               En general, en el ámbito doméstico solo trabajamos con alterna,
+                               pero de cara a la energía solar, deberás saber distinguirlas muy
+                               bien, ya que en un sistema solar se produce el cambio de corriente
+                               continua a corriente alterna, en el equipo llamado INVERSOR.
+
+
+
+
+   6.1. Corriente continua
+Para entenderlo de manera sencilla, en la corriente continua el número de electrones que circula por el
+circuito es siempre el mismo y circulan en la misma dirección, del polo negativo al polo positivo.
+                                                                                                          17
+
+
+
+             Electricidad básica
+
+
+
+
+Cuando hablemos de corriente continua, debemos de saber que:
+
+    • La pila o batería tiene dos bornes, positivo y negativo. Al igual que un módulo fotovoltaico o
+       panel solar, del que salen dos cables, positivo y negativo.
+
+    • El color de los cables está normalizado (se utiliza siempre el mismo), de modo que el rojo es
+       para el positivo y el negro para el negativo. En los paneles, los dos serán negros pero estarán
+       identificados por un "+" para el positivo y un "-" para el negativo.
+
+    • Este tipo de corriente nos la encontraremos con las siglas CC en español (corriente continua) o
+       DC en inglés (direct current).
+
+    • Una pila, una batería, los equipos electrónicos (como los ordenadores), los circuitos
+       integrados,... son ejemplos de equipos de corriente continua.
+
+
+
+   6.2. Corriente alterna
+Este tipo de corriente es utilizado en la gran mayoría de instalaciones eléctricas, como en viviendas y
+edificios, redes de distribución eléctrica en alta y baja tensión, locales comerciales, instalaciones
+industriales, etcétera.
+
+En la corriente alterna, la corriente eléctrica circula de diferente manera. Funciona en ciclos,
+repitiéndose un número determinado de veces, 50 por segundo. Digamos que "entra y sale" de nuestra
+casa 50 veces por segundo.
+
+Cuando hablamos de corriente alterna, debemos saber que:
+
+    • Se genera en centrales generadoras de energía eléctrica.
+    • El color de los cables está normalizado: negro, marrón o gris para el cable de fase; azul para el
+       cable de neutro; y amarillo y verde para el conductor de protección (cable a toma de tierra).
+
+    • Existen sistemas trifásicos (tres fases, con o sin neutro) y monofásicos (una fase y neutro).
+    • A este tipo de corriente nos la encontraremos con las siglas CA en español (corriente alterna) o
+       AC en inglés (alternating current).
+
+El REBT (Reglamento Electrotécnico de Baja Tensión), nos marca las normas técnicas sobre cómo y de
+qué manera debemos realizar las instalaciones eléctricas en diferentes infraestructuras.
+
+
+
+
+                                   Atención
+                                   Este reglamento es para que lo consultes, no para estudiarlo.
+ 18
+
+
+
+                   Electricidad básica
+
+
+
+
+7. Sistemas eléctricos de corriente alterna
+según el número de fases
+Siempre que hablemos de corriente alterna, debemos tener en cuenta que existen dos sistemas según
+su número de fases.
+
+
+
+   7.1. Sistemas monofásicos
+Se llama así porque consta de solo una fase y se utiliza generalmente para instalaciones eléctricas de
+interior. Por ejemplo, la mayoría de las viviendas llevan un sistema monofásico de fase y neutro.
+
+En sistema monofásico, nos encontraremos dos cables (fase + neutro) y los colores se determinan de la
+siguiente manera:
+
+      • Cable de fase: negro, marrón o gris.
+
+      • Cable neutro: color azul.
+
+Todas las instalaciones monofásicas, llevarán también el cable de toma de tierra o protección eléctrica,
+que será de color amarillo y verde.
+
+Recuerda que siempre que hablamos de sistemas trifásicos y monofásicos, estamos hablando de
+corriente alterna (CA) y que más adelante estudiaremos en profundidad cómo se distribuye le energía
+eléctrica, hasta llegar al punto de consumo.
+
+
+
+   7.2. Sistema trifásico
+Se llama así porque consta de tres fases. Se utiliza generalmente para la red de distribución de energía
+eléctrica en baja tensión (instalaciones de enlace) y también en determinados receptores o
+instalaciones con un gran consumo eléctrico. Podemos encontrar alguna vivienda unifamiliar con
+suministro trifásico, pero cada vez es menos común.
+
+En un sistema trifásico, nos encontraremos cuatro cables que corresponden a las tres fases más el
+neutro (fase 1, fase 2, fase 3 y cable neutro). Los colores se determinan de la siguiente manera:
+
+      • Fase 1: negro.
+
+      • Fase 2: marrón.
+
+      • Fase 3: gris.
+
+      • Cable neutro: azul.
+                                                                                                          19
+
+
+
+              Electricidad básica
+
+
+
+
+                                    Atención
+                                    El orden de colores en las fases puede cambiar (depende del
+                                    instalador).
+
+
+
+
+Todas las instalaciones trifásicas llevarán también el cable de toma de tierra o protección eléctrica, que
+será de color amarillo y verde, y que irá conectado al electrodo o pica de tierra de la instalación.
+
+
+
+8. Instalaciónes eléctricas: nociones básicas
+Como hemos visto, las instalaciones eléctricas están en todas partes y se componen principalmente de:
+
+    • Memoria técnica o proyecto.
+
+    • Circuitos eléctricos.
+
+    • Canalizaciones.
+
+    • Mecanismos eléctricos.
+
+    • Elementos de corte eléctrico para la protección de la instalación y de las personas o animales.
+
+La memoria técnica o proyecto, es el documento donde viene toda la información para realizar la
+instalación eléctrica, planos, esquemas, cálculos, presupuesto.
+
+
+
+
+                                    + Info
+                                    Lo que nos indica si nos hará falta memoria técnica o proyecto, es
+                                    la capacidad o potencia prevista de la instalación eléctrica que se
+                                    va a realizar.
+
+                                    En otras palabras, cuando la obra o instalación es muy grande,
+                                    necesitamos un proyecto. Los proyectos deberán ir visados por el
+                                    Colegio de Ingenieros o Graduados correspondiente.
+ 20
+
+
+
+                   Electricidad básica
+
+
+
+
+   8.1. Ejemplo de una instalación eléctrica en una vivienda
+Supongamos que vamos a realizar la instalación eléctrica de una vivienda. Debemos tener en cuenta el
+orden que normalmente se utiliza, aunque puede haber variaciones según la situación o la persona que
+lo desarrolle:
+
+      1. Primer paso:
+
+        Según nos marquen los planos o esquemas de la memoria técnica o proyecto, marcaremos
+        dónde queremos ubicar los distintos elementos de la instalación, puntos de luz, tomas de
+        corriente, interruptores y conmutadores, así como las cajas de conexiones, y las trayectorias de
+        tubos y canalizaciones.
+
+      2. Segundo paso:
+
+        Una vez que estén los tubos, canalizaciones y cajas de mecanismos colocados, comenzamos a
+        meter los cables por los tubos donde corresponda, hasta llegar a las cajas de conexiones.
+
+
+
+
+                Figura 7
+
+
+
+
+                                Nota
+                                Este trabajo se realiza con la ayuda de una guía pasacables.
+                                                                                              21
+
+
+
+        Electricidad básica
+
+
+
+
+3. Tercer paso:
+
+  Realizamos correctamente el conexionado de cables de las cajas de conexión, mediante fichas
+  de empalme o regletas de conexión, como las del ejemplo siguiente:
+
+
+
+
+                                           Figura 8
+
+
+
+  En el siguiente video, uno de tus profesores, pela y conecta cables eléctricos.
+
+
+
+
+                              Vídeo
+                              Cómo conectar cables eléctricos.
+
+                              (Tienes el material en el Campus Virtual).
+
+
+
+
+4. Cuarto paso:
+
+  Conectamos en el cuadro general los dispositivos de protección de cada circuito, así como los
+  mecanismos eléctricos como enchufes, interruptores, conmutadores, etcétera. Comprobamos
+  la instalación siempre antes de dar tensión a los circuitos.
+
+  Al finalizar este proceso, debemos comprobar la instalación circuito a circuito, mediante
+  diferentes pruebas, y verificar que todo funciona correctamente.
+
+
+
+
+                                Figura 9
+22
+
+
+
+                  Electricidad básica
+
+
+
+
+ 8.2. Definiciones
+     • Memoria técnica o proyecto: es el documento donde viene toda la información para realizar la
+        instalación eléctrica: planos, esquemas, cálculos, presupuesto…
+
+     • Circuitos eléctricos: son conexiones entre elementos de control y receptores eléctricos
+        protegidos por elementos de corte eléctrico. Tendremos el circuito de cocina, el de tomas de
+        corriente, el de iluminación, etcétera.
+
+     • Elementos de control: permiten controlar cómo y cuándo deben funcionar los receptores como
+        un interruptor, un conmutador o un conmutador de cruce.
+
+     • Receptores eléctricos (ejemplos): cualquier mecanismo que consume energía eléctrica, como
+        una bombilla o tubos led que iluminan las diferentes estancias de una vivienda.
+
+     • Tubos y canalizaciones: son tubos de diferentes materiales y secciones, que se encargan de
+        proteger los cables de cada receptor. Los cables de los diferentes circuitos van por el interior de
+        estos tubos o canalizaciones. A veces los cables se llevan a través de bandejas metálicas.
+
+
+
+
+                                         Figura 10
+
+
+
+
+                                        Figura 11
+                                                                                                   23
+
+
+
+         Electricidad básica
+
+
+
+
+• Elementos de corte eléctrico: son aparatos para la protección de la instalación y de las personas
+   o animales, como por ejemplo un interruptor magnetotérmico o un diferencial.
+
+    • El interruptor magnetotérmico: también llamado PIA (pequeño interruptor automático), es
+       un dispositivo electromecánico que, en caso de que se produzca una sobrecarga o un
+       cortocircuito en la instalación, dispara abriendo el circuito, interrumpiendo así el paso de la
+       corriente eléctrica por el circuito afectado. Como es un disparo rápido (son milisegundos
+       desde que se produce la sobrecarga hasta que dispara) evita daños con el contacto de
+       personas o animales.
+
+   Aunque son muchas las características importantes a la hora de elegir un PIA, veamos las más
+   importantes:
+
+    • Si es para corriente alterna o continua.
+
+    • Si es monofásico o trifásico, según su número de fases.
+
+    • Tensión e intensidad nominal a la que trabajan.
+
+    • Poder de corte, el valor de intensidad máximo en el que el PIA fuera capaz de disparar antes
+       de producirse un arco eléctrico a su través.
+
+
+
+
+                               Figura 12
+
+
+
+• El Interruptor diferencial: es un dispositivo electromecánico que protege la instalación contra
+   posibles fugas eléctricas que den lugar o pongan en tensión de forma accidental, cualquier
+   receptor eléctrico y, por tanto, ocasionen un peligro de descarga eléctrica o electrocución para
+   cualquier persona o animal.
+
+   Las características de un interruptor diferencial son:
+
+    • Intensidad nominal a la que trabajan.
+
+    • Sensibilidad de la intensidad de disparo que tiene el aparato (en miliamperios).
+24
+
+
+
+                  Electricidad básica
+
+
+
+
+     • Protección contra sobretensiones: es un dispositivo que se coloca en el cuadro eléctrico, que
+        nos protege contra las posibles sobretensiones que pueda existir en la red de forma accidental,
+        como por ejemplo la caída de un rayo en la red eléctrica, bien en nuestra instalación o bien muy
+        cerca de ella.
+
+        Cuando detecta una sobretensión, dispara o hace disparar el circuito, abriéndolo y dejándolo sin
+        tensión. Su función principal es proteger los receptores eléctricos de la instalación.
+
+        Este aparato se coloca en el cuadro eléctrico, junto a los demás dispositivos de protección.
+
+        Los pararrayos colocados en la parte superior edificios o en diferentes estructuras, también
+        cumplen la misma función: proteger la instalación de una sobretensión producida por un rayo,
+        captándolo o atrayéndolo, y derivando la corriente de rayo a la pica de tierra.
+
+     • Fusible: igual que el interruptor magnetotérmico, tiene la función de proteger la instalación
+        contra sobrecargas y cortocircuitos, aunque en los fusibles el funcionamiento es distinto.
+
+        Se trata de un elemento de protección en el que su interior dispone de un filamento (hilo
+        conductor) que en el momento de la sobrecarga se funde, rompiéndose, interrumpiendo el
+        circuito y dejando la instalación sin tensión.
+
+
+
+
+                      Figura 13
+
+
+
+        La diferencia con el PIA o interruptor magnetotérmico es que para devolver tensión a la
+        instalación lo rearmamos (volvemos a subir la pestaña de accionamiento) y en el fusible no
+        podemos hacer esto, sino que debemos sustituirlo.
+
+        Estos elementos de protección que acabamos de ver, junto con el ICP (interruptor de control de
+        potencia) y el IGA (interruptor general automático), son comunes en todos los cuadros
+        eléctricos generales de las instalaciones eléctricas. Son los elementos que protegen a los
+        circuitos eléctricos y, por tanto, a los receptores eléctricos.
+                                                                                                          25
+
+
+
+              Electricidad básica
+
+
+
+
+9. Esquemas y planos eléctricos
+En el mundo de las instalaciones eléctricas en edificios, montajes y equipos industriales y de
+automatización en empresas, cuadros y montajes eléctricos que forman parte de parques eólicos,
+fotovoltaicos, etcétera, el hecho de poder localizar y solucionar averías a tiempo juega un gran papel en
+cuanto a la rentabilidad.
+
+
+
+
+                                    Para pensar...
+                                    ¿Te imaginas que un parque fotovoltaico deja de generar energía
+                                    durante días debido a un fallo en la instalación? Esto se transmite
+                                    en importantes pérdidas económicas dentro de una empresa y
+                                    conlleva multas y compensaciones económicas por parte de la
+                                    empresa mantenedora o explotadora, hacia sus propietarios.
+
+
+
+
+Para solucionar una avería eléctrica, primero debes localizarla.
+
+El primer paso para localizar una avería es conocer las partes de la instalación y es aquí donde saber
+interpretar esquemas y planos eléctricos nos va a permitir llegar hasta la incidencia o fallo.
+
+Para comenzar, un plano o esquema eléctrico es la representación de los diferentes circuitos mediante
+simbología normalizada donde se definen las características de una instalación, así como las conexiones,
+particularidades y dispositivos eléctricos que intervienen. Normalizada porque debemos ser capaces de
+interpretar un plano independientemente del país en el que nos encontremos.
+
+Veamos algunos de los tipos de esquemas eléctricos que nos podemos encontrar dentro de una
+memoria técnica o proyecto, o bien en el montaje de un cuadro industrial.
+
+
+
+   9.1. Tipos de esquemas
+A continuación te dejamos una breve descripción de los diferentes tipos de esquemas que existen.
+
+
+      9.1.1. Esquema unifilar
+Son esquemas sencillos y fáciles de entender, son los más rápidos de elaborar. Se utilizan para definir los
+circuitos dentro en cuadro eléctrico. Cada circuito se representa por una única línea. Puede incluir
+número de cables, sección, nombre del circuito o sigla con la que se representa.
+ 26
+
+
+
+                  Electricidad básica
+
+
+
+
+      9.1.2. Esquema multifilar
+En este tipo de esquema, sí aparecen todos los cables y dónde van a ir conectados. También aparece
+más información de los dispositivos de mando y de los receptores, como la numeración o letra de las
+bornas. Actualmente, con programas de diseño eléctrico es relativamente sencillo dibujar un esquema
+multifilar sin temor a equivocarnos.
+
+
+
+   9.2. Plano
+Dibujo representativo fácil de interpretar, donde vemos el emplazamiento de la obra o instalación y, en
+ocasiones, la conexión de los elementos que participan.
+
+
+
+10. Cable de toma de tierra o cable de protección
+eléctrica
+Todas las instalaciones eléctricas, deben llevar un sistema de seguridad que proteja ante cualquier fallo.
+El cable de toma de tierra juega un papel muy importante en este aspecto, así que vamos a verlo.
+
+
+
+   10.1. Definición
+Este sistema de seguridad de una instalación eléctrica, permite la actuación de algunos dispositivos de
+corte eléctrico, como el interruptor diferencial. Para explicarlo de forma fácil, podemos decir que hace
+como una segunda vía al camino de la electricidad en caso de fallo en la instalación.
+
+El cable de toma de tierra es amarillo y verde.
+
+En un cuadro de protecciones solar, conectaremos a tierra el borne de tierra del protector de
+sobretensiones de alterna, a la salida del inversor solar. Así mismo, las partes metálicas -masas
+metálicas- de la instalación solar, como las estructuras que soportan los paneles o los propios marcos
+metálicos de los paneles, también deberán estar conectadas a tierra mediante una pica dedicada,
+aunque en realidad se suele usar el cable de tierra existente en la vivienda.
+
+
+
+
+                                   Figura 14
+                                                                                                        27
+
+
+
+              Electricidad básica
+
+
+
+
+                                    Información
+                                    A una toma de corriente o enchufe de nuestra casa nos llegan tres
+                                    cables: fase, neutro y toma de tierra.
+
+
+
+
+   10.2. Objetivo del cable de toma de tierra
+Entre los objetivos de este sistema de seguridad, está limitar la tensión o voltaje con respecto a tierra en
+caso de un fallo de aislamiento o fallo en la instalación. En un momento dado, mediante la conexión a
+tierra (al terreno, al suelo del edificio o estructura) de las masas metálicas (partes metálicas de mis
+receptores, como la carcasa de la lavadora), se asegura la actuación de las protecciones (que el
+interruptor diferencial dispare de manera automática) y que interrumpan la tensión en la instalación, así
+como disminuir el riesgo eléctrico que supone una avería en los materiales y receptores eléctricos de
+una instalación.
+
+Por ejemplo, en una vivienda protegemos los electrodomésticos.
+
+La instalación de toma de tierra de cualquier instalación, también la podemos medir con un equipo de
+medida llamado telurómetro, lo vemos en el siguiente vídeo de forma práctica:
+
+
+
+
+                                    Video
+                                    Cómo medir la toma de tierra con un telurómetro.
+
+                                    (Tienes el material en el Campus Virtual).
+
+
+
+
+   10.3. Funcionamiento
+Como hemos visto anteriormente, en un sistema monofásico, cada circuito eléctrico consta de tres
+cables (cable de fase, neutro y toma de tierra).
+
+Pues bien, el cable de fase y neutro son los encargados de alimentar eléctricamente los componentes
+que intervienen, mientras que el cable de toma de tierra es el cable de protección que acompaña a la
+línea de cada circuito y que suele ir conectado a todos los receptores.
+ 28
+
+
+
+                  Electricidad básica
+
+
+
+
+En caso de que algún receptor sufra un fallo o avería, las tensiones eléctricas peligrosas que se producen
+se disiparán hasta tierra, es decir, hasta el terreno del edificio o infraestructura donde se encuentre.
+
+
+
+
+                               Importante
+                               Sí, has leído bien: cuando se produce un cortocircuito o una
+                               corriente de fuga en un enchufe de tu casa, la tensión peligrosa
+                               producida a consecuencia de este fallo llega al suelo del edificio y
+                               se disipa por él.
+
+
+
+
+      10.3.1. ¿Cómo se disipan las tensiones peligrosas en caso
+      de fallo eléctrico?
+A través de picas o electrodos, enterrados en el suelo de cada edificio o estructura con una profundidad
+mínima de 0,5 m.
+
+Así pues, desde el cuadro eléctrico general hasta las picas enterradas en el terreno están conectados los
+cables de toma de tierra. Este es el camino que siguen las tensiones peligrosas en caso de fallo.
+
+Estos cables amarillo-verde de cada circuito y receptor, se conectan todos entre ellos en las cajas de
+conexión, llegando al cuadro eléctrico general de cada instalación. Es una manera de poner todas las
+partes metálicas en un equipotencial.
+
+Nos interesa, por tanto, que este cable tenga poca resistencia, ya que cuanto menos resistencia
+tengamos, más conductor será y mejor circularán estas tensiones peligrosas.
+
+Los pararrayos, por ejemplo, funcionan con un sistema de puesta a tierra, conduciendo la descarga del
+rayo hacia un terreno de escasa resistencia.
+
+
+
+
+                               Notas
+                               Las normas técnicas sobre cómo y de qué manera debemos
+                               realizar la puesta a tierra en una instalación eléctrica las marca el
+                               REBT (Reglamento Electrotécnico de Baja Tensión).
+                                                                                                        29
+
+
+
+             Electricidad básica
+
+
+
+
+La mayoría de los receptores, como los electrodomésticos y enchufes (entre otros) llevan este cable de
+protección incluido en la línea que llega a cada circuito.
+
+
+
+
+                                   Motivación
+                                   Estrás dando tus primeros pasos en este apasionante mundo de la
+                                   electricidad.
+
+                                   Como decíamos al comienzo, la electricidad está en todas partes.
+                                   Por eso tienes muchas salidas profesionales relacionadas con ella.
+
+
+
+
+11. ¿Qué has aprendido??
+Al comienzo de la unidad, te proponíamos un ejercicio muy sencillo: imaginarte la vida sin electricidad.
+
+Ahora que has superado los contenidos, ya conoces los conceptos básicos de electricidad, los tipos de
+corriente eléctrica que existen, las magnitudes eléctricas más comunes y cómo se relacionan entre ellas,
+sabes diferenciar los tipos de circuitos eléctricos que nos podemos encontrar y para qué sirven… Y
+aplicar la ley de Ohm.
+
+Por eso, como te adelantábamos al comienzo, ya eres capaz de explicar por qué la electricidad está en
+todas partes, pero además has aprendido todo esto:
+
+    • Cómo se crea la electricidad y cómo llega al punto de consumo.
+
+    • Qué es un circuito, una instalación eléctrica y sus elementos.
+
+    • Conocer las principales magnitudes eléctricas.
+
+    • Ventajas de los circuitos en serie y en paralelo.
+
+    • Sistemas eléctricos de corriente alterna.
+
+    • Definiciones importantes en electricidad.
+
+    • Conocer los diferentes planos y esquemas eléctricos.
+
+    • Qué es el cable de toma de tierra.
+30
+
+
+
+                  Electricidad básica
+
+
+
+
+12. Bibliografía
+     • ARBOLEDAS BRIHUEGA, D. Electricidad básica. Madrid: Grupo Editorial RA-MA, 2014.
+
+     • MANZANO ORREGO, J. J. Electricidad I. Teoría básica y prácticas, volumen 1. Barcelona:
+        Marcombo, 2007.
+
+     • HERMOSA DONATE, A. Principios de electricidad y electrónica III. Volumen 3. Barcelona:
+        Marcombo, 2012.
+

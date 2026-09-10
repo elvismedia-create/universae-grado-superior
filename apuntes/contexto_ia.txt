@@ -1,0 +1,538 @@
+=== MATERIAL DE ESTUDIO - CURSO BAJA TENSIÓN ===
+FUENTE: Apuntes de UNIVERSAE - Técnico Baja Tensión
+ESTUDIANTE: Preparación examen oficial Baja Tensión
+
+════════════════════════════════════════════════════════════
+TEMA 1: ELECTRICIDAD BÁSICA
+════════════════════════════════════════════════════════════
+
+**CONCEPTOS FUNDAMENTALES**
+
+La electricidad ni se crea ni se destruye, la electricidad se transforma.
+
+Ejemplo: Un calefactor transforma energía eléctrica en calor. La electricidad que se genera debe ser consumida instantáneamente, acorde a la demanda de cada momento.
+
+La electricidad la producen partículas como electrones, protones y neutrones. Cuando circula electricidad por un cable están circulando electrones.
+
+**CIRCUITO ELÉCTRICO**
+Es un conjunto de dispositivos o receptores eléctricos unidos y conectados de forma que permiten el paso de electricidad (electrones) para conseguir algún efecto útil: luz, calor, movimiento. La electricidad realiza un TRABAJO en los receptores.
+
+Elementos fundamentales:
+- Fuente de tensión: suministra electricidad al circuito
+- Conductor: cable de cobre (buen conductor)
+- Aislante: material que recubre el cable, impide contacto directo
+- Receptores: elementos que consumen electricidad y la transforman en otro tipo de energía
+- Elementos de maniobra: permiten accionar receptores (interruptores, conmutadores)
+- Elementos de protección: protegen ante fallos eléctricos
+
+**INSTALACIÓN ELÉCTRICA**
+Conjunto de circuitos eléctricos que dota de electricidad a edificios, viviendas, locales comerciales.
+
+Ejemplo: La instalación de tu vivienda incluye:
+- Receptores: bombillas, enchufes
+- Dispositivos de maniobra: interruptores, conmutadores
+- Protecciones: interruptores magnetotérmicos, diferencial, protector sobretensiones
+
+El REBT (Reglamento Electrotécnico de Baja Tensión) marca las normas de obligado cumplimiento.
+
+**GENERACIÓN Y DISTRIBUCIÓN DE ELECTRICIDAD**
+
+1. GENERACIÓN: Se produce en centrales (térmicas, hidroeléctricas, solares, eólicas)
+
+2. TRANSFORMACIÓN: En estaciones transformadoras se eleva la tensión para el transporte a grandes distancias
+
+Símil: El transporte de electricidad es como una autopista:
+- La tensión = número de carriles
+- La intensidad = número de coches que circulan
+
+3. DISTRIBUCIÓN: Se transporta por torres de alta tensión. A mayor tensión, menor intensidad a igualdad de potencia. Por eso se transporta a kV (kilovoltios).
+
+4. LLEGADA AL PUNTO DE CONSUMO: En viviendas la tensión es de 230 voltios (V)
+
+**MAGNITUDES ELÉCTRICAS MÁS COMUNES**
+
+1. TENSIÓN (V) - Voltios
+Definición: Diferencia de nivel eléctrico entre dos puntos de un circuito. También llamada diferencia de potencial (d.d.p.).
+
+Símil: Si entre un punto más alto y otro más bajo existe diferencia de altura (diferencia de potencial), podrá fluir líquido por una tubería (podrá circular corriente). Si ambos están a la misma altura (mismo potencial), no puede fluir.
+
+2. INTENSIDAD (I) - Amperios (A)
+Definición: Cantidad de corriente eléctrica (electrones) que atraviesa un conductor en un periodo de tiempo determinado.
+
+Ejemplo práctico: Un microondas doméstico consume aproximadamente 4 amperios cuando está funcionando. Es el resultado de dividir su potencia (900 W) entre el voltaje de la red (230 V) = 3,91 A.
+
+3. RESISTENCIA (R) - Ohmios (Ω)
+Definición: Mayor o menor dificultad que ofrece un conductor al paso de la corriente eléctrica.
+
+Importante en cables de protección que unen masas metálicas con picas de tierra. La resistencia debe ser BAJA para que en caso de fallo, el cable deje fluir la intensidad a tierra para ser disipada.
+
+4. POTENCIA (P) - Vatios (W)
+Relacionada con la intensidad: a mayor intensidad, mayor potencia.
+
+Ejemplo: Una bombilla LED típica de salón consume 5 vatios (W).
+
+**LEY DE OHM**
+Fórmula fundamental que relaciona las magnitudes:
+
+V = R × I
+(Tensión = Resistencia × Intensidad)
+
+El voltaje es proporcional a la intensidad. A mayor intensidad, mayor tensión (a igualdad de resistencia). Son directamente proporcionales.
+
+**RELACIÓN POTENCIA-TENSIÓN-INTENSIDAD**
+
+P = V × I
+(Potencia = Tensión × Intensidad)
+
+A mayor intensidad, mayor potencia.
+
+Ejemplo: Un panel solar de 400W puede tener 40 voltios y 10 amperios cuando le da el sol. Su producto V × I = 400 vatios.
+
+Ejemplo de factura: Potencia contratada típica = 5.750 W
+
+**TIPOS DE CIRCUITOS**
+
+1. CIRCUITO SERIE
+Los dispositivos/receptores están conectados de forma seguida: la salida de uno con la entrada del otro.
+
+CARACTERÍSTICA CLAVE: En circuitos en serie, la intensidad es la misma en todos los puntos.
+
+Ejemplo: Guirnaldas antiguas - si se fundía una bombilla, dejaba de lucir toda la guirnalda.
+
+Con paneles solares en serie: la intensidad que pasa es la nominal de uno de los paneles, no se suman intensidades.
+
+2. CIRCUITO PARALELO
+Los receptores tienen la misma entrada y la misma salida. Se conectan mediante fichas o regletas.
+
+CARACTERÍSTICA CLAVE: En paralelo, la tensión es la misma en todos los puntos, y la intensidad resultante es la suma de todas.
+
+Ventaja: Si se rompe un receptor, los demás siguen funcionando.
+
+Ejemplo: Guirnaldas modernas - si se funde una, el resto sigue funcionando.
+Ejemplo: En una vivienda, si se funde una bombilla las demás siguen funcionando porque están en paralelo.
+
+3. CIRCUITO MIXTO
+Componen serie y paralelo en el mismo circuito.
+
+**CORRIENTE ALTERNA Y CORRIENTE CONTINUA**
+
+1. CORRIENTE CONTINUA (CC o DC - Direct Current)
+El número de electrones es siempre el mismo y circulan en la misma dirección: del polo negativo al polo positivo.
+
+Características:
+- Tiene dos bornes: positivo (+) y negativo (-)
+- Colores normalizados: ROJO para positivo, NEGRO para negativo
+- En paneles solares: cables negros identificados con "+" y "-"
+- Ejemplos: pilas, baterías, equipos electrónicos, ordenadores, paneles solares
+
+2. CORRIENTE ALTERNA (CA o AC - Alternating Current)
+Funciona en ciclos, repitiéndose 50 veces por segundo. "Entra y sale" 50 veces por segundo.
+
+Características:
+- Colores normalizados:
+  * Cable de FASE: negro, marrón o gris
+  * Cable de NEUTRO: azul
+  * Cable de PROTECCIÓN (tierra): amarillo y verde
+- Sistemas: trifásicos (3 fases con/sin neutro) y monofásicos (1 fase + neutro)
+- Se usa en viviendas, edificios, redes de distribución, locales comerciales, instalaciones industriales
+
+Importante: En ámbito doméstico solo se trabaja con alterna. En solar, los paneles producen continua que se transforma en alterna mediante el INVERSOR.
+
+**SISTEMAS ELÉCTRICOS DE CA SEGÚN NÚMERO DE FASES**
+
+1. SISTEMA MONOFÁSICO
+- Consta de UNA fase + neutro
+- Uso: instalaciones de interior, mayoría de viviendas
+- Dos cables: fase + neutro
+- Colores: Fase (negro/marrón/gris) + Neutro (azul)
+- Siempre lleva también cable de tierra (amarillo-verde)
+
+2. SISTEMA TRIFÁSICO
+- Consta de TRES fases + neutro
+- Uso: red de distribución baja tensión, instalaciones con gran consumo
+- Cuatro cables: fase1 + fase2 + fase3 + neutro
+- Colores típicos:
+  * Fase 1: negro
+  * Fase 2: marrón
+  * Fase 3: gris
+  * Neutro: azul
+- Siempre lleva también cable de tierra (amarillo-verde)
+- Nota: El orden de colores en fases puede cambiar según instalador
+
+**INSTALACIONES ELÉCTRICAS: NOCIONES BÁSICAS**
+
+Componentes principales:
+- Memoria técnica o proyecto
+- Circuitos eléctricos
+- Canalizaciones
+- Mecanismos eléctricos
+- Elementos de corte para protección
+
+Memoria técnica o proyecto: Documento con toda la información para realizar la instalación (planos, esquemas, cálculos, presupuesto).
+
+Lo que indica si hace falta memoria o proyecto es la capacidad/potencia prevista. Proyectos grandes deben ir visados por Colegio de Ingenieros.
+
+**EJEMPLO DE INSTALACIÓN ELÉCTRICA EN VIVIENDA**
+
+Proceso típico:
+1. Marcar ubicación según planos: puntos de luz, tomas de corriente, interruptores, conmutadores, cajas de conexión, trayectorias de tubos
+2. Colocar tubos, canalizaciones y cajas. Meter cables por los tubos con guía pasacables
+3. Realizar conexionado en cajas de conexión mediante fichas de empalme o regletas
+4. Conectar en cuadro general los dispositivos de protección y mecanismos eléctricos
+5. Comprobar la instalación circuito a circuito antes de dar tensión
+
+**ELEMENTOS DE PROTECCIÓN**
+
+1. INTERRUPTOR MAGNETOTÉRMICO (PIA - Pequeño Interruptor Automático)
+Dispositivo electromecánico que dispara en caso de sobrecarga o cortocircuito, abriendo el circuito e interrumpiendo la corriente.
+
+Características importantes:
+- Si es para CA o CC
+- Monofásico o trifásico
+- Tensión e intensidad nominal
+- Poder de corte (intensidad máxima antes de arco eléctrico)
+
+2. INTERRUPTOR DIFERENCIAL
+Protege contra fugas eléctricas que pongan en tensión accidental cualquier receptor, ocasionando peligro de descarga o electrocución.
+
+Características:
+- Intensidad nominal
+- Sensibilidad de disparo (en miliamperios)
+
+3. PROTECCIÓN CONTRA SOBRETENSIONES
+Se coloca en cuadro eléctrico. Protege contra sobretensiones accidentales (ej: caída de rayo en la red).
+
+Cuando detecta sobretensión, dispara/hace disparar el circuito. Función principal: proteger los receptores.
+
+Los pararrayos en edificios cumplen la misma función: captan el rayo y derivan la corriente a pica de tierra.
+
+4. FUSIBLE
+Protege contra sobrecargas y cortocircuitos. Funcionamiento diferente al PIA.
+
+Tiene un filamento (hilo conductor) que se FUNDE en caso de sobrecarga, rompiéndose e interrumpiendo el circuito.
+
+Diferencia con PIA: El PIA se rearma (subir pestaña), el fusible se debe sustituir.
+
+Estos elementos (PIA, diferencial, protector sobretensiones, fusibles) junto con ICP (interruptor control potencia) e IGA (interruptor general automático) son comunes en todos los cuadros eléctricos. Protegen circuitos, receptores y personas.
+
+**ESQUEMAS Y PLANOS ELÉCTRICOS**
+
+Para localizar averías es fundamental interpretar esquemas y planos.
+
+Plano/esquema eléctrico: Representación de circuitos mediante simbología normalizada (internacional) que define características, conexiones y dispositivos.
+
+Tipos de esquemas:
+
+1. ESQUEMA UNIFILAR
+- Sencillo y rápido de elaborar
+- Define circuitos dentro de cuadro eléctrico
+- Cada circuito = una línea única
+- Puede incluir: número de cables, sección, nombre del circuito
+
+2. ESQUEMA MULTIFILAR
+- Aparecen todos los cables y conexiones
+- Información detallada de dispositivos
+- Numeración/letra de bornas
+- Con programas de diseño es fácil dibujarlo
+
+3. PLANO
+- Dibujo representativo fácil de interpretar
+- Muestra emplazamiento de obra/instalación
+- Conexión de elementos
+
+**CABLE DE TOMA DE TIERRA (CABLE DE PROTECCIÓN)**
+
+Definición: Sistema de seguridad que permite actuación de dispositivos de corte (ej: diferencial). Es una segunda vía para la electricidad en caso de fallo.
+
+Color: AMARILLO y VERDE
+
+Objetivo: Limitar la tensión respecto a tierra en caso de fallo de aislamiento. Conectando masas metálicas a tierra se asegura:
+- Actuación automática de protecciones (diferencial dispara)
+- Disminución del riesgo eléctrico
+- Protección de electrodomésticos en viviendas
+
+Ejemplo: A un enchufe llegan TRES cables: fase, neutro y toma de tierra.
+
+Funcionamiento:
+En sistema monofásico, cada circuito tiene 3 cables:
+- Cable de FASE y NEUTRO: alimentan eléctricamente
+- Cable de TIERRA: protección que acompaña la línea y se conecta a todos los receptores
+
+En caso de fallo, las tensiones peligrosas se disipan hasta tierra (hasta el terreno del edificio).
+
+¿Cómo se disipan? A través de picas/electrodos enterrados en el suelo con profundidad mínima 0,5 m.
+
+Desde cuadro eléctrico hasta picas enterradas están conectados los cables de tierra. Este es el camino que siguen las tensiones peligrosas.
+
+Los cables amarillo-verde de cada circuito se conectan todos entre ellos en cajas de conexión, llegando al cuadro general (equipotencial).
+
+IMPORTANTE: Este cable debe tener POCA RESISTENCIA. Cuanto menos resistencia, más conductor será y mejor circularán las tensiones peligrosas.
+
+Pararrayos: Funcionan con sistema de puesta a tierra, conduciendo descarga del rayo hacia terreno de escasa resistencia.
+
+NORMATIVA: El REBT marca cómo realizar la puesta a tierra.
+
+La instalación de toma de tierra se puede medir con un TELURÓMETRO.
+
+La mayoría de receptores (electrodomésticos, enchufes) llevan este cable de protección incluido.
+
+════════════════════════════════════════════════════════════
+TEMA 2: INSTALACIONES DE ENLACE
+════════════════════════════════════════════════════════════
+
+Las instalaciones de enlace conectan la red de distribución (empresa eléctrica) con las instalaciones interiores de los usuarios.
+
+**LÍNEA GENERAL DE ALIMENTACIÓN (LGA)**
+
+Conjunto de elementos que conectan la acometida con las derivaciones individuales de cada abonado.
+
+Partes principales según REBT:
+1. Acometida (ITC-BT-11)
+2. Caja General de Protección - CGP
+3. Línea General de Alimentación - LGA (ITC-BT-14)
+4. Centrales de Contadores - CC
+5. Derivación Individual - DI (ITC-BT-15)
+6. Dispositivos generales e individuales de mando y protección
+7. Interruptor de Control de Potencia - ICP
+
+**1. ACOMETIDA (ITC-BT-11)**
+
+Definición: Parte de la instalación que une la red de distribución con las instalaciones interiores o receptoras del usuario.
+
+Pertenece a la EMPRESA DISTRIBUIDORA (no al usuario).
+
+Tipos según su tendido:
+
+A) ACOMETIDA AÉREA POSADA SOBRE FACHADA
+- Los conductores van sobre la fachada del edificio mediante accesorios de sujeción
+- Distancia mínima a suelo: 2,5 m en zona peatonal, 6 m si hay tráfico rodado
+- Distancia mínima a balcones/ventanas: 30 cm para líneas hasta 1 kV, 50 cm para tensiones superiores
+
+B) ACOMETIDA AÉREA TENSADA SOBRE POSTES
+- Se usan cuando la distancia edificio-red es considerable
+- Conductores tensados sobre apoyos intermedios
+- Mismo criterio de alturas que posada sobre fachada
+
+C) ACOMETIDA SUBTERRÁNEA (la más común actualmente)
+- Conductores enterrados desde red hasta CGP del edificio
+
+Materiales:
+- Conductores: cobre o aluminio, aislados para 0,6/1 kV
+- Sección mínima según ITC-BT-07
+- Para cobre: mínimo 6 mm² (generalmente se usa más)
+- Instalación en zanjas con profundidad mínima 0,6 m (0,8 m bajo calzada)
+- Separación mínima de otras instalaciones: 20 cm
+
+Cruzamientos con otras instalaciones:
+- Con tuberías agua/gas: mínimo 20 cm separación, acometida eléctrica por DEBAJO
+- Con líneas telefónicas: acometida eléctrica por DEBAJO, separación 20 cm
+- Con otras líneas eléctricas: acometida bajo tubo, cruce a 90° si es posible, separación 25 cm
+
+D) ACOMETIDA AEROSUBTERRÁNEA
+- Combinación de tramo aéreo y subterráneo
+- El tramo aéreo termina en tubo que baja por fachada hasta enterrarse
+
+**2. CAJA GENERAL DE PROTECCIÓN (CGP)**
+
+Definición: Caja que aloja elementos de protección de las líneas generales de alimentación.
+
+Ubicación: En fachada exterior o interior del edificio, en lugar de libre y permanente acceso.
+
+Características:
+- Marca separación entre instalación de distribuidora e instalación del usuario
+- Grados de protección: mínimo IK 10 (según norma UNE-EN 50.102)
+- Contiene fusibles de protección del tipo gL/gG
+- Tamaño según esquema ITC-BT-13
+
+Tipos según nº de usuarios:
+- CGP-7: 1 usuario monofásico (2P+T)
+- CGP-8: varios usuarios monofásicos (4P+T)
+- CGP-9: 1 usuario trifásico (4P+T)
+
+Instalación:
+- Altura: base inferior entre 1 m y 1,8 m
+- En nicho en pared o empotrada
+- Debe poder abrirse 90° mínimo
+- Suministro, instalación y mantenimiento a cargo de la DISTRIBUIDORA
+
+**3. CAJAS DE PROTECCIÓN Y MEDIDA (CPM)**
+
+Para instalaciones que reciben suministro individualmente (vivienda unifamiliar, local comercial).
+
+Integran en una sola caja:
+- La protección (CGP)
+- El equipo de medida (contador)
+
+Tipos:
+- CPM1: hasta 14 kW (63 A) - suministro monofásico
+- CPM2: hasta 28 kW (63 A) - suministro trifásico
+- CPM3: hasta 43 kW (100 A) - suministro trifásico
+
+**4. LÍNEA GENERAL DE ALIMENTACIÓN (LGA)**
+
+Definición: Línea que enlaza la CGP con la centralización de contadores.
+
+En edificios con centralización de contadores en planta baja/sótano, la LGA va por zonas comunes del edificio.
+
+Características:
+- Los conductores deben ser de cobre o aluminio
+- Aislamiento mínimo 0,6/1 kV
+- No se permiten empalmes
+- Sección: se calcula según potencia total prevista y caída de tensión admisible
+- Caída de tensión máxima: 0,5%
+- Instalación: en tubos empotrados/enterrados o en canales protectoras
+
+**5. CENTRALIZACIÓN DE CONTADORES (CC)**
+
+Lugar donde se concentran los contadores de medida de energía de todos los usuarios.
+
+Ubicación:
+- En planta baja, entresuelo o primer sótano
+- Zona común de fácil acceso
+- Adecuadamente ventilada e iluminada
+- Grado de protección IP40 e IK09 mínimo
+
+Tipos de concentración:
+
+A) En módulos independientes (edificios pequeños)
+- Cada contador en su módulo
+- Dimensiones según ITC-BT-16
+
+B) En armarios (edificios medianos/grandes)
+- Conjunto de contadores agrupados
+- Puede llevar tapa con cerradura (uso exclusivo distribuidora)
+
+C) En local específico (grandes edificios)
+- Habitación dedicada exclusivamente a contadores
+- Altura mínima 2,3 m
+- Superficie mínima según número de contadores
+- Ventilación forzada si no tiene ventana al exterior
+- Puerta metálica con rejilla de ventilación
+- Acceso reservado a distribuidora
+
+Dentro del recinto de contadores:
+- Embarrado general y de protección
+- Derivaciones individuales arrancan desde aquí
+- Cada DI tiene su protección (fusibles)
+- Identificación clara de cada derivación (piso, usuario)
+
+**6. DERIVACIÓN INDIVIDUAL (DI)**
+
+Definición: Línea que enlaza el contador de cada abonado con su cuadro de protección.
+
+Cada vivienda/local tiene su propia DI independiente.
+
+CABLES:
+- Material: cobre o aluminio
+- Aislamiento: 450/750 V mínimo (en práctica se usa 0,6/1 kV)
+- Tipo: unipolares no propagadores de incendio y con emisión de humos y opacidad reducida (ejemplo: ES07Z1-K)
+- Sin empalmes en todo su recorrido
+- Identificación: etiqueta en origen con nº de abonado
+
+Colores normalizados:
+- Fase: negro, marrón o gris
+- Neutro: azul claro
+- Protección: amarillo-verde
+
+Sección:
+- Se calcula según potencia prevista y longitud
+- Mínimo 6 mm² para cobre
+- Considerar caída de tensión máxima 1%
+- Sección neutro = sección fase (en DI monofásicas y trifásicas equilibradas)
+
+TUBOS Y CANALIZACIONES:
+- Tubos: aislantes, no propagadores de llama, flexibles con grado de resistencia 5 (empotrados) o 7 (superficiales)
+- Diámetro según número y sección de conductores
+- Debe permitir fácil instalación y retirada de cables
+
+Tabla diámetros (conductores unipolares):
+- Hasta 10 mm²: tubo 32 mm
+- Hasta 16 mm²: tubo 40 mm  
+- Hasta 25 mm²: tubo 50 mm
+
+Instalación de tubos:
+- Verticales por patinillos/huecos
+- Corte cortafuegos cada 3 plantas
+- Registro cada 15 m en tramos horizontales
+- Cajas de registro en cambios de dirección
+
+CANALADURAS:
+Alternativa a tubos. Son canales prefabricadas.
+- Grado de protección IK 10 mínimo
+- Material no propagador de llama
+- Tapa desmontable de fácil apertura
+- Compartimentación si llevan otras instalaciones
+- Dimensiones que permitan ampliación 100%
+
+**7. DISPOSITIVOS GENERALES E INDIVIDUALES DE MANDO Y PROTECCIÓN**
+
+También llamado CUADRO GENERAL DE PROTECCIÓN del usuario.
+
+Ubicación:
+- Interior de cada vivienda/local
+- Lo más cerca posible de la entrada
+- Lugar accesible y de uso general (no dentro de dormitorios, baños, etc.)
+- Altura: base inferior entre 1,4 y 2 m
+
+Composición:
+- Interruptor General Automático (IGA)
+- Interruptor Diferencial(es)
+- Interruptores Magnetotérmicos (PIAs) de cada circuito
+- Protector contra sobretensiones (opcional pero recomendable)
+
+INTERRUPTOR GENERAL AUTOMÁTICO (IGA):
+- Primer elemento del cuadro
+- Corta todos los conductores activos (fases y neutro)
+- Intensidad nominal según potencia contratada
+- Poder de corte mínimo 4,5 kA
+
+INTERRUPTORES DIFERENCIALES:
+- Protección contra contactos indirectos
+- Detectan fugas de corriente a tierra
+- Sensibilidad: generalmente 30 mA en viviendas
+- Se colocan aguas abajo del IGA
+- Pueden ser: generales (protegen varios circuitos) o por circuito
+
+INTERRUPTORES MAGNETOTÉRMICOS (PIAs):
+- Uno por cada circuito
+- Protegen contra sobrecargas y cortocircuitos
+- Calibre según consumo del circuito
+- Curva característica: generalmente tipo C
+
+Circuitos obligatorios en viviendas (según ITC-BT-25):
+- C1: iluminación
+- C2: tomas de uso general y frigorífico
+- C3: cocina y horno
+- C4: lavadora, lavavajillas y termo
+- C5: tomas de baño y cocina
+
+**8. INTERRUPTOR DE CONTROL DE POTENCIA (ICP)**
+
+Función: Limitar la potencia consumida a la potencia contratada.
+
+Ubicación:
+- Antes del IGA
+- Puede estar dentro del cuadro del usuario
+- O en caja independiente precintable (uso exclusivo distribuidora)
+
+Características:
+- Actúa cuando potencia demandada > potencia contratada
+- Calibrado según potencia contratada
+- Es propiedad de la compañía eléctrica
+- Puede llevar reconexión automática
+
+Nota: En contadores electrónicos modernos, el ICP puede estar integrado en el propio contador.
+
+════════════════════════════════════════════════════════════
+FIN DEL CONTEXTO DE APUNTES
+════════════════════════════════════════════════════════════
+
+INSTRUCCIONES PARA USO DEL CONTEXTO:
+
+Este material debe usarse para generar explicaciones personalizadas que:
+✓ Usen la terminología exacta del curso (REBT, ITC-BT, CGP, LGA, DI, PIA, ICP, etc.)
+✓ Incluyan los ejemplos prácticos mencionados (microondas 900W, bombilla 5W, etc.)
+✓ Mantengan las analogías del profesor (autopista tensión/intensidad, líquido en tubería, etc.)
+✓ Referencien las normativas específicas (ITC-BT-11, ITC-BT-13, ITC-BT-14, ITC-BT-15, etc.)
+✓ Respeten las características técnicas exactas (alturas, secciones, separaciones, etc.)
+✓ Usen el mismo estilo didáctico (ejemplos, símiles, "como viste en tema X", etc.)

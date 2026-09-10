@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>MasterTest BT · v67.6 ✅</title>
+
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#2563eb">
+<link rel="apple-touch-icon" href="img/icon-192.png">
+
+<style>
+/* === VARIABLES DE COLOR === */
+:root{
+  --primary: #2563eb;       
+  --primary-light: #eff6ff; 
+  --bg: #f8fafc;           
+  --card: #ffffff;         
+  --text: #1e293b;         
+  --text-light: #64748b;   
+  --border: #e2e8f0;       
+  --success: #10b981;      
+  --success-bg: #ecfdf5;   
+  --danger: #ef4444;       
+  --danger-bg: #fef2f2;
+  --danger-dark: #b91c1c;    
+  --orange: #f97316;       
+}
+
+body.dark-mode {
+  --primary: #60a5fa;       --primary-light: #1e293b;
+  --bg: #0f172a;           --card: #1e293b;
+  --text: #f1f5f9;         --text-light: #94a3b8;
+  --border: #334155;       
+  --success: #34d399;      --success-bg: #064e3b;
+  --danger: #f87171;       --danger-bg: #450a0a;
+  --danger-dark: #fca5a5;
+  --orange: #fbbf24;
+}
+
+/* === RESET BÁSICO === */
+* { 
+  box-sizing: border-box; 
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Transiciones suaves dark mode v67.6 */
+body,
+.card,
+.opcion,
+.asig-card,
+button,
+.tab-btn,
+.stat-card {
+  transition: background-color 0.35s ease, color 0.35s ease, border-color 0.35s ease;
+}
+
+body{ margin: 0; padding: 20px; background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; display: flex; justify-content: center; align-items: flex-start; min-height: 100vh; }
+
+/* === TARJETA PRINCIPAL === */
+.card { 
+  background: var(--card); 
+  max-width: 950px; 
+  width: 100%; 
+  padding: 30px; 
+  border-radius: 24px; 
+  box-shadow: 0 20px 40px -5px rgba(0,0,0,0.08); 
+  display: none; 
+  border: 1px solid var(--border); 
+  transition: background 0.3s ease;
+  
+  /* HE BORRADO EL POSITION: RELATIVE PARA QUE NO ROMPA NADA */
+}
+
+
+
+
+.card.active{ display: block; animation: fadeIn 0.4s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeInGrid { from { opacity: 0; } to { opacity: 1; } }
+
+/* === CABECERA === */
+.header-flex { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 25px; }
+.header-buttons { display: flex; gap: 8px; }
+h1{ margin: 0 0 5px 0; color: var(--primary); font-size: 1.8rem; letter-spacing: -0.5px; }
+.subtitle{ color: var(--text-light); font-size: 1rem; margin: 0; }
+
+/* === BOTONES GENERALES === */
+button { -webkit-appearance: none; appearance: none; border: none; cursor: pointer; font-family: inherit; transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1); }
+.btn-tool { background: var(--bg); color: var(--text-light); border: 1px solid var(--border); padding: 8px 12px; font-size: 0.9rem; border-radius: 10px; display: flex; align-items: center; gap: 5px; font-weight: 600; }
+.btn-theme { font-size: 1.1rem; padding: 6px 10px; }
+
+/* === NAVEGACIÓN CON TABS (v67.6) === */
+.tabs-container {
+  margin-bottom: 30px;
+  border-bottom: 2px solid var(--border);
+}
+
+.tabs-scroll {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 12px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+
+.tabs-scroll::-webkit-scrollbar {
+  height: 6px;
+}
+
+.tabs-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.tabs-scroll::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 10px;
+}
+
+.tab-btn {
+  flex-shrink: 0;
+  padding: 12px 20px;
+  border: none;
+  background: var(--bg);
+  color: var(--text-light);
+  font-weight: 600;
+  font-size: 0.95rem;
+  border-radius: 10px 10px 0 0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+}
+
+.tab-btn:hover {
+  background: var(--card);
+  color: var(--text);
+  transform: translateY(-2px);
+}
+
+.tab-btn.active {
+  background: var(--primary);
+  color: white;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.tab-btn.active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--primary);
+}
+
+.tab-count {
+  background: rgba(255,255,255,0.2);
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.tab-btn.active .tab-count {
+  background: rgba(255,255,255,0.3);
+}
+
+/* Eliminados estilos de dropdown viejo */
+
+
+/* === TARJETAS ASIGNATURA === */
+.asig-card { background: var(--card); border: none; border-radius: 16px; padding: 25px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 20px rgba(0,0,0,0.04); position: relative; overflow: hidden; }
+.asig-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 6px; background: var(--primary); border-radius: 4px 0 0 4px; }
+.asig-info { flex: 1; padding-right: 20px; }
+.asig-title { font-weight: 800; font-size: 1.15rem; color: var(--text); margin-bottom: 5px; }
+.asig-meta { font-size: 0.9rem; color: var(--text-light); display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.barra-fondo { 
+  background: var(--bg); 
+  height: 14px; 
+  border-radius: 20px; 
+  margin-top: 15px; 
+  width: 100%; 
+  box-shadow: inset 0 2px 6px rgba(0,0,0,0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.barra-relleno { 
+  background: linear-gradient(90deg, var(--primary) 0%, #60a5fa 50%, var(--primary) 100%);
+  background-size: 200% 100%;
+  height: 100%; 
+  width: 0%; 
+  border-radius: 20px; 
+  transition: width 0.8s cubic-bezier(0.65, 0, 0.35, 1);
+  animation: shimmerProgress 3s ease-in-out infinite;
+  position: relative;
+}
+
+/* Animación gradiente v67.6 */
+@keyframes shimmerProgress {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Brillo que recorre v67.6 */
+.barra-relleno::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(255,255,255,0.6), 
+    transparent
+  );
+  animation: sweepProgress 3.5s ease-in-out infinite;
+}
+
+@keyframes sweepProgress {
+  0% { left: -100%; }
+  40% { left: 150%; }
+  100% { left: 150%; }
+}
+
+/* === FRANJA HORIZONTAL (STRIP) === */
+.grid-strip-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-bottom: 30px; }
+@media (max-width: 900px) { .grid-strip-4 { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 500px) { .grid-strip-4 { grid-template-columns: 1fr; } }
+
+.strip-card { background: white; border: 1px solid var(--border); border-radius: 16px; padding: 15px; display: flex; flex-direction: column; justify-content: space-between; min-height: 130px; box-shadow: 0 4px 10px rgba(0,0,0,0.03); position: relative; overflow: hidden; transition: transform 0.2s; }
+.strip-red { border-left: 5px solid var(--danger); }
+.strip-purple { border-left: 5px solid #8b5cf6; }
+.strip-cyan { border-left: 5px solid #06b6d4; }
+.strip-header { font-weight: 800; font-size: 1rem; margin-bottom: 5px; color: var(--text); }
+.strip-meta { font-size: 0.8rem; color: var(--text-light); margin-bottom: 10px; }
+
+.btn-pill-right { align-self: flex-end; padding: 6px 16px; border-radius: 50px; font-size: 0.85rem; font-weight: 700; border: none; cursor: pointer; color: white; box-shadow: 0 2px 5px rgba(0,0,0,0.1); text-align: center; min-width: 80px; }
+.bg-red { background: linear-gradient(135deg, var(--danger) 0%, #dc2626 100%); }
+.bg-purple { background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); }
+.bg-cyan { background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); }
+.bg-white-purple { background: white; color: #7c3aed; border: 1px solid #7c3aed; }
+
+/* === SIMULACROS (ESTILO IMAGEN) === */
+.card-simulacros {
+  background: linear-gradient(to bottom right, #ffffff, #f0fdf4);
+  border: 1px solid var(--border);
+  border-left: 6px solid var(--success) !important;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 30px !important;
+  position: relative;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+}
+
+.simulacro-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+.simulacro-title { font-size: 1.4rem; font-weight: 800; color: var(--text); margin: 0; letter-spacing: -0.5px; }
+.simulacro-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+
+/* Botones de Números (20, 30, 50) */
+.btn-sim-num {
+  background: white;
+  border: 2px solid var(--success); /* Borde Verde */
+  color: var(--success);            /* Texto Verde */
+  border-radius: 16px;              /* Bordes redondeados */
+  padding: 17px 30px;
+  font-size: 1.6rem;
+  font-weight: 900;
+  width: 100%;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+}
+
+.btn-sim-num:hover {
+  background: var(--success);
+  color: white;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 15px rgba(16, 185, 129, 0.3);
+}
+
+/* Botón Personalizado (El de las rayitas azules) */
+.btn-sim-custom {
+  background: white;
+  border: 2px dashed var(--primary); /* Borde Azul DISCONTINUO */
+  color: var(--primary);             /* Icono Azul */
+  border-radius: 16px;
+  padding: 10px 0;
+  font-size: 2rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.btn-sim-custom:hover {
+  background: var(--primary-light);
+  transform: scale(1.05) rotate(0deg); /* Quitamos la rotación para que sea más serio */
+  border-style: solid; /* Al pasar el ratón se pone sólido (efecto visual chulo) */
+}
+
+#grid-asignaturas { padding-bottom: 60px; }
+
+/* === ENCICLOPEDIA === */
+.teclado-letras { display: flex !important; flex-wrap: wrap !important; gap: 8px !important; justify-content: center; margin-bottom: 25px; }
+.tecla { width: 42px; height: 42px; border-radius: 10px; border: 1px solid var(--border); background: var(--card); color: var(--text); font-weight: 800; font-size: 1.1rem; cursor: pointer; display: flex !important; align-items: center; justify-content: center; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+.tecla.active { background: #8b5cf6; color: white; border-color: #8b5cf6; }
+.info-letra { background: #f5f3ff; border: 1px solid #ddd6fe; border-radius: 16px; padding: 20px; border-left: 6px solid #8b5cf6 !important; animation: fadeIn 0.3s; }
+.info-letra > div:first-child { gap: 25px !important; }
+.grid-componentes { display: grid !important; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)) !important; gap: 12px !important; margin-top: 15px; }
+.card-componente { background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 15px 5px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.icono-comp { font-size: 2rem; height: 45px; display: flex; align-items: center; justify-content: center; }
+.nombre-comp { font-size: 0.75rem; font-weight: 700; color: var(--text); line-height: 1.2; }
+.img-comp { width: 100%; height: 60px; object-fit: contain; border-radius: 8px; margin-bottom: 5px; }
+
+/* === ESTILOS GENERALES === */
+.btn-orange{ background: linear-gradient(135deg, var(--orange) 0%, #f97316 100%); color: #fff; box-shadow: 0 4px 15px rgba(234, 88, 12, 0.3); padding: 12px 24px; border-radius: 12px; font-weight: 700; }
+.btn-outline{ background: var(--card); border: 2px solid var(--border); color: var(--text-light); padding: 12px 24px; border-radius: 12px; font-weight: 700; }
+.stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 20px; margin-bottom: 40px; }
+.stat-card { background: var(--bg); padding: 25px 20px; border-radius: 16px; text-align: center; }
+.stat-num { font-size: 2.8rem; font-weight: 900; background: -webkit-linear-gradient(45deg, var(--primary), #60a5fa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 5px; color: var(--primary); }
+.gestion-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px; width: 100%; box-sizing: border-box; }
+.gestion-grid button { transition: all 0.2s ease; transform: translateX(0); }
+.gestion-grid button:hover { transform: translateY(-2px); }
+.gestion-grid button:active { transform: translateY(0); }
+.btn-upload { border: 2px dashed var(--border); background: var(--bg); color: var(--text-light); width: 100%; padding: 12px; border-radius: 12px; font-weight: 700; }
+.gestion-item { border: 1px solid var(--border); border-radius: 12px; padding: 15px; margin-bottom: 15px; background: var(--bg); display: grid; grid-template-columns: 100px 1fr; gap: 20px; align-items: start; }
+.gestion-img-box { width: 100px; height: 100px; background: var(--card); border-radius: 8px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border); overflow: hidden; }
+.gestion-img-box img { max-width: 100%; max-height: 100%; object-fit: cover; }
+.opcion{ 
+  padding: 20px; 
+  border-radius: 16px; 
+  background: var(--bg); 
+  border: 2px solid var(--border); 
+  color: var(--text); 
+  cursor: pointer; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  text-align: center; 
+  min-height: 60px; 
+  font-weight: 600; 
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Hover suave (solo desktop) */
+.opcion:hover:not(.seleccionada):not(.correcta):not(.incorrecta) {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(37, 99, 235, 0.2);
+  border-color: var(--primary);
+  background: var(--card);
+}
+
+/* Seleccionada */
+.opcion.seleccionada{ 
+  background: var(--primary); 
+  border-color: var(--primary); 
+  color: white; 
+  font-weight: 700;
+  transform: scale(1.02);
+  box-shadow: 0 8px 25px rgba(37, 99, 235, 0.4);
+}
+
+/* Correcta - Pulse animado v67.6 */
+.opcion.correcta {
+  background: var(--success) !important;
+  border-color: var(--success) !important;
+  color: white !important;
+  font-weight: 700;
+  animation: pulseCorrect 0.8s cubic-bezier(0.36, 0.07, 0.19, 0.97);
+}
+
+@keyframes pulseCorrect {
+  0% { 
+    transform: scale(1); 
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); 
+  }
+  50% { 
+    transform: scale(1.08); 
+    box-shadow: 0 0 0 15px rgba(16, 185, 129, 0); 
+  }
+  100% { 
+    transform: scale(1); 
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); 
+  }
+}
+
+/* Incorrecta - Shake animado v67.6 */
+.opcion.incorrecta {
+  background: var(--danger) !important;
+  border-color: var(--danger) !important;
+  color: white !important;
+  font-weight: 700;
+  animation: shakeWrong 0.6s cubic-bezier(0.36, 0.07, 0.19, 0.97);
+}
+
+@keyframes shakeWrong {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-12px); }
+  20%, 40%, 60%, 80% { transform: translateX(12px); }
+}
+
+/* Ripple effect v67.6 */
+.opcion::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(37, 99, 235, 0.25);
+  transform: translate(-50%, -50%);
+  transition: width 0.7s ease, height 0.7s ease, opacity 0.7s ease;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.opcion:active::after {
+  width: 350px;
+  height: 350px;
+  opacity: 1;
+  transition: 0s;
+}
+.pregunta-box { background: var(--bg); padding: 25px; border-radius: 16px; margin: 15px 0; font-size: 1.25rem; font-weight: 500; line-height: 1.6; color: var(--text); border-left: 5px solid var(--primary); }
+.badges-container { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+.badge { padding: 5px 10px; border-radius: 6px; font-size: 0.75rem; font-weight: 800; }
+.badge-oficial { background: var(--primary); color: white; }
+.badge-repaso { background: var(--text-light); color: white; }
+.badge-nuevo { background: var(--orange); color: white; }
+#opciones-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px; }
+.botones-navegacion { display: grid; grid-template-columns: 1fr auto 1fr; gap: 15px; margin-top: 30px; border-top: 1px solid var(--border); padding-top: 20px; }
+
+@media (max-width: 700px) { 
+  #opciones-grid { grid-template-columns: 1fr; } 
+  .asig-card { flex-direction: column; align-items: flex-start; gap: 15px; } 
+  .asig-info { padding-right: 0; width: 100%; } 
+  button { width: 100%; } 
+  .gestion-item { grid-template-columns: 1fr; } 
+  .gestion-img-box { width: 100%; height: 150px; } 
+  .btn-pill-right { width: 100%; }
+}
+
+/* === GAMIFICACIÓN: RACHA DE FUEGO (MODO RELAX/SUAVE) === */
+#racha-float {
+  position: absolute;
+  top: 15px;
+  right: 20px; /* Esquina superior derecha */
+  background: rgba(255, 255, 255, 0.95);
+  padding: 5px 15px;
+  border-radius: 50px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  border: 2px solid var(--border);
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 100;
+  transition: all 0.3s ease;
+  animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.flame-icon { display: inline-block; font-size: 1.6rem; transform-origin: center bottom; }
+.racha-info { display: flex; flex-direction: column; line-height: 1; }
+.racha-count { font-size: 1.2rem; color: var(--text); }
+.racha-record { font-size: 0.65rem; color: var(--text-light); text-transform: uppercase; font-weight: 700; }
+
+/* NIVEL 1: CALENTANDO (Muy suave) */
+.lvl-1 { border-color: #facc15 !important; }
+.lvl-1 .flame-icon { animation: burn-calm 4s infinite ease-in-out; filter: drop-shadow(0 0 2px #facc15); opacity: 0.8; }
+.lvl-1 .racha-count { color: #eab308; }
+
+/* NIVEL 2: ARDIENDO (Movimiento lento) */
+.lvl-2 { border-color: #f97316 !important; background: #fff7ed !important; }
+.lvl-2 .flame-icon { animation: burn-med 3s infinite ease-in-out; filter: drop-shadow(0 0 5px #f97316); transform: scale(1.1); }
+.lvl-2 .racha-count { color: #f97316; }
+
+/* NIVEL 3: INFERNO (Intenso pero controlado) */
+.lvl-3 { border-color: #ef4444 !important; background: #fef2f2 !important; box-shadow: 0 0 15px rgba(239, 68, 68, 0.2) !important; }
+.lvl-3 .flame-icon { animation: burn-high 1.5s infinite ease-in-out; filter: drop-shadow(0 0 8px #ef4444); transform: scale(1.2); }
+.lvl-3 .racha-count { color: #dc2626; }
+
+/* ANIMACIONES RELAJADAS */
+@keyframes popIn { from { transform: scale(0); } to { transform: scale(1); } }
+@keyframes burn-calm { 0%, 100% { transform: rotate(-2deg) scale(1); } 50% { transform: rotate(2deg) scale(1.05); } }
+@keyframes burn-med { 0%, 100% { transform: rotate(-4deg) scale(1.1); } 50% { transform: rotate(4deg) scale(1.15); } }
+@keyframes burn-high {
+    0% { transform: scale(1.2) rotate(-3deg); }
+    25% { transform: scale(1.25) rotate(0deg); }
+    50% { transform: scale(1.2) rotate(3deg); }
+    75% { transform: scale(1.15) rotate(0deg); }
+    100% { transform: scale(1.2) rotate(-3deg); }
+}
+
+/* === INTERACTIVIDAD GLOBAL === */
+@media (hover: hover) {
+  .btn-orange:hover, .btn-outline:hover, .btn-upload:hover { transform: translateY(-3px) scale(1.02); filter: brightness(110%); box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
+  .btn-sim-num:hover, .btn-sim-custom:hover { transform: translateY(-4px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); background-color: var(--success-bg); border-color: var(--success); }
+  .btn-pill-right:hover { transform: scale(1.1); box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+  .opcion:hover { background: white; border-color: var(--primary); transform: translateX(5px); box-shadow: 0 4px 12px rgba(37, 99, 235, 0.1); }
+  .btn-tool:hover { background: var(--primary-light); color: var(--primary); transform: translateY(-2px); }
+  .strip-card:hover { transform: translateY(-5px); box-shadow: 0 12px 25px rgba(0,0,0,0.08); }
+}
+button:active, .opcion:active, .btn-tool:active, .selector-btn:active { transform: scale(0.95) !important; filter: brightness(90%); }
+
+
+/* === CORRECCIÓN POSICIÓN LLAMA === */
+#pantalla-test {
+  position: relative !important; /* Obliga a la llama a quedarse dentro de ESTA tarjeta */
+  overflow: hidden; /* Evita que si la llama es muy grande rompa los bordes */
+}
+
+/* Ajuste fino para que no pise el botón de salir */
+#racha-float {
+  top: 10px;  /* Un poco más arriba */
+  right: 10px; /* Un poco más a la derecha */
+}
+
+/* === SISTEMA DE LOGROS === */
+.logro-card {
+  background: var(--card);
+  border: 2px solid var(--border);
+  border-radius: 16px;
+  padding: 20px;
+  transition: all 0.3s ease;
+}
+
+.logro-card.desbloqueado {
+  background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%);
+  border-color: var(--success);
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.1);
+}
+
+.logro-card.bloqueado {
+  opacity: 0.5;
+  filter: grayscale(1);
+}
+
+.logro-card.desbloqueado:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(16, 185, 129, 0.2);
+}
+
+/* === BARRA COMPLETA AL 100% === */
+.barra-relleno.full {
+  background: linear-gradient(90deg, var(--success) 0%, #34d399 100%) !important;
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+  animation: pulsoCompleto 2s ease-in-out infinite;
+}
+
+@keyframes pulsoCompleto {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
+}
+
+/* === FLASHCARDS === */
+.flashcard {
+  width: 100%;
+  max-width: 600px;
+  height: 400px;
+  margin: 20px auto;
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+.flashcard-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.flashcard.flipped .flashcard-inner {
+  transform: rotateY(180deg);
+}
+
+.flashcard-front, .flashcard-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 20px;
+  padding: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  font-weight: 600;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.flashcard-front {
+  background: linear-gradient(135deg, var(--primary) 0%, #60a5fa 100%);
+  color: white;
+}
+
+.flashcard-back {
+  background: white;
+  color: var(--text);
+  transform: rotateY(180deg);
+  border: 2px solid var(--primary);
+}
+
+.flashcard-controls {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+/* === MAPA MENTAL === */
+.mapa-container {
+  width: 100%;
+  height: 600px;
+  background: var(--bg);
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  position: relative;
+}
+
+.nodo {
+  position: absolute;
+  padding: 15px 25px;
+  background: white;
+  border-radius: 12px;
+  border: 2px solid var(--primary);
+  cursor: pointer;
+  font-weight: 700;
+  transition: all 0.3s;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  z-index: 10;
+}
+
+.nodo:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.2);
+  z-index: 20;
+}
+
+.nodo.dominado {
+  border-color: var(--success);
+  background: var(--success-bg);
+}
+
+.nodo.en-progreso {
+  border-color: var(--orange);
+  background: #fff7ed;
+}
+
+.nodo.pendiente {
+  border-color: var(--danger);
+  background: var(--danger-bg);
+}
+
+.conexion {
+  position: absolute;
+  background: var(--border);
+  height: 2px;
+  transform-origin: left center;
+  z-index: 1;
+}
+
+</style>
+
+
+
+
+</head>
+
+<body>
+
+<div id="pantalla-diccionario" class="card">
+  <div class="header-flex">
+    <h1 style="color:#7c3aed">📚 Enciclopedia IEC</h1>
+    <button class="btn-outline" onclick="volverAlMenu()">⬅ Volver</button>
+  </div>
+
+  <p class="subtitle" style="margin-bottom:20px;">Pulsa una letra para ver sus componentes:</p>
+
+
+  <div id="teclado-letras" class="teclado-letras"></div>
+  <div id="visor-letra">
+    <div style="text-align:center; padding:30px; border:2px dashed var(--border); border-radius:12px; color:var(--text-light);">
+      👆 Selecciona una letra arriba
+    </div>
+  </div>
+</div>
+
+
+<div id="pantalla-rebt-guia" class="card">
+  <div class="header-flex">
+    <h1 style="color:#0891b2">📖 Índice REBT</h1>
+    <button class="btn-outline" onclick="volverAlMenu()">⬅ Volver</button>
+  </div>
+  <p class="subtitle" style="margin-bottom:20px;">Pulsa una ITC para ver su contenido resumido:</p>
+  
+  <div id="grid-itc" style="display:grid; grid-template-columns: repeat(auto-fill, minmax(60px, 1fr)); gap:10px;"></div>
+
+  <div id="visor-itc" style="display:none; margin-top:25px; background:#ecfeff; border:1px solid #06b6d4; border-radius:12px; padding:20px; animation: fadeIn 0.3s;">
+      <h3 id="titulo-itc" style="color:#0e7490; margin-top:0;"></h3>
+      <ul id="lista-itc" style="padding-left:20px; color:#155e75; line-height:1.6;"></ul>
+      <button class="btn-outline" onclick="cerrarDetalleITC()" style="margin-top:15px; width:100%; border-color:#06b6d4; color:#06b6d4;">Cerrar Detalle</button>
+  </div>
+</div>
+
+<div id="pantalla-inicio" class="card active">
+  <div class="header-flex">
+    <div>
+      <h1>⚡ MasterTest BT <span style="font-size:0.6em; background:#10b981; color:white; padding:6px 16px; border-radius:25px; font-weight:900; margin-left:8px;">v67.6</span></h1>
+      <p class="subtitle">✅ Actualizada · Apuntes integrados</p>
+    </div>
+
+
+
+    
+
+<div class="header-buttons">
+      <button class="btn-tool btn-theme" onclick="toggleTheme()">🌓</button>
+      
+      <button id="btn-turbo" class="btn-tool btn-theme" onclick="toggleTurbo()">🐢</button>
+      <button class="btn-tool" onclick="abrirGestion()">🛠️ Admin</button>
+      <button class="btn-tool" onclick="verEstadisticas()">📊 Stats</button>
+      <button class="btn-tool btn-reset" onclick="borrarDatosGlobales()">🗑️</button>
+    </div>
+
+
+  </div>
+
+  <!-- Tabs de navegación v67.6 -->
+  <div class="tabs-container">
+    <div id="tabs-bloques" class="tabs-scroll"></div>
+  </div>
+
+  <div id="grid-asignaturas"></div>
+</div>
+
+
+
+<div id="pantalla-gestion" class="card">
+  <div class="header-flex">
+    <h1>🛠️ Revisor de Contenido</h1>
+    <button class="btn-outline" onclick="volverAlMenu()">⬅ Salir</button>
+  </div>
+  <p style="color:var(--text-light); margin-bottom:20px">Revisa imágenes y corrige URLs rotas.</p>
+  <div id="lista-gestion"></div> 
+  <div style="display:none;" id="contenedor-preguntas-gestion"></div>
+</div>
+
+<div id="pantalla-estadisticas" class="card"></div>
+
+<div id="pantalla-dashboard" class="card"></div>
+
+<div id="pantalla-logros" class="card"></div>
+
+<div id="pantalla-flashcards" class="card"></div>
+
+<div id="pantalla-mapa-mental" class="card"></div>
+
+<div id="pantalla-test" class="card"></div>
+
+<div id="pantalla-resultados" class="card"></div>
+
+<div id="pantalla-configurador" class="card">
+  <div class="header-flex">
+    <h1>🧪 Test a la Carta</h1>
+    <button class="btn-outline" onclick="volverAlMenu()">⬅ Volver</button>
+  </div>
+  <p class="subtitle">Selecciona los temas que quieres mezclar:</p>
+  <div id="lista-seleccion-temas" style="margin: 20px 0; max-height: 350px; overflow-y: auto; border: 1px solid var(--border); padding: 15px; border-radius: 12px; background: var(--bg);"></div>
+  <div style="margin-top: 25px;">
+    <label style="font-weight: 800; display: block; margin-bottom: 15px; color: var(--primary);">¿Cuántas preguntas quieres en total?</label>
+    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;">
+        <button class="btn-outline" onclick="iniciarTestPersonalizado(20)">20</button>
+        <button class="btn-outline" onclick="iniciarTestPersonalizado(30)">30</button>
+        <button class="btn-outline" onclick="iniciarTestPersonalizado(40)">40</button>
+        <button class="btn-orange" onclick="iniciarTestPersonalizado(50)">50</button>
+    </div>
+  </div>
+</div>
+
+<script src="data.js"></script>
+<script src="motor.js"></script>
+
+<!-- Auto-actualización NUCLEAR v67.6 -->
+<script>
+console.log('🚀 v67.6 - Sistema NUCLEAR de actualización');
+
+if ('serviceWorker' in navigator) {
+  // Escuchar mensajes del SW
+  navigator.serviceWorker.addEventListener('message', (event) => {
+    console.log('📨 Mensaje del SW:', event.data);
+    
+    if (event.data && event.data.type === 'FORCE_RELOAD_NOW') {
+      console.log('🔥🔥🔥 RECARGA NUCLEAR FORZADA por v67.6');
+      // Recarga INMEDIATA (sin setTimeout)
+      location.reload(true);
+    }
+  });
+  
+  // Forzar actualización al cargar
+  navigator.serviceWorker.ready.then((registration) => {
+    console.log('🔍 Verificando actualizaciones...');
+    registration.update();
+    
+    // Si hay SW esperando, activarlo YA
+    if (registration.waiting) {
+      console.log('⚠️ SW esperando → Activando AHORA');
+      registration.waiting.postMessage('SKIP_WAITING');
+      setTimeout(() => location.reload(true), 300);
+    }
+    
+    // Detectar nueva instalación
+    registration.addEventListener('updatefound', () => {
+      console.log('📦 Nueva versión detectada');
+      const newWorker = registration.installing;
+      
+      newWorker.addEventListener('statechange', () => {
+        console.log('🔄 SW state:', newWorker.state);
+        
+        if (newWorker.state === 'installed') {
+          if (navigator.serviceWorker.controller) {
+            console.log('✅ Nueva versión instalada → Recargando');
+            newWorker.postMessage('SKIP_WAITING');
+            setTimeout(() => location.reload(true), 200);
+          } else {
+            console.log('✅ Primera instalación');
+          }
+        }
+      });
+    });
+  });
+  
+  // Verificar cada 10 segundos (durante los primeros 60s)
+  let checkCount = 0;
+  const checkInterval = setInterval(() => {
+    if (checkCount < 6) {
+      navigator.serviceWorker.ready.then(reg => {
+        console.log('🔄 Auto-check', ++checkCount);
+        reg.update();
+      });
+    } else {
+      clearInterval(checkInterval);
+    }
+  }, 10000);
+}
+</script>
+
+<script>
+/* === LOGICA UI INDEX (FRANJA DE 4 + BOTONES A LA DERECHA) === */
+if (localStorage.getItem("mastertest_theme") === "dark") document.body.classList.add("dark-mode");
+function toggleTheme() { document.body.classList.toggle("dark-mode"); localStorage.setItem("mastertest_theme", document.body.classList.contains("dark-mode") ? "dark" : "light"); }
+
+const selectorLista = document.getElementById("selector-lista");
+const selectorBtn = document.querySelector(".selector-btn");
+const tabsBloques = document.getElementById("tabs-bloques");
+const grid = document.getElementById("grid-asignaturas");
+
+// Generar Tabs Horizontales v67.6
+CONFIGURACION_CURSO.forEach((bloque, i) => {
+  const db = JSON.parse(localStorage.getItem("mastertest_db")) || {};
+  
+  // Calcular total de preguntas del bloque
+  let totalPreguntasBloque = 0;
+  bloque.asignaturas.forEach(asig => {
+    totalPreguntasBloque += asig.data.length;
+  });
+  
+  // Crear tab button
+  const tabBtn = document.createElement("button");
+  tabBtn.className = "tab-btn";
+  if (i === 0) tabBtn.classList.add("active");
+  
+  tabBtn.innerHTML = `
+    <span>${bloque.titulo_boton}</span>
+    <span class="tab-count">${totalPreguntasBloque}</span>
+  `;
+  
+  tabBtn.onclick = () => {
+    // Desactivar todos los tabs
+    document.querySelectorAll(".tab-btn").forEach(t => t.classList.remove("active"));
+    // Activar tab clickeado
+    tabBtn.classList.add("active");
+    // Filtrar contenido
+    filtrarBloque(bloque.bloque);
+  };
+  
+  tabsBloques.appendChild(tabBtn);
+});
+
+
+
+
+// LOGICA FILTRADO v67.6
+
+function filtrarBloque(bid) {
+  window.currentBid = bid;
+  const bloque = CONFIGURACION_CURSO.find(b => b.bloque === bid);
+  if (!bloque) return;
+
+  grid.innerHTML = "";
+  
+  
+
+
+
+
+
+
+
+// 1. ASIGNATURAS NORMALES
+  bloque.asignaturas.forEach((asig, idx) => {
+    const db = JSON.parse(localStorage.getItem("mastertest_db")) || {};
+    const datosAsig = db[asig.nombre] || { dom: [] };
+    const totalPreg = asig.data.length;
+    
+    let totalImg = 0; let totalSvg = 0;
+    asig.data.forEach(p => { if(p.imagen) totalImg++; if(p.svg) totalSvg++; });
+    let htmlBadges = "";
+    if(totalSvg > 0) htmlBadges += `<span style="color:#8b5cf6; font-weight:600; font-size:0.85rem; background:#f3e8ff; padding:2px 8px; border-radius:6px; margin-right:5px; border:1px solid #d8b4fe;">✏️ ${totalSvg}</span>`;
+    if(totalImg > 0) htmlBadges += `<span style="color:var(--primary); font-weight:600; font-size:0.85rem; background:var(--primary-light); padding:2px 8px; border-radius:6px; border:1px solid var(--primary);">📸 ${totalImg}</span>`;
+
+    const numDominadas = datosAsig.dom ? datosAsig.dom.length : 0;
+    const porcentaje = totalPreg > 0 ? (numDominadas / totalPreg) * 100 : 0;
+    let iconStatus = "📚";
+    if(porcentaje > 99) iconStatus = "🏆";
+    else if(porcentaje > 50) iconStatus = "🔥";
+
+    const card = document.createElement("div");
+    card.className = "asig-card"; 
+    
+    // Verificar si hay preguntas IA generadas para este tema
+    const preguntasIA = preguntasIAStorage ? preguntasIAStorage.filter(p => p.tema === asig.nombre).length : 0;
+    const totalConIA = totalPreg + preguntasIA;
+    const metaPreguntas = preguntasIA > 0 ? `${totalPreg} + ${preguntasIA} IA = ${totalConIA}` : `${totalPreg}`;
+    
+    // Mostrar botón IA solo si ha dominado el 100%
+    const mostrarBotonIA = porcentaje >= 100;
+    
+    card.innerHTML = `
+      <div class="asig-info">
+        <div class="asig-title">${asig.nombre}</div>
+        <div class="asig-meta"><span style="display:flex; align-items:center; gap:5px; margin-right:10px;">${iconStatus} ${numDominadas} / ${metaPreguntas} Dominadas</span><div style="display:flex; align-items:center;">${htmlBadges}</div></div>
+        <div class="barra-fondo"><div class="barra-relleno ${porcentaje >= 100 ? 'full' : ''}" style="width:${porcentaje}%"></div></div>
+        <div style="font-size:0.75rem; text-align:right; margin-top:5px; color:var(--text-light); font-weight:600;">${Math.round(porcentaje)}% Completado</div>
+        ${mostrarBotonIA ? `
+          <div style="background:linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color:white; padding:12px; border-radius:10px; margin-top:15px; text-align:center; font-size:0.85rem;">
+            <div style="font-weight:600; margin-bottom:5px;">🎉 ¡Tema dominado!</div>
+            <div style="opacity:0.9; font-size:0.8rem;">¿Quieres más desafío?</div>
+          </div>
+        ` : ''}
+      </div>
+      <div style="display:flex; flex-direction:column; gap:10px;">
+        <button class="btn-orange" onclick="jugar('carrera', ${idx}, '${bid}')">▶ Entrenar</button>
+        ${mostrarBotonIA ? `
+          <button class="btn-outline" onclick="generarPreguntasIA('${asig.nombre}', 10)" style="background:linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color:white; border:none; font-weight:600;">
+            🤖 + 10 IA
+          </button>
+        ` : ''}
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+
+  const separador = document.createElement("hr");
+  separador.style.margin = "30px 0"; separador.style.border = "none"; separador.style.borderTop = "1px dashed var(--border)";
+  grid.appendChild(separador);
+
+  // =========================================================
+  // 1. ZONA DE SIMULACROS
+  // =========================================================
+  const cardSimulacros = document.createElement("div");
+  cardSimulacros.className = "asig-card card-simulacros"; 
+  cardSimulacros.innerHTML = `
+    <div class="simulacro-header">
+      <div><h3 class="simulacro-title">🏁 Simulacro Oficial</h3><p class="simulacro-subtitle">Entrenamiento estándar con cronómetro.</p></div>
+      <div style="font-size: 2.5rem; opacity: 0.1;">⏱️</div>
+    </div>
+    <div class="simulacro-grid">
+      <button class="btn-sim-num" onclick="jugar('global', 20)">20</button>
+      <button class="btn-sim-num" onclick="jugar('global', 30)">30</button>
+      <button class="btn-sim-num" onclick="jugar('global', 50)">50</button>
+      <button class="btn-sim-custom" onclick="abrirConfiguradorPersonalizado()" title="Configurar a medida">🧪</button>
+    </div>
+  `;
+  grid.appendChild(cardSimulacros);
+
+  // =========================================================
+  // 2. FRANJA DE 4 SECCIONES (STRIP)
+  // =========================================================
+  const stripContainer = document.createElement("div");
+  stripContainer.className = "grid-strip-4";
+
+  // DATOS PARA PURGATORIO
+  const fails = JSON.parse(localStorage.getItem("mastertest_fails")) || [];
+  const numFails = fails.length;
+  const textoPurgatorio = numFails > 0 ? `${numFails} fallos` : "Limpio ✨";
+  const btnPurgatorioDisabled = numFails === 0 ? 'disabled style="opacity:0.5"' : '';
+
+ 
+
+ stripContainer.innerHTML = `
+    <div class="strip-card strip-red">
+        <div>
+            <div class="strip-header" style="color:var(--danger)">🔥 Purgatorio</div>
+            <div class="strip-meta">${textoPurgatorio}</div>
+        </div>
+        <button class="btn-pill-right bg-red" onclick="jugar('purgatorio')" ${btnPurgatorioDisabled}>💀 Limpiar</button>
+    </div>
+
+    <div class="strip-card strip-red">
+        <div>
+            <div class="strip-header" style="color:var(--danger)">💀 Arcade</div>
+            <div class="strip-meta">Muerte Súbita</div>
+        </div>
+        <button class="btn-pill-right bg-red" onclick="jugar('muerte_subita')">🔥 Jugar</button>
+    </div>
+
+    <div class="strip-card strip-purple">
+        <div>
+            <div class="strip-header" style="color:#7c3aed">🆔 Letras IEC</div>
+            <div class="strip-meta">Identificación</div>
+        </div>
+        <div style="display:flex; gap:5px; justify-content:flex-end;">
+            <button class="btn-pill-right bg-purple" onclick="jugar('letras_identificacion')">Test</button>
+            <button class="btn-pill-right bg-white-purple" onclick="abrirDiccionario()">Ver</button>
+        </div>
+    </div>
+
+    <div class="strip-card strip-cyan">
+        <div>
+            <div class="strip-header" style="color:#0891b2">🛠️ REBT</div>
+            <div class="strip-meta">Reglamento / Guía</div>
+        </div>
+        <div style="display:flex; gap:5px; justify-content:flex-end;">
+            <button class="btn-pill-right bg-white-purple" style="color:#0891b2; border-color:#0891b2;" onclick="abrirGuiaREBT()">👁️ Ver</button>
+            <button class="btn-pill-right bg-cyan" onclick="jugar('rebt_memorizacion')">Test</button>
+        </div>
+    </div>
+  `;
+
+  // TARJETA EXTRA: FAVORITOS (SE AÑADE DINÁMICAMENTE)
+  const favs = JSON.parse(localStorage.getItem("mastertest_favs")) || [];
+  const numFavs = favs.length;
+  const textoFavs = numFavs > 0 ? `${numFavs} guardadas` : "Vacío";
+  const btnFavsDisabled = numFavs === 0 ? 'disabled style="opacity:0.5"' : '';
+  
+  const cardFavs = document.createElement("div");
+  cardFavs.className = "strip-card";
+  cardFavs.style.borderLeft = "5px solid #fbbf24";
+  cardFavs.innerHTML = `
+    <div>
+        <div class="strip-header" style="color:#f59e0b">⭐ Favoritos</div>
+        <div class="strip-meta">${textoFavs}</div>
+    </div>
+    <button class="btn-pill-right" style="background:linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);" onclick="jugar('favoritos')" ${btnFavsDisabled}>🌟 Jugar</button>
+  `;
+  stripContainer.appendChild(cardFavs);
+
+  // TARJETA: FLASHCARDS
+  const cardFlashcards = document.createElement("div");
+  cardFlashcards.className = "strip-card";
+  cardFlashcards.style.borderLeft = "5px solid #8b5cf6";
+  cardFlashcards.innerHTML = `
+    <div>
+        <div class="strip-header" style="color:#8b5cf6">🎴 Flashcards</div>
+        <div class="strip-meta">Repaso rápido</div>
+    </div>
+    <button class="btn-pill-right" style="background:linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);" onclick="abrirFlashcards()">📚 Estudiar</button>
+  `;
+  stripContainer.appendChild(cardFlashcards);
+
+  grid.appendChild(stripContainer);
+}
+
+// Inicialización con restauración de contexto
+setTimeout(() => { 
+  // Intentar restaurar contexto guardado
+  const savedContext = localStorage.getItem("mastertest_lastcontext");
+  
+  if (savedContext) {
+    try {
+      const ctx = JSON.parse(savedContext);
+      // Restaurar el bloque donde estaba
+      if (ctx.bid) {
+        filtrarBloque(ctx.bid, null);
+      }
+      // Limpiar el contexto guardado
+      localStorage.removeItem("mastertest_lastcontext");
+    } catch (e) {
+      // Si falla, ir al primer bloque
+      const first = CONFIGURACION_CURSO[0]; 
+      if(first) filtrarBloque(first.bloque, null);
+    }
+  } else {
+    // Si no hay contexto guardado, ir al primer bloque
+    const first = CONFIGURACION_CURSO[0]; 
+    if(first) filtrarBloque(first.bloque, null);
+  }
+}, 50);
+
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('./sw.js')
+      .then((registration) => {
+        console.log('App lista para funcionar Offline 📦');
+        
+        // Verificar actualizaciones cada 60 segundos
+        setInterval(() => {
+          registration.update();
+        }, 60000);
+        
+        // Escuchar mensaje de nueva versión
+        navigator.serviceWorker.addEventListener('message', (event) => {
+          if (event.data.type === 'NEW_VERSION') {
+            mostrarNotificacionActualizacion(event.data.version);
+          }
+        });
+      })
+      .catch(err => console.log('Error SW:', err));
+}
+
+// Función para mostrar notificación de actualización
+function mostrarNotificacionActualizacion(version) {
+  const versionActual = 'v66';
+  
+  // Solo mostrar si hay una versión diferente
+  if (version && version !== versionActual) {
+    return;
+  }
+  
+  // Crear notificación
+  const notif = document.createElement('div');
+  notif.id = 'notif-actualizacion';
+  notif.style.cssText = `
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, var(--primary) 0%, #60a5fa 100%);
+    color: white;
+    padding: 20px 30px;
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(37, 99, 235, 0.3);
+    z-index: 10000;
+    text-align: center;
+    animation: slideDown 0.5s ease-out;
+    max-width: 400px;
+  `;
+  
+  notif.innerHTML = `
+    <div style="font-weight: 700; font-size: 1.1rem; margin-bottom: 10px;">🆕 Nueva versión disponible</div>
+    <div style="font-size: 0.9rem; margin-bottom: 15px; opacity: 0.9;">La app se ha actualizado a ${version}</div>
+    <button onclick="recargarApp()" style="background: white; color: var(--primary); border: none; padding: 10px 25px; border-radius: 8px; font-weight: 700; cursor: pointer; font-size: 0.95rem;">
+      🔄 Recargar ahora
+    </button>
+    <button onclick="cerrarNotificacion()" style="background: rgba(255,255,255,0.2); color: white; border: none; padding: 10px 25px; border-radius: 8px; font-weight: 600; cursor: pointer; margin-left: 10px; font-size: 0.95rem;">
+      Después
+    </button>
+  `;
+  
+  document.body.appendChild(notif);
+  
+  // Auto-cerrar después de 15 segundos
+  setTimeout(() => {
+    cerrarNotificacion();
+  }, 15000);
+}
+
+function recargarApp() {
+  localStorage.setItem('mastertest_update_reload', 'true');
+  location.reload();
+}
+
+function cerrarNotificacion() {
+  const notif = document.getElementById('notif-actualizacion');
+  if (notif) {
+    notif.style.animation = 'slideUp 0.3s ease-out';
+    setTimeout(() => notif.remove(), 300);
+  }
+}
+
+// Animaciones CSS
+const style = document.createElement('style');
+style.textContent = `
+  @keyframes slideDown {
+    from {
+      transform: translateX(-50%) translateY(-100px);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slideUp {
+    from {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+    to {
+      transform: translateX(-50%) translateY(-100px);
+      opacity: 0;
+    }
+  }
+`;
+document.head.appendChild(style);
+
+</script>
+
+</body>
+</html>

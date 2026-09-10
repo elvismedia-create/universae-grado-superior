@@ -1,0 +1,13 @@
+.vercel
+.env*
+PDFs Temario/
+
+.DS_Store
+.claude/
+Universae/
+*.tmp
+
+.DS_Store
+.claude/
+.vercel/
+.vercel-*
