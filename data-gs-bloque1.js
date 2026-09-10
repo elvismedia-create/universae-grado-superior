@@ -547,63 +547,63 @@ const EXAMEN_GS_CONFIGURACION_DOMOTICAS_AUTOMATICAS_DATA = [
 
 const PDF_T3_URLS = {
   sistemas_gs: {
-    1: "pdfs/sistemas electricos/U1 Conceptos básicos.pdf",
-    2: "pdfs/sistemas electricos/U2 Sistemas trifásicos.pdf",
-    3: "pdfs/sistemas electricos/U3 Transformadores eléctricos.pdf",
-    4: "pdfs/sistemas electricos/U4 Motores eléctricos.pdf",
+    1: "pdfs/sistemas electricos/U1 Conceptos básicos.pdf",
+    2: "pdfs/sistemas electricos/U2 Sistemas trifásicos.pdf",
+    3: "pdfs/sistemas electricos/U3 Transformadores eléctricos.pdf",
+    4: "pdfs/sistemas electricos/U4 Motores eléctricos.pdf",
     5: "pdfs/sistemas electricos/U5 Instrumentos y equipos de medida.pdf",
-    6: "pdfs/sistemas electricos/U6 Introducción a la electrónica digital. Circuitos combinacionales.pdf",
-    7: "pdfs/sistemas electricos/U7 Circuitos electrónicos digitales secuenciales.pdf",
-    8: "pdfs/sistemas electricos/U8 Introducción a la electrónica analógica.pdf",
-    9: "pdfs/sistemas electricos/U9 Circuitos electrónicos analógicos.pdf",
-    10: "pdfs/sistemas electricos/ANX Fórmulas, definiciones y unidades básicas.pdf"
+    6: "pdfs/sistemas electricos/U6 Introducción a la electrónica digital. Circuitos combinacionales.pdf",
+    7: "pdfs/sistemas electricos/U7 Circuitos electrónicos digitales secuenciales.pdf",
+    8: "pdfs/sistemas electricos/U8 Introducción a la electrónica analógica.pdf",
+    9: "pdfs/sistemas electricos/U9 Circuitos electrónicos analógicos.pdf",
+    10: "pdfs/sistemas electricos/ANX Fórmulas, definiciones y unidades básicas.pdf"
   },
   gestion_montaje_gs: {
-    1: "pdfs/Gestión del montaje y del mantenimiento de instalaciones eléctricas/U1 Documentación técnica y normativa de aplicación.pdf",
-    2: "pdfs/Gestión del montaje y del mantenimiento de instalaciones eléctricas/U2 Organización del proceso de aprovisionamiento.pdf",
-    3: "pdfs/Gestión del montaje y del mantenimiento de instalaciones eléctricas/U3 Gestión del almacén.pdf",
-    4: "pdfs/Gestión del montaje y del mantenimiento de instalaciones eléctricas/U4 Planificación del montaje.pdf",
-    5: "pdfs/Gestión del montaje y del mantenimiento de instalaciones eléctricas/U5 Gestión de recursos y materiales.pdf",
-    6: "pdfs/Gestión del montaje y del mantenimiento de instalaciones eléctricas/U6 Puesta en servicio de las instalaciones electrotécnicas.pdf",
-    7: "pdfs/Gestión del montaje y del mantenimiento de instalaciones eléctricas/U7 Organización y gestión del mantenimiento.pdf",
-    8: "pdfs/Gestión del montaje y del mantenimiento de instalaciones eléctricas/U8 Gestión de residuos y sistemas de gestión de calidad.pdf"
+    1: "pdfs/Gestión del montaje y del mantenimiento de instalaciones eléctricas/U1 Documentación técnica y normativa de aplicación.pdf",
+    2: "pdfs/Gestión del montaje y del mantenimiento de instalaciones eléctricas/U2 Organización del proceso de aprovisionamiento.pdf",
+    3: "pdfs/Gestión del montaje y del mantenimiento de instalaciones eléctricas/U3 Gestión del almacén.pdf",
+    4: "pdfs/Gestión del montaje y del mantenimiento de instalaciones eléctricas/U4 Planificación del montaje.pdf",
+    5: "pdfs/Gestión del montaje y del mantenimiento de instalaciones eléctricas/U5 Gestión de recursos y materiales.pdf",
+    6: "pdfs/Gestión del montaje y del mantenimiento de instalaciones eléctricas/U6 Puesta en servicio de las instalaciones electrotécnicas.pdf",
+    7: "pdfs/Gestión del montaje y del mantenimiento de instalaciones eléctricas/U7 Organización y gestión del mantenimiento.pdf",
+    8: "pdfs/Gestión del montaje y del mantenimiento de instalaciones eléctricas/U8 Gestión de residuos y sistemas de gestión de calidad.pdf"
   },
   documentacion_tecnica_gs: {
-    1: "pdfs/Documentación técnica en instalaciones eléctricas/U1 Identificacion de la documentacion tecnica y administrativa.pdf",
-    2: "pdfs/Documentación técnica en instalaciones eléctricas/U2 Proyectos y memorias tecnicas de diseño.pdf",
-    3: "pdfs/Documentación técnica en instalaciones eléctricas/U3 Representacion grafica de las instalaciones electrotecnicas.pdf",
-    4: "pdfs/Documentación técnica en instalaciones eléctricas/U4 Elaboracion de presupuestos y anexos de calculos.pdf",
-    5: "pdfs/Documentación técnica en instalaciones eléctricas/U5 Confeccion de pliegos, manuales, estudios e informes.pdf",
-    6: "pdfs/Documentación técnica en instalaciones eléctricas/U6 Tramitacion, legalizacion, inspeccion y puesta en marcha de instalaciones.pdf",
-    7: "pdfs/Documentación técnica en instalaciones eléctricas/U7 Sofware y aplicaciones para instalaciones electricas.pdf",
-    8: "pdfs/Documentación técnica en instalaciones eléctricas/ANEXO Simbología Eléctrica.pdf"
+    1: "pdfs/Documentación técnica en instalaciones eléctricas/U1 Identificacion de la documentacion tecnica y administrativa.pdf",
+    2: "pdfs/Documentación técnica en instalaciones eléctricas/U2 Proyectos y memorias tecnicas de diseño.pdf",
+    3: "pdfs/Documentación técnica en instalaciones eléctricas/U3 Representacion grafica de las instalaciones electrotecnicas.pdf",
+    4: "pdfs/Documentación técnica en instalaciones eléctricas/U4 Elaboracion de presupuestos y anexos de calculos.pdf",
+    5: "pdfs/Documentación técnica en instalaciones eléctricas/U5 Confeccion de pliegos, manuales, estudios e informes.pdf",
+    6: "pdfs/Documentación técnica en instalaciones eléctricas/U6 Tramitacion, legalizacion, inspeccion y puesta en marcha de instalaciones.pdf",
+    7: "pdfs/Documentación técnica en instalaciones eléctricas/U7 Sofware y aplicaciones para instalaciones electricas.pdf",
+    8: "pdfs/Documentación técnica en instalaciones eléctricas/ANEXO Simbología Eléctrica.pdf"
   },
   redes_ct_gs: {
-    1: "pdfs/Desarrollo de redes eléctricas y centros de transformación/U1 Estructura de la red eléctrica.pdf",
-    2: "pdfs/Desarrollo de redes eléctricas y centros de transformación/U2 Redes eléctricas de distribución de media tensión.pdf",
-    3: "pdfs/Desarrollo de redes eléctricas y centros de transformación/U3 Centros de transformación de energía eléctrica.pdf",
-    4: "pdfs/Desarrollo de redes eléctricas y centros de transformación/U4 Redes eléctricas de distribución de baja tensión.pdf",
-    5: "pdfs/Desarrollo de redes eléctricas y centros de transformación/U5 Cálculos mecánicos y eléctricos.pdf",
-    6: "pdfs/Desarrollo de redes eléctricas y centros de transformación/U6 Configuración de centros de transformación y redes eléctricas de baja tensión.PDF",
-    7: "pdfs/Desarrollo de redes eléctricas y centros de transformación/U7 Proyectos resumidos de centros de transformación y redes de baja tensión.pdf",
-    8: "pdfs/Desarrollo de redes eléctricas y centros de transformación/U8 Pruebas y ensayos de los centros de transformación.pdf"
+    1: "pdfs/Desarrollo de redes eléctricas y centros de transformación/U1 Estructura de la red eléctrica.pdf",
+    2: "pdfs/Desarrollo de redes eléctricas y centros de transformación/U2 Redes eléctricas de distribución de media tensión.pdf",
+    3: "pdfs/Desarrollo de redes eléctricas y centros de transformación/U3 Centros de transformación de energía eléctrica.pdf",
+    4: "pdfs/Desarrollo de redes eléctricas y centros de transformación/U4 Redes eléctricas de distribución de baja tensión.pdf",
+    5: "pdfs/Desarrollo de redes eléctricas y centros de transformación/U5 Cálculos mecánicos y eléctricos.pdf",
+    6: "pdfs/Desarrollo de redes eléctricas y centros de transformación/U6 Configuración de centros de transformación y redes eléctricas de baja tensión.PDF",
+    7: "pdfs/Desarrollo de redes eléctricas y centros de transformación/U7 Proyectos resumidos de centros de transformación y redes de baja tensión.pdf",
+    8: "pdfs/Desarrollo de redes eléctricas y centros de transformación/U8 Pruebas y ensayos de los centros de transformación.pdf"
   },
   configuracion_instalaciones_gs: {
-    1: "pdfs/Configuración de instalaciones eléctricas/U1 Características de las instalaciones de BT.pdf",
-    2: "pdfs/Configuración de instalaciones eléctricas/U2 Elementos de las instalaciones de BT I.pdf",
-    3: "pdfs/Configuración de instalaciones eléctricas/U3 Elementos de las instalaciones de BT II.pdf",
-    4: "pdfs/Configuración de instalaciones eléctricas/U4 Cálculo de instalaciones eléctricas I.pdf",
-    5: "pdfs/Configuración de instalaciones eléctricas/U5 Cálculo de instalaciones eléctricas II.pdf",
-    6: "pdfs/Configuración de instalaciones eléctricas/U6 Configuración de instalaciones eléctricas de baja tensión.pdf",
-    7: "pdfs/Configuración de instalaciones eléctricas/U7 Proyectos resumidos de instalaciones en edificios, e instalaciones fotovoltaicas.pdf"
+    1: "pdfs/Configuración de instalaciones eléctricas/U1 Características de las instalaciones de BT.pdf",
+    2: "pdfs/Configuración de instalaciones eléctricas/U2 Elementos de las instalaciones de BT I.pdf",
+    3: "pdfs/Configuración de instalaciones eléctricas/U3 Elementos de las instalaciones de BT II.pdf",
+    4: "pdfs/Configuración de instalaciones eléctricas/U4 Cálculo de instalaciones eléctricas I.pdf",
+    5: "pdfs/Configuración de instalaciones eléctricas/U5 Cálculo de instalaciones eléctricas II.pdf",
+    6: "pdfs/Configuración de instalaciones eléctricas/U6 Configuración de instalaciones eléctricas de baja tensión.pdf",
+    7: "pdfs/Configuración de instalaciones eléctricas/U7 Proyectos resumidos de instalaciones en edificios, e instalaciones fotovoltaicas.pdf"
   },
   domoticas_automaticas_gs: {
-    1: "pdfs/Configuración de instalaciones domoticas/U1 Hogares digitales, edificios inteligentes y urbotica en tu ciudad.pdf",
-    2: "pdfs/Configuración de instalaciones domoticas/U2 Instalaciones y dispositivos de automatizacion.pdf",
-    3: "pdfs/Configuración de instalaciones domoticas/U3 Soluciones de automatizacion preprogramadas.pdf",
-    4: "pdfs/Configuración de instalaciones domoticas/U4 Sistema de automatizacion con reles programables.pdf",
-    5: "pdfs/Configuración de instalaciones domoticas/U5 Sistemas de automatizacion basados en corrientes portadoras.pdf",
-    6: "pdfs/Configuración de instalaciones domoticas/U6 Sistema basados en buses de campo inmoticos el bus KNX.pdf",
-    7: "pdfs/Configuración de instalaciones domoticas/U7 Normativa en instalaciones domoticas y automaticas.pdf"
+    1: "pdfs/Configuración de instalaciones domoticas/U1 Hogares digitales, edificios inteligentes y urbotica en tu ciudad.pdf",
+    2: "pdfs/Configuración de instalaciones domoticas/U2 Instalaciones y dispositivos de automatizacion.pdf",
+    3: "pdfs/Configuración de instalaciones domoticas/U3 Soluciones de automatizacion preprogramadas.pdf",
+    4: "pdfs/Configuración de instalaciones domoticas/U4 Sistema de automatizacion con reles programables.pdf",
+    5: "pdfs/Configuración de instalaciones domoticas/U5 Sistemas de automatizacion basados en corrientes portadoras.pdf",
+    6: "pdfs/Configuración de instalaciones domoticas/U6 Sistema basados en buses de campo inmoticos el bus KNX.pdf",
+    7: "pdfs/Configuración de instalaciones domoticas/U7 Normativa en instalaciones domoticas y automaticas.pdf"
   }
 };
