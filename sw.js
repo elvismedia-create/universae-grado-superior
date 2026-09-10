@@ -1,7 +1,7 @@
-// v88.8 - Grado Superior Bloque 1 Domótica
-const BUILD_TIMESTAMP = '20260910-gs-bloque1-domotica';
-const CACHE_NAME = `universae-gs-v88.8-${BUILD_TIMESTAMP}`;
-const OFFLINE_CACHE = `universae-gs-offline-v88.8`;
+// v88.9 - Grado Superior PDFs en visor
+const BUILD_TIMESTAMP = '20260910-gs-pdf-viewer';
+const CACHE_NAME = `universae-gs-v88.9-${BUILD_TIMESTAMP}`;
+const OFFLINE_CACHE = `universae-gs-offline-v88.9`;
 
 // ARCHIVOS CRÍTICOS - DEBEN estar en caché siempre
 const CRITICAL_ASSETS = [

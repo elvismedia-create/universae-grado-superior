@@ -879,6 +879,25 @@
     return true;
   }
 
+  async function openProjectPdf(bid, idx, url) {
+    const response = await fetch(encodeURI(url));
+    if (!response.ok) {
+      throw new Error(`PDF del proyecto no encontrado: ${response.status}`);
+    }
+
+    const blob = await response.blob();
+    const block = typeof CONFIGURACION_CURSO !== 'undefined'
+      ? CONFIGURACION_CURSO.find(item => item.bloque === bid)
+      : null;
+    const topic = block && block.asignaturas[idx] ? block.asignaturas[idx].nombre : 'PDF del tema';
+
+    await openAnnotatedPdfViewer(pdfKey(bid, idx), blob, {
+      name: url.split('/').pop() || 'PDF',
+      subject: block ? block.titulo_boton : '',
+      topic
+    });
+  }
+
   async function abrirPdfTema(bid, idx) {
     try {
       const openedLocal = await openLocalPdf(bid, idx);
@@ -889,7 +908,14 @@
 
     const fallback = typeof PDF_T3_URLS !== 'undefined' && PDF_T3_URLS[bid] && PDF_T3_URLS[bid][idx];
     if (fallback) {
-      window.open(fallback, '_blank');
+      try {
+        await openProjectPdf(bid, idx, fallback);
+      } catch (error) {
+        console.error('No se pudo abrir el PDF del proyecto:', error);
+        if (typeof showToast === 'function') {
+          showToast('error', 'PDF no encontrado', 'No se pudo cargar el PDF incluido en el proyecto.');
+        }
+      }
     } else if (typeof showToast === 'function') {
       showToast('error', 'PDF no encontrado', 'Importa los PDFs desde el iPad para este tema.');
     }
