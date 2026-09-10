@@ -9,6 +9,12 @@
   let pdfjsPromise = null;
 
   const TOPIC_ALIASES = {
+    sistemas_gs: ['sistemas', 'circuitos', 'electricos', 'electrico', 'trifasicos', 'transformadores', 'motores'],
+    gestion_montaje_gs: ['gestion', 'montaje', 'mantenimiento', 'instalaciones', 'electricas', 'almacen', 'aprovisionamiento'],
+    documentacion_tecnica_gs: ['documentacion', 'tecnica', 'instalaciones', 'electricas', 'simbologia', 'proyectos', 'memorias'],
+    redes_ct_gs: ['desarrollo', 'redes', 'centros', 'transformacion', 'ct', 'media', 'baja', 'tension'],
+    configuracion_instalaciones_gs: ['configuracion', 'instalaciones', 'electricas', 'baja', 'tension', 'bt'],
+    domoticas_automaticas_gs: ['configuracion', 'domoticas', 'domotica', 'automaticas', 'automatizacion', 'knx', 'inmoticos'],
     pestana5b: ['domotica', 'domoticas', 'domotica'],
     pestana6: ['distribucion', 'distribucion'],
     pestana7: ['telecom', 'telecomunicacion', 'telecomunicaciones', 'infraestructura', 'infraestructuras', 'ict'],
@@ -99,10 +105,27 @@
     return `${bid}:${idx}`;
   }
 
+  function fileBaseName(path) {
+    return String(path || '').split('/').pop() || '';
+  }
+
+  function fileNameWithoutExtension(value) {
+    return String(value || '').replace(/\.[^.]+$/, '');
+  }
+
+  function uniqueValues(values) {
+    return [...new Set(values.filter(Boolean))];
+  }
+
   function detectUnit(fileName) {
     const normalized = normalizeText(fileName);
     const match = normalized.match(/\bu\s*([0-9]{1,2})\b/) || normalized.match(/\bunidad\s*([0-9]{1,2})\b/);
     return match ? Number(match[1]) : null;
+  }
+
+  function isAnnex(fileName) {
+    const normalized = normalizeText(fileName);
+    return /\b(anx|anexo)\b/.test(normalized);
   }
 
   function detectBlock(fileName) {
@@ -154,27 +177,93 @@
     return candidates[0].block.bloque;
   }
 
-  function identifyPdf(file) {
-    const unit = detectUnit(file.name);
-    if (!unit) return null;
-
-    let bid = detectBlock(file.name);
-    if (!bid) bid = findBestBlockForFile(file.name, unit);
-    if (!bid) bid = findBlockForUnit(unit);
-    if (!bid) return null;
-
-    const block = typeof CONFIGURACION_CURSO !== 'undefined'
+  function getBlock(bid) {
+    return typeof CONFIGURACION_CURSO !== 'undefined'
       ? CONFIGURACION_CURSO.find(b => b.bloque === bid)
       : null;
+  }
 
-    if (!block || !block.asignaturas[unit]) return null;
+  function getPdfManifestMatches(fileName) {
+    if (typeof PDF_T3_URLS === 'undefined') return [];
+
+    const normalizedFile = normalizeText(fileName);
+    const currentBid = window.currentBid || '';
+
+    return Object.entries(PDF_T3_URLS).flatMap(([bid, urls]) => {
+      const block = getBlock(bid);
+      return Object.entries(urls).map(([idx, url]) => {
+        const pdfName = fileBaseName(url);
+        const normalizedPdfName = normalizeText(pdfName);
+        const normalizedPdfTitle = normalizeText(fileNameWithoutExtension(pdfName));
+        const blockWords = keywordSet(block ? block.titulo_boton : bid);
+        const pdfWords = keywordSet(pdfName);
+        const commonPdfWords = pdfWords.filter(word => normalizedFile.includes(word)).length;
+        const commonBlockWords = blockWords.filter(word => normalizedFile.includes(word)).length;
+        let score = 0;
+
+        if (normalizedFile === normalizedPdfName || normalizedFile === normalizedPdfTitle) score += 120;
+        if (normalizedFile.includes(normalizedPdfTitle)) score += 50;
+        score += commonPdfWords * 4;
+        score += commonBlockWords * 3;
+        if (bid === currentBid) score += 8;
+
+        return {
+          bid,
+          idx: Number(idx),
+          score,
+          url,
+          block
+        };
+      });
+    }).filter(match => match.score > 0);
+  }
+
+  function findBestPdfManifestMatch(fileName) {
+    const matches = getPdfManifestMatches(fileName).sort((a, b) => b.score - a.score);
+    if (!matches.length || matches[0].score < 12) return null;
+
+    const [best, second] = matches;
+    if (second && best.score === second.score && best.bid !== (window.currentBid || '')) return null;
+    if (!best.block || !best.block.asignaturas[best.idx]) return null;
+
+    return {
+      bid: best.bid,
+      idx: best.idx,
+      key: pdfKey(best.bid, best.idx),
+      subject: best.block.titulo_boton,
+      topic: best.block.asignaturas[best.idx].nombre
+    };
+  }
+
+  function findAnnexIndex(block, fileName) {
+    if (!block || !isAnnex(fileName)) return null;
+    const annexIndex = block.asignaturas.findIndex(asig => /\b(anx|anexo)\b/.test(normalizeText(asig.nombre)));
+    return annexIndex > -1 ? annexIndex : null;
+  }
+
+  function identifyPdf(file) {
+    const manifestMatch = findBestPdfManifestMatch(file.name);
+    if (manifestMatch) return manifestMatch;
+
+    const unit = detectUnit(file.name);
+
+    let bid = detectBlock(file.name);
+    if (!bid && window.currentBid) bid = window.currentBid;
+    if (!bid && unit) bid = findBestBlockForFile(file.name, unit);
+    if (!bid && unit) bid = findBlockForUnit(unit);
+    if (!bid) return null;
+
+    const block = getBlock(bid);
+    const idx = unit || findAnnexIndex(block, file.name);
+
+    if (!block || !idx || !block.asignaturas[idx]) return null;
 
     return {
       bid,
-      idx: unit,
-      key: pdfKey(bid, unit),
+      idx,
+      key: pdfKey(bid, idx),
       subject: block.titulo_boton,
-      topic: block.asignaturas[unit].nombre
+      topic: block.asignaturas[idx].nombre
     };
   }
 
@@ -880,15 +969,27 @@
   }
 
   async function openProjectPdf(bid, idx, url) {
-    const response = await fetch(encodeURI(url));
-    if (!response.ok) {
-      throw new Error(`PDF del proyecto no encontrado: ${response.status}`);
+    const urlCandidates = uniqueValues([
+      url,
+      String(url).normalize('NFC'),
+      String(url).normalize('NFD')
+    ]);
+
+    let response = null;
+    let lastStatus = 'sin respuesta';
+    for (const candidate of urlCandidates) {
+      response = await fetch(encodeURI(candidate));
+      if (response.ok) {
+        url = candidate;
+        break;
+      }
+      lastStatus = response.status;
     }
 
+    if (!response || !response.ok) throw new Error(`PDF del proyecto no encontrado: ${lastStatus}`);
+
     const blob = await response.blob();
-    const block = typeof CONFIGURACION_CURSO !== 'undefined'
-      ? CONFIGURACION_CURSO.find(item => item.bloque === bid)
-      : null;
+    const block = getBlock(bid);
     const topic = block && block.asignaturas[idx] ? block.asignaturas[idx].nombre : 'PDF del tema';
 
     await openAnnotatedPdfViewer(pdfKey(bid, idx), blob, {
@@ -1004,6 +1105,7 @@
     getLocalPdfInfo,
     getPdfButtonHtml,
     importLocalPdfs,
+    identifyPdf,
     abrirPdfTema,
     abrirImportadorPdfs
   };
