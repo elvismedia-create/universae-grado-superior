@@ -1,6 +1,6 @@
 // v1.2 - Grado Superior PDFs en visor
 const APP_VERSION = 'v1.2';
-const BUILD_TIMESTAMP = '20260910-gs-pdf-identification';
+const BUILD_TIMESTAMP = '20260910-gs-pdf-import-feedback';
 const CACHE_NAME = `universae-gs-${APP_VERSION}-${BUILD_TIMESTAMP}`;
 const OFFLINE_CACHE = `universae-gs-offline-${APP_VERSION}`;
 

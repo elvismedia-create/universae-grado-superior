@@ -1050,6 +1050,30 @@
     return result;
   }
 
+  function formatImportDetail(result) {
+    const importedTopics = result.imported
+      .slice(0, 4)
+      .map(item => item.topic)
+      .join(' · ');
+    const skippedNames = result.skipped
+      .slice(0, 3)
+      .join(' · ');
+
+    if (result.imported.length && result.skipped.length) {
+      return `${result.imported.length} importados: ${importedTopics}. ${result.skipped.length} sin identificar: ${skippedNames}.`;
+    }
+
+    if (result.imported.length) {
+      return `${result.imported.length} PDFs locales guardados: ${importedTopics}.`;
+    }
+
+    if (result.skipped.length) {
+      return `No se identificaron. Abre primero la pestaña de la asignatura y vuelve a seleccionar: ${skippedNames}.`;
+    }
+
+    return 'No se seleccionó ningún PDF.';
+  }
+
   function ensurePdfInput() {
     let input = document.getElementById('input-pdfs-locales');
     if (input) return input;
@@ -1070,9 +1094,7 @@
 
       try {
         const result = await importLocalPdfs(input.files);
-        const detail = result.skipped.length
-          ? `${result.imported.length} importados. ${result.skipped.length} sin identificar.`
-          : `${result.imported.length} PDFs importados y asignados.`;
+        const detail = formatImportDetail(result);
 
         if (typeof showToast === 'function') {
           showToast(result.imported.length ? 'success' : 'error', 'Importación de PDFs', detail);
