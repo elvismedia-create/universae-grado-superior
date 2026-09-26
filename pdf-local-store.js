@@ -711,6 +711,7 @@
     let pointerId = null;
     let lineStart = null;
     let pointerStart = null;
+    let lastPoint = null;
 
     function ensurePage() {
       if (!annotations[pageNumber]) annotations[pageNumber] = [];
@@ -725,6 +726,7 @@
       lineStart = null;
       pointerId = null;
       pointerStart = null;
+      lastPoint = null;
     }
 
     function isVerticalScrollIntent(start, point, canvas) {
@@ -735,6 +737,7 @@
 
     canvas.addEventListener('pointerdown', event => {
       if (state.tool === 'pan') return;
+      if (pointerId !== null) return;
       pointerId = event.pointerId;
       if (state.tool === 'eraser' || event.pointerType !== 'touch') {
         event.preventDefault();
@@ -744,6 +747,7 @@
 
       const point = getPointerPoint(event, canvas);
       pointerStart = point;
+      lastPoint = point;
       if (state.tool === 'eraser') {
         annotations[pageNumber] = erasePointFromStrokes(point, ensurePage(), canvas, state);
         redrawAnnotations(canvas, annotations[pageNumber]);
@@ -767,6 +771,7 @@
     canvas.addEventListener('pointermove', event => {
       if (event.pointerId !== pointerId) return;
       const point = getPointerPoint(event, canvas);
+      lastPoint = point;
 
       if (state.tool === 'pen' && event.pointerType === 'touch' && pointerStart && isVerticalScrollIntent(pointerStart, point, canvas)) {
         discardDraftStroke();
@@ -800,7 +805,10 @@
     function finish(event) {
       if (event.pointerId !== pointerId) return;
       if (state.tool === 'pen' && state.straightAssist && lineStart) {
-        const end = getPointerPoint(event, canvas);
+        // Cancellation coordinates can be (0, 0) on touch devices.
+        const end = event.type === 'pointercancel' || event.type === 'lostpointercapture'
+          ? lastPoint || lineStart
+          : getPointerPoint(event, canvas);
         ensurePage().push({
           color: state.color,
           width: state.width,
@@ -815,11 +823,13 @@
       activeStroke = null;
       pointerId = null;
       pointerStart = null;
+      lastPoint = null;
       save();
     }
 
     canvas.addEventListener('pointerup', finish);
     canvas.addEventListener('pointercancel', finish);
+    canvas.addEventListener('lostpointercapture', finish);
   }
 
   async function openAnnotatedPdfViewer(key, blob, info) {
