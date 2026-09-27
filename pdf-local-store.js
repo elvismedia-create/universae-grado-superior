@@ -805,10 +805,8 @@
     function finish(event) {
       if (event.pointerId !== pointerId) return;
       if (state.tool === 'pen' && state.straightAssist && lineStart) {
-        // Cancellation coordinates can be (0, 0) on touch devices.
-        const end = event.type === 'pointercancel' || event.type === 'lostpointercapture'
-          ? lastPoint || lineStart
-          : getPointerPoint(event, canvas);
+        // Keep the displayed endpoint: touch release coordinates can jump on iPad.
+        const end = lastPoint || lineStart;
         ensurePage().push({
           color: state.color,
           width: state.width,

@@ -1,6 +1,6 @@
 // v1.2 - Grado Superior PDFs en visor
 const APP_VERSION = 'v1.2';
-const BUILD_TIMESTAMP = '20260927-gs-pdf-stroke-cancel';
+const BUILD_TIMESTAMP = '20260927-gs-pdf-ruler-endpoint';
 const CACHE_NAME = `universae-gs-${APP_VERSION}-${BUILD_TIMESTAMP}`;
 const OFFLINE_CACHE = `universae-gs-offline-${APP_VERSION}`;
 
