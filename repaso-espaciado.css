@@ -1,0 +1,9 @@
+.repaso-confianza { margin: 16px 0 10px; padding: 13px 15px; border: 1px solid #0f766e; border-radius: 6px; background: var(--bg); }
+.repaso-confianza p { margin: 0 0 10px; font-weight: 700; font-size: .9rem; }
+.repaso-confianza-opciones { display: flex; flex-wrap: wrap; gap: 7px; }
+.repaso-confianza-opciones button { flex: 1 1 110px; min-height: 42px; padding: 8px 10px; border: 1px solid #0f766e; border-radius: 5px; background: var(--card); color: var(--text); font: inherit; font-weight: 650; cursor: pointer; }
+.repaso-confianza-opciones button:hover, .repaso-confianza-opciones button:focus-visible { background: #e6f4f1; color: #115e59; }
+.repaso-resultado { margin-top: 9px; color: #0f766e; font-weight: 650; font-size: .82rem; }
+.repaso-pendiente { display: inline-flex; align-items: center; gap: 4px; margin-top: 7px; padding: 3px 7px; border: 1px solid #0f766e; border-radius: 4px; color: #0f766e; font-size: .77rem; font-weight: 750; }
+body.dark-mode .repaso-confianza-opciones button:hover, body.dark-mode .repaso-confianza-opciones button:focus-visible { background: #134e4a; color: #fff; }
+body.dark-mode .repaso-resultado, body.dark-mode .repaso-pendiente { color: #5eead4; }

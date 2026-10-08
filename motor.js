@@ -8,13 +8,11 @@ let indice = 0;
 let modoActual = "";
 let asignaturaActualObj = null;
 let lastContext = null;
+let confianzaUsuario = [];
 
 // VARIABLES DE GAMIFICACIÓN
 let rachaActual = 0;
 let recordActual = 0; 
-
-// MODO TURBO (Persistente)
-let modoTurbo = localStorage.getItem("mastertest_turbo") === "true";
 
 /* =========================================================
    SISTEMA DE VALIDACIÓN Y VERSIONADO (SEGURIDAD v67.24)
@@ -165,9 +163,6 @@ function showToast(tipo, titulo, detalle) {
   }, 5000);
 }
 
-// --- INICIALIZACIÓN ---
-setTimeout(() => actualizarBotonTurbo(), 100);
-
 // --- AUTO-REPARACIÓN AL INICIO (CON VALIDACIÓN) ---
 (function sanearBaseDeDatos() {
     try {
@@ -176,6 +171,9 @@ setTimeout(() => actualizarBotonTurbo(), 100);
         const idsReales = new Set();
         if (typeof CONFIGURACION_CURSO !== 'undefined') {
             CONFIGURACION_CURSO.forEach(b => b.asignaturas.forEach(a => a.data.forEach(p => idsReales.add(p.id))));
+            try {
+                (JSON.parse(localStorage.getItem('mastertest_ia_preguntas')) || []).forEach(p => idsReales.add(p.id));
+            } catch (_) { /* Las preguntas del curso siguen disponibles. */ }
             for (const asigName in db) {
                 if (db[asigName] && Array.isArray(db[asigName].dom)) {
                     const longAntes = db[asigName].dom.length;
@@ -191,26 +189,23 @@ setTimeout(() => actualizarBotonTurbo(), 100);
 
 function shuffle(arr) { return [...arr].sort(() => Math.random() - 0.5); }
 
-/* --- SISTEMA DE CAMBIO DE MODO (TURBO/NORMAL) --- */
-function toggleTurbo() {
-    modoTurbo = !modoTurbo;
-    localStorage.setItem("mastertest_turbo", modoTurbo);
-    actualizarBotonTurbo();
+function preguntasDelTema(asig) {
+  let generadas = [];
+  try { generadas = JSON.parse(localStorage.getItem('mastertest_ia_preguntas')) || []; } catch (_) { /* Sin preguntas IA. */ }
+  return [...asig.data, ...generadas.filter(p => p.tema === asig.nombre && p.id != null)];
 }
 
-function actualizarBotonTurbo() {
-    const btn = document.getElementById("btn-turbo");
-    if (btn) {
-        if (modoTurbo) {
-            btn.innerText = "🚀"; 
-            btn.style.borderColor = "var(--orange)";
-            btn.style.background = "#fff7ed";
-        } else {
-            btn.innerText = "🐢"; 
-            btn.style.borderColor = "var(--border)";
-            btn.style.background = "var(--bg)";
-        }
-    }
+function contarRepasosTema(asig, estado) {
+  if (!estado) return 0;
+  return RepasoEspaciado.dueQuestions(estado, preguntasDelTema(asig)).length;
+}
+
+function abrirRepasoPendiente(bid) {
+  const bloque = CONFIGURACION_CURSO.find(b => b.bloque === bid);
+  if (!bloque) return;
+  const idx = bloque.asignaturas.findIndex(asig => contarRepasosTema(asig, loadDatabase()[asig.nombre]) > 0);
+  if (idx >= 0) jugar('repaso_espaciado', idx, bid);
+  else showToast('info', 'Repasos al día', 'No hay preguntas pendientes en esta asignatura.');
 }
 
 /* --- SISTEMA DE AUDIO --- */
@@ -270,7 +265,7 @@ function jugar(modo, idx, bid, limit) {
       recordActual = parseInt(localStorage.getItem("mastertest_record_normal")) || 0;
   }
 
-  preguntasJuego = []; respuestasUsuario = []; asignaturaActualObj = null;
+  preguntasJuego = []; respuestasUsuario = []; confianzaUsuario = []; asignaturaActualObj = null;
 
   if (modo === "letras_identificacion") {
     if (typeof LETRAS_TEST_DATA !== 'undefined') preguntasJuego = shuffle([...LETRAS_TEST_DATA]).slice(0, 10);
@@ -287,78 +282,54 @@ function jugar(modo, idx, bid, limit) {
     else { alert("⚠️ Faltan datos de REBT."); return; }
     detenerReloj();
   }
-  else if (modo === "carrera") {
+  else if (modo === "carrera" || modo === "repaso_espaciado") {
     const bloque = CONFIGURACION_CURSO.find(b => b.bloque === bid);
     if (!bloque) return;
     const asig = bloque.asignaturas[idx];
+    if (!asig) return;
     asignaturaActualObj = asig;
-    const db = loadDatabase(); // ✅ Con validación
-    const failsGlobal = loadFailures(); // ✅ Con validación
-    
+    const db = loadDatabase();
+    const failsGlobal = loadFailures();
+    const todas = preguntasDelTema(asig);
+    const porId = new Map(todas.map(p => [p.id, p]));
     if (!db[asig.nombre]) db[asig.nombre] = { active: [], master_index: 0, stats: {}, dom: [] };
     const estado = db[asig.nombre];
-    estado.active = estado.active.filter(id => asig.data.some(p => p.id === id));
-    estado.dom = estado.dom.filter(id => asig.data.some(p => p.id === id));
+    if (!estado.stats || typeof estado.stats !== 'object') estado.stats = {};
+    estado.active = estado.active.filter(id => porId.has(id));
+    estado.dom = estado.dom.filter(id => porId.has(id));
+    RepasoEspaciado.ensureState(estado);
+    const idsBase = new Set(asig.data.map(p => p.id));
+    estado.dom = estado.dom.filter(id => idsBase.has(id));
     estado.active = estado.active.filter(id => !estado.dom.includes(id) && !failsGlobal.includes(id));
-
-    let seleccion = [];
-    const fallosAsig = failsGlobal.filter(id => asig.data.some(p => p.id === id));
-    seleccion.push(...fallosAsig.slice(0, 4));
-    
-    let intentos = 0;
-    while(seleccion.length < 10 && estado.master_index < asig.data.length && intentos < asig.data.length + 5) {
-        const nextId = asig.data[estado.master_index].id;
-        if(!estado.dom.includes(nextId) && !failsGlobal.includes(nextId) && !estado.active.includes(nextId)) {
-            if (!seleccion.includes(nextId)) { seleccion.push(nextId); estado.active.push(nextId); }
-        }
-        estado.master_index++; intentos++;
-    }
-    
-    if(seleccion.length < 10) {
-        const huecos = 10 - seleccion.length;
-        let disponibles = asig.data.map(p=>p.id).filter(id => !seleccion.includes(id) && !estado.dom.includes(id));
-        if (disponibles.length < huecos) {
-             const dominadas = estado.dom.filter(id => !seleccion.includes(id));
-             disponibles = disponibles.concat(dominadas);
-        }
-        const extra = shuffle(disponibles).slice(0, huecos);
-        seleccion.push(...extra);
-    }
-    const mixIds = [...new Set(seleccion)];
-    saveDatabase(db); // ✅ Con validación
-    preguntasJuego = mixIds.map(id => asig.data.find(p => p.id === id)).filter(Boolean);
-    
-    // v67.24: PRIORIDAD 50/50 PARA PREGUNTAS IA
-    const preguntasIAStorage = JSON.parse(localStorage.getItem("mastertest_ia_preguntas")) || [];
-    const preguntasIATema = preguntasIAStorage.filter(p => p.tema === asig.nombre);
-    
-    if (preguntasIATema.length > 0) {
-      console.log(`🤖 Preguntas IA disponibles para ${asig.nombre}: ${preguntasIATema.length}`);
-      
-      // Separar preguntas normales e IA
-      const preguntasNormales = preguntasJuego;
-      
-      // Calcular mitad (50%)
-      const mitad = Math.floor(10 / 2); // 5 preguntas
-      
-      // Mezclar 50% IA + 50% normales
-      preguntasJuego = [
-        ...shuffle(preguntasIATema).slice(0, mitad),      // 5 IA
-        ...shuffle(preguntasNormales).slice(0, mitad)     // 5 normales
-      ];
-      
-      // v67.24: Mezclar todo junto para que no salgan agrupadas
-      preguntasJuego = shuffle(preguntasJuego);
-      
-      // Si no hay suficientes IA, rellenar con normales
-      if (preguntasJuego.length < 10) {
-        const faltantes = 10 - preguntasJuego.length;
-        const extras = shuffle(preguntasNormales).slice(0, faltantes);
-        preguntasJuego.push(...extras);
+    const seleccion = [];
+    const elegidas = new Set();
+    const agregar = p => {
+      if (p && !elegidas.has(p.id) && seleccion.length < 10) {
+        elegidas.add(p.id);
+        seleccion.push(p);
       }
-      
-      console.log(`✅ Test final: ${preguntasJuego.filter(p => p.origen === 'ia').length} IA + ${preguntasJuego.filter(p => p.origen !== 'ia').length} normales`);
+    };
+    const pendientes = RepasoEspaciado.dueQuestions(estado, todas)
+      .sort((a, b) => (estado.srs[a.id]?.dueDate || '').localeCompare(estado.srs[b.id]?.dueDate || ''));
+    pendientes.forEach(agregar);
+
+    if (modo === 'carrera') {
+      failsGlobal.map(id => porId.get(id)).forEach(agregar);
+      while (seleccion.length < 10 && estado.master_index < asig.data.length) {
+        const p = asig.data[estado.master_index++];
+        if (!estado.srs[p.id]) {
+          agregar(p);
+          if (!estado.active.includes(p.id)) estado.active.push(p.id);
+        }
+      }
+      const ia = todas.filter(p => p.origen === 'ia');
+      const iaFaltantes = Math.max(0, Math.min(5, ia.length) - seleccion.filter(p => p.origen === 'ia').length);
+      shuffle(ia.filter(p => !estado.srs[p.id]?.mastered && !elegidas.has(p.id))).slice(0, iaFaltantes).forEach(agregar);
+      shuffle(todas.filter(p => !estado.srs[p.id]?.mastered)).forEach(agregar);
+      shuffle(todas).forEach(agregar);
     }
+    saveDatabase(db);
+    preguntasJuego = seleccion;
   }
   else if (modo === "global") {
     CONFIGURACION_CURSO.forEach(b => b.asignaturas.forEach(a => { if (a.data) preguntasJuego.push(...a.data); }));
@@ -384,11 +355,16 @@ function jugar(modo, idx, bid, limit) {
     preguntasJuego = shuffle(preguntasJuego);
   }
 
-  if (preguntasJuego.length === 0) { alert("No hay preguntas disponibles."); return; }
+  if (preguntasJuego.length === 0) {
+    showToast('info', modo === 'repaso_espaciado' ? 'Repasos al día' : 'Sin preguntas',
+      modo === 'repaso_espaciado' ? 'Este tema no tiene preguntas pendientes hoy.' : 'No hay preguntas disponibles.');
+    return;
+  }
   
   preguntasJuego = preguntasJuego.map(p => ({ ...p, opciones: shuffle([...p.opciones]) }));
   
   respuestasUsuario = new Array(preguntasJuego.length).fill(null);
+  confianzaUsuario = new Array(preguntasJuego.length).fill(null);
 
   if (modo === "global" || modo === "personalizado") iniciarReloj(preguntasJuego.length); else detenerReloj();
   mostrarPantalla("pantalla-test"); renderPregunta();
@@ -409,12 +385,13 @@ function renderPregunta() {
 
   if (modoActual === "global" || modoActual === "personalizado") relojHtml = `<div id="reloj-flotante" style="background:var(--text);color:#fff;padding:5px 12px;border-radius:20px;font-weight:bold;">⏱️ --:--</div>`;
 
-  if (modoActual === "carrera" && asignaturaActualObj) {
+  if ((modoActual === "carrera" || modoActual === "repaso_espaciado") && asignaturaActualObj) {
     const bloquePadre = CONFIGURACION_CURSO.find(b => b.bloque === lastContext.bid);
-    titulo = bloquePadre ? bloquePadre.titulo_boton : "Tema"; subtitulo = asignaturaActualObj.nombre;
-    const db = JSON.parse(localStorage.getItem("mastertest_db"));
+    titulo = modoActual === 'repaso_espaciado' ? 'Repaso de hoy' : (bloquePadre ? bloquePadre.titulo_boton : 'Tema');
+    subtitulo = asignaturaActualObj.nombre;
+    const db = loadDatabase();
     const estado = db[asignaturaActualObj.nombre];
-    if (estado.dom.includes(p.id)) badge = `<span class="badge badge-repaso">🟣 REPASO</span>`;
+    if (modoActual === 'repaso_espaciado' || RepasoEspaciado.isDue(estado.srs?.[p.id])) badge = `<span class="badge badge-repaso">REPASO</span>`;
     else if (asignaturaActualObj.data.slice(0,10).some(x=>x.id===p.id)) badge = `<span class="badge badge-oficial">🔵 OFICIAL</span>`;
     else badge = `<span class="badge badge-nuevo">🟠 NUEVA</span>`;
     
@@ -423,7 +400,10 @@ function renderPregunta() {
       badge = `<span class="badge badge-generada">🟣 GENERADA</span>`;
     }
     
-    const totalPreg = asignaturaActualObj.data.length; const numDominadas = estado.dom.length; const porcentaje = totalPreg > 0 ? (numDominadas / totalPreg) * 100 : 0;
+    const totalPreg = asignaturaActualObj.data.length;
+    const idsBase = new Set(asignaturaActualObj.data.map(q => q.id));
+    const numDominadas = estado.dom.filter(id => idsBase.has(id)).length;
+    const porcentaje = totalPreg > 0 ? (numDominadas / totalPreg) * 100 : 0;
     
     const claseCompleta = Math.round(porcentaje) >= 100 ? "full" : "";
     barraProgresoHtml = `<div style="margin-bottom:20px;"><div style="display:flex;justify-content:space-between;font-size:0.8rem;color:var(--text-light);margin-bottom:4px;font-weight:600;"><span>Progreso del Tema</span><span>${Math.round(porcentaje)}%</span></div><div class="barra-fondo" style="height:6px;margin-top:0;"><div class="barra-relleno ${claseCompleta}" style="width:${porcentaje}%"></div></div></div>`;
@@ -442,6 +422,18 @@ function renderPregunta() {
   const favs = JSON.parse(localStorage.getItem("mastertest_favs")) || [];
   const esFavorito = favs.includes(p.id);
   const btnFav = `<button id="btn-fav-${indice}" style="background:none;border:none;font-size:1.5rem;cursor:pointer;padding:0;margin-left:10px;" title="Marcar como favorito">${esFavorito ? '⭐' : '☆'}</button>`;
+  const answerIndex = respuestasUsuario[indice];
+  const needsConfidence = (modoActual === 'carrera' || modoActual === 'repaso_espaciado') &&
+    answerIndex !== null && confianzaUsuario[indice] === null && esRespuestaCorrecta(p, p.opciones[answerIndex]);
+  const confidenceHtml = needsConfidence ? `
+    <div class="repaso-confianza" role="group" aria-label="Seguridad de la respuesta">
+      <p>¿Cómo llegaste a esta respuesta?</p>
+      <div class="repaso-confianza-opciones">
+        <button type="button" onclick="registrarConfianza('sabia')">Lo sabía</button>
+        <button type="button" onclick="registrarConfianza('duda')">Tenía dudas</button>
+        <button type="button" onclick="registrarConfianza('descarte')">Por descarte</button>
+      </div>
+    </div>` : '';
 
   let rachaHtml = "";
   if (rachaActual >= 2) {
@@ -467,6 +459,7 @@ function renderPregunta() {
     <div id="opciones-grid">
       ${p.opciones.map((op, i) => renderOpcionHtml(p, op, i)).join("")}
     </div>
+    ${confidenceHtml}
     <div class="botones-navegacion">
       <button class="btn-outline" onclick="anterior()" ${indice===0?'disabled':''}>⬅ Atrás</button>
       <button class="btn-outline" style="border-color:var(--danger);color:var(--danger);" onclick="salir()">🏁 Salir</button>
@@ -552,6 +545,7 @@ function clickOpcion(i) {
   }
 
   respuestasUsuario[indice] = i;
+  if (!esCorrecta && (modoActual === 'carrera' || modoActual === 'repaso_espaciado')) confianzaUsuario[indice] = 'fallo';
   renderPregunta();
   
   // AGREGAR ANIMACIONES v67.24
@@ -564,68 +558,73 @@ function clickOpcion(i) {
     }
   }, 50);
   
-  setTimeout(() => { if (indice < preguntasJuego.length - 1) { indice++; renderPregunta(); } else finalizar(); }, 800);
+  if (esCorrecta && (modoActual === 'carrera' || modoActual === 'repaso_espaciado')) return;
+  const answeredIndex = indice;
+  setTimeout(() => {
+    if (indice !== answeredIndex) return;
+    if (indice < preguntasJuego.length - 1) { indice++; renderPregunta(); } else finalizar();
+  }, 800);
+}
+
+function registrarConfianza(value) {
+  if (!['sabia', 'duda', 'descarte'].includes(value) || respuestasUsuario[indice] === null || confianzaUsuario[indice] !== null) return;
+  confianzaUsuario[indice] = value;
+  if (indice < preguntasJuego.length - 1) { indice++; renderPregunta(); }
+  else finalizar();
 }
 
 function finalizar() {
   detenerReloj(); 
   let aciertos = 0; let html = "";
-  let db = JSON.parse(localStorage.getItem("mastertest_db")) || {};
-  let fails = JSON.parse(localStorage.getItem("mastertest_fails")) || [];
+  const db = loadDatabase();
+  let fails = loadFailures();
+  const esEstudio = (modoActual === 'carrera' || modoActual === 'repaso_espaciado') && asignaturaActualObj;
+  const estado = esEstudio ? RepasoEspaciado.ensureState(db[asignaturaActualObj.nombre]) : null;
+  const hoy = RepasoEspaciado.dayKey();
+  const records = {};
+  let dominadasIA = {};
+  try { dominadasIA = JSON.parse(localStorage.getItem('mastertest_ia_dominadas')) || {}; } catch (_) { dominadasIA = {}; }
 
   preguntasJuego.forEach((p, i) => {
     const respIdx = respuestasUsuario[i];
     const respTexto = respIdx !== null ? p.opciones[respIdx] : "---";
     const esCorrecta = esRespuestaCorrecta(p, respTexto);
 
-    if (esCorrecta) { 
+    if (esCorrecta) {
         aciertos++; 
-        // Si aciertas, se borra del purgatorio (sea cual sea el modo)
         fails = fails.filter(id => String(id) !== String(p.id)); 
-    } else { 
-        // 🔥 LÓGICA ESTRICTA: SOLO "carrera" (Test Normales) AÑADE FALLOS 🔥
-        if (modoActual === "carrera") {
+    } else if (respIdx !== null && esEstudio) {
             if (!fails.some(id => String(id) === String(p.id))) fails.push(p.id); 
-        }
     }
 
-    if (modoActual === "carrera" && asignaturaActualObj) {
-      const estado = db[asignaturaActualObj.nombre];
-      if (esCorrecta) {
-        estado.stats[p.id] = (estado.stats[p.id] || 0) + 1;
-        const umbralNecesario = modoTurbo ? 1 : 3;
-        if (estado.stats[p.id] >= umbralNecesario && !estado.dom.includes(p.id)) estado.dom.push(p.id);
-        
-        // v67.24: Guardar dominadas IA por separado
-        if (p.origen === 'ia' && estado.stats[p.id] >= umbralNecesario) {
-          let dominadasIA = JSON.parse(localStorage.getItem("mastertest_ia_dominadas")) || {};
-          if (!dominadasIA[asignaturaActualObj.nombre]) dominadasIA[asignaturaActualObj.nombre] = [];
-          if (!dominadasIA[asignaturaActualObj.nombre].includes(p.id)) {
-            dominadasIA[asignaturaActualObj.nombre].push(p.id);
-            localStorage.setItem("mastertest_ia_dominadas", JSON.stringify(dominadasIA));
-          }
+    if (esEstudio && respIdx !== null) {
+      const confidence = esCorrecta ? (confianzaUsuario[i] || 'duda') : 'fallo';
+      const record = RepasoEspaciado.review(estado.srs[p.id], esCorrecta, confidence, hoy);
+      estado.srs[p.id] = record;
+      estado.stats[p.id] = record.streak;
+      records[p.id] = record;
+      if (p.origen !== 'ia') {
+        if (record.mastered) {
+          if (!estado.dom.includes(p.id)) estado.dom.push(p.id);
+        } else {
+          estado.dom = estado.dom.filter(id => id !== p.id);
+          if (!estado.active.includes(p.id)) estado.active.push(p.id);
         }
-      } else {
-        estado.stats[p.id] = 0;
-        if (estado.dom.includes(p.id)) { 
-            estado.dom = estado.dom.filter(id => id !== p.id); 
-            if (!estado.active.includes(p.id)) estado.active.push(p.id); 
-        }
-        
-        // v67.24: Quitar de dominadas IA si falla
-        if (p.origen === 'ia') {
-          let dominadasIA = JSON.parse(localStorage.getItem("mastertest_ia_dominadas")) || {};
-          if (dominadasIA[asignaturaActualObj.nombre]) {
-            dominadasIA[asignaturaActualObj.nombre] = dominadasIA[asignaturaActualObj.nombre].filter(id => id !== p.id);
-            localStorage.setItem("mastertest_ia_dominadas", JSON.stringify(dominadasIA));
-          }
-        }
+      }
+      if (p.origen === 'ia') {
+        const tema = asignaturaActualObj.nombre;
+        if (!dominadasIA[tema]) dominadasIA[tema] = [];
+        dominadasIA[tema] = dominadasIA[tema].filter(id => id !== p.id);
+        if (record.mastered) dominadasIA[tema].push(p.id);
       }
     }
   });
 
   localStorage.setItem("mastertest_fails", JSON.stringify(fails));
-  if (modoActual === "carrera") localStorage.setItem("mastertest_db", JSON.stringify(db));
+  if (esEstudio) {
+    saveDatabase(db);
+    localStorage.setItem('mastertest_ia_dominadas', JSON.stringify(dominadasIA));
+  }
 
   // Verificar logros después de finalizar
   verificarLogros();
@@ -669,6 +668,9 @@ function finalizar() {
         const feedback = esCorrecta 
            ? `<div style="color:var(--success);">✅ <b>${respTexto}</b></div>`
            : `<div style="color:var(--danger);">❌ <b>${respTexto}</b></div><div style="color:var(--success); margin-top:5px;">💡 Era: <b>${p.correctaTexto}</b></div>`;
+        const record = records[p.id];
+        const confianza = { sabia: 'Lo sabía', duda: 'Tenía dudas', descarte: 'Por descarte', fallo: 'Falló' };
+        const repasoHTML = record ? `<div class="repaso-resultado">${confianza[record.confidence]} · Próximo repaso: ${new Date(`${record.dueDate}T12:00:00`).toLocaleDateString('es-ES', { day: 'numeric', month: 'short' })}${record.mastered ? ' · Dominada' : ''}</div>` : '';
 
         // Panel de explicación mejorada
         let explicacionHTML = "";
@@ -712,6 +714,7 @@ function finalizar() {
           <div style="margin-bottom:15px;padding:15px;border-left:5px solid ${color};background:var(--bg); border-radius:10px;">
             <div style="font-weight:bold; margin-bottom:10px;">${i+1}. ${p.texto}</div>
             ${feedback}
+            ${repasoHTML}
             ${explicacionHTML}
             ${conceptosHTML}
             ${trucoHTML}
@@ -732,25 +735,33 @@ function finalizar() {
 function salir() { const haContestado = respuestasUsuario.some(r => r !== null); if (!haContestado) volverAlMenu(); else if (confirm("¿Terminar?")) finalizar(); }
 
 function verEstadisticas() { 
-  let totalP=0; let totalD=0; 
+  let totalP=0; let totalD=0; let totalR=0;
   const db = JSON.parse(localStorage.getItem("mastertest_db"))||{}; 
   const fails = JSON.parse(localStorage.getItem("mastertest_fails"))||[];
   const favs = JSON.parse(localStorage.getItem("mastertest_favs"))||[];
   const recNormal = localStorage.getItem("mastertest_record_normal") || 0;
   const recArcade = localStorage.getItem("mastertest_record_arcade") || 0;
 
-  CONFIGURACION_CURSO.forEach(b=>b.asignaturas.forEach(a=>{ totalP+=a.data.length; if(db[a.nombre]) totalD+=db[a.nombre].dom.length; }));
+  CONFIGURACION_CURSO.forEach(b=>b.asignaturas.forEach(a=>{
+    totalP += a.data.length;
+    if (db[a.nombre]) {
+      const idsBase = new Set(a.data.map(p => p.id));
+      totalD += db[a.nombre].dom.filter(id => idsBase.has(id)).length;
+      totalR += contarRepasosTema(a, db[a.nombre]);
+    }
+  }));
   
   document.getElementById("pantalla-estadisticas").innerHTML = `
     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
       <h1 style="margin:0;">📊 Stats</h1>
       <div style="background:#10b981; color:white; padding:8px 16px; border-radius:20px; font-weight:900; font-size:0.9rem; box-shadow:0 2px 8px rgba(16,185,129,0.3);">
-        v67.24
+        v1.7
       </div>
     </div>
     <div class="stats-grid">
       <div class="stat-card"><div class="stat-num">${totalP}</div>Total</div>
       <div class="stat-card"><div class="stat-num">${totalD}</div>Dominadas</div>
+      <div class="stat-card"><div class="stat-num" style="color:#0f766e">${totalR}</div>Para repasar hoy</div>
       <div class="stat-card"><div class="stat-num" style="color:var(--danger)">${fails.length}</div>Purgatorio</div>
       <div class="stat-card"><div class="stat-num" style="color:#fbbf24">${favs.length}</div>⭐ Favoritos</div>
     </div>
@@ -783,8 +794,7 @@ function descargarProgreso() {
     favs: JSON.parse(localStorage.getItem("mastertest_favs")),
     logros: JSON.parse(localStorage.getItem("mastertest_logros")),
     recN: localStorage.getItem("mastertest_record_normal"), 
-    recA: localStorage.getItem("mastertest_record_arcade"),
-    turbo: localStorage.getItem("mastertest_turbo")
+    recA: localStorage.getItem("mastertest_record_arcade")
   };
   const blob = new Blob([JSON.stringify(data)], { type: "application/json" });
   const a = document.createElement("a"); 
@@ -815,7 +825,6 @@ function cargarProgreso(input) {
         localStorage.setItem("mastertest_logros", JSON.stringify(data.logros || {}));
         if(data.recN) localStorage.setItem("mastertest_record_normal", data.recN);
         if(data.recA) localStorage.setItem("mastertest_record_arcade", data.recA);
-        if(data.turbo) localStorage.setItem("mastertest_turbo", data.turbo);
         alert("✅ Progreso restaurado."); location.reload(); 
     } catch(err) { alert("❌ Error de archivo."); }
   };
@@ -897,7 +906,15 @@ function volverAlMenu() {
 function mostrarPantalla(id) { document.querySelectorAll(".card").forEach(c => c.classList.remove("active")); document.getElementById(id).classList.add("active"); window.scrollTo(0,0); }
 function borrarDatosGlobales() { if (confirm("¿Borrar todo?")) { localStorage.clear(); location.reload(); } }
 function anterior() { if (indice > 0) { indice--; renderPregunta(); } }
-function siguiente() { if (indice < preguntasJuego.length - 1) { indice++; renderPregunta(); } else finalizar(); }
+function siguiente() {
+  const respuesta = respuestasUsuario[indice];
+  if ((modoActual === 'carrera' || modoActual === 'repaso_espaciado') && respuesta !== null &&
+      confianzaUsuario[indice] === null && esRespuestaCorrecta(preguntasJuego[indice], preguntasJuego[indice].opciones[respuesta])) {
+    showToast('info', 'Valora tu respuesta', 'Elige si lo sabías, tenías dudas o acertaste por descarte.');
+    return;
+  }
+  if (indice < preguntasJuego.length - 1) { indice++; renderPregunta(); } else finalizar();
+}
 function repetirTest() { if(lastContext) jugar(lastContext.modo, lastContext.idx, lastContext.bid, lastContext.limit); }
 
 /* =========================================================

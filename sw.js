@@ -1,6 +1,6 @@
-// v1.6 - taller practico especifico de Grado Superior
-const APP_VERSION = 'v1.6';
-const BUILD_TIMESTAMP = '20261008-gs-taller-4';
+// v1.7 - repaso espaciado por tema
+const APP_VERSION = 'v1.7';
+const BUILD_TIMESTAMP = '20261008-gs-repaso-1';
 const CACHE_NAME = `universae-gs-${APP_VERSION}-${BUILD_TIMESTAMP}`;
 const OFFLINE_CACHE = 'universae-gs-offline-v1.2';
 const PDF_CACHE = 'universae-gs-pdfs-v1';
@@ -10,6 +10,8 @@ const CRITICAL_ASSETS = [
   './',
   './index.html',
   './motor.js',
+  './repaso-espaciado.js',
+  './repaso-espaciado.css',
   './pdf-local-store.js',
   './tutor.js',
   './tutor.css',
@@ -60,7 +62,7 @@ self.addEventListener('install', (e) => {
 
 // ACTIVACIÓN v90.2: Limpieza y notificación
 self.addEventListener('activate', (e) => {
-  console.log('✨ ACTIVANDO Universae GS v1.6...');
+  console.log('✨ ACTIVANDO Universae GS v1.7...');
 
   e.waitUntil(
     caches.keys()

@@ -6,6 +6,7 @@
 <title>Universae GS</title>
 <link rel="stylesheet" href="tutor.css?v=20261008-gs-tutor-1">
 <link rel="stylesheet" href="taller-gs.css?v=1.6">
+<link rel="stylesheet" href="repaso-espaciado.css?v=1.7">
 
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#2563eb">
@@ -907,7 +908,7 @@ svg, svg * {
     <div style="display:flex; align-items:center; gap:16px;">
       <img src="img/universae-shield-logo.png?v=20260909090000" alt="Universae Logo" style="height:64px; width:64px; flex-shrink:0; object-fit:contain;">
       <div>
-        <h1 style="margin:0;">Universae GS <span style="font-size:0.6em; background:#0f766e; color:white; padding:6px 16px; border-radius:25px; font-weight:900; margin-left:8px;">Bloque 1</span> <span style="font-size:0.5em; background:#1e293b; color:white; padding:5px 12px; border-radius:20px; font-weight:800; margin-left:6px;">v1.6</span></h1>
+        <h1 style="margin:0;">Universae GS <span style="font-size:0.6em; background:#0f766e; color:white; padding:6px 16px; border-radius:25px; font-weight:900; margin-left:8px;">Bloque 1</span> <span style="font-size:0.5em; background:#1e293b; color:white; padding:5px 12px; border-radius:20px; font-weight:800; margin-left:6px;">v1.7</span></h1>
         <p class="subtitle" style="margin:4px 0 0 0;">Grado Superior · Anual · Examen en mayo</p>
       </div>
     </div>
@@ -919,7 +920,6 @@ svg, svg * {
 <div class="header-buttons">
       <button class="btn-tool btn-theme" onclick="toggleTheme()">🌓</button>
       
-      <button id="btn-turbo" class="btn-tool btn-theme" onclick="toggleTurbo()">🐢</button>
       <button class="btn-tool" onclick="abrirGestion()">🛠️ Admin</button>
       <button class="btn-tool" id="btn-importar-pdfs" onclick="abrirImportadorPdfs()">📄 PDFs</button>
       <button class="btn-tool" onclick="verEstadisticas()">📊 Stats</button>
@@ -1005,7 +1005,8 @@ svg, svg * {
 <!-- MÓDULOS EDUCATIVOS -->
 <script src="taller-gs.js?v=1.6"></script>
 <!-- MOTOR PRINCIPAL -->
-<script src="motor.js?v=20261008-gs-tutor-1"></script>
+<script src="repaso-espaciado.js?v=1.7"></script>
+<script src="motor.js?v=1.7"></script>
 <script src="tutor.js?v=20261008-gs-tutor-1"></script>
 
 
@@ -1140,6 +1141,7 @@ function filtrarBloque(bid) {
     const db = JSON.parse(localStorage.getItem("mastertest_db")) || {};
     const datosAsig = db[asig.nombre] || { dom: [] };
     const totalPreg = asig.data.length;
+    const pendientesRepaso = contarRepasosTema(asig, datosAsig);
     
     let totalImg = 0; let totalSvg = 0;
     asig.data.forEach(p => { if(p.imagen) totalImg++; if(p.svg) totalSvg++; });
@@ -1147,7 +1149,8 @@ function filtrarBloque(bid) {
     if(totalSvg > 0) htmlBadges += `<span style="color:#8b5cf6; font-weight:600; font-size:0.85rem; background:#f3e8ff; padding:2px 8px; border-radius:6px; margin-right:5px; border:1px solid #d8b4fe;">✏️ ${totalSvg}</span>`;
     if(totalImg > 0) htmlBadges += `<span style="color:var(--primary); font-weight:600; font-size:0.85rem; background:var(--primary-light); padding:2px 8px; border-radius:6px; border:1px solid var(--primary);">📸 ${totalImg}</span>`;
 
-    const numDominadas = datosAsig.dom ? datosAsig.dom.length : 0;
+    const idsBase = new Set(asig.data.map(p => p.id));
+    const numDominadas = datosAsig.dom ? datosAsig.dom.filter(id => idsBase.has(id)).length : 0;
     const porcentaje = totalPreg > 0 ? (numDominadas / totalPreg) * 100 : 0;
     let iconStatus = "📚";
     if(porcentaje > 99) iconStatus = "🏆";
@@ -1184,6 +1187,7 @@ function filtrarBloque(bid) {
       <div class="asig-info">
         <div class="asig-title">${asig.nombre}</div>
         <div class="asig-meta"><span style="display:flex; align-items:center; gap:5px; margin-right:10px;">${iconStatus} ${textoDominadas}</span><div style="display:flex; align-items:center;">${htmlBadges}</div></div>
+        ${pendientesRepaso ? `<span class="repaso-pendiente">${pendientesRepaso} para repasar hoy</span>` : ''}
         <div class="barra-fondo"><div class="barra-relleno ${porcentaje >= 100 ? 'full' : ''}" style="width:${porcentaje}%"></div></div>
         <div style="font-size:0.75rem; text-align:right; margin-top:5px; color:var(--text-light); font-weight:600;">${Math.round(porcentaje)}% Completado</div>
         ${mostrarBotonIA ? `
@@ -1195,6 +1199,7 @@ function filtrarBloque(bid) {
       </div>
       <div style="display:flex; flex-direction:column; gap:10px;">
         <button class="btn-orange" onclick="jugar('carrera', ${idx}, '${bid}')">▶ Entrenar</button>
+        ${pendientesRepaso ? `<button class="btn-outline" onclick="jugar('repaso_espaciado', ${idx}, '${bid}')">Repasar hoy (${pendientesRepaso})</button>` : ''}
         ${typeof getPdfButtonHtml === 'function' ? getPdfButtonHtml(bid, idx) : ''}
         ${PDF_T3_URLS[bid]?.[idx] ? `<button class="btn-outline" onclick="abrirTutorTema('${bid}', ${idx})">Tutor de apuntes</button>` : ''}
         ${mostrarBotonIA ? `
@@ -1493,10 +1498,19 @@ function filtrarBloque(bid) {
   const numFails = fails.length;
   const textoPurgatorio = numFails > 0 ? `${numFails} fallos` : "Limpio ✨";
   const btnPurgatorioDisabled = numFails === 0 ? 'disabled style="opacity:0.5"' : '';
+  const dbRepaso = JSON.parse(localStorage.getItem('mastertest_db')) || {};
+  const pendientesBloque = bloque.asignaturas.reduce((total, asig) => total + contarRepasosTema(asig, dbRepaso[asig.nombre]), 0);
 
  
 
  stripContainer.innerHTML = `
+    <div class="strip-card strip-cyan">
+        <div>
+            <div class="strip-header" style="color:#0f766e">Repaso de hoy</div>
+            <div class="strip-meta">${pendientesBloque ? `${pendientesBloque} pendientes` : 'Al día'}</div>
+        </div>
+        <button class="btn-pill-right bg-cyan" onclick="abrirRepasoPendiente('${bid}')" ${pendientesBloque ? '' : 'disabled'}>Repasar</button>
+    </div>
     <div class="strip-card strip-red">
         <div>
             <div class="strip-header" style="color:var(--danger)">🔥 Purgatorio</div>
