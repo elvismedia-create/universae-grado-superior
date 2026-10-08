@@ -1,0 +1,36 @@
+#pantalla-plan-diario { max-width: 980px; }
+.plan-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; border-bottom: 1px solid var(--border); padding-bottom: 15px; }
+.plan-head h1 { margin: 0; font-size: 1.5rem; }
+.plan-head p { margin: 5px 0 0; color: var(--text-light); }
+.plan-head button, #plan-settings button, .plan-task button { min-height: 40px; padding: 8px 14px; border: 1px solid #0f766e; border-radius: 5px; background: #0f766e; color: white; font: inherit; font-weight: 700; cursor: pointer; }
+.plan-head button { flex: 0 0 auto; width: auto; background: var(--card); color: var(--text); border-color: var(--border); }
+#plan-settings { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; align-items: end; padding: 18px 0; }
+#plan-settings > label { display: grid; gap: 6px; font-weight: 700; font-size: .88rem; }
+#plan-settings input[type=date], #plan-settings input[type=number] { width: 100%; min-height: 42px; padding: 7px 10px; border: 1px solid var(--border); border-radius: 5px; background: var(--card); color: var(--text); font: inherit; }
+#plan-settings fieldset { grid-column: 1 / -1; border: 0; padding: 0; margin: 0; }
+#plan-settings legend { font-weight: 700; font-size: .88rem; margin-bottom: 8px; }
+.plan-week { display: flex; flex-wrap: wrap; gap: 6px; }
+.plan-week label { position: relative; cursor: pointer; }
+.plan-week input { position: absolute; opacity: 0; }
+.plan-week span { display: grid; place-items: center; min-width: 48px; min-height: 40px; padding: 6px; border: 1px solid var(--border); border-radius: 5px; background: var(--card); color: var(--text); font-size: .82rem; font-weight: 700; }
+.plan-week input:checked + span { background: #0f766e; border-color: #0f766e; color: white; }
+.plan-week input:focus-visible + span { outline: 2px solid var(--primary); outline-offset: 2px; }
+.plan-form-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.plan-form-actions #plan-remove { background: var(--card); color: var(--text); border-color: var(--border); }
+#plan-message { border-top: 1px solid var(--border); padding: 14px 0; color: var(--text-light); font-size: .9rem; }
+.plan-attention { padding: 8px 0 18px; }
+.plan-attention > strong { font-size: .88rem; }
+.plan-attention ul { list-style: none; padding: 0; margin: 8px 0 0; display: grid; gap: 5px; }
+.plan-attention li { display: flex; justify-content: space-between; gap: 12px; font-size: .84rem; }
+.plan-attention li span { color: var(--text-light); text-align: right; }
+.plan-list { list-style: none; margin: 0; padding: 0; }
+.plan-task { display: flex; align-items: center; gap: 12px; padding: 14px 0; border-top: 1px solid var(--border); }
+.plan-check { flex: 0 0 30px; width: 30px; height: 30px; display: grid; place-items: center; border: 1px solid #0f766e; border-radius: 50%; color: #0f766e; font-weight: 800; }
+.plan-task-body { flex: 1; min-width: 0; display: grid; gap: 3px; }
+.plan-task-body strong { font-size: .95rem; }
+.plan-task-body span { color: var(--text); overflow-wrap: anywhere; }
+.plan-task-body small { color: var(--text-light); }
+.plan-task.done .plan-check { background: #0f766e; color: white; }
+.plan-task.done .plan-task-body { opacity: .65; }
+.plan-task button:disabled { opacity: .55; cursor: default; }
+@media (max-width: 600px) { #plan-settings { grid-template-columns: 1fr; } .plan-attention li { display: grid; gap: 2px; } .plan-attention li span { text-align: left; } .plan-task { align-items: flex-start; flex-wrap: wrap; } .plan-task button { margin-left: 42px; } }

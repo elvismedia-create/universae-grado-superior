@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="tutor.css?v=20261008-gs-tutor-1">
 <link rel="stylesheet" href="taller-gs.css?v=1.6">
 <link rel="stylesheet" href="repaso-espaciado.css?v=1.7">
+<link rel="stylesheet" href="plan-diario.css?v=1.8">
 
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#2563eb">
@@ -908,7 +909,7 @@ svg, svg * {
     <div style="display:flex; align-items:center; gap:16px;">
       <img src="img/universae-shield-logo.png?v=20260909090000" alt="Universae Logo" style="height:64px; width:64px; flex-shrink:0; object-fit:contain;">
       <div>
-        <h1 style="margin:0;">Universae GS <span style="font-size:0.6em; background:#0f766e; color:white; padding:6px 16px; border-radius:25px; font-weight:900; margin-left:8px;">Bloque 1</span> <span style="font-size:0.5em; background:#1e293b; color:white; padding:5px 12px; border-radius:20px; font-weight:800; margin-left:6px;">v1.7</span></h1>
+        <h1 style="margin:0;">Universae GS <span style="font-size:0.6em; background:#0f766e; color:white; padding:6px 16px; border-radius:25px; font-weight:900; margin-left:8px;">Bloque 1</span> <span style="font-size:0.5em; background:#1e293b; color:white; padding:5px 12px; border-radius:20px; font-weight:800; margin-left:6px;">v1.8</span></h1>
         <p class="subtitle" style="margin:4px 0 0 0;">Grado Superior · Anual · Examen en mayo</p>
       </div>
     </div>
@@ -919,6 +920,7 @@ svg, svg * {
 
 <div class="header-buttons">
       <button class="btn-tool btn-theme" onclick="toggleTheme()">🌓</button>
+      <button class="btn-tool" onclick="abrirPlanDiario()">📅 Plan</button>
       
       <button class="btn-tool" onclick="abrirGestion()">🛠️ Admin</button>
       <button class="btn-tool" id="btn-importar-pdfs" onclick="abrirImportadorPdfs()">📄 PDFs</button>
@@ -973,6 +975,8 @@ svg, svg * {
 
 <div id="pantalla-taller-gs" class="card"></div>
 
+<div id="pantalla-plan-diario" class="card"></div>
+
 <div id="pantalla-test" class="card"></div>
 
 <div id="pantalla-resultados" class="card"></div>
@@ -1006,7 +1010,8 @@ svg, svg * {
 <script src="taller-gs.js?v=1.6"></script>
 <!-- MOTOR PRINCIPAL -->
 <script src="repaso-espaciado.js?v=1.7"></script>
-<script src="motor.js?v=1.7"></script>
+<script src="motor.js?v=1.8"></script>
+<script src="plan-diario.js?v=1.8"></script>
 <script src="tutor.js?v=20261008-gs-tutor-1"></script>
 
 

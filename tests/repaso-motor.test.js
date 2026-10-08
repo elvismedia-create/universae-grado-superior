@@ -15,7 +15,7 @@ const question = {
 const topic = { nombre: 'U1: Conceptos básicos', data: [question] };
 const config = [{ bloque: 'sistemas_gs', titulo_boton: 'Sistemas y circuitos', asignaturas: [topic] }];
 
-function harness(initial = {}) {
+function harness(initial = {}, course = config) {
   const storage = new Map(Object.entries(initial));
   const elements = new Map();
   const element = id => {
@@ -24,7 +24,7 @@ function harness(initial = {}) {
   };
   const context = vm.createContext({
     RepasoEspaciado: srs,
-    CONFIGURACION_CURSO: config,
+    CONFIGURACION_CURSO: course,
     localStorage: {
       getItem: key => storage.get(key) ?? null,
       setItem: (key, value) => storage.set(key, String(value)),
@@ -123,4 +123,23 @@ test('las preguntas de IA mantienen su dominio separado del progreso base', () =
   assert.deepEqual(updated.dom, []);
   assert.equal(updated.srs[ai.id].streak, 4);
   assert.deepEqual(JSON.parse(storage.get('mastertest_ia_dominadas'))[topic.nombre], [ai.id]);
+});
+
+test('la sesion de fallos del plan solo usa errores del tema', () => {
+  const { context } = harness({ mastertest_fails: JSON.stringify([question.id, 123456]) });
+  context.jugar('plan_fallos', 0, 'sistemas_gs');
+  assert.equal(vm.runInContext('preguntasJuego.length', context), 1);
+  assert.equal(vm.runInContext('preguntasJuego[0].id', context), question.id);
+});
+
+test('la sesion nueva del plan excluye preguntas ya trabajadas', () => {
+  const next = { ...question, id: 410102, texto: 'Pregunta nueva' };
+  const course = [{ ...config[0], asignaturas: [{ ...topic, data: [question, next] }] }];
+  const old = { [topic.nombre]: { active: [question.id], dom: [], master_index: 1, stats: {}, srs: {
+    [question.id]: { streak: 1, mastered: false, dueDate: srs.dayKey() }
+  } } };
+  const { context } = harness({ mastertest_db: JSON.stringify(old) }, course);
+  context.jugar('plan_nuevo', 0, 'sistemas_gs');
+  assert.equal(vm.runInContext('preguntasJuego.length', context), 1);
+  assert.equal(vm.runInContext('preguntasJuego[0].id', context), next.id);
 });

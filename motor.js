@@ -9,6 +9,7 @@ let modoActual = "";
 let asignaturaActualObj = null;
 let lastContext = null;
 let confianzaUsuario = [];
+const esModoEstudio = () => ['carrera', 'repaso_espaciado', 'plan_fallos', 'plan_nuevo'].includes(modoActual);
 
 // VARIABLES DE GAMIFICACIÓN
 let rachaActual = 0;
@@ -282,7 +283,7 @@ function jugar(modo, idx, bid, limit) {
     else { alert("⚠️ Faltan datos de REBT."); return; }
     detenerReloj();
   }
-  else if (modo === "carrera" || modo === "repaso_espaciado") {
+  else if (['carrera', 'repaso_espaciado', 'plan_fallos', 'plan_nuevo'].includes(modo)) {
     const bloque = CONFIGURACION_CURSO.find(b => b.bloque === bid);
     if (!bloque) return;
     const asig = bloque.asignaturas[idx];
@@ -311,7 +312,10 @@ function jugar(modo, idx, bid, limit) {
     };
     const pendientes = RepasoEspaciado.dueQuestions(estado, todas)
       .sort((a, b) => (estado.srs[a.id]?.dueDate || '').localeCompare(estado.srs[b.id]?.dueDate || ''));
-    pendientes.forEach(agregar);
+    if (modo === 'carrera' || modo === 'repaso_espaciado') pendientes.forEach(agregar);
+
+    if (modo === 'plan_fallos') failsGlobal.map(id => porId.get(id)).forEach(agregar);
+    if (modo === 'plan_nuevo') asig.data.filter(p => !estado.srs[p.id] && !estado.dom.includes(p.id)).forEach(agregar);
 
     if (modo === 'carrera') {
       failsGlobal.map(id => porId.get(id)).forEach(agregar);
@@ -385,7 +389,7 @@ function renderPregunta() {
 
   if (modoActual === "global" || modoActual === "personalizado") relojHtml = `<div id="reloj-flotante" style="background:var(--text);color:#fff;padding:5px 12px;border-radius:20px;font-weight:bold;">⏱️ --:--</div>`;
 
-  if ((modoActual === "carrera" || modoActual === "repaso_espaciado") && asignaturaActualObj) {
+  if (esModoEstudio() && asignaturaActualObj) {
     const bloquePadre = CONFIGURACION_CURSO.find(b => b.bloque === lastContext.bid);
     titulo = modoActual === 'repaso_espaciado' ? 'Repaso de hoy' : (bloquePadre ? bloquePadre.titulo_boton : 'Tema');
     subtitulo = asignaturaActualObj.nombre;
@@ -423,7 +427,7 @@ function renderPregunta() {
   const esFavorito = favs.includes(p.id);
   const btnFav = `<button id="btn-fav-${indice}" style="background:none;border:none;font-size:1.5rem;cursor:pointer;padding:0;margin-left:10px;" title="Marcar como favorito">${esFavorito ? '⭐' : '☆'}</button>`;
   const answerIndex = respuestasUsuario[indice];
-  const needsConfidence = (modoActual === 'carrera' || modoActual === 'repaso_espaciado') &&
+  const needsConfidence = esModoEstudio() &&
     answerIndex !== null && confianzaUsuario[indice] === null && esRespuestaCorrecta(p, p.opciones[answerIndex]);
   const confidenceHtml = needsConfidence ? `
     <div class="repaso-confianza" role="group" aria-label="Seguridad de la respuesta">
@@ -545,7 +549,7 @@ function clickOpcion(i) {
   }
 
   respuestasUsuario[indice] = i;
-  if (!esCorrecta && (modoActual === 'carrera' || modoActual === 'repaso_espaciado')) confianzaUsuario[indice] = 'fallo';
+  if (!esCorrecta && esModoEstudio()) confianzaUsuario[indice] = 'fallo';
   renderPregunta();
   
   // AGREGAR ANIMACIONES v67.24
@@ -558,7 +562,7 @@ function clickOpcion(i) {
     }
   }, 50);
   
-  if (esCorrecta && (modoActual === 'carrera' || modoActual === 'repaso_espaciado')) return;
+  if (esCorrecta && esModoEstudio()) return;
   const answeredIndex = indice;
   setTimeout(() => {
     if (indice !== answeredIndex) return;
@@ -578,7 +582,7 @@ function finalizar() {
   let aciertos = 0; let html = "";
   const db = loadDatabase();
   let fails = loadFailures();
-  const esEstudio = (modoActual === 'carrera' || modoActual === 'repaso_espaciado') && asignaturaActualObj;
+  const esEstudio = esModoEstudio() && asignaturaActualObj;
   const estado = esEstudio ? RepasoEspaciado.ensureState(db[asignaturaActualObj.nombre]) : null;
   const hoy = RepasoEspaciado.dayKey();
   const records = {};
@@ -625,6 +629,8 @@ function finalizar() {
     saveDatabase(db);
     localStorage.setItem('mastertest_ia_dominadas', JSON.stringify(dominadasIA));
   }
+  const sesionPlanCompletada = window.PlanDiario?.completeTest(modoActual, lastContext?.bid, lastContext?.idx,
+    respuestasUsuario.filter(answer => answer !== null).length, preguntasJuego.length);
 
   // Verificar logros después de finalizar
   verificarLogros();
@@ -728,6 +734,7 @@ function finalizar() {
     ${botonSalidaRapida}
     ${html}
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;"><button class="btn-outline" onclick="volverAlMenu()">🏠 Menú</button><button class="btn-orange" onclick="repetirTest()">🔁 Repetir</button></div>
+    ${sesionPlanCompletada ? '<button class="btn-outline" style="width:100%;margin-top:10px" onclick="abrirPlanDiario()">Volver al plan diario</button>' : ''}
   `;
   mostrarPantalla("pantalla-resultados");
 }
@@ -755,7 +762,7 @@ function verEstadisticas() {
     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
       <h1 style="margin:0;">📊 Stats</h1>
       <div style="background:#10b981; color:white; padding:8px 16px; border-radius:20px; font-weight:900; font-size:0.9rem; box-shadow:0 2px 8px rgba(16,185,129,0.3);">
-        v1.7
+        v1.8
       </div>
     </div>
     <div class="stats-grid">
@@ -794,7 +801,8 @@ function descargarProgreso() {
     favs: JSON.parse(localStorage.getItem("mastertest_favs")),
     logros: JSON.parse(localStorage.getItem("mastertest_logros")),
     recN: localStorage.getItem("mastertest_record_normal"), 
-    recA: localStorage.getItem("mastertest_record_arcade")
+    recA: localStorage.getItem("mastertest_record_arcade"),
+    plan: JSON.parse(localStorage.getItem('universae_gs_plan_v1'))
   };
   const blob = new Blob([JSON.stringify(data)], { type: "application/json" });
   const a = document.createElement("a"); 
@@ -825,6 +833,7 @@ function cargarProgreso(input) {
         localStorage.setItem("mastertest_logros", JSON.stringify(data.logros || {}));
         if(data.recN) localStorage.setItem("mastertest_record_normal", data.recN);
         if(data.recA) localStorage.setItem("mastertest_record_arcade", data.recA);
+        if(data.plan) localStorage.setItem('universae_gs_plan_v1', JSON.stringify(data.plan));
         alert("✅ Progreso restaurado."); location.reload(); 
     } catch(err) { alert("❌ Error de archivo."); }
   };
@@ -908,7 +917,7 @@ function borrarDatosGlobales() { if (confirm("¿Borrar todo?")) { localStorage.c
 function anterior() { if (indice > 0) { indice--; renderPregunta(); } }
 function siguiente() {
   const respuesta = respuestasUsuario[indice];
-  if ((modoActual === 'carrera' || modoActual === 'repaso_espaciado') && respuesta !== null &&
+  if (esModoEstudio() && respuesta !== null &&
       confianzaUsuario[indice] === null && esRespuestaCorrecta(preguntasJuego[indice], preguntasJuego[indice].opciones[respuesta])) {
     showToast('info', 'Valora tu respuesta', 'Elige si lo sabías, tenías dudas o acertaste por descarte.');
     return;

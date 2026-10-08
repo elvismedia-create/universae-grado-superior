@@ -183,6 +183,7 @@
   }
 
   if (typeof module !== 'undefined' && module.exports) module.exports = { casos, evaluar };
+  root.TALLER_GS_CASOS = casos;
   if (!root.document) return;
 
   const storageKey = 'universae_gs_taller_v1';
@@ -195,6 +196,7 @@
   const save = (id, value) => {
     progress[id] = value;
     root.localStorage.setItem(storageKey, JSON.stringify(progress));
+    if (value >= 3) root.PlanDiario?.completeWorkshop(id);
   };
 
   function select(name, values, selected = '') {
@@ -277,9 +279,9 @@
     }
   }
 
-  root.abrirTallerGS = bid => {
+  root.abrirTallerGS = (bid, caseId) => {
     state.bid = casos.some(item => item.bid === bid) ? bid : 'sistemas_gs';
-    state.caseId = casos.find(item => item.bid === state.bid).id;
+    state.caseId = casos.some(item => item.bid === state.bid && item.id === caseId) ? caseId : casos.find(item => item.bid === state.bid).id;
     state.attempts = 0;
     render();
     mostrarPantalla('pantalla-taller-gs');
