@@ -702,10 +702,9 @@ function finalizar() {
             </div>`;
         }
 
-        // Botón de estudio profundo
         const btnEstudioProfundo = `
-          <button class="btn-outline" onclick="generarExplicacionProfunda('${p.texto.replace(/'/g, "\\'")}', '${p.tema}', '${p.correctaTexto.replace(/'/g, "\\'")}', '${(p.explicacion || '').replace(/'/g, "\\'")}');" style="width:100%; margin-top:10px; background:linear-gradient(135deg, #f59e0b 0%, #f97316 100%); color:white; border:none; font-weight:600; padding:12px;">
-            📚 Estudiar a fondo
+          <button class="btn-outline" onclick="abrirTutorError(${i})" style="width:100%; margin-top:10px;">
+            ${esCorrecta ? 'Consultar al tutor' : 'Explícame mi error'}
           </button>
         `;
 
@@ -1995,108 +1994,10 @@ async function generarPreguntasIA(tema, cantidad = 10) {
 
 // Generar explicación profunda
 async function generarExplicacionProfunda(pregunta, tema, respuestaCorrecta, explicacionCorta) {
-  // Generar ID único para caché
-  const cacheId = `${tema}_${pregunta.substring(0, 50)}`.replace(/[^a-zA-Z0-9]/g, '_');
-
-  // Verificar si ya está en caché
-  if (explicacionesCache[cacheId]) {
-    mostrarExplicacionProfunda(explicacionesCache[cacheId], pregunta, tema);
-    return;
-  }
-
-  try {
-    // Mostrar loading
-    const loadingHtml = `
-      <div style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:10000; display:flex; align-items:center; justify-content:center; overflow-y:auto; padding:20px;" id="loading-explicacion">
-        <div style="background:white; padding:40px; border-radius:20px; text-align:center; max-width:600px; width:100%;">
-          <div style="font-size:3rem; margin-bottom:20px;">📚</div>
-          <h2 style="margin-bottom:15px;">Generando estudio profundo...</h2>
-          <p style="color:#64748b; margin-bottom:20px;">"${pregunta.substring(0, 80)}${pregunta.length > 80 ? '...' : ''}"</p>
-          <div style="width:100%; height:6px; background:#e2e8f0; border-radius:10px; overflow:hidden;">
-            <div style="width:0%; height:100%; background:linear-gradient(90deg, #f59e0b 0%, #f97316 100%); border-radius:10px; animation:progress 4s ease-in-out infinite;"></div>
-          </div>
-          <p style="font-size:0.9rem; color:#94a3b8; margin-top:15px;">Preparando explicación completa...</p>
-        </div>
-      </div>
-    `;
-    document.body.insertAdjacentHTML('beforeend', loadingHtml);
-
-    // Llamar a la función
-    const response = await fetch('/api/explicacion-profunda', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        pregunta,
-        tema,
-        respuestaCorrecta,
-        explicacionCorta
-      })
-    });
-
-    const data = await response.json();
-
-    // Quitar loading
-    document.getElementById('loading-explicacion')?.remove();
-
-    if (!data.success) {
-      const errorText = data.error || 'Error desconocido';
-      console.error('❌ Error API explicación:', errorText, 'Status:', response.status);
-      
-      let titulo = 'Error al generar explicación';
-      let detalle = errorText;
-      
-      // Diagnóstico específico v67.24
-      if (data.code === 'ANTHROPIC_API_KEY_MISSING') {
-        titulo = 'Clave de IA pendiente';
-        detalle = 'Configura ANTHROPIC_API_KEY en Vercel: proyecto universae-grado-superior → Settings → Environment Variables (Production).';
-      } else if (response.status === 401 || errorText.includes('Unauthorized')) {
-        titulo = 'Clave de IA no válida';
-        detalle = 'Revisa ANTHROPIC_API_KEY en Vercel: proyecto universae-grado-superior → Settings → Environment Variables.';
-      } else if (response.status === 429 || errorText.includes('quota') || errorText.includes('rate limit')) {
-        titulo = '💳 Sin créditos API';
-        detalle = 'Tu API key se quedó sin créditos. Recarga en console.anthropic.com';
-      } else if (response.status === 500 || response.status === 502 || response.status === 503) {
-        titulo = '🔥 Error del servidor';
-        detalle = 'La función de Vercel ha fallado. Inténtalo de nuevo más tarde.';
-      } else if (errorText.includes('timeout')) {
-        titulo = '⏱️ Tiempo agotado';
-        detalle = 'La generación tardó demasiado. Intenta de nuevo en 30 segundos.';
-      }
-      
-      showToast('error', titulo, detalle);
-      return;
-    }
-
-    // Guardar en caché
-    explicacionesCache[cacheId] = data.explicacion;
-    guardarExplicacionesCache();
-
-    // v67.24: Logging si se usaron apuntes
-    if (data.usaApuntes) {
-      console.log('📚 Explicación generada usando apuntes literales');
-    } else {
-      console.log('🤖 Explicación generada por IA (sin apuntes)');
-    }
-
-    // Mostrar explicación
-    mostrarExplicacionProfunda(data.explicacion, pregunta, tema, data.usaApuntes);
-
-  } catch (error) {
-    document.getElementById('loading-explicacion')?.remove();
-    console.error('❌ Error generando explicación:', error);
-    
-    let titulo = 'Error de conexión';
-    let detalle = 'No se pudo conectar con el servidor.';
-    
-    if (!navigator.onLine) {
-      titulo = 'Sin internet';
-      detalle = 'Verifica tu conexión WiFi o datos móviles.';
-    } else if (error.message && error.message.includes('fetch')) {
-      detalle = 'No se pudo conectar con la función de Vercel.';
-    }
-    
-    showToast('error', titulo, detalle);
-  }
+  const question = CONFIGURACION_CURSO.flatMap(b => b.asignaturas.flatMap(t => t.data))
+    .find(p => p.texto === pregunta);
+  if (question) TUTOR_APUNTES.openExercise(question);
+  else showToast('info', 'Selecciona el tema', 'Abre el tutor desde el tema de esta pregunta.');
 }
 
 // Mostrar explicación profunda

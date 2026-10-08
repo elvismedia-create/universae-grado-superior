@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <title>Universae GS</title>
+<link rel="stylesheet" href="tutor.css?v=20261008-gs-tutor-1">
 
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#2563eb">
@@ -905,7 +906,7 @@ svg, svg * {
     <div style="display:flex; align-items:center; gap:16px;">
       <img src="img/universae-shield-logo.png?v=20260909090000" alt="Universae Logo" style="height:64px; width:64px; flex-shrink:0; object-fit:contain;">
       <div>
-        <h1 style="margin:0;">Universae GS <span style="font-size:0.6em; background:#0f766e; color:white; padding:6px 16px; border-radius:25px; font-weight:900; margin-left:8px;">Bloque 1</span> <span style="font-size:0.5em; background:#1e293b; color:white; padding:5px 12px; border-radius:20px; font-weight:800; margin-left:6px;">v1.3</span></h1>
+        <h1 style="margin:0;">Universae GS <span style="font-size:0.6em; background:#0f766e; color:white; padding:6px 16px; border-radius:25px; font-weight:900; margin-left:8px;">Bloque 1</span> <span style="font-size:0.5em; background:#1e293b; color:white; padding:5px 12px; border-radius:20px; font-weight:800; margin-left:6px;">v1.4</span></h1>
         <p class="subtitle" style="margin:4px 0 0 0;">Grado Superior · Anual · Examen en mayo</p>
       </div>
     </div>
@@ -1003,13 +1004,14 @@ svg, svg * {
 <script src="data-especial.js?v=20260414071000"></script>
 <script src="data-gs-bloque1.js?v=20260910001000"></script>
 <script src="data-config.js?v=20260910000800"></script>
-<script src="pdf-local-store.js?v=20261008-gs-shared-logic"></script>
+<script src="pdf-local-store.js?v=20261008-gs-tutor-1"></script>
 <!-- MÓDULOS EDUCATIVOS -->
 <script src="fotometria.js"></script>
 <script src="caida-tension.js"></script>
 <script src="simbolo-master.js"></script>
 <!-- MOTOR PRINCIPAL -->
-<script src="motor.js?v=20261008-gs-shared-logic"></script>
+<script src="motor.js?v=20261008-gs-tutor-1"></script>
+<script src="tutor.js?v=20261008-gs-tutor-1"></script>
 
 
 
@@ -1199,6 +1201,7 @@ function filtrarBloque(bid) {
       <div style="display:flex; flex-direction:column; gap:10px;">
         <button class="btn-orange" onclick="jugar('carrera', ${idx}, '${bid}')">▶ Entrenar</button>
         ${typeof getPdfButtonHtml === 'function' ? getPdfButtonHtml(bid, idx) : ''}
+        ${PDF_T3_URLS[bid]?.[idx] ? `<button class="btn-outline" onclick="abrirTutorTema('${bid}', ${idx})">Tutor de apuntes</button>` : ''}
         ${mostrarBotonIA ? `
           <button class="btn-outline btn-ia-${idx}" style="background:linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color:white; border:none; font-weight:600;">
             🤖 + 10 IA
@@ -1914,6 +1917,7 @@ function terminarAcademiaForzado() {
           }).join('')}
         </div>
         <div class="academia-res-correcta-box">La respuesta correcta es: <strong>${correctaTexto}</strong></div>
+        <button class="btn-outline" onclick="abrirTutorError(${i}, true)">${acerto ? 'Consultar al tutor' : 'Explícame mi error'}</button>
       </div>
     `;
   });

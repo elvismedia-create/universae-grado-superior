@@ -4,6 +4,12 @@
   "installCommand": "",
   "buildCommand": "npm run vercel-build",
   "outputDirectory": ".",
+  "functions": {
+    "api/explicacion-profunda.js": {
+      "includeFiles": "apuntes/tutor-index.json",
+      "maxDuration": 60
+    }
+  },
   "headers": [
     {
       "source": "/sw.js",

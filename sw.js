@@ -1,6 +1,6 @@
-// v1.3 - Grado Superior: visor y funcionamiento compartidos
-const APP_VERSION = 'v1.3';
-const BUILD_TIMESTAMP = '20261008-gs-shared-logic';
+// v1.4 - Tutor con referencias a los apuntes de Grado Superior
+const APP_VERSION = 'v1.4';
+const BUILD_TIMESTAMP = '20261008-gs-tutor-1';
 const CACHE_NAME = `universae-gs-${APP_VERSION}-${BUILD_TIMESTAMP}`;
 const OFFLINE_CACHE = 'universae-gs-offline-v1.2';
 const PDF_CACHE = 'universae-gs-pdfs-v1';
@@ -11,6 +11,8 @@ const CRITICAL_ASSETS = [
   './index.html',
   './motor.js',
   './pdf-local-store.js',
+  './tutor.js',
+  './tutor.css',
   './vendor/pdfjs/pdf.mjs',
   './vendor/pdfjs/pdf.worker.mjs',
   './data-gs-bloque1.js',
@@ -57,7 +59,7 @@ self.addEventListener('install', (e) => {
 
 // ACTIVACIÓN v90.2: Limpieza y notificación
 self.addEventListener('activate', (e) => {
-  console.log('✨ ACTIVANDO Universae GS v1.3...');
+  console.log('✨ ACTIVANDO Universae GS v1.4...');
 
   e.waitUntil(
     caches.keys()
@@ -95,6 +97,7 @@ self.addEventListener('activate', (e) => {
 // FETCH v72.0: Network-first para código/datos, fallback offline a caché
 self.addEventListener('fetch', (e) => {
   const url = new URL(e.request.url);
+  if (e.request.method !== 'GET' || url.pathname.startsWith('/api/')) return;
   const isHTML = e.request.url.includes('.html') || url.pathname.endsWith('/');
   const isAsset = /\.(js|mjs|css|json|woff|woff2|ttf)$/i.test(url.pathname);
   const isImage = /\.(png|jpg|jpeg|gif|svg|webp|ico)$/i.test(url.pathname);

@@ -966,6 +966,7 @@
 
   async function openAnnotatedPdfViewer(key, blob, info) {
     ensureViewerStyles();
+    const focusBefore = document.activeElement;
 
     const scrollX = window.scrollX;
     const scrollY = window.scrollY;
@@ -1010,6 +1011,7 @@
         Object.assign(document.body.style, bodyStyle);
         document.documentElement.style.overflow = rootOverflow;
         window.scrollTo(scrollX, scrollY);
+        focusBefore?.focus({ preventScroll: true });
       },
       updateToolState: () => {
         shell.querySelectorAll('.pdf-draw-layer').forEach(canvas => {
@@ -1060,10 +1062,12 @@
       const pdfjs = await loadPdfJs();
       const data = await blob.arrayBuffer();
       const pdf = await pdfjs.getDocument({ data }).promise;
+      const targetPage = Math.max(1, Math.min(pdf.numPages, Number(info.page) || 1));
       pagesContainer.innerHTML = '';
       pagesContainer.appendChild(zoomSurface);
 
       for (let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber++) {
+        if (!shell.isConnected) { await pdf.destroy(); return; }
         const page = await pdf.getPage(pageNumber);
         const baseViewport = page.getViewport({ scale: 1 });
         const availableWidth = Math.min(pagesContainer.clientWidth - 20, 980);
@@ -1111,6 +1115,12 @@
         wrap.appendChild(drawCanvas);
         wrap.appendChild(textLayer);
         zoomSurface.appendChild(wrap);
+        if (pageNumber === targetPage || (targetPage > 1 && pageNumber === targetPage + 1)) {
+          const target = zoomSurface.querySelector(`.pdf-draw-layer[data-page="${targetPage}"]`).parentElement;
+          pagesContainer.scrollTop += target.getBoundingClientRect().top - pagesContainer.getBoundingClientRect().top;
+          state.currentPage = targetPage;
+          shell.dataset.targetPage = String(targetPage);
+        }
 
         redrawAnnotations(drawCanvas, annotations[pageNumber] || []);
         attachDrawing(drawCanvas, String(pageNumber), state, annotations, key);
@@ -1148,7 +1158,7 @@
     return true;
   }
 
-  async function openProjectPdf(bid, idx, url) {
+  async function openProjectPdf(bid, idx, url, page = 1) {
     const offlineKey = offlinePdfKey(url);
     const urlCandidates = uniqueValues([
       url,
@@ -1186,15 +1196,16 @@
     await openAnnotatedPdfViewer(pdfKey(bid, idx), blob, {
       name: url.split('/').pop() || 'PDF',
       subject: block ? block.titulo_boton : '',
-      topic
+      topic,
+      page
     });
   }
 
-  async function abrirPdfTema(bid, idx) {
+  async function abrirPdfTema(bid, idx, page = 1, options = {}) {
     const fallback = typeof PDF_T3_URLS !== 'undefined' && PDF_T3_URLS[bid] && PDF_T3_URLS[bid][idx];
     if (fallback) {
       try {
-        await openProjectPdf(bid, idx, fallback);
+        await openProjectPdf(bid, idx, fallback, page);
         return;
       } catch (error) {
         console.error('No se pudo abrir el PDF del proyecto:', error);
@@ -1202,7 +1213,7 @@
     }
 
     try {
-      const openedLocal = await openLocalPdf(bid, idx);
+      const openedLocal = !options.projectOnly && await openLocalPdf(bid, idx);
       if (openedLocal) return;
     } catch (error) {
       console.warn('No se pudo abrir el PDF local:', error);
