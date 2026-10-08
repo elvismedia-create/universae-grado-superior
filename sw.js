@@ -1,8 +1,9 @@
-// v1.2 - Grado Superior PDFs en visor
-const APP_VERSION = 'v1.2';
-const BUILD_TIMESTAMP = '20260927-gs-pdf-ruler-endpoint';
+// v1.3 - Grado Superior: visor y funcionamiento compartidos
+const APP_VERSION = 'v1.3';
+const BUILD_TIMESTAMP = '20261008-gs-shared-logic';
 const CACHE_NAME = `universae-gs-${APP_VERSION}-${BUILD_TIMESTAMP}`;
-const OFFLINE_CACHE = `universae-gs-offline-${APP_VERSION}`;
+const OFFLINE_CACHE = 'universae-gs-offline-v1.2';
+const PDF_CACHE = 'universae-gs-pdfs-v1';
 
 // ARCHIVOS CRÍTICOS - DEBEN estar en caché siempre
 const CRITICAL_ASSETS = [
@@ -10,6 +11,8 @@ const CRITICAL_ASSETS = [
   './index.html',
   './motor.js',
   './pdf-local-store.js',
+  './vendor/pdfjs/pdf.mjs',
+  './vendor/pdfjs/pdf.worker.mjs',
   './data-gs-bloque1.js',
   './data-config.js',
   './simbolo-master.js',
@@ -37,64 +40,24 @@ const ASSETS_TO_CACHE = [
   './img/t3-domotica-u1-topologia-anillo.png',
 ];
 
-// INSTALACIÓN: Cache offline-first mejorado
 self.addEventListener('install', (e) => {
-  console.log(`⚡ INSTALANDO Universae GS ${APP_VERSION} - Bloque 1 PDFs...`);
-  console.log('📦 Cache:', CACHE_NAME);
-
-  e.waitUntil(
-    caches.open(CACHE_NAME)
-      .then(cache => {
-        console.log('🔴 Cacheando ARCHIVOS CRÍTICOS primero...');
-
-        // 1. Cachear críticos primero (debe funcionar offline)
-        return Promise.all(
-          CRITICAL_ASSETS.map(url => {
-            return fetch(url, { cache: 'no-store' })
-              .then(res => {
-                if (res.ok) {
-                  cache.put(url, res.clone());
-                  console.log('✅ Crítico cacheado:', url);
-                  return true;
-                } else {
-                  console.warn('⚠️ Crítico falló (status ' + res.status + '):', url);
-                  return false;
-                }
-              })
-              .catch(err => {
-                console.error('❌ Error crítico:', url, err.message);
-                return false;
-              });
-          })
-        ).then(results => {
-          const allOk = results.every(r => r);
-          if (!allOk) {
-            console.error('⚠️ ADVERTENCIA: Algunos archivos críticos no se cachearon');
-          }
-
-          // 2. Cachear datos (menos prioritario)
-          console.log('🟡 Cacheando DATOS...');
-          return Promise.allSettled(
-            DATA_ASSETS.map(url =>
-              fetch(url, { cache: 'no-store' })
-                .then(res => res.ok ? cache.put(url, res) : Promise.reject(url))
-            )
-          );
-        }).then(() => {
-          console.log(`✅ Instalación completada - Universae GS ${APP_VERSION} ready offline`);
-          return self.skipWaiting();
-        });
-      })
-      .catch(err => {
-        console.error('❌ Error fatal en instalación:', err);
-        return self.skipWaiting();
-      })
-  );
+  e.waitUntil((async () => {
+    const cache = await caches.open(CACHE_NAME);
+    const assets = [...new Set(ASSETS_TO_CACHE)];
+    for (let index = 0; index < assets.length; index += 12) {
+      await Promise.all(assets.slice(index, index + 12).map(async url => {
+        const response = await fetch(url, { cache: 'no-store' });
+        if (!response.ok) throw new Error(`No se pudo guardar ${url}: ${response.status}`);
+        await cache.put(url, response);
+      }));
+    }
+    await self.skipWaiting();
+  })());
 });
 
-// ACTIVACIÓN: Limpieza y notificación
+// ACTIVACIÓN v90.2: Limpieza y notificación
 self.addEventListener('activate', (e) => {
-  console.log(`✨ ACTIVANDO Universae GS ${APP_VERSION}...`);
+  console.log('✨ ACTIVANDO Universae GS v1.3...');
 
   e.waitUntil(
     caches.keys()
@@ -102,7 +65,7 @@ self.addEventListener('activate', (e) => {
         console.log('📋 Cachés encontrados:', keyList);
         return Promise.all(
           keyList.map(key => {
-            if (key !== CACHE_NAME && key !== OFFLINE_CACHE) {
+            if (key !== CACHE_NAME && key !== OFFLINE_CACHE && key !== PDF_CACHE) {
               console.log('🗑️ Eliminando caché antiguo:', key);
               return caches.delete(key);
             }
@@ -115,12 +78,11 @@ self.addEventListener('activate', (e) => {
       })
       .then(() => self.clients.matchAll())
       .then(clients => {
-        console.log(`📲 Service Worker Universae GS ${APP_VERSION} activo - Clientes notificados:`, clients.length);
+        console.log('📲 Service Worker actualizado - Clientes notificados:', clients.length);
         clients.forEach(client => {
           client.postMessage({
-            type: 'FORCE_RELOAD_NOW',
-            version: `${APP_VERSION}-gs`,
-            message: `Universae GS ${APP_VERSION} activado - Bloque 1 PDFs`
+            type: 'APP_UPDATE_READY',
+            version: CACHE_NAME
           });
         });
       })
@@ -134,7 +96,7 @@ self.addEventListener('activate', (e) => {
 self.addEventListener('fetch', (e) => {
   const url = new URL(e.request.url);
   const isHTML = e.request.url.includes('.html') || url.pathname.endsWith('/');
-  const isAsset = /\.(js|css|json|woff|woff2|ttf)$/i.test(url.pathname);
+  const isAsset = /\.(js|mjs|css|json|woff|woff2|ttf)$/i.test(url.pathname);
   const isImage = /\.(png|jpg|jpeg|gif|svg|webp|ico)$/i.test(url.pathname);
 
   // HTML: Intentar red primero, fallback a caché
@@ -160,10 +122,10 @@ self.addEventListener('fetch', (e) => {
             // Si ni caché, página offline minimalista
             console.warn('⚠️ Archivo no disponible offline:', url.pathname);
             return new Response(
-              '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Universae GS Offline</title></head>' +
+              '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Universae Offline</title></head>' +
               '<body style="font-family:sans-serif;padding:20px;background:#f5f5f5;">' +
               '<h1>⚠️ Sin conexión a Internet</h1>' +
-              '<p>Universae GS está funcionando en modo offline. Los datos disponibles están en caché.</p>' +
+              '<p>Universae está funcionando en modo offline. Los datos disponibles están en caché.</p>' +
               '<p>Intenta recarga (Cmd+R) cuando recuperes conexión.</p>' +
               '</body></html>',
               { headers: { 'Content-Type': 'text/html; charset=utf-8' }, status: 200 }
@@ -211,6 +173,15 @@ self.addEventListener('fetch', (e) => {
             { headers: { 'Content-Type': 'image/png' } }
           );
         })
+    );
+  }
+  // Los PDFs descargados por el usuario se conservan entre versiones de la app.
+  else if (/\.pdf$/i.test(url.pathname)) {
+    e.respondWith(
+      fetch(e.request, { cache: 'no-store' }).catch(async () => {
+        const cached = await caches.open(PDF_CACHE).then(cache => cache.match(e.request, { ignoreSearch: true }));
+        return cached || new Response('PDF no guardado para uso sin conexion', { status: 503 });
+      })
     );
   }
   // Otros: Network first

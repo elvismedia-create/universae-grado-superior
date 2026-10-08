@@ -11,46 +11,14 @@ module.exports = async function handler(req, res) {
     }
 
     if (!process.env.ANTHROPIC_API_KEY) {
-      return res.status(500).json({ error: 'ANTHROPIC_API_KEY no está configurada' });
+      return res.status(503).json({ error: 'ANTHROPIC_API_KEY no está configurada en Vercel', code: 'ANTHROPIC_API_KEY_MISSING' });
     }
 
     const contextoCurso = `
-=== CONTEXTO DEL CURSO ===
-Las preguntas son para un estudiante que prepara el examen de Técnico en Baja Tensión (UNIVERSAE).
-Ya ha estudiado:
-- Tema 1: Electricidad Básica (magnitudes, Ley de Ohm, circuitos, CA/CC, elementos de protección)
-- Tema 2: Instalaciones de Enlace (acometidas, CGP, LGA, contadores, derivaciones, cuadros)
-
-USA ESTA TERMINOLOGÍA EN LAS PREGUNTAS:
-- REBT, ITC-BT-11/13/14/15/25
-- CGP, LGA, DI, CC, CPM, ICP, IGA, PIA
-- Colores: Fase (negro/marrón/gris), Neutro (azul), Tierra (amarillo-verde)
-- Secciones: 6 mm² mínimo cobre
-- Tensión vivienda: 230 V
-- Fórmulas: V=R×I, P=V×I
-
-USA VALORES REALISTAS DEL CURSO:
-- Potencias típicas: 5.750 W (vivienda), 900 W (microondas), 5 W (LED)
-- Intensidades típicas: 3,91 A (microondas), 25 A (vivienda)
-- Alturas CGP: 1-1,8 m
-- Profundidad acometida: 0,6 m (0,8 m calzada)
-- Caída tensión: 0,5% (LGA), 1% (DI)
-- Separaciones: 20 cm (otras instalaciones), 25 cm (líneas eléctricas)
-- Grados protección: IK10 (CGP), IP40 (contadores)
-
-ESTILO DE PREGUNTAS:
-- 80% CONCEPTUALES (sin cálculos): definiciones, normativa, procedimientos
-- 20% CÁLCULOS SIMPLES: solo operaciones básicas con valores dados
-- Directas y prácticas
-- Casos reales de instalaciones
-- Referencias normativa cuando aplique
-- Opciones incorrectas plausibles pero técnicamente erróneas
-
-EVITA PREGUNTAS TIPO:
-- Calcula la sección del conductor sabiendo que...
-- Si la caída de tensión es X% y la longitud Y metros...
-- Determina la potencia máxima considerando...
-- Cualquier cálculo que requiera más de UNA operación
+El estudiante cursa Grado Superior en UNIVERSAE. Crea preguntas exclusivamente sobre la unidad indicada.
+Usa las preguntas de referencia para ajustar el contenido y el nivel; no repitas sus enunciados.
+No supongas que todas las unidades tratan sobre electricidad. Evita datos normativos o numéricos que no aparezcan en las referencias.
+Las opciones incorrectas deben ser plausibles y la explicación debe justificar la respuesta correcta.
 `;
 
     const prompt = contextoCurso + `
@@ -94,7 +62,7 @@ REQUISITOS CRÍTICOS:
 2. correctaTexto debe ser IDÉNTICO a opciones[0]
 3. Las opciones incorrectas deben ser plausibles pero claramente incorrectas
 4. Responde SOLO JSON puro
-5. Todas las preguntas deben ser sobre electricidad/REBT
+5. Todas las preguntas deben ser sobre el tema indicado, sin mezclar otras asignaturas
 
 GENERA AHORA ${cantidad} PREGUNTAS:`;
 
@@ -106,7 +74,7 @@ GENERA AHORA ${cantidad} PREGUNTAS:`;
         'anthropic-version': '2023-06-01'
       },
       body: JSON.stringify({
-        model: 'claude-3-haiku-20240307',
+        model: 'claude-haiku-4-5-20251001',
         max_tokens: 4000,
         temperature: 0.7,
         messages: [{ role: 'user', content: prompt }]

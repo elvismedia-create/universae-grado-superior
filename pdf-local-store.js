@@ -4,8 +4,9 @@
   const STORE_NAME = 'pdfs';
   const MANIFEST_KEY = 'universae_local_pdf_manifest';
   const ANNOTATIONS_PREFIX = 'universae_pdf_annotations:';
-  const PDFJS_URL = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@4.10.38/build/pdf.mjs';
-  const PDFJS_WORKER_URL = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@4.10.38/build/pdf.worker.mjs';
+  const PDFJS_URL = './vendor/pdfjs/pdf.mjs';
+  const PDFJS_WORKER_URL = './vendor/pdfjs/pdf.worker.mjs';
+  const PDF_OFFLINE_CACHE = 'universae-gs-pdfs-v1';
   let pdfjsPromise = null;
 
   const TOPIC_ALIASES = {
@@ -278,8 +279,8 @@
     if (!local && !fallback) return '';
 
     const isProjectPdf = typeof fallback === 'string' && fallback.startsWith('pdfs/');
-    const label = local ? '📄 Abrir PDF del iPad' : '📄 Ver PDF del tema';
-    const title = local ? `PDF local: ${local.name}` : isProjectPdf ? 'Abrir PDF del proyecto' : 'Abrir PDF online';
+    const label = isProjectPdf ? '📄 Ver PDF del tema' : local ? '📄 Abrir PDF del iPad' : '📄 Ver PDF del tema';
+    const title = isProjectPdf ? 'Abrir PDF del proyecto' : local ? `PDF local: ${local.name}` : 'Abrir PDF online';
 
     return `
       <button class="btn-outline" title="${title}" onclick="abrirPdfTema('${bid}', ${idx})" style="text-align:center; display:block; color:#16a34a; border-color:#16a34a; font-weight:600;">
@@ -302,6 +303,11 @@
         color: white;
         display: flex;
         flex-direction: column;
+        width: 100%;
+        height: 100dvh;
+        padding-top: env(safe-area-inset-top);
+        padding-bottom: env(safe-area-inset-bottom);
+        overflow: hidden;
       }
       .pdf-viewer-toolbar {
         display: flex;
@@ -317,7 +323,7 @@
         font-weight: 800;
         font-size: 0.9rem;
         white-space: nowrap;
-        max-width: 260px;
+        max-width: 220px;
         overflow: hidden;
         text-overflow: ellipsis;
         margin-right: auto;
@@ -342,10 +348,6 @@
         background: #2563eb;
         border-color: #60a5fa;
       }
-      .pdf-toggle-btn.active {
-        background: #16a34a;
-        border-color: #86efac;
-      }
       .pdf-zoom-btn {
         width: 54px;
         min-width: 54px;
@@ -361,11 +363,9 @@
         min-width: 34px;
         height: 34px;
       }
-      .pdf-size-dot {
-        display: block;
-        border-radius: 999px;
-        background: currentColor;
-      }
+      .pdf-size-dot { display: block; border-radius: 999px; background: currentColor; }
+      .pdf-pen-settings[hidden] { display: none; }
+      .pdf-pen-settings { display: flex; align-items: center; gap: 4px; }
       .pdf-color-btn {
         width: 32px;
         min-width: 32px;
@@ -374,12 +374,16 @@
       .pdf-color-btn.active {
         outline: 3px solid white;
       }
+      .pdf-color-btn { border-radius: 50%; }
+      .pdf-color-btn[hidden] { display: none; }
       .pdf-viewer-pages {
         overflow: auto;
         flex: 1;
+        min-height: 0;
         padding: 18px 10px 40px;
         -webkit-overflow-scrolling: touch;
         touch-action: pan-x pan-y;
+        overscroll-behavior: contain;
       }
       .pdf-pages-zoom {
         width: max-content;
@@ -400,15 +404,47 @@
         inset: 0;
         touch-action: pan-y;
         cursor: crosshair;
-      }
-      .pdf-draw-layer[data-tool="pan"] {
         pointer-events: none;
-        cursor: grab;
       }
+      .pdf-draw-layer[data-tool="pen"] { pointer-events: auto; }
       .pdf-draw-layer[data-tool="eraser"] {
+        pointer-events: auto;
         touch-action: none;
         cursor: cell;
       }
+      .pdf-text-layer {
+        position: absolute;
+        left: 0;
+        top: 0;
+        overflow: hidden;
+        line-height: 1;
+        text-align: initial;
+        transform-origin: 0 0;
+        -webkit-text-size-adjust: none;
+        text-size-adjust: none;
+        pointer-events: none;
+        user-select: none;
+        -webkit-user-select: none;
+      }
+      .pdf-text-layer[data-tool="highlight"] {
+        pointer-events: auto;
+        touch-action: pan-y;
+        user-select: text;
+        -webkit-user-select: text;
+        cursor: text;
+      }
+      .pdf-text-layer :is(span, br) {
+        color: transparent;
+        position: absolute;
+        white-space: pre;
+        transform-origin: 0 0;
+      }
+      .pdf-text-layer[data-tool="highlight"] span {
+        user-select: text;
+        -webkit-user-select: text;
+        cursor: text;
+      }
+      .pdf-text-layer ::selection { background: rgba(45, 107, 204, 0.35); }
       .pdf-viewer-loading {
         padding: 24px;
         text-align: center;
@@ -416,12 +452,23 @@
         font-weight: 700;
       }
       @media (max-width: 640px) {
+        .pdf-viewer-toolbar {
+          flex-wrap: wrap;
+          overflow-x: visible;
+          gap: 6px;
+          padding: 8px;
+        }
         .pdf-viewer-title {
-          max-width: 145px;
+          max-width: 120px;
+          min-width: 0;
+          flex: 1 1 60px;
         }
-        .pdf-tool-btn {
-          font-size: 0.85rem;
-        }
+        .pdf-viewer-toolbar [data-tool] { order: 0; }
+        .pdf-viewer-toolbar [data-action="close"] { order: 1; margin-left: auto; }
+        .pdf-viewer-toolbar :is(.pdf-pen-settings, .pdf-color-btn, .pdf-zoom-btn) { order: 2; }
+        .pdf-viewer-toolbar [data-action="zoom-in"],
+        .pdf-viewer-toolbar [data-action="zoom-out"] { display: none; }
+        .pdf-tool-btn { font-size: 0.85rem; }
       }
     `;
     document.head.appendChild(style);
@@ -448,6 +495,16 @@
   }
 
   function drawStroke(ctx, stroke, width, height) {
+    if (stroke.type === 'highlight') {
+      ctx.save();
+      ctx.globalCompositeOperation = 'multiply';
+      ctx.fillStyle = stroke.color;
+      (stroke.rects || []).forEach(rect => {
+        ctx.fillRect(rect.x * width, rect.y * height, rect.width * width, rect.height * height);
+      });
+      ctx.restore();
+      return;
+    }
     if (!stroke.points || stroke.points.length < 2) return;
 
     ctx.save();
@@ -471,13 +528,6 @@
     const ctx = canvas.getContext('2d');
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     strokes.forEach(stroke => drawStroke(ctx, stroke, canvas.width, canvas.height));
-  }
-
-  function redrawWithPreview(canvas, strokes, previewStroke) {
-    redrawAnnotations(canvas, strokes);
-    if (previewStroke) {
-      drawStroke(canvas.getContext('2d'), previewStroke, canvas.width, canvas.height);
-    }
   }
 
   function distanceToSegmentPx(point, start, end, canvas) {
@@ -505,60 +555,22 @@
     return Math.sqrt(closestDx * closestDx + closestDy * closestDy);
   }
 
-  function distanceBetweenPointsPx(point, strokePoint, canvas) {
-    const dx = (point.x - strokePoint.x) * canvas.width;
-    const dy = (point.y - strokePoint.y) * canvas.height;
-    return Math.sqrt(dx * dx + dy * dy);
-  }
-
-  function getSampledStrokePoints(stroke, canvas) {
-    const points = stroke.points || [];
-    if (points.length < 2) return points;
-
-    const sampledPoints = [points[0]];
-    points.slice(1).forEach((point, index) => {
-      const previousPoint = points[index];
-      const lengthPx = distanceBetweenPointsPx(previousPoint, point, canvas);
-      const steps = Math.max(1, Math.ceil(lengthPx / 6));
-
-      for (let step = 1; step <= steps; step += 1) {
-        const t = step / steps;
-        sampledPoints.push({
-          x: previousPoint.x + (point.x - previousPoint.x) * t,
-          y: previousPoint.y + (point.y - previousPoint.y) * t
-        });
-      }
-    });
-
-    return sampledPoints;
-  }
-
   function erasePointFromStrokes(point, strokes, canvas, state) {
     const radiusPx = Math.max(18, state.width * 1.25);
-    const remainingStrokes = [];
-
-    strokes.forEach(stroke => {
-      const points = getSampledStrokePoints(stroke, canvas);
-      let currentPart = [];
-
-      points.forEach(strokePoint => {
-        if (distanceBetweenPointsPx(point, strokePoint, canvas) <= radiusPx) {
-          if (currentPart.length >= 2) {
-            remainingStrokes.push({ ...stroke, points: currentPart });
-          }
-          currentPart = [];
-          return;
-        }
-
-        currentPart.push(strokePoint);
-      });
-
-      if (currentPart.length >= 2) {
-        remainingStrokes.push({ ...stroke, points: currentPart });
+    return strokes.filter(stroke => {
+      if (stroke.type === 'highlight') {
+        return !(stroke.rects || []).some(rect =>
+          point.x >= rect.x - radiusPx / canvas.width &&
+          point.x <= rect.x + rect.width + radiusPx / canvas.width &&
+          point.y >= rect.y - radiusPx / canvas.height &&
+          point.y <= rect.y + rect.height + radiusPx / canvas.height
+        );
       }
+      const points = stroke.points || [];
+      return !points.slice(1).some((end, index) =>
+        distanceToSegmentPx(point, points[index], end, canvas) <= radiusPx + (stroke.width || 0) / 2
+      );
     });
-
-    return remainingStrokes;
   }
 
   function createToolbar(info, state, actions) {
@@ -567,34 +579,49 @@
     toolbar.innerHTML = `
       <div class="pdf-viewer-title">${info.topic || info.name || 'PDF'}</div>
       <button class="pdf-tool-btn active" data-tool="pan" title="Moverse por el PDF" aria-label="Mano">✋</button>
-      <button class="pdf-tool-btn" data-tool="pen" title="Subrayar con lápiz" aria-label="Lápiz">✏️</button>
+      <button class="pdf-tool-btn" data-tool="pen" title="Dibujar con lápiz" aria-label="Lápiz">✏️</button>
+      <button class="pdf-tool-btn" data-tool="highlight" title="Seleccionar texto para subrayar" aria-label="Subrayador">🖍️</button>
       <button class="pdf-tool-btn" data-tool="eraser" title="Borrar" aria-label="Borrar">
         <svg class="pdf-eraser-icon" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M4 16.5 13.5 7a2.8 2.8 0 0 1 4 0l1.5 1.5a2.8 2.8 0 0 1 0 4L11.5 20H5.8L4 18.2a1.2 1.2 0 0 1 0-1.7Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-          <path d="m10 10 5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          <path d="M12 20h8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <path d="m3.3 14.4 8.9-9a2.4 2.4 0 0 1 3.4 0l4.1 4.1a2.4 2.4 0 0 1 0 3.4L11.6 21H8.2l-4.9-4.9a1.2 1.2 0 0 1 0-1.7Z" fill="#f472b6" stroke="white" stroke-width="1.4" stroke-linejoin="round"/>
+          <path d="m7.2 10.5 6.3 6.3-4.2 4.2H8.2l-4.9-4.9a1.2 1.2 0 0 1 0-1.7Z" fill="white"/>
+          <path d="m7.2 10.5 6.3 6.3" fill="none" stroke="#9d174d" stroke-width="1.2"/>
         </svg>
       </button>
-      <button class="pdf-tool-btn pdf-toggle-btn" data-action="straight" title="Ayuda de subrayado recto" aria-label="Ayuda recta">📏</button>
-      <button class="pdf-tool-btn" data-action="zoom-out" title="Alejar">−</button>
+      <span class="pdf-pen-settings" hidden>
+        <button class="pdf-tool-btn pdf-size-btn" data-width="8" title="Punta fina"><span class="pdf-size-dot" style="width:6px;height:6px;"></span></button>
+        <button class="pdf-tool-btn pdf-size-btn active" data-width="18" title="Punta media"><span class="pdf-size-dot" style="width:12px;height:12px;"></span></button>
+        <button class="pdf-tool-btn pdf-size-btn" data-width="30" title="Punta gorda"><span class="pdf-size-dot" style="width:18px;height:18px;"></span></button>
+      </span>
+      <button class="pdf-color-btn active" data-color="rgba(255,235,59,0.50)" style="background:#fde047;" title="Amarillo intenso" aria-label="Amarillo intenso"></button>
+      <button class="pdf-color-btn" data-color="rgba(255,235,59,0.20)" style="background:#fef9c3;" title="Amarillo suave" aria-label="Amarillo suave"></button>
+      <button class="pdf-color-btn" data-color="rgba(34,197,94,0.38)" style="background:#22c55e;" title="Verde intenso" aria-label="Verde intenso"></button>
+      <button class="pdf-color-btn" data-color="rgba(34,197,94,0.18)" style="background:#bbf7d0;" title="Verde suave" aria-label="Verde suave"></button>
+      <button class="pdf-color-btn" data-color="rgba(59,130,246,0.38)" style="background:#3b82f6;" title="Azul intenso" aria-label="Azul intenso"></button>
+      <button class="pdf-color-btn" data-color="rgba(59,130,246,0.18)" style="background:#bfdbfe;" title="Azul suave" aria-label="Azul suave"></button>
+      <button class="pdf-color-btn" data-color="rgba(239,68,68,0.38)" style="background:#ef4444;" title="Rojo intenso" aria-label="Rojo intenso"></button>
+      <button class="pdf-color-btn" data-color="rgba(239,68,68,0.18)" style="background:#fecaca;" title="Rojo suave" aria-label="Rojo suave"></button>
+      <button class="pdf-tool-btn" data-action="zoom-out" title="Alejar" aria-label="Alejar">−</button>
       <button class="pdf-tool-btn pdf-zoom-btn" data-action="zoom-reset" title="Restablecer zoom" aria-label="Restablecer zoom">100%</button>
-      <button class="pdf-tool-btn" data-action="zoom-in" title="Acercar">+</button>
-      <button class="pdf-tool-btn pdf-size-btn" data-width="8" title="Punta fina"><span class="pdf-size-dot" style="width:6px;height:6px;"></span></button>
-      <button class="pdf-tool-btn pdf-size-btn active" data-width="18" title="Punta media"><span class="pdf-size-dot" style="width:12px;height:12px;"></span></button>
-      <button class="pdf-tool-btn pdf-size-btn" data-width="30" title="Punta gorda"><span class="pdf-size-dot" style="width:18px;height:18px;"></span></button>
-      <button class="pdf-color-btn active" data-color="rgba(255,235,59,0.50)" style="background:#fde047;" title="Amarillo"></button>
-      <button class="pdf-color-btn" data-color="rgba(34,197,94,0.38)" style="background:#22c55e;" title="Verde"></button>
-      <button class="pdf-color-btn" data-color="rgba(59,130,246,0.38)" style="background:#3b82f6;" title="Azul"></button>
-      <button class="pdf-color-btn" data-color="rgba(239,68,68,0.38)" style="background:#ef4444;" title="Rojo"></button>
-      <button class="pdf-tool-btn" data-action="clear" title="Limpiar página" aria-label="Limpiar página">🧹</button>
+      <button class="pdf-tool-btn" data-action="zoom-in" title="Acercar" aria-label="Acercar">+</button>
       <button class="pdf-tool-btn" data-action="close" title="Cerrar" aria-label="Cerrar">×</button>
     `;
+
+    const updateSettings = () => {
+      toolbar.querySelector('.pdf-pen-settings').hidden = state.tool !== 'pen';
+      toolbar.querySelectorAll('[data-color]').forEach(btn => {
+        btn.hidden = state.tool === 'pan' || state.tool === 'eraser';
+      });
+    };
+    updateSettings();
 
     toolbar.querySelectorAll('[data-tool]').forEach(button => {
       button.addEventListener('click', () => {
         state.tool = button.dataset.tool;
         toolbar.querySelectorAll('[data-tool]').forEach(btn => btn.classList.remove('active'));
         button.classList.add('active');
+        window.getSelection()?.removeAllRanges();
+        updateSettings();
         actions.updateToolState();
       });
     });
@@ -610,27 +637,11 @@
     toolbar.querySelectorAll('[data-color]').forEach(button => {
       button.addEventListener('click', () => {
         state.color = button.dataset.color;
-        state.tool = 'pen';
         toolbar.querySelectorAll('[data-color]').forEach(btn => btn.classList.remove('active'));
-        toolbar.querySelectorAll('[data-tool]').forEach(btn => btn.classList.toggle('active', btn.dataset.tool === 'pen'));
         button.classList.add('active');
-        actions.updateToolState();
       });
     });
 
-    const straightButton = toolbar.querySelector('[data-action="straight"]');
-    straightButton.addEventListener('click', () => {
-      state.straightAssist = !state.straightAssist;
-      straightButton.classList.toggle('active', state.straightAssist);
-      straightButton.title = state.straightAssist ? 'Ayuda recta activada' : 'Ayuda de subrayado recto';
-      if (state.straightAssist && state.tool !== 'pen') {
-        state.tool = 'pen';
-        toolbar.querySelectorAll('[data-tool]').forEach(btn => btn.classList.toggle('active', btn.dataset.tool === 'pen'));
-        actions.updateToolState();
-      }
-    });
-
-    toolbar.querySelector('[data-action="clear"]').addEventListener('click', actions.clearCurrentPage);
     toolbar.querySelector('[data-action="close"]').addEventListener('click', actions.close);
     toolbar.querySelector('[data-action="zoom-in"]').addEventListener('click', () => actions.setZoom(state.zoom + 0.15, actions.getViewportCenter()));
     toolbar.querySelector('[data-action="zoom-out"]').addEventListener('click', () => actions.setZoom(state.zoom - 0.15, actions.getViewportCenter()));
@@ -701,6 +712,8 @@
         canvas.style.width = `${width}px`;
         canvas.style.height = `${height}px`;
       });
+      const textLayer = wrap.querySelector('.pdf-text-layer');
+      if (textLayer) textLayer.style.transform = `scale(${zoom})`;
     });
   }
 
@@ -709,9 +722,7 @@
 
     let activeStroke = null;
     let pointerId = null;
-    let lineStart = null;
     let pointerStart = null;
-    let lastPoint = null;
 
     function ensurePage() {
       if (!annotations[pageNumber]) annotations[pageNumber] = [];
@@ -723,10 +734,8 @@
         annotations[pageNumber] = ensurePage().filter(stroke => stroke !== activeStroke);
       }
       activeStroke = null;
-      lineStart = null;
       pointerId = null;
       pointerStart = null;
-      lastPoint = null;
     }
 
     function isVerticalScrollIntent(start, point, canvas) {
@@ -736,8 +745,7 @@
     }
 
     canvas.addEventListener('pointerdown', event => {
-      if (state.tool === 'pan') return;
-      if (pointerId !== null) return;
+      if (state.tool !== 'pen' && state.tool !== 'eraser') return;
       pointerId = event.pointerId;
       if (state.tool === 'eraser' || event.pointerType !== 'touch') {
         event.preventDefault();
@@ -747,16 +755,10 @@
 
       const point = getPointerPoint(event, canvas);
       pointerStart = point;
-      lastPoint = point;
       if (state.tool === 'eraser') {
         annotations[pageNumber] = erasePointFromStrokes(point, ensurePage(), canvas, state);
         redrawAnnotations(canvas, annotations[pageNumber]);
         save();
-        return;
-      }
-
-      if (state.tool === 'pen' && state.straightAssist) {
-        lineStart = point;
         return;
       }
 
@@ -771,7 +773,6 @@
     canvas.addEventListener('pointermove', event => {
       if (event.pointerId !== pointerId) return;
       const point = getPointerPoint(event, canvas);
-      lastPoint = point;
 
       if (state.tool === 'pen' && event.pointerType === 'touch' && pointerStart && isVerticalScrollIntent(pointerStart, point, canvas)) {
         discardDraftStroke();
@@ -787,16 +788,6 @@
         return;
       }
 
-      if (state.tool === 'pen' && state.straightAssist && lineStart) {
-        const preview = {
-          color: state.color,
-          width: state.width,
-          points: [lineStart, point]
-        };
-        redrawWithPreview(canvas, ensurePage(), preview);
-        return;
-      }
-
       if (!activeStroke) return;
       activeStroke.points.push(point);
       redrawAnnotations(canvas, annotations[pageNumber]);
@@ -804,34 +795,196 @@
 
     function finish(event) {
       if (event.pointerId !== pointerId) return;
-      if (state.tool === 'pen' && state.straightAssist && lineStart) {
-        // Keep the displayed endpoint: touch release coordinates can jump on iPad.
-        const end = lastPoint || lineStart;
-        ensurePage().push({
-          color: state.color,
-          width: state.width,
-          points: [lineStart, end]
-        });
-        lineStart = null;
-        redrawAnnotations(canvas, annotations[pageNumber]);
-      }
       if (activeStroke && activeStroke.points.length < 2) {
         annotations[pageNumber] = ensurePage().filter(stroke => stroke !== activeStroke);
       }
       activeStroke = null;
       pointerId = null;
       pointerStart = null;
-      lastPoint = null;
       save();
     }
 
     canvas.addEventListener('pointerup', finish);
     canvas.addEventListener('pointercancel', finish);
-    canvas.addEventListener('lostpointercapture', finish);
+  }
+
+  function attachTextHighlighter(shell, pagesContainer, state, annotations, key) {
+    let drag = null;
+
+    function findTextSpan(layer, x, y) {
+      let closest = null;
+      let closestDistance = Infinity;
+      layer.querySelectorAll('span').forEach(span => {
+        if (!span.textContent.trim()) return;
+        const rect = span.getBoundingClientRect();
+        const dx = Math.max(rect.left - x, x - rect.right, 0);
+        const dy = Math.max(rect.top - y, y - rect.bottom, 0);
+        const distance = dx + dy;
+        if (dx <= 8 && dy <= 8 && distance < closestDistance) {
+          closest = rect;
+          closestDistance = distance;
+        }
+      });
+      return closest;
+    }
+
+    function dragRects(clientX) {
+      const pageRect = drag.canvas.getBoundingClientRect();
+      const lineLeft = Math.min(...drag.lineRects.map(rect => rect.left));
+      const lineRight = Math.max(...drag.lineRects.map(rect => rect.right));
+      const left = Math.max(pageRect.left, lineLeft, Math.min(drag.x, clientX));
+      const right = Math.min(pageRect.right, lineRight, Math.max(drag.x, clientX));
+      if (right - left < 3) return [];
+
+      return [{
+        x: (left - pageRect.left) / pageRect.width,
+        y: (drag.lineRect.top - pageRect.top) / pageRect.height,
+        width: (right - left) / pageRect.width,
+        height: drag.lineRect.height / pageRect.height
+      }];
+    }
+
+    function mergeLineRects(rects) {
+      const lines = [];
+      rects.sort((a, b) => a.y - b.y || a.x - b.x).forEach(rect => {
+        const line = lines.find(item => Math.abs((item.y + item.height / 2) - (rect.y + rect.height / 2)) <= Math.min(item.height, rect.height) * 0.4);
+        if (!line) {
+          lines.push({ ...rect });
+          return;
+        }
+        const right = Math.max(line.x + line.width, rect.x + rect.width);
+        const bottom = Math.max(line.y + line.height, rect.y + rect.height);
+        line.x = Math.min(line.x, rect.x);
+        line.y = Math.min(line.y, rect.y);
+        line.width = right - line.x;
+        line.height = bottom - line.y;
+      });
+      return lines;
+    }
+
+    function redrawDrag(rects) {
+      const saved = annotations[drag.canvas.dataset.page] || [];
+      const strokes = rects.length ? [...saved, { type: 'highlight', color: state.color, rects }] : saved;
+      redrawAnnotations(drag.canvas, strokes);
+    }
+
+    function finishDrag(event, save) {
+      if (!drag || event.pointerId !== drag.pointerId) return;
+      const rects = save ? dragRects(event.clientX) : [];
+      const canvas = drag.canvas;
+      if (rects.length) {
+        const pageNumber = canvas.dataset.page;
+        if (!annotations[pageNumber]) annotations[pageNumber] = [];
+        annotations[pageNumber].push({ type: 'highlight', color: state.color, rects });
+        state.currentPage = Number(pageNumber);
+        saveAnnotations(key, annotations);
+      }
+      drag = null;
+      redrawAnnotations(canvas, annotations[canvas.dataset.page] || []);
+    }
+
+    function saveSelection() {
+      if (state.tool !== 'highlight') return;
+      const selection = window.getSelection();
+      if (!selection || selection.isCollapsed || !selection.toString().trim()) return;
+      const anchor = selection.anchorNode?.parentElement?.closest('.pdf-text-layer');
+      const focus = selection.focusNode?.parentElement?.closest('.pdf-text-layer');
+      if (!anchor || !focus || !shell.contains(anchor) || !shell.contains(focus)) return;
+
+      const selectedRects = [...selection.getRangeAt(0).getClientRects()];
+      let saved = false;
+      shell.querySelectorAll('.pdf-draw-layer').forEach(canvas => {
+        const pageRect = canvas.getBoundingClientRect();
+        const rects = mergeLineRects(selectedRects.map(rect => {
+          const left = Math.max(rect.left, pageRect.left);
+          const right = Math.min(rect.right, pageRect.right);
+          const top = Math.max(rect.top, pageRect.top);
+          const bottom = Math.min(rect.bottom, pageRect.bottom);
+          if (right - left < 2 || bottom - top < 2) return null;
+          return {
+            x: (left - pageRect.left) / pageRect.width,
+            y: (top - pageRect.top) / pageRect.height,
+            width: (right - left) / pageRect.width,
+            height: (bottom - top) / pageRect.height
+          };
+        }).filter(Boolean));
+        if (!rects.length) return;
+
+        const pageNumber = canvas.dataset.page;
+        if (!annotations[pageNumber]) annotations[pageNumber] = [];
+        annotations[pageNumber].push({ type: 'highlight', color: state.color, rects });
+        redrawAnnotations(canvas, annotations[pageNumber]);
+        state.currentPage = Number(pageNumber);
+        saved = true;
+      });
+
+      if (saved) {
+        saveAnnotations(key, annotations);
+        selection.removeAllRanges();
+      }
+    }
+
+    pagesContainer.addEventListener('pointerup', event => {
+      if (state.tool === 'highlight' && event.pointerType === 'mouse') requestAnimationFrame(saveSelection);
+    });
+
+    pagesContainer.addEventListener('pointerdown', event => {
+      if (state.tool !== 'highlight' || !['touch', 'pen'].includes(event.pointerType)) return;
+      if (!event.isPrimary) {
+        if (drag) finishDrag({ pointerId: drag.pointerId }, false);
+        return;
+      }
+      const layer = event.target.closest('.pdf-text-layer');
+      if (!layer) return;
+      const startRect = findTextSpan(layer, event.clientX, event.clientY);
+      if (!startRect) return;
+      const canvas = layer.parentElement.querySelector('.pdf-draw-layer');
+      const lineY = startRect.top + startRect.height / 2;
+      const lineRects = [...layer.querySelectorAll('span')]
+        .filter(span => span.textContent.trim())
+        .map(span => span.getBoundingClientRect())
+        .filter(rect => Math.abs(rect.top + rect.height / 2 - lineY) <= Math.max(8, startRect.height * 0.55));
+      if (event.pointerType === 'pen') event.preventDefault();
+      window.getSelection()?.removeAllRanges();
+      drag = { pointerId: event.pointerId, pointerType: event.pointerType, x: event.clientX, y: event.clientY, canvas, lineRects, lineRect: startRect };
+    });
+
+    shell.addEventListener('pointermove', event => {
+      if (state.tool !== 'highlight' || !drag || event.pointerId !== drag.pointerId) return;
+      if (drag.pointerType === 'touch' && Math.abs(event.clientY - drag.y) > 12 &&
+          Math.abs(event.clientY - drag.y) > Math.abs(event.clientX - drag.x) * 1.25) {
+        finishDrag(event, false);
+        return;
+      }
+      event.preventDefault();
+      redrawDrag(dragRects(event.clientX));
+    });
+
+    shell.addEventListener('pointerup', event => finishDrag(event, state.tool === 'highlight'));
+    shell.addEventListener('pointercancel', event => finishDrag(event, false));
   }
 
   async function openAnnotatedPdfViewer(key, blob, info) {
     ensureViewerStyles();
+
+    const scrollX = window.scrollX;
+    const scrollY = window.scrollY;
+    const bodyStyle = {
+      position: document.body.style.position,
+      top: document.body.style.top,
+      left: document.body.style.left,
+      width: document.body.style.width,
+      overflow: document.body.style.overflow
+    };
+    const rootOverflow = document.documentElement.style.overflow;
+    document.documentElement.style.overflow = 'hidden';
+    Object.assign(document.body.style, {
+      position: 'fixed',
+      top: `${-scrollY}px`,
+      left: `${-scrollX}px`,
+      width: '100%',
+      overflow: 'hidden'
+    });
 
     const shell = document.createElement('div');
     shell.className = 'pdf-viewer-shell';
@@ -847,16 +1000,23 @@
       tool: 'pan',
       color: 'rgba(255,235,59,0.50)',
       width: 18,
-      straightAssist: false,
       zoom: 1,
       currentPage: 1
     };
 
     const actions = {
-      close: () => shell.remove(),
+      close: () => {
+        shell.remove();
+        Object.assign(document.body.style, bodyStyle);
+        document.documentElement.style.overflow = rootOverflow;
+        window.scrollTo(scrollX, scrollY);
+      },
       updateToolState: () => {
         shell.querySelectorAll('.pdf-draw-layer').forEach(canvas => {
           canvas.dataset.tool = state.tool;
+        });
+        shell.querySelectorAll('.pdf-text-layer').forEach(layer => {
+          layer.dataset.tool = state.tool;
         });
       },
       getViewportCenter: () => {
@@ -887,12 +1047,6 @@
           resetButton.textContent = `${Math.round(state.zoom * 100)}%`;
           resetButton.title = `Restablecer zoom (${Math.round(state.zoom * 100)}%)`;
         }
-      },
-      clearCurrentPage: () => {
-        annotations[state.currentPage] = [];
-        saveAnnotations(key, annotations);
-        const canvas = shell.querySelector(`.pdf-draw-layer[data-page="${state.currentPage}"]`);
-        if (canvas) redrawAnnotations(canvas, []);
       }
     };
 
@@ -900,6 +1054,7 @@
     shell.appendChild(pagesContainer);
     document.body.appendChild(shell);
     attachPinchZoom(pagesContainer, zoomSurface, state, actions);
+    attachTextHighlighter(shell, pagesContainer, state, annotations, key);
 
     try {
       const pdfjs = await loadPdfJs();
@@ -912,7 +1067,7 @@
         const page = await pdf.getPage(pageNumber);
         const baseViewport = page.getViewport({ scale: 1 });
         const availableWidth = Math.min(pagesContainer.clientWidth - 20, 980);
-        const scale = Math.max(0.7, Math.min(1.7, availableWidth / baseViewport.width));
+        const scale = Math.max(0.3, Math.min(1.7, availableWidth / baseViewport.width));
         const viewport = page.getViewport({ scale });
 
         const wrap = document.createElement('div');
@@ -926,6 +1081,7 @@
 
         const pdfCanvas = document.createElement('canvas');
         const drawCanvas = document.createElement('canvas');
+        const textLayer = document.createElement('div');
         const ratio = window.devicePixelRatio || 1;
 
         [pdfCanvas, drawCanvas].forEach(canvas => {
@@ -938,6 +1094,11 @@
         drawCanvas.className = 'pdf-draw-layer';
         drawCanvas.dataset.page = String(pageNumber);
         drawCanvas.dataset.tool = state.tool;
+        textLayer.className = 'pdf-text-layer textLayer';
+        textLayer.dataset.tool = state.tool;
+        textLayer.style.width = `${pageWidth}px`;
+        textLayer.style.height = `${pageHeight}px`;
+        textLayer.style.setProperty('--scale-factor', String(viewport.scale));
 
         const renderContext = {
           canvasContext: pdfCanvas.getContext('2d'),
@@ -948,10 +1109,21 @@
 
         wrap.appendChild(pdfCanvas);
         wrap.appendChild(drawCanvas);
+        wrap.appendChild(textLayer);
         zoomSurface.appendChild(wrap);
 
         redrawAnnotations(drawCanvas, annotations[pageNumber] || []);
         attachDrawing(drawCanvas, String(pageNumber), state, annotations, key);
+        try {
+          await new pdfjs.TextLayer({
+            textContentSource: page.streamTextContent(),
+            container: textLayer,
+            viewport
+          }).render();
+        } catch (error) {
+          console.warn('No se pudo activar la selección de texto en esta página:', error);
+          textLayer.remove();
+        }
       }
     } catch (error) {
       console.error('Error abriendo visor PDF:', error);
@@ -977,6 +1149,7 @@
   }
 
   async function openProjectPdf(bid, idx, url) {
+    const offlineKey = offlinePdfKey(url);
     const urlCandidates = uniqueValues([
       url,
       String(url).normalize('NFC'),
@@ -996,6 +1169,16 @@
 
     if (!response || !response.ok) throw new Error(`PDF del proyecto no encontrado: ${lastStatus}`);
 
+    if (navigator.onLine && 'caches' in window) {
+      try {
+        const cache = await caches.open(PDF_OFFLINE_CACHE);
+        await cache.put(offlineKey, response.clone());
+        refreshOfflinePdfStatus().catch(() => {});
+      } catch (error) {
+        console.warn('No se pudo guardar este PDF sin conexión:', error);
+      }
+    }
+
     const blob = await response.blob();
     const block = getBlock(bid);
     const topic = block && block.asignaturas[idx] ? block.asignaturas[idx].nombre : 'PDF del tema';
@@ -1008,6 +1191,16 @@
   }
 
   async function abrirPdfTema(bid, idx) {
+    const fallback = typeof PDF_T3_URLS !== 'undefined' && PDF_T3_URLS[bid] && PDF_T3_URLS[bid][idx];
+    if (fallback) {
+      try {
+        await openProjectPdf(bid, idx, fallback);
+        return;
+      } catch (error) {
+        console.error('No se pudo abrir el PDF del proyecto:', error);
+      }
+    }
+
     try {
       const openedLocal = await openLocalPdf(bid, idx);
       if (openedLocal) return;
@@ -1015,17 +1208,7 @@
       console.warn('No se pudo abrir el PDF local:', error);
     }
 
-    const fallback = typeof PDF_T3_URLS !== 'undefined' && PDF_T3_URLS[bid] && PDF_T3_URLS[bid][idx];
-    if (fallback) {
-      try {
-        await openProjectPdf(bid, idx, fallback);
-      } catch (error) {
-        console.error('No se pudo abrir el PDF del proyecto:', error);
-        if (typeof showToast === 'function') {
-          showToast('error', 'PDF no encontrado', 'No se pudo cargar el PDF incluido en el proyecto.');
-        }
-      }
-    } else if (typeof showToast === 'function') {
+    if (typeof showToast === 'function') {
       showToast('error', 'PDF no encontrado', 'Importa los PDFs desde el iPad para este tema.');
     }
   }
@@ -1131,16 +1314,118 @@
     ensurePdfInput().click();
   }
 
+  let offlineDownloadRunning = false;
+
+  function projectPdfUrls() {
+    if (typeof PDF_T3_URLS === 'undefined') return [];
+    return [...new Set(Object.values(PDF_T3_URLS).flatMap(urls => Object.values(urls)))];
+  }
+
+  function offlinePdfKey(url) {
+    return new URL(encodeURI(url), location.href).href;
+  }
+
+  async function refreshOfflinePdfStatus(message) {
+    const button = document.getElementById('btn-offline-pdfs');
+    const status = document.getElementById('offline-pdf-status');
+    const progress = document.getElementById('offline-pdf-progress');
+    if (!button || !status || !progress) return;
+
+    const urls = projectPdfUrls();
+    if (!('caches' in window) || !urls.length) {
+      button.disabled = true;
+      status.textContent = 'La descarga sin conexión no está disponible en este navegador.';
+      status.hidden = false;
+      return;
+    }
+
+    const cache = await caches.open(PDF_OFFLINE_CACHE);
+    const matches = await Promise.all(urls.map(url => cache.match(offlinePdfKey(url))));
+    const saved = matches.filter(Boolean).length;
+    button.disabled = offlineDownloadRunning || !navigator.onLine;
+    button.textContent = saved === urls.length ? '✓ PDFs guardados' : '⬇ PDFs sin conexión';
+    progress.max = urls.length;
+    progress.value = saved;
+    progress.hidden = !offlineDownloadRunning;
+    status.textContent = message || (saved === urls.length
+      ? `${saved} PDFs listos sin conexión`
+      : !navigator.onLine
+        ? `${saved}/${urls.length} PDFs guardados. Conéctate para descargar el resto.`
+        : saved ? `${saved}/${urls.length} PDFs guardados` : '');
+    status.hidden = !status.textContent;
+  }
+
+  async function prepararPdfsOffline() {
+    if (offlineDownloadRunning) return;
+    if (!navigator.onLine) {
+      await refreshOfflinePdfStatus();
+      return;
+    }
+
+    offlineDownloadRunning = true;
+    const urls = projectPdfUrls();
+    let failed = 0;
+    let storageFull = false;
+    try {
+      const cache = await caches.open(PDF_OFFLINE_CACHE);
+      for (let index = 0; index < urls.length; index += 1) {
+        const url = urls[index];
+        const key = offlinePdfKey(url);
+        await refreshOfflinePdfStatus(`Guardando PDFs: ${index + 1}/${urls.length}`);
+        if (await cache.match(key)) continue;
+
+        try {
+          let response = null;
+          for (const candidate of uniqueValues([url, url.normalize('NFC'), url.normalize('NFD')])) {
+            const result = await fetch(encodeURI(candidate), { cache: 'no-store' });
+            if (result.ok && result.headers.get('content-type')?.includes('pdf')) {
+              response = result;
+              break;
+            }
+          }
+          if (!response) throw new Error(`PDF no disponible: ${url}`);
+          await cache.put(key, response);
+        } catch (error) {
+          console.warn('No se pudo guardar el PDF:', url, error);
+          failed += 1;
+          if (error.name === 'QuotaExceededError') {
+            storageFull = true;
+            break;
+          }
+        }
+      }
+    } catch (error) {
+      console.error('Error preparando PDFs sin conexión:', error);
+      failed += 1;
+      storageFull = error.name === 'QuotaExceededError';
+    } finally {
+      offlineDownloadRunning = false;
+      await refreshOfflinePdfStatus(storageFull ? 'Sin espacio suficiente para guardar todos los PDFs.' : '');
+      if (typeof showToast === 'function') {
+        showToast(failed ? 'error' : 'success', failed ? 'Descarga incompleta' : 'PDFs guardados',
+          storageFull ? 'Libera espacio en el iPad y vuelve a intentarlo.'
+            : failed ? `No se pudieron guardar ${failed} PDFs. Vuelve a intentarlo con internet.`
+              : 'Ya puedes abrir los PDFs sin conexión.');
+      }
+    }
+  }
+
+  window.addEventListener('online', () => refreshOfflinePdfStatus());
+  window.addEventListener('offline', () => refreshOfflinePdfStatus());
+  refreshOfflinePdfStatus().catch(error => console.warn('Estado offline no disponible:', error));
+
   window.PDF_LOCAL_STORE = {
     getLocalPdfInfo,
     getPdfButtonHtml,
     importLocalPdfs,
     identifyPdf,
     abrirPdfTema,
-    abrirImportadorPdfs
+    abrirImportadorPdfs,
+    prepararPdfsOffline
   };
 
   window.getPdfButtonHtml = getPdfButtonHtml;
   window.abrirPdfTema = abrirPdfTema;
   window.abrirImportadorPdfs = abrirImportadorPdfs;
+  window.prepararPdfsOffline = prepararPdfsOffline;
 })();

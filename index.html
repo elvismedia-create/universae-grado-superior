@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <title>Universae GS</title>
 
 <link rel="manifest" href="manifest.json">
@@ -57,6 +57,54 @@ button,
 }
 
 body{ margin: 0; padding: 20px; background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; display: flex; justify-content: center; align-items: flex-start; min-height: 100vh; }
+
+#notif-actualizacion {
+  position: fixed;
+  left: 50%;
+  bottom: calc(16px + env(safe-area-inset-bottom));
+  transform: translateX(-50%);
+  z-index: 99998;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  width: min(420px, calc(100% - 24px));
+  padding: 16px;
+  background: #fff;
+  color: #1e293b;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.24);
+}
+#notif-actualizacion strong,
+#notif-actualizacion span { grid-column: 1 / -1; }
+#notif-actualizacion span { font-size: 0.9rem; }
+#notif-actualizacion button {
+  min-height: 42px;
+  border: 1px solid #2563eb;
+  border-radius: 6px;
+  background: #2563eb;
+  color: #fff;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+#notif-actualizacion button:last-child {
+  background: #fff;
+  color: #1e293b;
+  border-color: #cbd5e1;
+}
+.offline-download-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+.offline-download-row .btn-tool { color: var(--primary); }
+.offline-download-row .btn-tool:disabled { opacity: 0.6; cursor: default; }
+.offline-download-row progress { width: min(180px, 100%); height: 10px; }
+#offline-pdf-status { font-size: 0.85rem; color: var(--text-light); }
 
 /* === TARJETA PRINCIPAL === */
 .card { 
@@ -857,7 +905,7 @@ svg, svg * {
     <div style="display:flex; align-items:center; gap:16px;">
       <img src="img/universae-shield-logo.png?v=20260909090000" alt="Universae Logo" style="height:64px; width:64px; flex-shrink:0; object-fit:contain;">
       <div>
-        <h1 style="margin:0;">Universae GS <span style="font-size:0.6em; background:#0f766e; color:white; padding:6px 16px; border-radius:25px; font-weight:900; margin-left:8px;">Bloque 1</span> <span style="font-size:0.5em; background:#1e293b; color:white; padding:5px 12px; border-radius:20px; font-weight:800; margin-left:6px;">v1.2</span></h1>
+        <h1 style="margin:0;">Universae GS <span style="font-size:0.6em; background:#0f766e; color:white; padding:6px 16px; border-radius:25px; font-weight:900; margin-left:8px;">Bloque 1</span> <span style="font-size:0.5em; background:#1e293b; color:white; padding:5px 12px; border-radius:20px; font-weight:800; margin-left:6px;">v1.3</span></h1>
         <p class="subtitle" style="margin:4px 0 0 0;">Grado Superior · Anual · Examen en mayo</p>
       </div>
     </div>
@@ -877,6 +925,12 @@ svg, svg * {
     </div>
 
 
+  </div>
+
+  <div class="offline-download-row">
+    <button class="btn-tool" id="btn-offline-pdfs" onclick="prepararPdfsOffline()" title="Guardar los PDFs en este dispositivo">⬇ PDFs sin conexión</button>
+    <progress id="offline-pdf-progress" max="48" value="0" hidden></progress>
+    <span id="offline-pdf-status" role="status" aria-live="polite" hidden></span>
   </div>
 
   <!-- Selector de Trimestres (Dropdown) -->
@@ -949,93 +1003,15 @@ svg, svg * {
 <script src="data-especial.js?v=20260414071000"></script>
 <script src="data-gs-bloque1.js?v=20260910001000"></script>
 <script src="data-config.js?v=20260910000800"></script>
-<script src="pdf-local-store.js?v=20260927000200"></script>
+<script src="pdf-local-store.js?v=20261008-gs-shared-logic"></script>
 <!-- MÓDULOS EDUCATIVOS -->
 <script src="fotometria.js"></script>
 <script src="caida-tension.js"></script>
 <script src="simbolo-master.js"></script>
 <!-- MOTOR PRINCIPAL -->
-<script src="motor.js?v=20260909092000"></script>
+<script src="motor.js?v=20261008-gs-shared-logic"></script>
 
-<!-- Auto-actualización GS v1.2 -->
-<script>
-console.log('🚀 Universae GS v1.2 - Sistema de actualización');
 
-if ('serviceWorker' in navigator) {
-  // Escuchar mensajes del SW de Grado Superior
-  navigator.serviceWorker.addEventListener('message', (event) => {
-    const msg = event.data;
-    console.log('📨 Mensaje del SW:', msg);
-
-    if (!msg || !msg.type) return;
-
-    // Tipo 1: Recarga nuclear (compatibilidad con versiones antiguas)
-    if (msg.type === 'FORCE_RELOAD_NOW') {
-      console.log('🔥 RECARGA FORZADA por', msg.version || 'antigua');
-      setTimeout(() => location.reload(true), 500);
-    }
-    // Tipo 2: Service Worker actualizado
-    else if (msg.type === 'SERVICE_WORKER_UPDATED') {
-      console.log('✅ SW GS activado -', msg.message);
-      // No recargar, esperar a que usuario lo haga o la siguiente navegación
-      if (window.showNotification) {
-        showNotification('Universae actualizado - Recarga para cambios', 'info');
-      }
-    }
-    // Tipo 3: Estado de conexión
-    else if (msg.type === 'CONNECTION_STATUS') {
-      const online = msg.online;
-      console.log(online ? '📡 ONLINE ✅' : '📡 OFFLINE ❌');
-      if (window.handleConnectionChange) {
-        handleConnectionChange(online);
-      }
-    }
-  });
-
-  // Función agresiva de actualización
-  function forceUpdateCheck() {
-    navigator.serviceWorker.ready.then((registration) => {
-      console.log('🔍 Verificando Universae GS v1.2...');
-      registration.update().catch(err => console.error('Error update:', err));
-
-      // Si hay SW esperando, activarlo INMEDIATAMENTE
-      if (registration.waiting) {
-        console.log('⚠️ SW GS v1.2 esperando → Activando');
-        registration.waiting.postMessage('SKIP_WAITING');
-        setTimeout(() => location.reload(true), 100);
-      }
-
-      // Detectar nueva instalación
-      registration.addEventListener('updatefound', () => {
-        console.log('📦 GS v1.2 detectado en instalación');
-        const newWorker = registration.installing;
-
-        newWorker.addEventListener('statechange', () => {
-          if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-            console.log('✅ GS v1.2 instalado → Recargando');
-            newWorker.postMessage('SKIP_WAITING');
-            setTimeout(() => location.reload(true), 100);
-          }
-        });
-      });
-    }).catch(err => console.error('SW error:', err));
-  }
-
-  // FORZAR ACTUALIZACIÓN INMEDIATAMENTE al cargar
-  forceUpdateCheck();
-
-  // Verificar cada 3 segundos en los primeros 15 segundos
-  let checkCount = 0;
-  const checkInterval = setInterval(() => {
-    if (checkCount < 5) {
-      console.log('🔄 Auto-check GS v1.2 #' + (++checkCount));
-      forceUpdateCheck();
-    } else {
-      clearInterval(checkInterval);
-    }
-  }, 3000);
-}
-</script>
 
 <script>
 /* === LOGICA UI INDEX (FRANJA DE 4 + BOTONES A LA DERECHA) === */
@@ -1642,7 +1618,7 @@ function filtrarBloque(bid) {
       if (!sim.preguntas || !sim.respuestas) return;
       sim.preguntas.forEach((p, i) => {
         const respUsuario = sim.respuestas[i];
-        const acerto = respUsuario !== undefined && p.opciones[respUsuario] === p.correctaTexto;
+        const acerto = respUsuario !== undefined && esRespuestaCorrecta(p, p.opciones[respUsuario]);
         const key = String(p.id || p.texto.substring(0, 40));
         if (!acerto) {
           if (!banco[key]) banco[key] = { pregunta: p, fallos: 0, aciertosConsecutivos: 0 };
@@ -1697,112 +1673,50 @@ setTimeout(() => {
   }
 }, 500);
 
-if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('./sw.js')
-      .then((registration) => {
-        console.log('App lista para funcionar Offline 📦');
-        
-        // Verificar actualizaciones cada 60 segundos
-        setInterval(() => {
-          registration.update();
-        }, 60000);
-        
-        // Escuchar mensaje de nueva versión
-        navigator.serviceWorker.addEventListener('message', (event) => {
-          if (event.data.type === 'NEW_VERSION') {
-            mostrarNotificacionActualizacion(event.data.version);
-          }
-        });
-      })
-      .catch(err => console.log('Error SW:', err));
-}
-
-// Función para mostrar notificación de actualización
-function mostrarNotificacionActualizacion(version) {
-  const versionActual = 'v1.2-gs';
-  
-  // Solo mostrar si hay una versión diferente
-  if (version && version !== versionActual) {
-    return;
-  }
-  
-  // Crear notificación
+function mostrarNotificacionActualizacion() {
+  if (document.getElementById('notif-actualizacion')) return;
   const notif = document.createElement('div');
   notif.id = 'notif-actualizacion';
-  notif.style.cssText = `
-    position: fixed;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: linear-gradient(135deg, var(--primary) 0%, #60a5fa 100%);
-    color: white;
-    padding: 20px 30px;
-    border-radius: 16px;
-    box-shadow: 0 10px 40px rgba(37, 99, 235, 0.3);
-    z-index: 10000;
-    text-align: center;
-    animation: slideDown 0.5s ease-out;
-    max-width: 400px;
-  `;
-  
-  notif.innerHTML = `
-    <div style="font-weight: 700; font-size: 1.1rem; margin-bottom: 10px;">🆕 Nueva versión disponible</div>
-    <div style="font-size: 0.9rem; margin-bottom: 15px; opacity: 0.9;">La app se ha actualizado a ${version}</div>
-    <button onclick="recargarApp()" style="background: white; color: var(--primary); border: none; padding: 10px 25px; border-radius: 8px; font-weight: 700; cursor: pointer; font-size: 0.95rem;">
-      🔄 Recargar ahora
-    </button>
-    <button onclick="cerrarNotificacion()" style="background: rgba(255,255,255,0.2); color: white; border: none; padding: 10px 25px; border-radius: 8px; font-weight: 600; cursor: pointer; margin-left: 10px; font-size: 0.95rem;">
-      Después
-    </button>
-  `;
-  
+  notif.setAttribute('role', 'status');
+  notif.innerHTML = '<strong>Nueva versión disponible</strong><span>Actualiza cuando termines lo que estás haciendo.</span>';
+
+  const recargar = document.createElement('button');
+  recargar.type = 'button';
+  recargar.textContent = 'Actualizar ahora';
+  recargar.addEventListener('click', () => {
+    sessionStorage.setItem('mastertest_update_confirm', '1');
+    location.reload();
+  });
+  const despues = document.createElement('button');
+  despues.type = 'button';
+  despues.textContent = 'Después';
+  despues.addEventListener('click', () => notif.remove());
+  notif.append(recargar, despues);
   document.body.appendChild(notif);
-  
-  // Auto-cerrar después de 15 segundos
-  setTimeout(() => {
-    cerrarNotificacion();
-  }, 15000);
 }
 
-function recargarApp() {
-  localStorage.setItem('mastertest_update_reload', 'true');
-  location.reload();
-}
-
-function cerrarNotificacion() {
-  const notif = document.getElementById('notif-actualizacion');
-  if (notif) {
-    notif.style.animation = 'slideUp 0.3s ease-out';
-    setTimeout(() => notif.remove(), 300);
+if (sessionStorage.getItem('mastertest_update_confirm') === '1') {
+  sessionStorage.removeItem('mastertest_update_confirm');
+  if (typeof showToast === 'function') {
+    showToast('success', 'App actualizada', 'Ya tienes la nueva versión de Universae.');
   }
 }
 
-// Animaciones CSS
-const style = document.createElement('style');
-style.textContent = `
-  @keyframes slideDown {
-    from {
-      transform: translateX(-50%) translateY(-100px);
-      opacity: 0;
+if ('serviceWorker' in navigator) {
+  const hadController = Boolean(navigator.serviceWorker.controller);
+  navigator.serviceWorker.addEventListener('message', event => {
+    if (event.data?.type === 'APP_UPDATE_READY' && hadController) {
+      mostrarNotificacionActualizacion();
     }
-    to {
-      transform: translateX(-50%) translateY(0);
-      opacity: 1;
-    }
-  }
-  
-  @keyframes slideUp {
-    from {
-      transform: translateX(-50%) translateY(0);
-      opacity: 1;
-    }
-    to {
-      transform: translateX(-50%) translateY(-100px);
-      opacity: 0;
-    }
-  }
-`;
-document.head.appendChild(style);
+  });
+  navigator.serviceWorker.addEventListener('controllerchange', () => {
+    if (hadController) mostrarNotificacionActualizacion();
+  });
+  navigator.serviceWorker.register('./sw.js').then(registration => {
+    registration.update().catch(() => {});
+    setInterval(() => registration.update().catch(() => {}), 60000);
+  }).catch(error => console.warn('No se pudo registrar el modo sin conexión:', error));
+}
 
 </script>
 
@@ -1970,7 +1884,7 @@ function terminarAcademiaForzado() {
     const respUsuario = academiaRespuestas[i];
     const correctaTexto = p.correctaTexto;
     const correctaIdx = p.opciones.findIndex(op => op === correctaTexto);
-    const acerto = respUsuario !== undefined && p.opciones[respUsuario] === correctaTexto;
+    const acerto = respUsuario !== undefined && esRespuestaCorrecta(p, p.opciones[respUsuario]);
     if (acerto) correctas++;
 
     const sinContestar = respUsuario === undefined;
@@ -1986,7 +1900,7 @@ function terminarAcademiaForzado() {
         ${p.imagen ? `<div class="academia-imagen"><img src="${p.imagen}" alt="Imagen pregunta ${i+1}" onerror="this.style.display='none'"></div>` : ''}
         <div class="academia-opciones academia-readonly">
           ${p.opciones.map((op, j) => {
-            const esCorrecta = op === correctaTexto;
+            const esCorrecta = esRespuestaCorrecta(p, op);
             const esElegida = j === respUsuario;
             let claseOp = "academia-opcion";
             if (esCorrecta) claseOp += " academia-op-correcta";
@@ -2025,7 +1939,7 @@ function terminarAcademiaForzado() {
     const bancoFallos = JSON.parse(localStorage.getItem("academia_banco_fallos") || "{}");
     academiaPreguntasJuego.forEach((p, i) => {
       const respUsuario = academiaRespuestas[i];
-      const acerto = respUsuario !== undefined && p.opciones[respUsuario] === p.correctaTexto;
+      const acerto = respUsuario !== undefined && esRespuestaCorrecta(p, p.opciones[respUsuario]);
       const key = String(p.id || p.texto.substring(0, 40));
       if (!acerto) {
         if (!bancoFallos[key]) bancoFallos[key] = { pregunta: p, fallos: 0, aciertosConsecutivos: 0 };

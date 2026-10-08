@@ -14,7 +14,7 @@ module.exports = async function handler(req, res) {
     }
 
     if (!process.env.ANTHROPIC_API_KEY) {
-      return res.status(500).json({ error: 'ANTHROPIC_API_KEY no está configurada' });
+      return res.status(503).json({ error: 'ANTHROPIC_API_KEY no está configurada en Vercel', code: 'ANTHROPIC_API_KEY_MISSING' });
     }
 
     let apuntesTexto = '';
@@ -117,7 +117,7 @@ Usa markdown simple con negrita para títulos de sección, párrafos separados y
         'anthropic-version': '2023-06-01'
       },
       body: JSON.stringify({
-        model: 'claude-3-haiku-20240307',
+        model: 'claude-haiku-4-5-20251001',
         max_tokens: 2000,
         temperature: 0.7,
         messages: [{ role: 'user', content: prompt }]
