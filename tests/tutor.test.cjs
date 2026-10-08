@@ -49,6 +49,11 @@ test('only real source IDs, exact quotes and server-owned page metadata accepted
   assert(!validateAnswer({ ...answer, respuesta: 'Falso [S999]' }, r.document, r.sources).encontrado);
   assert(!validateAnswer({ ...answer, citas: [{ id: 'S1', cita: 'Texto inventado que no está en el documento.' }] }, r.document, r.sources).encontrado);
   assert(!validateAnswer({ ...answer, respuesta: 'Sin cita' }, r.document, r.sources).encontrado);
+  const scanned = { ...answer, citas: [{ id: 'S1', cita: 'Las tensiones de fase son iguales entre sí y lo mismo pasa con las tensiones de fase.' }] };
+  const ocrSource = { id: 'S1', page: 6, text: 'Las ten- siones de fase son iguales entre sí y lo mismo pasa con las ten- siones de fase.' };
+  const verified = validateAnswer(scanned, r.document, [ocrSource]);
+  assert.equal(verified.encontrado, true);
+  assert(ocrSource.text.includes(verified.fuentes[0].cita));
 });
 
 test('API rejects invalid input, abstains on no evidence and exposes missing configuration safely', async () => {
