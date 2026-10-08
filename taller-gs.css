@@ -1,0 +1,70 @@
+#pantalla-taller-gs { max-width: 1180px; }
+#pantalla-taller-gs button, #pantalla-taller-gs input, #pantalla-taller-gs select { font: inherit; }
+.tgs-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 18px; }
+.tgs-top h1 { margin: 2px 0 0; font-size: clamp(1.4rem, 2rem, 2rem); line-height: 1.2; }
+.tgs-eyebrow { margin: 0; color: #0f766e; font-weight: 750; font-size: .82rem; text-transform: uppercase; }
+.tgs-quiet { border: 1px solid var(--border); border-radius: 5px; background: var(--card); color: var(--text); padding: 9px 12px; cursor: pointer; font-weight: 650; }
+.tgs-subjects { display: flex; overflow-x: auto; gap: 4px; border-bottom: 1px solid var(--border); margin-bottom: 20px; scrollbar-width: thin; }
+.tgs-subjects button { flex: 0 0 auto; border: 0; border-bottom: 3px solid transparent; background: transparent; color: var(--text-light); padding: 10px 12px; cursor: pointer; font-size: .86rem; font-weight: 650; }
+.tgs-subjects button.active { border-bottom-color: #0f766e; color: var(--text); }
+.tgs-layout { display: grid; grid-template-columns: minmax(190px, 245px) minmax(0, 1fr); gap: 28px; }
+.tgs-cases { display: flex; flex-direction: column; gap: 6px; }
+.tgs-cases button { text-align: left; border: 1px solid var(--border); background: var(--card); border-radius: 6px; padding: 11px 12px; color: var(--text); cursor: pointer; }
+.tgs-cases button.active { border-color: #0f766e; box-shadow: inset 3px 0 #0f766e; }
+.tgs-cases strong, .tgs-cases span { display: block; }
+.tgs-cases strong { font-size: .9rem; }
+.tgs-cases span { margin-top: 3px; font-size: .76rem; color: var(--text-light); }
+.tgs-work { min-width: 0; }
+.tgs-phases { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; margin-bottom: 19px; }
+.tgs-phases span { background: var(--bg); border: 1px solid var(--border); color: var(--text-light); padding: 9px 8px; text-align: center; font-size: .78rem; font-weight: 700; }
+.tgs-phases span:first-child { border-radius: 5px 0 0 5px; }
+.tgs-phases span:last-child { border-radius: 0 5px 5px 0; }
+.tgs-phases span.active { background: #e6f4f1; border-color: #0f766e; color: #115e59; }
+.tgs-phases span.done { color: #0f766e; }
+.tgs-source { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; border-bottom: 1px solid var(--border); padding-bottom: 11px; color: var(--text-light); font-size: .8rem; }
+.tgs-source button { border: 0; background: transparent; color: #0f766e; font-weight: 750; cursor: pointer; padding: 3px; }
+.tgs-work h2 { margin: 20px 0 16px; font-size: 1.08rem; line-height: 1.5; font-weight: 650; }
+.tgs-solution { border-left: 3px solid #0f766e; background: var(--bg); padding: 16px 18px; margin: 18px 0; }
+.tgs-solution strong, .tgs-section-label { font-weight: 750; color: var(--text); }
+.tgs-solution ol { padding-left: 21px; margin: 8px 0 16px; }
+.tgs-solution li { margin: 5px 0; }
+.tgs-solution p { margin: 8px 0 0; }
+.tgs-field { display: block; margin: 12px 0 17px; }
+.tgs-field > span { display: block; margin-bottom: 7px; font-size: .86rem; font-weight: 650; }
+.tgs-field select, .tgs-field input { width: 100%; min-height: 43px; border: 1px solid var(--border); border-radius: 5px; background: var(--card); color: var(--text); padding: 8px 10px; }
+.tgs-field select:focus, .tgs-field input:focus { outline: 2px solid #0f766e; outline-offset: 1px; }
+.tgs-section-label { border-top: 1px solid var(--border); padding-top: 16px; margin: 18px 0 10px; font-size: .89rem; }
+.tgs-number { display: grid; grid-template-columns: minmax(0, 1fr) 98px; gap: 7px; }
+.tgs-primary { min-height: 43px; border: 0; border-radius: 5px; background: #0f766e; color: #fff; font-weight: 750; padding: 10px 17px; cursor: pointer; margin-top: 12px; }
+.tgs-primary:hover { background: #115e59; }
+.tgs-primary[hidden], .tgs-next[hidden] { display: none; }
+.tgs-hint { margin: 4px 0 18px; color: var(--text); }
+.tgs-hint summary { cursor: pointer; color: #0f766e; font-weight: 650; }
+.tgs-hint p { margin: 8px 0 0; }
+.tgs-feedback { margin: 18px 0 4px; padding: 13px 16px; border-left: 3px solid; background: var(--bg); }
+.tgs-feedback.success { border-color: #0f766e; }
+.tgs-feedback.retry { border-color: #b45309; }
+.tgs-feedback ul { list-style: none; padding: 0; margin: 8px 0; }
+.tgs-feedback li { margin: 4px 0; }
+.tgs-feedback li.ok::before { content: '✓ '; color: #0f766e; }
+.tgs-feedback li.bad::before { content: '• '; color: #b45309; }
+.tgs-complete { color: #0f766e; font-weight: 700; margin: 18px 0 10px; }
+.tgs-symbol-frame { width: max-content; max-width: 100%; padding: 10px 14px; border: 1px solid var(--border); border-radius: 5px; background: #fff; margin: 10px 0 18px; }
+.tgs-symbol-frame > span { display: block; color: #334155; font-size: .72rem; font-weight: 650; margin-bottom: 8px; }
+.tgs-symbol { width: 190px; height: 70px; background-size: 1272px 1800px; background-repeat: no-repeat; }
+.tgs-symbol.page-2 { background-image: url('img/anexo-simbologia-p2.png'); }
+.tgs-symbol.page-6 { background-image: url('img/anexo-simbologia-p6.png'); }
+.tgs-diagram { display: flex; flex-wrap: wrap; align-items: center; max-width: 100%; gap: 4px; margin: 2px 0 14px; color: #115e59; }
+.tgs-node { border: 1px solid #0f766e; background: var(--bg); border-radius: 4px; padding: 10px 12px; font-size: .85rem; font-weight: 750; text-align: center; }
+.tgs-connector { padding: 0 2px; font-weight: 800; }
+@media (max-width: 760px) {
+  .tgs-top { align-items: stretch; flex-direction: column; }
+  .tgs-top .tgs-quiet { align-self: flex-start; }
+  .tgs-layout { grid-template-columns: 1fr; gap: 14px; }
+  .tgs-cases { flex-direction: row; overflow-x: auto; }
+  .tgs-cases button { flex: 0 0 min(220px, 68vw); }
+}
+@media (max-width: 440px) {
+  .tgs-phases span { font-size: .69rem; line-height: 1.25; }
+  .tgs-source { align-items: flex-start; }
+}

@@ -1,6 +1,6 @@
-// v1.5 - PDFs guardados en la tablet antes de solicitar la red
-const APP_VERSION = 'v1.5';
-const BUILD_TIMESTAMP = '20261008-gs-local-pdfs-1';
+// v1.6 - taller practico especifico de Grado Superior
+const APP_VERSION = 'v1.6';
+const BUILD_TIMESTAMP = '20261008-gs-taller-4';
 const CACHE_NAME = `universae-gs-${APP_VERSION}-${BUILD_TIMESTAMP}`;
 const OFFLINE_CACHE = 'universae-gs-offline-v1.2';
 const PDF_CACHE = 'universae-gs-pdfs-v1';
@@ -17,7 +17,10 @@ const CRITICAL_ASSETS = [
   './vendor/pdfjs/pdf.worker.mjs',
   './data-gs-bloque1.js',
   './data-config.js',
-  './simbolo-master.js',
+  './taller-gs.js',
+  './taller-gs.css',
+  './img/anexo-simbologia-p2.png',
+  './img/anexo-simbologia-p6.png',
 ];
 
 // ARCHIVOS DE DATOS - Importante cachearlos
@@ -29,8 +32,6 @@ const DATA_ASSETS = [
 const ASSETS_TO_CACHE = [
   ...CRITICAL_ASSETS,
   ...DATA_ASSETS,
-  './fotometria.js',
-  './caida-tension.js',
   './manifest.json',
   './img/universae-shield-logo.png',
   './img/icon-192.png',
@@ -59,7 +60,7 @@ self.addEventListener('install', (e) => {
 
 // ACTIVACIÓN v90.2: Limpieza y notificación
 self.addEventListener('activate', (e) => {
-  console.log('✨ ACTIVANDO Universae GS v1.5...');
+  console.log('✨ ACTIVANDO Universae GS v1.6...');
 
   e.waitUntil(
     caches.keys()

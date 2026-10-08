@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <title>Universae GS</title>
 <link rel="stylesheet" href="tutor.css?v=20261008-gs-tutor-1">
+<link rel="stylesheet" href="taller-gs.css?v=1.6">
 
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#2563eb">
@@ -906,7 +907,7 @@ svg, svg * {
     <div style="display:flex; align-items:center; gap:16px;">
       <img src="img/universae-shield-logo.png?v=20260909090000" alt="Universae Logo" style="height:64px; width:64px; flex-shrink:0; object-fit:contain;">
       <div>
-        <h1 style="margin:0;">Universae GS <span style="font-size:0.6em; background:#0f766e; color:white; padding:6px 16px; border-radius:25px; font-weight:900; margin-left:8px;">Bloque 1</span> <span style="font-size:0.5em; background:#1e293b; color:white; padding:5px 12px; border-radius:20px; font-weight:800; margin-left:6px;">v1.5</span></h1>
+        <h1 style="margin:0;">Universae GS <span style="font-size:0.6em; background:#0f766e; color:white; padding:6px 16px; border-radius:25px; font-weight:900; margin-left:8px;">Bloque 1</span> <span style="font-size:0.5em; background:#1e293b; color:white; padding:5px 12px; border-radius:20px; font-weight:800; margin-left:6px;">v1.6</span></h1>
         <p class="subtitle" style="margin:4px 0 0 0;">Grado Superior · Anual · Examen en mayo</p>
       </div>
     </div>
@@ -970,11 +971,7 @@ svg, svg * {
 
 <div id="pantalla-mapa-mental" class="card"></div>
 
-<div id="pantalla-fotometria" class="card"></div>
-
-<div id="pantalla-caida-tension" class="card"></div>
-
-<div id="pantalla-simbolo-master" class="card"></div>
+<div id="pantalla-taller-gs" class="card"></div>
 
 <div id="pantalla-test" class="card"></div>
 
@@ -1006,9 +1003,7 @@ svg, svg * {
 <script src="data-config.js?v=20260910000800"></script>
 <script src="pdf-local-store.js?v=20261008-gs-local-pdfs-1"></script>
 <!-- MÓDULOS EDUCATIVOS -->
-<script src="fotometria.js"></script>
-<script src="caida-tension.js"></script>
-<script src="simbolo-master.js"></script>
+<script src="taller-gs.js?v=1.6"></script>
 <!-- MOTOR PRINCIPAL -->
 <script src="motor.js?v=20261008-gs-tutor-1"></script>
 <script src="tutor.js?v=20261008-gs-tutor-1"></script>
@@ -1529,35 +1524,12 @@ function filtrarBloque(bid) {
         </div>
     </div>
 
-    <div class="strip-card strip-orange">
-        <div>
-            <div class="strip-header" style="color:#f59e0b">📐 Fotometría</div>
-            <div class="strip-meta">Lumen · Candela · Lux · Luminancia</div>
-        </div>
-        <div style="display:flex; gap:5px; justify-content:flex-end;">
-            <button class="btn-pill-right bg-orange" onclick="abrirFotometria()">📚 Estudiar</button>
-        </div>
-    </div>
-
-    <div class="strip-card strip-red">
-        <div>
-            <div class="strip-header" style="color:#dc2626">⚡ Caída de Tensión</div>
-            <div class="strip-meta">Límites REBT · Fórmulas · Ejemplos</div>
-        </div>
-        <div style="display:flex; gap:5px; justify-content:flex-end;">
-            <button class="btn-pill-right bg-danger" onclick="abrirCaidaTension()">📚 Estudiar</button>
-        </div>
-    </div>
-
     <div class="strip-card strip-blue">
         <div>
-            <div class="strip-header" style="color:#3b82f6">📖 Símbolo Master</div>
-            <div class="strip-meta">Aprende símbolos eléctricos</div>
+            <div class="strip-header" style="color:#2563eb">Taller práctico GS</div>
+            <div class="strip-meta">Casos de ${bloque.titulo_boton}</div>
         </div>
-        <div style="display:flex; gap:5px; justify-content:flex-end;">
-            <button class="btn-pill-right bg-primary" onclick="abrirSimboloMaster()">🎮 Jugar</button>
-            <button class="btn-pill-right bg-white-purple" style="color:#3b82f6; border-color:#3b82f6;" onclick="abrirSimboloMaster()">📚 Ver</button>
-        </div>
+        <button class="btn-pill-right bg-primary" onclick="abrirTallerGS('${bid}')">Practicar</button>
     </div>
 
     <div class="strip-card strip-cyan">
