@@ -1,6 +1,6 @@
-// v1.4 - Tutor con referencias a los apuntes de Grado Superior
-const APP_VERSION = 'v1.4';
-const BUILD_TIMESTAMP = '20261008-gs-tutor-1';
+// v1.5 - PDFs guardados en la tablet antes de solicitar la red
+const APP_VERSION = 'v1.5';
+const BUILD_TIMESTAMP = '20261008-gs-local-pdfs-1';
 const CACHE_NAME = `universae-gs-${APP_VERSION}-${BUILD_TIMESTAMP}`;
 const OFFLINE_CACHE = 'universae-gs-offline-v1.2';
 const PDF_CACHE = 'universae-gs-pdfs-v1';
@@ -59,7 +59,7 @@ self.addEventListener('install', (e) => {
 
 // ACTIVACIÓN v90.2: Limpieza y notificación
 self.addEventListener('activate', (e) => {
-  console.log('✨ ACTIVANDO Universae GS v1.4...');
+  console.log('✨ ACTIVANDO Universae GS v1.5...');
 
   e.waitUntil(
     caches.keys()

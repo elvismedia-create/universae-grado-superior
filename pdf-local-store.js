@@ -1160,32 +1160,41 @@
 
   async function openProjectPdf(bid, idx, url, page = 1) {
     const offlineKey = offlinePdfKey(url);
-    const urlCandidates = uniqueValues([
-      url,
-      String(url).normalize('NFC'),
-      String(url).normalize('NFD')
-    ]);
-
+    let cache = null;
     let response = null;
-    let lastStatus = 'sin respuesta';
-    for (const candidate of urlCandidates) {
-      response = await fetch(encodeURI(candidate));
-      if (response.ok) {
-        url = candidate;
-        break;
+    if ('caches' in window) {
+      try {
+        cache = await caches.open(PDF_OFFLINE_CACHE);
+        const saved = await cache.match(offlineKey);
+        if (saved?.ok && saved.headers.get('content-type')?.includes('pdf')) response = saved;
+      } catch (error) {
+        console.warn('No se pudo leer el PDF guardado:', error);
       }
-      lastStatus = response.status;
     }
 
-    if (!response || !response.ok) throw new Error(`PDF del proyecto no encontrado: ${lastStatus}`);
-
-    if (navigator.onLine && 'caches' in window) {
-      try {
-        const cache = await caches.open(PDF_OFFLINE_CACHE);
-        await cache.put(offlineKey, response.clone());
-        refreshOfflinePdfStatus().catch(() => {});
-      } catch (error) {
-        console.warn('No se pudo guardar este PDF sin conexión:', error);
+    if (!response) {
+      let lastStatus = 'sin respuesta';
+      for (const candidate of uniqueValues([url, url.normalize('NFC'), url.normalize('NFD')])) {
+        try {
+          const result = await fetch(encodeURI(candidate));
+          if (result.ok && result.headers.get('content-type')?.includes('pdf')) {
+            response = result;
+            url = candidate;
+            break;
+          }
+          lastStatus = result.status;
+        } catch (error) {
+          lastStatus = error.message;
+        }
+      }
+      if (!response) throw new Error(`PDF del proyecto no encontrado: ${lastStatus}`);
+      if (cache) {
+        try {
+          await cache.put(offlineKey, response.clone());
+          refreshOfflinePdfStatus().catch(() => {});
+        } catch (error) {
+          console.warn('No se pudo guardar este PDF sin conexión:', error);
+        }
       }
     }
 
