@@ -39,6 +39,12 @@ test('calcula penalización y detecta temas débiles sin castigar blancos', () =
   assert.equal(sim.evaluate(pool, { 0: 1, 1: 1, 2: 1, 3: 1 }, 1).score, 0);
 });
 
+test('separa el mínimo del examen de la nota ponderada con el campus', () => {
+  assert.deepEqual(sim.gradeProjection(6), { examPass: true, finalScore: 7.6 });
+  assert.deepEqual(sim.gradeProjection(5), { examPass: false, finalScore: 7 });
+  assert.deepEqual(sim.gradeProjection(10, 3), { examPass: true, finalScore: 9 });
+});
+
 test('los bancos activos de Grado Superior siguen siendo práctica, no tests oficiales', () => {
   const context = vm.createContext({});
   for (const file of ['data-gs-bloque1.js', 'data-config.js']) {

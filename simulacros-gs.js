@@ -63,7 +63,11 @@
     return { total: questions.length, correct, wrong, blank, score: Math.max(0, Math.min(10, raw)), weakTopics, topics: [...topics.values()] };
   }
 
-  const api = { SETTINGS_KEY, HISTORY_KEY, SEEN_KEY, poolFrom, selectQuestions, evaluate };
+  function gradeProjection(examScore, campusPoints = 4) {
+    return { examPass: examScore >= 6, finalScore: Math.min(10, campusPoints + examScore * 0.6) };
+  }
+
+  const api = { SETTINGS_KEY, HISTORY_KEY, SEEN_KEY, poolFrom, selectQuestions, evaluate, gradeProjection };
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
   root.SimulacrosGS = api;
   if (!root.document) return;
@@ -94,7 +98,7 @@
     const official = poolFrom(CONFIGURACION_CURSO, bidActual, 'oficial', officialBanks());
     const history = read(HISTORY_KEY, []).filter(item => item.bid === bidActual).slice(-5).reverse();
     host().innerHTML = `<div class="sgs-head"><div><h1>Simulacro configurable</h1><p>${escape(block.titulo_boton)}</p></div><button type="button" id="sgs-back">Volver</button></div>
-      <div class="sgs-notice">Referencia actual: 40 preguntas. Duración y penalización pendientes de confirmar. Las ${practice.length} preguntas de práctica proceden de los apuntes; los tests oficiales se cargarán aparte.</div>
+      <div class="sgs-notice">Referencia actual: 40 preguntas, examen 60 % y campus 40 %. Se exige un 6/10 en el examen. Duración y penalización pendientes de confirmar. Las ${practice.length} preguntas de práctica proceden de los apuntes; los tests oficiales se cargarán aparte.</div>
       <form id="sgs-settings"><label>Banco de preguntas<select name="source"><option value="practica">Práctica de apuntes</option>${official.length ? `<option value="oficial">Tests oficiales (${official.length})</option>` : ''}</select></label>
         <label>Preguntas<input name="count" type="number" min="1" max="${Math.max(practice.length, official.length)}" value="${settings.count || Math.min(40, practice.length)}" required></label>
         <label>Tiempo (min)<input name="minutes" type="number" min="1" max="240" value="${settings.minutes || 30}" required></label>
@@ -190,8 +194,10 @@
 
   function renderResult(result) {
     const { questions, answers, settings } = session;
+    const projection = gradeProjection(result.score);
     host().innerHTML = `<div class="sgs-head"><div><h1>Resultado del simulacro</h1><p>${escape(blockFor(session.bid).titulo_boton)} · ${settings.source === 'oficial' ? 'Test oficial' : 'Práctica de apuntes'}</p></div><strong class="sgs-score">${result.score.toFixed(2)} / 10</strong></div>
       <div class="sgs-summary"><span>${result.correct} ${result.correct === 1 ? 'acierto' : 'aciertos'}</span><span>${result.wrong} ${result.wrong === 1 ? 'fallo' : 'fallos'}</span><span>${result.blank} en blanco</span><span>Penalización ${settings.penalty}</span></div>
+      <div class="sgs-notice">${projection.examPass ? 'Superas' : 'No alcanzas'} el mínimo de 6/10 en el examen. Con 4/4 puntos del campus, la nota final estimada sería ${projection.finalScore.toFixed(2)}/10. Es una orientación basada en este simulacro.</div>
       ${session.repeated ? `<p class="sgs-repeat">${session.repeated} preguntas ya vistas; el banco de esta asignatura empieza a agotarse.</p>` : ''}
       <section class="sgs-diagnosis"><h2>Temas que conviene reforzar</h2>${result.weakTopics.length ? `<ul>${result.weakTopics.slice(0, 5).map(item => `<li><strong>${escape(item.topic)}</strong><span>${item.correct}/${item.total} aciertos · ${item.wrong} ${item.wrong === 1 ? 'fallo' : 'fallos'}</span></li>`).join('')}</ul>` : '<p>No hay temas con fallos en este intento.</p>'}</section>
       <div class="sgs-controls"><button type="button" id="sgs-again">Nuevo simulacro</button><button type="button" id="sgs-home">Volver a asignatura</button></div>
