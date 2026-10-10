@@ -41,7 +41,7 @@ test('calcula penalización y detecta temas débiles sin castigar blancos', () =
 
 test('separa el mínimo del examen de la nota ponderada con el campus', () => {
   assert.deepEqual(sim.gradeProjection(6), { examPass: true, finalScore: 7.6 });
-  assert.deepEqual(sim.gradeProjection(5), { examPass: false, finalScore: 7 });
+  assert.deepEqual(sim.gradeProjection(5), { examPass: false, finalScore: null });
   assert.deepEqual(sim.gradeProjection(10, 3), { examPass: true, finalScore: 9 });
 });
 

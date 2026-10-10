@@ -64,7 +64,8 @@
   }
 
   function gradeProjection(examScore, campusPoints = 4) {
-    return { examPass: examScore >= 6, finalScore: Math.min(10, campusPoints + examScore * 0.6) };
+    const examPass = examScore >= 6;
+    return { examPass, finalScore: examPass ? Math.min(10, campusPoints + examScore * 0.6) : null };
   }
 
   const api = { SETTINGS_KEY, HISTORY_KEY, SEEN_KEY, poolFrom, selectQuestions, evaluate, gradeProjection };
@@ -197,7 +198,7 @@
     const projection = gradeProjection(result.score);
     host().innerHTML = `<div class="sgs-head"><div><h1>Resultado del simulacro</h1><p>${escape(blockFor(session.bid).titulo_boton)} · ${settings.source === 'oficial' ? 'Test oficial' : 'Práctica de apuntes'}</p></div><strong class="sgs-score">${result.score.toFixed(2)} / 10</strong></div>
       <div class="sgs-summary"><span>${result.correct} ${result.correct === 1 ? 'acierto' : 'aciertos'}</span><span>${result.wrong} ${result.wrong === 1 ? 'fallo' : 'fallos'}</span><span>${result.blank} en blanco</span><span>Penalización ${settings.penalty}</span></div>
-      <div class="sgs-notice">${projection.examPass ? 'Superas' : 'No alcanzas'} el mínimo de 6/10 en el examen. Con 4/4 puntos del campus, la nota final estimada sería ${projection.finalScore.toFixed(2)}/10. Es una orientación basada en este simulacro.</div>
+      <div class="sgs-notice">${projection.examPass ? `Superas el mínimo de 6/10 en el examen. Con 4/4 puntos del campus, la nota final estimada sería ${projection.finalScore.toFixed(2)}/10.` : 'No alcanzas el mínimo de 6/10 en el examen. No se calcula la media con la nota del campus.'} Es una orientación basada en este simulacro.</div>
       ${session.repeated ? `<p class="sgs-repeat">${session.repeated} preguntas ya vistas; el banco de esta asignatura empieza a agotarse.</p>` : ''}
       <section class="sgs-diagnosis"><h2>Temas que conviene reforzar</h2>${result.weakTopics.length ? `<ul>${result.weakTopics.slice(0, 5).map(item => `<li><strong>${escape(item.topic)}</strong><span>${item.correct}/${item.total} aciertos · ${item.wrong} ${item.wrong === 1 ? 'fallo' : 'fallos'}</span></li>`).join('')}</ul>` : '<p>No hay temas con fallos en este intento.</p>'}</section>
       <div class="sgs-controls"><button type="button" id="sgs-again">Nuevo simulacro</button><button type="button" id="sgs-home">Volver a asignatura</button></div>

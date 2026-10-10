@@ -1,6 +1,6 @@
 // v1.9 - simulacros configurables, separados de tests oficiales
 const APP_VERSION = 'v1.9';
-const BUILD_TIMESTAMP = '20261010-gs-simulacro-3';
+const BUILD_TIMESTAMP = '20261010-gs-simulacro-4';
 const CACHE_NAME = `universae-gs-${APP_VERSION}-${BUILD_TIMESTAMP}`;
 const OFFLINE_CACHE = 'universae-gs-offline-v1.2';
 const PDF_CACHE = 'universae-gs-pdfs-v1';
