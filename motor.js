@@ -392,11 +392,11 @@ function renderPregunta() {
   if (esModoEstudio() && asignaturaActualObj) {
     const bloquePadre = CONFIGURACION_CURSO.find(b => b.bloque === lastContext.bid);
     titulo = modoActual === 'repaso_espaciado' ? 'Repaso de hoy' : (bloquePadre ? bloquePadre.titulo_boton : 'Tema');
-    subtitulo = asignaturaActualObj.nombre;
+    subtitulo = asignaturaActualObj.titulo || asignaturaActualObj.nombre;
     const db = loadDatabase();
     const estado = db[asignaturaActualObj.nombre];
     if (modoActual === 'repaso_espaciado' || RepasoEspaciado.isDue(estado.srs?.[p.id])) badge = `<span class="badge badge-repaso">REPASO</span>`;
-    else if (asignaturaActualObj.data.slice(0,10).some(x=>x.id===p.id)) badge = `<span class="badge badge-oficial">🔵 OFICIAL</span>`;
+    else if (asignaturaActualObj.data.slice(0,10).some(x=>x.id===p.id)) badge = `<span class="badge badge-oficial">PRÁCTICA</span>`;
     else badge = `<span class="badge badge-nuevo">🟠 NUEVA</span>`;
     
     // v67.24: Badge GENERADA para preguntas IA (prioridad sobre otros)
@@ -762,7 +762,7 @@ function verEstadisticas() {
     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
       <h1 style="margin:0;">📊 Stats</h1>
       <div style="background:#10b981; color:white; padding:8px 16px; border-radius:20px; font-weight:900; font-size:0.9rem; box-shadow:0 2px 8px rgba(16,185,129,0.3);">
-        v1.8
+        v1.9
       </div>
     </div>
     <div class="stats-grid">
@@ -802,7 +802,10 @@ function descargarProgreso() {
     logros: JSON.parse(localStorage.getItem("mastertest_logros")),
     recN: localStorage.getItem("mastertest_record_normal"), 
     recA: localStorage.getItem("mastertest_record_arcade"),
-    plan: JSON.parse(localStorage.getItem('universae_gs_plan_v1'))
+    plan: JSON.parse(localStorage.getItem('universae_gs_plan_v1')),
+    simulacroConfig: JSON.parse(localStorage.getItem('universae_gs_simulacro_config_v1')),
+    simulacroHistorial: JSON.parse(localStorage.getItem('universae_gs_simulacro_history_v1')),
+    simulacroVistas: JSON.parse(localStorage.getItem('universae_gs_simulacro_seen_v1'))
   };
   const blob = new Blob([JSON.stringify(data)], { type: "application/json" });
   const a = document.createElement("a"); 
@@ -834,6 +837,9 @@ function cargarProgreso(input) {
         if(data.recN) localStorage.setItem("mastertest_record_normal", data.recN);
         if(data.recA) localStorage.setItem("mastertest_record_arcade", data.recA);
         if(data.plan) localStorage.setItem('universae_gs_plan_v1', JSON.stringify(data.plan));
+        if(data.simulacroConfig) localStorage.setItem('universae_gs_simulacro_config_v1', JSON.stringify(data.simulacroConfig));
+        if(data.simulacroHistorial) localStorage.setItem('universae_gs_simulacro_history_v1', JSON.stringify(data.simulacroHistorial));
+        if(data.simulacroVistas) localStorage.setItem('universae_gs_simulacro_seen_v1', JSON.stringify(data.simulacroVistas));
         alert("✅ Progreso restaurado."); location.reload(); 
     } catch(err) { alert("❌ Error de archivo."); }
   };

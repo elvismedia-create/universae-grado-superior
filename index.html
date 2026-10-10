@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="taller-gs.css?v=1.6">
 <link rel="stylesheet" href="repaso-espaciado.css?v=1.7">
 <link rel="stylesheet" href="plan-diario.css?v=1.8">
+<link rel="stylesheet" href="simulacros-gs.css?v=1.9">
 
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#2563eb">
@@ -909,7 +910,7 @@ svg, svg * {
     <div style="display:flex; align-items:center; gap:16px;">
       <img src="img/universae-shield-logo.png?v=20260909090000" alt="Universae Logo" style="height:64px; width:64px; flex-shrink:0; object-fit:contain;">
       <div>
-        <h1 style="margin:0;">Universae GS <span style="font-size:0.6em; background:#0f766e; color:white; padding:6px 16px; border-radius:25px; font-weight:900; margin-left:8px;">Bloque 1</span> <span style="font-size:0.5em; background:#1e293b; color:white; padding:5px 12px; border-radius:20px; font-weight:800; margin-left:6px;">v1.8</span></h1>
+        <h1 style="margin:0;">Universae GS <span style="font-size:0.6em; background:#0f766e; color:white; padding:6px 16px; border-radius:25px; font-weight:900; margin-left:8px;">Bloque 1</span> <span style="font-size:0.5em; background:#1e293b; color:white; padding:5px 12px; border-radius:20px; font-weight:800; margin-left:6px;">v1.9</span></h1>
         <p class="subtitle" style="margin:4px 0 0 0;">Grado Superior · Anual · Examen en mayo</p>
       </div>
     </div>
@@ -977,6 +978,8 @@ svg, svg * {
 
 <div id="pantalla-plan-diario" class="card"></div>
 
+<div id="pantalla-simulacro-gs" class="card"></div>
+
 <div id="pantalla-test" class="card"></div>
 
 <div id="pantalla-resultados" class="card"></div>
@@ -1003,15 +1006,16 @@ svg, svg * {
 
 <!-- DATOS GRADO SUPERIOR -->
 <script src="data-especial.js?v=20260414071000"></script>
-<script src="data-gs-bloque1.js?v=20260910001000"></script>
-<script src="data-config.js?v=20260910000800"></script>
+<script src="data-gs-bloque1.js?v=1.9"></script>
+<script src="data-config.js?v=1.9"></script>
 <script src="pdf-local-store.js?v=20261008-gs-local-pdfs-1"></script>
 <!-- MÓDULOS EDUCATIVOS -->
 <script src="taller-gs.js?v=1.6"></script>
 <!-- MOTOR PRINCIPAL -->
 <script src="repaso-espaciado.js?v=1.7"></script>
-<script src="motor.js?v=1.8"></script>
+<script src="motor.js?v=1.9"></script>
 <script src="plan-diario.js?v=1.8"></script>
+<script src="simulacros-gs.js?v=1.9"></script>
 <script src="tutor.js?v=20261008-gs-tutor-1"></script>
 
 
@@ -1190,7 +1194,7 @@ function filtrarBloque(bid) {
     
     card.innerHTML = `
       <div class="asig-info">
-        <div class="asig-title">${asig.nombre}</div>
+        <div class="asig-title">${asig.titulo || asig.nombre}</div>
         <div class="asig-meta"><span style="display:flex; align-items:center; gap:5px; margin-right:10px;">${iconStatus} ${textoDominadas}</span><div style="display:flex; align-items:center;">${htmlBadges}</div></div>
         ${pendientesRepaso ? `<span class="repaso-pendiente">${pendientesRepaso} para repasar hoy</span>` : ''}
         <div class="barra-fondo"><div class="barra-relleno ${porcentaje >= 100 ? 'full' : ''}" style="width:${porcentaje}%"></div></div>
@@ -1480,15 +1484,10 @@ function filtrarBloque(bid) {
   cardSimulacros.className = "asig-card card-simulacros"; 
   cardSimulacros.innerHTML = `
     <div class="simulacro-header">
-      <div><h3 class="simulacro-title">🏁 Simulacro Oficial</h3><p class="simulacro-subtitle">Entrenamiento estándar con cronómetro.</p></div>
+      <div><h3 class="simulacro-title">🏁 Simulacro configurable</h3><p class="simulacro-subtitle">Formato real pendiente de confirmar.</p></div>
       <div style="font-size: 2.5rem; opacity: 0.1;">⏱️</div>
     </div>
-    <div class="simulacro-grid">
-      <button class="btn-sim-num" onclick="jugar('global', 20)">20</button>
-      <button class="btn-sim-num" onclick="jugar('global', 30)">30</button>
-      <button class="btn-sim-num" onclick="jugar('global', 50)">50</button>
-      <button class="btn-sim-custom" onclick="abrirConfiguradorPersonalizado()" title="Configurar a medida">🧪</button>
-    </div>
+    <button class="btn-orange" onclick="abrirSimulacroGS('${bid}')">Configurar y empezar</button>
   `;
   grid.appendChild(cardSimulacros);
 

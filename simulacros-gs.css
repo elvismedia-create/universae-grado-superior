@@ -1,0 +1,37 @@
+#pantalla-simulacro-gs { max-width: 980px; }
+#pantalla-simulacro-gs button, #pantalla-simulacro-gs input, #pantalla-simulacro-gs select { font: inherit; }
+.sgs-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 18px; border-bottom: 1px solid var(--border); padding-bottom: 16px; }
+.sgs-head h1 { margin: 0; font-size: 1.4rem; line-height: 1.25; }
+.sgs-head p { margin: 5px 0 0; color: var(--text-light); font-size: .88rem; }
+.sgs-head button, .sgs-controls button { flex: 0 0 auto; width: auto; min-height: 40px; padding: 8px 14px; border: 1px solid var(--border); border-radius: 5px; background: var(--card); color: var(--text); font-weight: 700; cursor: pointer; }
+.sgs-notice { border-left: 3px solid #0f766e; background: var(--bg); padding: 11px 14px; margin: 18px 0; font-size: .88rem; line-height: 1.45; }
+#sgs-settings { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 18px; margin: 20px 0; }
+#sgs-settings label { display: grid; gap: 6px; font-size: .87rem; font-weight: 700; }
+#sgs-settings select, #sgs-settings input { min-width: 0; width: 100%; min-height: 43px; padding: 8px 10px; border: 1px solid var(--border); border-radius: 5px; background: var(--card); color: var(--text); }
+.sgs-form-note { grid-column: 1 / -1; color: var(--text-light); font-size: .8rem; margin: 0; }
+#sgs-error { grid-column: 1 / -1; color: var(--danger); font-weight: 700; }
+#sgs-settings button { grid-column: 1 / -1; justify-self: start; min-height: 42px; border: 0; border-radius: 5px; padding: 9px 18px; background: #0f766e; color: white; font-weight: 700; cursor: pointer; }
+.sgs-history, .sgs-diagnosis, .sgs-review { border-top: 1px solid var(--border); padding-top: 18px; margin-top: 22px; }
+.sgs-history h2, .sgs-diagnosis h2, .sgs-review h2 { font-size: 1rem; margin: 0 0 10px; }
+.sgs-history ul, .sgs-diagnosis ul { list-style: none; padding: 0; margin: 0; }
+.sgs-history li, .sgs-diagnosis li { display: flex; justify-content: space-between; gap: 12px; padding: 9px 0; border-top: 1px solid var(--border); font-size: .86rem; }
+.sgs-diagnosis li span { color: var(--text-light); }
+.sgs-clock { flex: 0 0 auto; font-variant-numeric: tabular-nums; font-size: 1.15rem; font-weight: 800; color: #0f766e; }
+.sgs-progress { display: flex; justify-content: space-between; gap: 12px; margin: 18px 0; color: var(--text-light); font-size: .85rem; font-weight: 700; }
+.sgs-question small { color: #0f766e; font-weight: 700; }
+.sgs-question h2 { font-size: 1.15rem; line-height: 1.4; margin: 9px 0 20px; }
+.sgs-options { display: grid; gap: 8px; }
+.sgs-options label { display: flex; align-items: flex-start; gap: 10px; border: 1px solid var(--border); border-radius: 5px; padding: 12px 14px; cursor: pointer; line-height: 1.4; }
+.sgs-options label:has(input:checked) { border-color: #0f766e; background: var(--bg); }
+.sgs-options input { margin-top: 3px; accent-color: #0f766e; }
+.sgs-controls { display: flex; flex-wrap: wrap; gap: 8px; margin: 22px 0 4px; }
+.sgs-controls #sgs-finish, .sgs-controls #sgs-again { background: #0f766e; border-color: #0f766e; color: white; }
+.sgs-controls button:disabled { opacity: .45; cursor: default; }
+#sgs-warning { color: var(--danger); font-weight: 700; margin-top: 12px; }
+#sgs-warning button { margin-left: 8px; border: 0; border-radius: 5px; padding: 8px 12px; background: var(--danger); color: white; cursor: pointer; }
+.sgs-score { font-size: 1.35rem; color: #0f766e; white-space: nowrap; }
+.sgs-summary { display: flex; flex-wrap: wrap; gap: 8px 20px; margin: 18px 0; font-size: .88rem; font-weight: 700; }
+.sgs-repeat { color: var(--text-light); font-size: .85rem; }
+.sgs-review > div { padding: 12px 0; border-top: 1px solid var(--border); font-size: .87rem; }
+.sgs-review p { margin: 5px 0 0; color: var(--text-light); }
+@media (max-width: 600px) { #sgs-settings { grid-template-columns: 1fr; } .sgs-diagnosis li, .sgs-history li { display: grid; gap: 3px; } .sgs-head { flex-wrap: wrap; } }

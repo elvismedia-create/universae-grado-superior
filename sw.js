@@ -1,6 +1,6 @@
-// v1.8 - plan diario hasta el examen
-const APP_VERSION = 'v1.8';
-const BUILD_TIMESTAMP = '20261008-gs-plan-1';
+// v1.9 - simulacros configurables, separados de tests oficiales
+const APP_VERSION = 'v1.9';
+const BUILD_TIMESTAMP = '20261010-gs-simulacro-1';
 const CACHE_NAME = `universae-gs-${APP_VERSION}-${BUILD_TIMESTAMP}`;
 const OFFLINE_CACHE = 'universae-gs-offline-v1.2';
 const PDF_CACHE = 'universae-gs-pdfs-v1';
@@ -14,6 +14,8 @@ const CRITICAL_ASSETS = [
   './repaso-espaciado.css',
   './plan-diario.js',
   './plan-diario.css',
+  './simulacros-gs.js',
+  './simulacros-gs.css',
   './pdf-local-store.js',
   './tutor.js',
   './tutor.css',
@@ -64,7 +66,7 @@ self.addEventListener('install', (e) => {
 
 // ACTIVACIÓN v90.2: Limpieza y notificación
 self.addEventListener('activate', (e) => {
-  console.log('✨ ACTIVANDO Universae GS v1.8...');
+  console.log('✨ ACTIVANDO Universae GS v1.9...');
 
   e.waitUntil(
     caches.keys()

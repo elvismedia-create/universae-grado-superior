@@ -1,12 +1,3 @@
-// Filtra solo las preguntas marcadas como TEST OFICIAL (campo tema, texto o explicacion)
-function soloOficiales(data) {
-  return data.filter(p =>
-    (p.tema && String(p.tema).includes('TEST OFICIAL')) ||
-    (p.texto && String(p.texto).includes('TEST OFICIAL')) ||
-    (p.explicacion && String(p.explicacion).includes('TEST OFICIAL'))
-  );
-}
-
 const CONFIGURACION_CURSO = [
   // ===== BLOQUE 1 - GRADO SUPERIOR ANUAL =====
   {
@@ -14,7 +5,7 @@ const CONFIGURACION_CURSO = [
     trimestre: "B1",
     titulo_boton: "Sistemas y circuitos eléctricos",
     asignaturas: [
-      { nombre: "⭐ Simulacro: Sistemas y circuitos eléctricos (40 preguntas)", data: EXAMEN_GS_SISTEMAS_CIRCUITOS_DATA },
+      { nombre: "⭐ Simulacro: Sistemas y circuitos eléctricos (40 preguntas)", titulo: "⭐ Práctica: Sistemas y circuitos eléctricos (40 preguntas)", data: EXAMEN_GS_SISTEMAS_CIRCUITOS_DATA },
       { nombre: "U1: Conceptos básicos", data: GS_SCE_U1_DATA },
       { nombre: "U2: Sistemas trifásicos", data: GS_SCE_U2_DATA },
       { nombre: "U3: Transformadores eléctricos", data: GS_SCE_U3_DATA },
@@ -32,7 +23,7 @@ const CONFIGURACION_CURSO = [
     trimestre: "B1",
     titulo_boton: "Gestión del montaje y mantenimiento",
     asignaturas: [
-      { nombre: "⭐ Simulacro: Gestión del montaje y del mantenimiento de instalaciones eléctricas (40 preguntas)", data: EXAMEN_GS_GESTION_MONTAJE_MANTENIMIENTO_DATA },
+      { nombre: "⭐ Simulacro: Gestión del montaje y del mantenimiento de instalaciones eléctricas (40 preguntas)", titulo: "⭐ Práctica: Gestión del montaje y del mantenimiento de instalaciones eléctricas (40 preguntas)", data: EXAMEN_GS_GESTION_MONTAJE_MANTENIMIENTO_DATA },
       { nombre: "U1: Documentación técnica y normativa de aplicación", data: GS_GMM_U1_DATA },
       { nombre: "U2: Organización del proceso de aprovisionamiento", data: GS_GMM_U2_DATA },
       { nombre: "U3: Gestión del almacén", data: GS_GMM_U3_DATA },
@@ -48,7 +39,7 @@ const CONFIGURACION_CURSO = [
     trimestre: "B1",
     titulo_boton: "Documentación técnica",
     asignaturas: [
-      { nombre: "⭐ Simulacro: Documentación técnica en instalaciones eléctricas (40 preguntas)", data: EXAMEN_GS_DOCUMENTACION_TECNICA_DATA },
+      { nombre: "⭐ Simulacro: Documentación técnica en instalaciones eléctricas (40 preguntas)", titulo: "⭐ Práctica: Documentación técnica en instalaciones eléctricas (40 preguntas)", data: EXAMEN_GS_DOCUMENTACION_TECNICA_DATA },
       { nombre: "U1: Identificación de la documentación técnica y administrativa", data: GS_DTE_U1_DATA },
       { nombre: "U2: Proyectos y memorias técnicas de diseño", data: GS_DTE_U2_DATA },
       { nombre: "U3: Representación gráfica de las instalaciones electrotécnicas", data: GS_DTE_U3_DATA },
@@ -64,7 +55,7 @@ const CONFIGURACION_CURSO = [
     trimestre: "B1",
     titulo_boton: "Desarrollo de redes y CT",
     asignaturas: [
-      { nombre: "⭐ Simulacro: Desarrollo de redes eléctricas y centros de transformación (40 preguntas)", data: EXAMEN_GS_DESARROLLO_REDES_CT_DATA },
+      { nombre: "⭐ Simulacro: Desarrollo de redes eléctricas y centros de transformación (40 preguntas)", titulo: "⭐ Práctica: Desarrollo de redes eléctricas y centros de transformación (40 preguntas)", data: EXAMEN_GS_DESARROLLO_REDES_CT_DATA },
       { nombre: "U1: Estructura de la red eléctrica", data: GS_RCT_U1_DATA },
       { nombre: "U2: Redes eléctricas de distribución de media tensión", data: GS_RCT_U2_DATA },
       { nombre: "U3: Centros de transformación de energía eléctrica", data: GS_RCT_U3_DATA },
@@ -80,7 +71,7 @@ const CONFIGURACION_CURSO = [
     trimestre: "B1",
     titulo_boton: "Configuración de instalaciones eléctricas",
     asignaturas: [
-      { nombre: "⭐ Simulacro: Configuración de instalaciones eléctricas (40 preguntas)", data: EXAMEN_GS_CONFIGURACION_INSTALACIONES_ELECTRICAS_DATA },
+      { nombre: "⭐ Simulacro: Configuración de instalaciones eléctricas (40 preguntas)", titulo: "⭐ Práctica: Configuración de instalaciones eléctricas (40 preguntas)", data: EXAMEN_GS_CONFIGURACION_INSTALACIONES_ELECTRICAS_DATA },
       { nombre: "U1: Características de las instalaciones de BT", data: GS_CIE_U1_DATA },
       { nombre: "U2: Elementos de las instalaciones de BT I", data: GS_CIE_U2_DATA },
       { nombre: "U3: Elementos de las instalaciones de BT II", data: GS_CIE_U3_DATA },
@@ -95,7 +86,7 @@ const CONFIGURACION_CURSO = [
     trimestre: "B1",
     titulo_boton: "Domóticas y automáticas",
     asignaturas: [
-      { nombre: "⭐ Simulacro: Configuración de instalaciones domóticas y automáticas (40 preguntas)", data: EXAMEN_GS_CONFIGURACION_DOMOTICAS_AUTOMATICAS_DATA },
+      { nombre: "⭐ Simulacro: Configuración de instalaciones domóticas y automáticas (40 preguntas)", titulo: "⭐ Práctica: Configuración de instalaciones domóticas y automáticas (40 preguntas)", data: EXAMEN_GS_CONFIGURACION_DOMOTICAS_AUTOMATICAS_DATA },
       { nombre: "U1: Hogares digitales, edificios inteligentes y urbótica en tu ciudad", data: GS_CDA_U1_DATA },
       { nombre: "U2: Instalaciones y dispositivos de automatización", data: GS_CDA_U2_DATA },
       { nombre: "U3: Soluciones de automatización preprogramadas", data: GS_CDA_U3_DATA },

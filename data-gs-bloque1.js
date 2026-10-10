@@ -5,7 +5,7 @@
    ========================================================= */
 
 function qGS(id, tema, texto, opciones, correctaTexto, explicacion) {
-  return { id, tema: `${tema} (TEST OFICIAL)`, texto, opciones, correctaTexto, explicacion };
+  return { id, tema, texto, opciones, correctaTexto, explicacion, fuente: 'practica' };
 }
 
 const GS_SCE_U1_DATA = [
