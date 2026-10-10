@@ -94,9 +94,9 @@
     const official = poolFrom(CONFIGURACION_CURSO, bidActual, 'oficial', officialBanks());
     const history = read(HISTORY_KEY, []).filter(item => item.bid === bidActual).slice(-5).reverse();
     host().innerHTML = `<div class="sgs-head"><div><h1>Simulacro configurable</h1><p>${escape(block.titulo_boton)}</p></div><button type="button" id="sgs-back">Volver</button></div>
-      <div class="sgs-notice">Formato real pendiente de confirmar. Las ${practice.length} preguntas de práctica proceden de los apuntes; los tests oficiales se cargarán aparte.</div>
+      <div class="sgs-notice">Referencia actual: 40 preguntas. Duración y penalización pendientes de confirmar. Las ${practice.length} preguntas de práctica proceden de los apuntes; los tests oficiales se cargarán aparte.</div>
       <form id="sgs-settings"><label>Banco de preguntas<select name="source"><option value="practica">Práctica de apuntes</option>${official.length ? `<option value="oficial">Tests oficiales (${official.length})</option>` : ''}</select></label>
-        <label>Preguntas<input name="count" type="number" min="1" max="${Math.max(practice.length, official.length)}" value="${settings.count || Math.min(20, practice.length)}" required></label>
+        <label>Preguntas<input name="count" type="number" min="1" max="${Math.max(practice.length, official.length)}" value="${settings.count || Math.min(40, practice.length)}" required></label>
         <label>Tiempo (min)<input name="minutes" type="number" min="1" max="240" value="${settings.minutes || 30}" required></label>
         <label>Penalización por fallo<input name="penalty" type="number" min="0" max="1" step="0.01" value="${settings.penalty ?? 0}" required></label>
         <p class="sgs-form-note">Una penalización de 0,33 descuenta 0,33 aciertos por cada error. Las preguntas sin contestar no restan.</p>
