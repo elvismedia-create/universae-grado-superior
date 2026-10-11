@@ -1,6 +1,6 @@
-// v1.9 - simulacros configurables, separados de tests oficiales
-const APP_VERSION = 'v1.9';
-const BUILD_TIMESTAMP = '20261010-gs-simulacro-4';
+// v1.10 - valoración opcional en tests de estudio
+const APP_VERSION = 'v1.10';
+const BUILD_TIMESTAMP = '20261011-gs-confianza-1';
 const CACHE_NAME = `universae-gs-${APP_VERSION}-${BUILD_TIMESTAMP}`;
 const OFFLINE_CACHE = 'universae-gs-offline-v1.2';
 const PDF_CACHE = 'universae-gs-pdfs-v1';
@@ -66,7 +66,7 @@ self.addEventListener('install', (e) => {
 
 // ACTIVACIÓN v90.2: Limpieza y notificación
 self.addEventListener('activate', (e) => {
-  console.log('✨ ACTIVANDO Universae GS v1.9...');
+  console.log('✨ ACTIVANDO Universae GS v1.10...');
 
   e.waitUntil(
     caches.keys()

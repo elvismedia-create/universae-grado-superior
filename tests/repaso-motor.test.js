@@ -63,6 +63,31 @@ test('el test normal guarda fecha y exige dias distintos para dominar', () => {
   assert.equal(state.dom.length, 0);
 });
 
+test('avanza sin valorar un acierto y lo registra como duda, también al finalizar', () => {
+  const second = { ...question, id: 410102, texto: 'Segunda pregunta' };
+  const twoQuestions = [{ ...config[0], asignaturas: [{ ...topic, data: [question, second] }] }];
+  const { context, storage, elements } = harness({}, twoQuestions);
+  context.jugar('carrera', 0, 'sistemas_gs');
+  context.clickOpcion(vm.runInContext('preguntasJuego[0].opciones.indexOf("Correcta")', context));
+  const firstHtml = elements.get('pantalla-test').innerHTML;
+  for (const [label, icon] of [['Lo sabía', '🧠'], ['Tenía dudas', '🤔'], ['Por descarte', '✂️']]) {
+    assert.ok(firstHtml.includes(`aria-label="${label}" title="${label}"`));
+    assert.ok(firstHtml.includes(`>${icon}</button>`));
+  }
+  context.siguiente();
+  assert.equal(vm.runInContext('confianzaUsuario[0]', context), 'duda');
+  assert.equal(vm.runInContext('indice', context), 1);
+  context.clickOpcion(vm.runInContext('preguntasJuego[1].opciones.indexOf("Correcta")', context));
+  context.siguiente();
+  const state = JSON.parse(storage.get('mastertest_db'))[topic.nombre];
+  for (const item of [question, second]) {
+    assert.equal(state.srs[item.id].confidence, 'duda');
+    assert.equal(state.srs[item.id].mastered, false);
+  }
+  assert.deepEqual(state.dom, []);
+  assert.ok(elements.get('pantalla-resultados').innerHTML.includes('Tenía dudas'));
+});
+
 test('las preguntas antiguas dominadas aparecen en el repaso de hoy', () => {
   const old = { [topic.nombre]: { active: [], dom: [question.id], master_index: 1, stats: {} } };
   const { context, storage } = harness({ mastertest_db: JSON.stringify(old) });

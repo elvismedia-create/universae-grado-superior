@@ -433,9 +433,9 @@ function renderPregunta() {
     <div class="repaso-confianza" role="group" aria-label="Seguridad de la respuesta">
       <p>¿Cómo llegaste a esta respuesta?</p>
       <div class="repaso-confianza-opciones">
-        <button type="button" onclick="registrarConfianza('sabia')">Lo sabía</button>
-        <button type="button" onclick="registrarConfianza('duda')">Tenía dudas</button>
-        <button type="button" onclick="registrarConfianza('descarte')">Por descarte</button>
+        <button type="button" aria-label="Lo sabía" title="Lo sabía" onclick="registrarConfianza('sabia')">🧠</button>
+        <button type="button" aria-label="Tenía dudas" title="Tenía dudas" onclick="registrarConfianza('duda')">🤔</button>
+        <button type="button" aria-label="Por descarte" title="Por descarte" onclick="registrarConfianza('descarte')">✂️</button>
       </div>
     </div>` : '';
 
@@ -762,7 +762,7 @@ function verEstadisticas() {
     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
       <h1 style="margin:0;">📊 Stats</h1>
       <div style="background:#10b981; color:white; padding:8px 16px; border-radius:20px; font-weight:900; font-size:0.9rem; box-shadow:0 2px 8px rgba(16,185,129,0.3);">
-        v1.9
+        v1.10
       </div>
     </div>
     <div class="stats-grid">
@@ -925,8 +925,7 @@ function siguiente() {
   const respuesta = respuestasUsuario[indice];
   if (esModoEstudio() && respuesta !== null &&
       confianzaUsuario[indice] === null && esRespuestaCorrecta(preguntasJuego[indice], preguntasJuego[indice].opciones[respuesta])) {
-    showToast('info', 'Valora tu respuesta', 'Elige si lo sabías, tenías dudas o acertaste por descarte.');
-    return;
+    confianzaUsuario[indice] = 'duda';
   }
   if (indice < preguntasJuego.length - 1) { indice++; renderPregunta(); } else finalizar();
 }
