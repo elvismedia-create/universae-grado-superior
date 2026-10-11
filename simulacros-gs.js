@@ -180,6 +180,12 @@
     }
     stopTimer();
     const result = evaluate(questions, answers, settings.penalty);
+    if (root.CuadernoGS) questions.forEach((question, index) => {
+      const choice = answers[index];
+      if (choice != null && question.opciones[choice] !== question.correctaTexto) {
+        root.CuadernoGS.record(root.localStorage, CONFIGURACION_CURSO, question, question.opciones[choice], 'simulacro');
+      }
+    });
     const seenAll = read(SEEN_KEY, {});
     const key = `${session.bid}:${settings.source}`;
     seenAll[key] = [...new Set([...(seenAll[key] || []).map(String), ...questions.map(item => String(item.id))])];

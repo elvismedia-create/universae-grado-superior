@@ -217,6 +217,13 @@
   }
 
   window.abrirTutorTema = open;
+  window.abrirTutorFragmento = (bid, idx, page, excerpt) => {
+    open(bid, idx);
+    if (!active) return;
+    active.mode.value = 'comprobar';
+    active.input.value = `Hazme una pregunta breve para comprobar si entiendo este fragmento de la página ${page} del PDF, sin mostrar aún la respuesta: ${excerpt}`.slice(0, 1800);
+    send(active);
+  };
   window.abrirTutorError = (index, academia = false) => {
     const questions = academia ? academiaPreguntasJuego : preguntasJuego;
     const answers = academia ? academiaRespuestas : respuestasUsuario;

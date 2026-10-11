@@ -9,7 +9,7 @@ let modoActual = "";
 let asignaturaActualObj = null;
 let lastContext = null;
 let confianzaUsuario = [];
-const esModoEstudio = () => ['carrera', 'repaso_espaciado', 'plan_fallos', 'plan_nuevo'].includes(modoActual);
+const esModoEstudio = () => ['carrera', 'repaso_espaciado', 'plan_fallos', 'plan_nuevo', 'cuaderno'].includes(modoActual);
 
 // VARIABLES DE GAMIFICACIÓN
 let rachaActual = 0;
@@ -251,9 +251,9 @@ function detenerReloj() { if (intervaloReloj) clearInterval(intervaloReloj); int
 /* =========================================================
    1. ARRANQUE DEL JUEGO
    ========================================================= */
-function jugar(modo, idx, bid, limit) {
+function jugar(modo, idx, bid, limit, reason = '') {
   if (modo === 'global' && typeof idx === 'number') limit = idx;
-  lastContext = { modo, idx, bid, limit };
+  lastContext = { modo, idx, bid, limit, reason };
   modoActual = modo; 
   indice = 0; 
   
@@ -283,7 +283,7 @@ function jugar(modo, idx, bid, limit) {
     else { alert("⚠️ Faltan datos de REBT."); return; }
     detenerReloj();
   }
-  else if (['carrera', 'repaso_espaciado', 'plan_fallos', 'plan_nuevo'].includes(modo)) {
+  else if (['carrera', 'repaso_espaciado', 'plan_fallos', 'plan_nuevo', 'cuaderno'].includes(modo)) {
     const bloque = CONFIGURACION_CURSO.find(b => b.bloque === bid);
     if (!bloque) return;
     const asig = bloque.asignaturas[idx];
@@ -316,6 +316,7 @@ function jugar(modo, idx, bid, limit) {
 
     if (modo === 'plan_fallos') failsGlobal.map(id => porId.get(id)).forEach(agregar);
     if (modo === 'plan_nuevo') asig.data.filter(p => !estado.srs[p.id] && !estado.dom.includes(p.id)).forEach(agregar);
+    if (modo === 'cuaderno') CuadernoGS.related(CONFIGURACION_CURSO, localStorage, bid, idx, reason).forEach(agregar);
 
     if (modo === 'carrera') {
       failsGlobal.map(id => porId.get(id)).forEach(agregar);
@@ -601,6 +602,10 @@ function finalizar() {
             if (!fails.some(id => String(id) === String(p.id))) fails.push(p.id); 
     }
 
+    if (!esCorrecta && respIdx !== null && typeof CuadernoGS !== 'undefined') {
+      CuadernoGS.record(localStorage, CONFIGURACION_CURSO, p, respTexto, 'test');
+    }
+
     if (esEstudio && respIdx !== null) {
       const confidence = esCorrecta ? (confianzaUsuario[i] || 'duda') : 'fallo';
       const record = RepasoEspaciado.review(estado.srs[p.id], esCorrecta, confidence, hoy);
@@ -762,7 +767,7 @@ function verEstadisticas() {
     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
       <h1 style="margin:0;">📊 Stats</h1>
       <div style="background:#10b981; color:white; padding:8px 16px; border-radius:20px; font-weight:900; font-size:0.9rem; box-shadow:0 2px 8px rgba(16,185,129,0.3);">
-        v1.10
+        v1.11
       </div>
     </div>
     <div class="stats-grid">
@@ -779,6 +784,8 @@ function verEstadisticas() {
     </div>
     <div class="gestion-grid" style="margin-top:20px; opacity:0; animation: fadeInGrid 0.3s ease forwards;">
       <button class="btn-outline" onclick="abrirDashboard()">📊 Dashboard</button>
+      <button class="btn-outline" onclick="abrirCuadernoGS()">Cuaderno de errores</button>
+      <button class="btn-outline" onclick="abrirAnotacionesGS()">Anotaciones PDF</button>
       <button class="btn-outline" onclick="abrirLogros()">🏆 Logros</button>
       <button class="btn-outline" onclick="abrirMapaMental()">🗺️ Mapa Mental</button>
       <button class="btn-outline" onclick="abrirAyuda()">❓ Ayuda</button>
@@ -805,7 +812,9 @@ function descargarProgreso() {
     plan: JSON.parse(localStorage.getItem('universae_gs_plan_v1')),
     simulacroConfig: JSON.parse(localStorage.getItem('universae_gs_simulacro_config_v1')),
     simulacroHistorial: JSON.parse(localStorage.getItem('universae_gs_simulacro_history_v1')),
-    simulacroVistas: JSON.parse(localStorage.getItem('universae_gs_simulacro_seen_v1'))
+    simulacroVistas: JSON.parse(localStorage.getItem('universae_gs_simulacro_seen_v1')),
+    cuadernoErrores: JSON.parse(localStorage.getItem('universae_gs_cuaderno_errores_v1')),
+    anotacionesPdf: Object.fromEntries(Object.keys(localStorage).filter(key => key.startsWith('universae_pdf_annotations:') && CONFIGURACION_CURSO.some(block => key.startsWith(`universae_pdf_annotations:${block.bloque}:`))).map(key => [key, localStorage.getItem(key)]))
   };
   const blob = new Blob([JSON.stringify(data)], { type: "application/json" });
   const a = document.createElement("a"); 
@@ -840,6 +849,10 @@ function cargarProgreso(input) {
         if(data.simulacroConfig) localStorage.setItem('universae_gs_simulacro_config_v1', JSON.stringify(data.simulacroConfig));
         if(data.simulacroHistorial) localStorage.setItem('universae_gs_simulacro_history_v1', JSON.stringify(data.simulacroHistorial));
         if(data.simulacroVistas) localStorage.setItem('universae_gs_simulacro_seen_v1', JSON.stringify(data.simulacroVistas));
+        if(data.cuadernoErrores) localStorage.setItem('universae_gs_cuaderno_errores_v1', JSON.stringify(data.cuadernoErrores));
+        if(data.anotacionesPdf && typeof data.anotacionesPdf === 'object') Object.entries(data.anotacionesPdf).forEach(([key, value]) => {
+          if (typeof value === 'string' && key.startsWith('universae_pdf_annotations:') && CONFIGURACION_CURSO.some(block => key.startsWith(`universae_pdf_annotations:${block.bloque}:`))) localStorage.setItem(key, value);
+        });
         alert("✅ Progreso restaurado."); location.reload(); 
     } catch(err) { alert("❌ Error de archivo."); }
   };
@@ -929,7 +942,7 @@ function siguiente() {
   }
   if (indice < preguntasJuego.length - 1) { indice++; renderPregunta(); } else finalizar();
 }
-function repetirTest() { if(lastContext) jugar(lastContext.modo, lastContext.idx, lastContext.bid, lastContext.limit); }
+function repetirTest() { if(lastContext) jugar(lastContext.modo, lastContext.idx, lastContext.bid, lastContext.limit, lastContext.reason); }
 
 /* =========================================================
    5. DICCIONARIO DE LETRAS IEC

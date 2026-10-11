@@ -604,6 +604,7 @@
       <button class="pdf-tool-btn" data-action="zoom-out" title="Alejar" aria-label="Alejar">−</button>
       <button class="pdf-tool-btn pdf-zoom-btn" data-action="zoom-reset" title="Restablecer zoom" aria-label="Restablecer zoom">100%</button>
       <button class="pdf-tool-btn" data-action="zoom-in" title="Acercar" aria-label="Acercar">+</button>
+      <button class="pdf-tool-btn" data-action="notes" title="Anotaciones PDF" aria-label="Anotaciones PDF">▤</button>
       <button class="pdf-tool-btn" data-action="close" title="Cerrar" aria-label="Cerrar">×</button>
     `;
 
@@ -643,6 +644,7 @@
     });
 
     toolbar.querySelector('[data-action="close"]').addEventListener('click', actions.close);
+    toolbar.querySelector('[data-action="notes"]').addEventListener('click', actions.openNotes);
     toolbar.querySelector('[data-action="zoom-in"]').addEventListener('click', () => actions.setZoom(state.zoom + 0.15, actions.getViewportCenter()));
     toolbar.querySelector('[data-action="zoom-out"]').addEventListener('click', () => actions.setZoom(state.zoom - 0.15, actions.getViewportCenter()));
     toolbar.querySelector('[data-action="zoom-reset"]').addEventListener('click', () => actions.setZoom(1, actions.getViewportCenter()));
@@ -808,7 +810,7 @@
     canvas.addEventListener('pointercancel', finish);
   }
 
-  function attachTextHighlighter(shell, pagesContainer, state, annotations, key) {
+  function attachTextHighlighter(shell, pagesContainer, state, annotations, key, info) {
     let drag = null;
 
     function findTextSpan(layer, x, y) {
@@ -874,10 +876,22 @@
       const canvas = drag.canvas;
       if (rects.length) {
         const pageNumber = canvas.dataset.page;
+        const layer = canvas.parentElement.querySelector('.pdf-text-layer');
+        const text = AnotacionesGS.extractText(layer, rects, canvas.getBoundingClientRect());
+        const relinked = AnotacionesGS.relinkIfPending(key, pageNumber, text, annotations, () => saveAnnotations(key, annotations));
+        if (relinked) {
+          drag = null;
+          redrawAnnotations(canvas, annotations[pageNumber] || []);
+          AnotacionesGS.onHighlight(shell, key, info, pageNumber, relinked.index, relinked.stroke, () => saveAnnotations(key, annotations));
+          return;
+        }
         if (!annotations[pageNumber]) annotations[pageNumber] = [];
-        annotations[pageNumber].push({ type: 'highlight', color: state.color, rects });
+        const stroke = { type: 'highlight', color: state.color, rects, text };
+        AnotacionesGS.idFor(stroke);
+        annotations[pageNumber].push(stroke);
         state.currentPage = Number(pageNumber);
         saveAnnotations(key, annotations);
+        AnotacionesGS.onHighlight(shell, key, info, pageNumber, annotations[pageNumber].length - 1, stroke, () => saveAnnotations(key, annotations));
       }
       drag = null;
       redrawAnnotations(canvas, annotations[canvas.dataset.page] || []);
@@ -911,11 +925,21 @@
         if (!rects.length) return;
 
         const pageNumber = canvas.dataset.page;
+        const text = AnotacionesGS.extractText(canvas.parentElement.querySelector('.pdf-text-layer'), rects, pageRect) || selection.toString().trim();
+        const relinked = AnotacionesGS.relinkIfPending(key, pageNumber, text, annotations, () => saveAnnotations(key, annotations));
+        if (relinked) {
+          AnotacionesGS.onHighlight(shell, key, info, pageNumber, relinked.index, relinked.stroke, () => saveAnnotations(key, annotations));
+          saved = true;
+          return;
+        }
         if (!annotations[pageNumber]) annotations[pageNumber] = [];
-        annotations[pageNumber].push({ type: 'highlight', color: state.color, rects });
+        const stroke = { type: 'highlight', color: state.color, rects, text };
+        AnotacionesGS.idFor(stroke);
+        annotations[pageNumber].push(stroke);
         redrawAnnotations(canvas, annotations[pageNumber]);
         state.currentPage = Number(pageNumber);
         saved = true;
+        AnotacionesGS.onHighlight(shell, key, info, pageNumber, annotations[pageNumber].length - 1, stroke, () => saveAnnotations(key, annotations));
       });
 
       if (saved) {
@@ -1007,12 +1031,14 @@
 
     const actions = {
       close: () => {
+        shell.querySelector('.pdf-study-composer')?.remove();
         shell.remove();
         Object.assign(document.body.style, bodyStyle);
         document.documentElement.style.overflow = rootOverflow;
         window.scrollTo(scrollX, scrollY);
         focusBefore?.focus({ preventScroll: true });
       },
+      openNotes: () => { actions.close(); abrirAnotacionesGS(); },
       updateToolState: () => {
         shell.querySelectorAll('.pdf-draw-layer').forEach(canvas => {
           canvas.dataset.tool = state.tool;
@@ -1056,7 +1082,7 @@
     shell.appendChild(pagesContainer);
     document.body.appendChild(shell);
     attachPinchZoom(pagesContainer, zoomSurface, state, actions);
-    attachTextHighlighter(shell, pagesContainer, state, annotations, key);
+    attachTextHighlighter(shell, pagesContainer, state, annotations, key, info);
 
     try {
       const pdfjs = await loadPdfJs();
@@ -1130,6 +1156,15 @@
             container: textLayer,
             viewport
           }).render();
+          let recovered = false;
+          for (const stroke of annotations[pageNumber] || []) {
+            if (stroke.type !== 'highlight') continue;
+            if (!stroke.id) { AnotacionesGS.idFor(stroke); recovered = true; }
+            if (stroke.text) continue;
+            const text = AnotacionesGS.extractText(textLayer, stroke.rects, drawCanvas.getBoundingClientRect());
+            if (text) { stroke.text = text; recovered = true; }
+          }
+          if (recovered) saveAnnotations(key, annotations);
         } catch (error) {
           console.warn('No se pudo activar la selección de texto en esta página:', error);
           textLayer.remove();
@@ -1148,12 +1183,13 @@
     }
   }
 
-  async function openLocalPdf(bid, idx) {
+  async function openLocalPdf(bid, idx, page = 1) {
     const key = pdfKey(bid, idx);
     const blob = await getBlob(key);
     if (!blob) return false;
 
     const info = getLocalPdfInfo(bid, idx) || {};
+    info.bid = bid; info.idx = idx; info.page = page;
     await openAnnotatedPdfViewer(key, blob, info);
     return true;
   }
@@ -1206,6 +1242,7 @@
       name: url.split('/').pop() || 'PDF',
       subject: block ? block.titulo_boton : '',
       topic,
+      bid, idx,
       page
     });
   }
@@ -1222,7 +1259,7 @@
     }
 
     try {
-      const openedLocal = !options.projectOnly && await openLocalPdf(bid, idx);
+      const openedLocal = !options.projectOnly && await openLocalPdf(bid, idx, page);
       if (openedLocal) return;
     } catch (error) {
       console.warn('No se pudo abrir el PDF local:', error);

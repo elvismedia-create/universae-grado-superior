@@ -4,6 +4,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const vm = require('node:vm');
 const srs = require('../repaso-espaciado.js');
+const notebook = require('../cuaderno-gs.js');
 
 const question = {
   id: 410101,
@@ -24,6 +25,7 @@ function harness(initial = {}, course = config) {
   };
   const context = vm.createContext({
     RepasoEspaciado: srs,
+    CuadernoGS: notebook,
     CONFIGURACION_CURSO: course,
     localStorage: {
       getItem: key => storage.get(key) ?? null,
@@ -124,6 +126,10 @@ test('un fallo reinicia la racha y conserva la pregunta en errores', () => {
   assert.equal(state.srs[question.id].streak, 0);
   assert.equal(state.srs[question.id].confidence, 'fallo');
   assert.ok(JSON.parse(storage.get('mastertest_fails')).includes(question.id));
+  const entry = notebook.read({ getItem: key => storage.get(key) ?? null, setItem: (key, value) => storage.set(key, value) }, config)['sistemas_gs:0:410101'];
+  assert.equal(entry.selected, 'Incorrecta');
+  assert.equal(entry.correct, 'Correcta');
+  assert.equal(entry.count, 1);
 });
 
 test('las preguntas de IA mantienen su dominio separado del progreso base', () => {

@@ -1,6 +1,6 @@
-// v1.10 - valoración opcional en tests de estudio
-const APP_VERSION = 'v1.10';
-const BUILD_TIMESTAMP = '20261011-gs-confianza-1';
+// v1.11 - anotaciones de estudio y cuaderno de errores
+const APP_VERSION = 'v1.11';
+const BUILD_TIMESTAMP = '20261011-gs-estudio-1';
 const CACHE_NAME = `universae-gs-${APP_VERSION}-${BUILD_TIMESTAMP}`;
 const OFFLINE_CACHE = 'universae-gs-offline-v1.2';
 const PDF_CACHE = 'universae-gs-pdfs-v1';
@@ -16,6 +16,9 @@ const CRITICAL_ASSETS = [
   './plan-diario.css',
   './simulacros-gs.js',
   './simulacros-gs.css',
+  './anotaciones-gs.js',
+  './cuaderno-gs.js',
+  './estudio-gs.css',
   './pdf-local-store.js',
   './tutor.js',
   './tutor.css',
@@ -66,7 +69,7 @@ self.addEventListener('install', (e) => {
 
 // ACTIVACIÓN v90.2: Limpieza y notificación
 self.addEventListener('activate', (e) => {
-  console.log('✨ ACTIVANDO Universae GS v1.10...');
+  console.log('✨ ACTIVANDO Universae GS v1.11...');
 
   e.waitUntil(
     caches.keys()
