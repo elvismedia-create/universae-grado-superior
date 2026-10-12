@@ -1,0 +1,19 @@
+Repaso breve: Redes eléctricas de distribución de media tensión. Desarrollo de redes y CT.
+
+Idea 1. Apoyos, armados, aisladores, herrajes y cables. Las redes aereas de media tensión se estudian por sus elementos mecanicos, electricos y de sujecion.
+
+Idea 2. Estructuras sobre las que van sujetos los cables. Los apoyos pueden ser de hormigon, metalicos u otros tipos, y soportan esfuerzos normalizados.
+
+Idea 3. En zonas donde interesa proteger fauna, vegetacion, viento u otros condicionantes. El temario los presenta como alternativa a conductores desnudos en enclaves con requisitos especiales.
+
+Idea 4. Efecto corona. El efecto corona es caracteristico de lineas de alta tensión y se relaciona con ionizacion del aire alrededor del conductor.
+
+Idea 5. Derivar corrientes de defecto y limitar tensiones peligrosas. La puesta a tierra protege personas, equipos y estructuras frente a defectos y sobretensiones.
+
+Ahora, comprueba lo que recuerdas.
+
+Pregunta 1. ¿Qué fenomeno eléctrico puede producir descargas visibles alrededor de conductores de alta tensión? La respuesta es: Efecto corona.
+
+Pregunta 2. ¿Qué finalidad tiene la puesta a tierra en redes de alta tensión? La respuesta es: Derivar corrientes de defecto y limitar tensiones peligrosas.
+
+Fin del repaso. Puedes abrir el PDF del tema para ver esquemas, tablas y fórmulas.

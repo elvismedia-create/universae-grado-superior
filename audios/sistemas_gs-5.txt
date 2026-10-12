@@ -1,0 +1,21 @@
+Repaso breve: Instrumentos y equipos de medida. Sistemas y circuitos eléctricos.
+
+Idea 1. En paralelo con el elemento a medir. El voltimetro mide tensión entre dos puntos y debe tener alta resistencia interna para no alterar el circuito.
+
+Idea 2. En serie con la rama por la que circula la corriente. El amperimetro mide la corriente que lo atraviesa, por eso se intercala en serie y presenta resistencia interna muy baja.
+
+Idea 3. Resistencia eléctrica. El ohmetro aplica una pequena tensión interna para determinar el valor de resistencia del elemento.
+
+Idea 4. Polimetro. El polimetro combina medidas como tensión, corriente y resistencia según la funcion seleccionada.
+
+Idea 5. La tensión que puede soportar un material aislante sin perforarse. La rigidez dielectrica evalua la capacidad del aislamiento para soportar tensión sin fallo.
+
+Idea 6. Verificar la ausencia de tensión y aplicar normas de seguridad. Las medidas y trabajos sin tensión requieren comprobacion previa y medidas preventivas para evitar accidentes.
+
+Ahora, comprueba lo que recuerdas.
+
+Pregunta 1. ¿Qué comprueba una medida de rigidez dielectrica? La respuesta es: La tensión que puede soportar un material aislante sin perforarse.
+
+Pregunta 2. ¿Qué debe hacerse antes de realizar una medida sin tensión? La respuesta es: Verificar la ausencia de tensión y aplicar normas de seguridad.
+
+Fin del repaso. Puedes abrir el PDF del tema para ver esquemas, tablas y fórmulas.

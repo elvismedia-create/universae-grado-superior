@@ -1,0 +1,19 @@
+Repaso breve: Simbología eléctrica. Documentación técnica.
+
+Idea 1. Fase, neutro y conductor de protección. El anexo recoge L como conductor de fase, N como neutro y PE como conductor de protección.
+
+Idea 2. Interruptor magnetotermico. El anexo incluye magnetotermicos de 1P, 1P+N, 2P, 3P y 3P+N.
+
+Idea 3. Interruptor diferencial de 2P o 4P. La simbología distingue diferenciales bipolares y tetrapolares en representación multifilar.
+
+Idea 4. Motor asíncrono trifásico. El anexo identifica motores de corriente alterna con la letra M y la indicación de fases.
+
+Idea 5. Pulsadores, selectores, zumbador, sirena y bocina. La lista de simbología combina mandos, avisadores, detectores, receptores y protecciones.
+
+Ahora, comprueba lo que recuerdas.
+
+Pregunta 1. ¿Qué significa M, tres fases de corriente alterna junto a un símbolo de máquina? La respuesta es: Motor asíncrono trifásico.
+
+Pregunta 2. ¿Qué elementos de mando y señalización incluye el anexo? La respuesta es: Pulsadores, selectores, zumbador, sirena y bocina.
+
+Fin del repaso. Puedes abrir el PDF del tema para ver esquemas, tablas y fórmulas.

@@ -1,0 +1,19 @@
+Repaso breve: Proyectos y memorias técnicas de diseño. Documentación técnica.
+
+Idea 1. Un conjunto de documentos que define una solucion tecnica ajustada a la normativa. El proyecto incluye las caracteristicas de la instalación y justifica que cumple los parámetros legales y tecnicos.
+
+Idea 2. Es un documento oficial más breve que el proyecto. La MTD aporta informacion basica y puede firmarla el instalador autorizado o tecnico competente según el caso.
+
+Idea 3. Proyectistas o ingenieros cualificados. El temario distingue la firma del proyecto por tecnicos cualificados y la MTD por instalador autorizado o tecnico competente.
+
+Idea 4. Memoria descriptiva. La memoria descriptiva explica la finalidad, datos del local, prevision de cargas, esquemas, enlaces, puesta a tierra y protecciones.
+
+Idea 5. Cuando la potencia es mayor de 5 kW. El esquema de seleccion indica MTD entre 1 kW y 5 kW, y proyecto cuando la potencia supera 5 kW.
+
+Ahora, comprueba lo que recuerdas.
+
+Pregunta 1. ¿Qué apartado del proyecto describe objeto, emplazamiento, cargas, esquemas y protecciones? La respuesta es: Memoria descriptiva.
+
+Pregunta 2. ¿En alumbrado exterior de baja tensión, cuando se requiere proyecto por eficiencia energetica según el temario? La respuesta es: Cuando la potencia es mayor de 5 kW.
+
+Fin del repaso. Puedes abrir el PDF del tema para ver esquemas, tablas y fórmulas.

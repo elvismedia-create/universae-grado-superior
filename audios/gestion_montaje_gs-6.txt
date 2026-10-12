@@ -1,0 +1,19 @@
+Repaso breve: Puesta en servicio de las instalaciones electrotécnicas. Gestión del montaje y mantenimiento.
+
+Idea 1. Verificacion o inspeccion inicial según normativa. La puesta en servicio exige comprobar seguridad, cumplimiento reglamentario y documentacion.
+
+Idea 2. La especialista habilita trabajos de mayor alcance o especialidad. El temario distingue categorias según competencias, medios y tipos de instalaciones.
+
+Idea 3. Leves, graves y muy graves. La clasificacion de defectos condiciona el resultado de inspeccion y los plazos de subsanacion.
+
+Idea 4. Que el conductor de protección y uniones equipotenciales tienen continuidad eléctrica. Esta prueba confirma que las masas quedan correctamente conectadas al sistema de protección.
+
+Idea 5. Certificado de instalación y, si procede, proyecto o memoria tecnica de diseno. La administracion recibe la documentacion reglamentaria antes de diligenciar o autorizar la puesta en servicio.
+
+Ahora, comprueba lo que recuerdas.
+
+Pregunta 1. ¿Qué verifica la medida de continuidad de conductores de protección? La respuesta es: Que el conductor de protección y uniones equipotenciales tienen continuidad eléctrica.
+
+Pregunta 2. ¿Qué documentacion se tramita para legalizar una instalación de baja tensión? La respuesta es: Certificado de instalación y, si procede, proyecto o memoria tecnica de diseno.
+
+Fin del repaso. Puedes abrir el PDF del tema para ver esquemas, tablas y fórmulas.

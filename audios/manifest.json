@@ -1,0 +1,482 @@
+[
+  {
+    "id": "sistemas_gs:1",
+    "bid": "sistemas_gs",
+    "idx": 1,
+    "subject": "Sistemas y circuitos eléctricos",
+    "topic": "U1: Conceptos básicos",
+    "pdf": "pdfs/sistemas electricos/U1 Conceptos básicos.pdf",
+    "audio": "audios/sistemas_gs-1.m4a",
+    "transcript": "audios/sistemas_gs-1.txt"
+  },
+  {
+    "id": "sistemas_gs:2",
+    "bid": "sistemas_gs",
+    "idx": 2,
+    "subject": "Sistemas y circuitos eléctricos",
+    "topic": "U2: Sistemas trifásicos",
+    "pdf": "pdfs/sistemas electricos/U2 Sistemas trifásicos.pdf",
+    "audio": "audios/sistemas_gs-2.m4a",
+    "transcript": "audios/sistemas_gs-2.txt"
+  },
+  {
+    "id": "sistemas_gs:3",
+    "bid": "sistemas_gs",
+    "idx": 3,
+    "subject": "Sistemas y circuitos eléctricos",
+    "topic": "U3: Transformadores eléctricos",
+    "pdf": "pdfs/sistemas electricos/U3 Transformadores eléctricos.pdf",
+    "audio": "audios/sistemas_gs-3.m4a",
+    "transcript": "audios/sistemas_gs-3.txt"
+  },
+  {
+    "id": "sistemas_gs:4",
+    "bid": "sistemas_gs",
+    "idx": 4,
+    "subject": "Sistemas y circuitos eléctricos",
+    "topic": "U4: Motores eléctricos",
+    "pdf": "pdfs/sistemas electricos/U4 Motores eléctricos.pdf",
+    "audio": "audios/sistemas_gs-4.m4a",
+    "transcript": "audios/sistemas_gs-4.txt"
+  },
+  {
+    "id": "sistemas_gs:5",
+    "bid": "sistemas_gs",
+    "idx": 5,
+    "subject": "Sistemas y circuitos eléctricos",
+    "topic": "U5: Instrumentos y equipos de medida",
+    "pdf": "pdfs/sistemas electricos/U5 Instrumentos y equipos de medida.pdf",
+    "audio": "audios/sistemas_gs-5.m4a",
+    "transcript": "audios/sistemas_gs-5.txt"
+  },
+  {
+    "id": "sistemas_gs:6",
+    "bid": "sistemas_gs",
+    "idx": 6,
+    "subject": "Sistemas y circuitos eléctricos",
+    "topic": "U6: Introducción a la electrónica digital. Circuitos combinacionales",
+    "pdf": "pdfs/sistemas electricos/U6 Introducción a la electrónica digital. Circuitos combinacionales.pdf",
+    "audio": "audios/sistemas_gs-6.m4a",
+    "transcript": "audios/sistemas_gs-6.txt"
+  },
+  {
+    "id": "sistemas_gs:7",
+    "bid": "sistemas_gs",
+    "idx": 7,
+    "subject": "Sistemas y circuitos eléctricos",
+    "topic": "U7: Circuitos electrónicos digitales secuenciales",
+    "pdf": "pdfs/sistemas electricos/U7 Circuitos electrónicos digitales secuenciales.pdf",
+    "audio": "audios/sistemas_gs-7.m4a",
+    "transcript": "audios/sistemas_gs-7.txt"
+  },
+  {
+    "id": "sistemas_gs:8",
+    "bid": "sistemas_gs",
+    "idx": 8,
+    "subject": "Sistemas y circuitos eléctricos",
+    "topic": "U8: Introducción a la electrónica analógica",
+    "pdf": "pdfs/sistemas electricos/U8 Introducción a la electrónica analógica.pdf",
+    "audio": "audios/sistemas_gs-8.m4a",
+    "transcript": "audios/sistemas_gs-8.txt"
+  },
+  {
+    "id": "sistemas_gs:9",
+    "bid": "sistemas_gs",
+    "idx": 9,
+    "subject": "Sistemas y circuitos eléctricos",
+    "topic": "U9: Circuitos electrónicos analógicos",
+    "pdf": "pdfs/sistemas electricos/U9 Circuitos electrónicos analógicos.pdf",
+    "audio": "audios/sistemas_gs-9.m4a",
+    "transcript": "audios/sistemas_gs-9.txt"
+  },
+  {
+    "id": "sistemas_gs:10",
+    "bid": "sistemas_gs",
+    "idx": 10,
+    "subject": "Sistemas y circuitos eléctricos",
+    "topic": "ANX: Fórmulas, definiciones y unidades básicas",
+    "pdf": "pdfs/sistemas electricos/ANX Fórmulas, definiciones y unidades básicas.pdf",
+    "audio": "audios/sistemas_gs-10.m4a",
+    "transcript": "audios/sistemas_gs-10.txt"
+  },
+  {
+    "id": "gestion_montaje_gs:1",
+    "bid": "gestion_montaje_gs",
+    "idx": 1,
+    "subject": "Gestión del montaje y mantenimiento",
+    "topic": "U1: Documentación técnica y normativa de aplicación",
+    "pdf": "pdfs/Gestión del montaje y del mantenimiento de instalaciones eléctricas/U1 Documentación técnica y normativa de aplicación.pdf",
+    "audio": "audios/gestion_montaje_gs-1.m4a",
+    "transcript": "audios/gestion_montaje_gs-1.txt"
+  },
+  {
+    "id": "gestion_montaje_gs:2",
+    "bid": "gestion_montaje_gs",
+    "idx": 2,
+    "subject": "Gestión del montaje y mantenimiento",
+    "topic": "U2: Organización del proceso de aprovisionamiento",
+    "pdf": "pdfs/Gestión del montaje y del mantenimiento de instalaciones eléctricas/U2 Organización del proceso de aprovisionamiento.pdf",
+    "audio": "audios/gestion_montaje_gs-2.m4a",
+    "transcript": "audios/gestion_montaje_gs-2.txt"
+  },
+  {
+    "id": "gestion_montaje_gs:3",
+    "bid": "gestion_montaje_gs",
+    "idx": 3,
+    "subject": "Gestión del montaje y mantenimiento",
+    "topic": "U3: Gestión del almacén",
+    "pdf": "pdfs/Gestión del montaje y del mantenimiento de instalaciones eléctricas/U3 Gestión del almacén.pdf",
+    "audio": "audios/gestion_montaje_gs-3.m4a",
+    "transcript": "audios/gestion_montaje_gs-3.txt"
+  },
+  {
+    "id": "gestion_montaje_gs:4",
+    "bid": "gestion_montaje_gs",
+    "idx": 4,
+    "subject": "Gestión del montaje y mantenimiento",
+    "topic": "U4: Planificación del montaje",
+    "pdf": "pdfs/Gestión del montaje y del mantenimiento de instalaciones eléctricas/U4 Planificación del montaje.pdf",
+    "audio": "audios/gestion_montaje_gs-4.m4a",
+    "transcript": "audios/gestion_montaje_gs-4.txt"
+  },
+  {
+    "id": "gestion_montaje_gs:5",
+    "bid": "gestion_montaje_gs",
+    "idx": 5,
+    "subject": "Gestión del montaje y mantenimiento",
+    "topic": "U5: Gestión de recursos y materiales",
+    "pdf": "pdfs/Gestión del montaje y del mantenimiento de instalaciones eléctricas/U5 Gestión de recursos y materiales.pdf",
+    "audio": "audios/gestion_montaje_gs-5.m4a",
+    "transcript": "audios/gestion_montaje_gs-5.txt"
+  },
+  {
+    "id": "gestion_montaje_gs:6",
+    "bid": "gestion_montaje_gs",
+    "idx": 6,
+    "subject": "Gestión del montaje y mantenimiento",
+    "topic": "U6: Puesta en servicio de las instalaciones electrotécnicas",
+    "pdf": "pdfs/Gestión del montaje y del mantenimiento de instalaciones eléctricas/U6 Puesta en servicio de las instalaciones electrotécnicas.pdf",
+    "audio": "audios/gestion_montaje_gs-6.m4a",
+    "transcript": "audios/gestion_montaje_gs-6.txt"
+  },
+  {
+    "id": "gestion_montaje_gs:7",
+    "bid": "gestion_montaje_gs",
+    "idx": 7,
+    "subject": "Gestión del montaje y mantenimiento",
+    "topic": "U7: Organización y gestión del mantenimiento",
+    "pdf": "pdfs/Gestión del montaje y del mantenimiento de instalaciones eléctricas/U7 Organización y gestión del mantenimiento.pdf",
+    "audio": "audios/gestion_montaje_gs-7.m4a",
+    "transcript": "audios/gestion_montaje_gs-7.txt"
+  },
+  {
+    "id": "gestion_montaje_gs:8",
+    "bid": "gestion_montaje_gs",
+    "idx": 8,
+    "subject": "Gestión del montaje y mantenimiento",
+    "topic": "U8: Gestión de residuos y sistemas de gestión de calidad",
+    "pdf": "pdfs/Gestión del montaje y del mantenimiento de instalaciones eléctricas/U8 Gestión de residuos y sistemas de gestión de calidad.pdf",
+    "audio": "audios/gestion_montaje_gs-8.m4a",
+    "transcript": "audios/gestion_montaje_gs-8.txt"
+  },
+  {
+    "id": "documentacion_tecnica_gs:1",
+    "bid": "documentacion_tecnica_gs",
+    "idx": 1,
+    "subject": "Documentación técnica",
+    "topic": "U1: Identificación de la documentación técnica y administrativa",
+    "pdf": "pdfs/Documentación técnica en instalaciones eléctricas/U1 Identificacion de la documentacion tecnica y administrativa.pdf",
+    "audio": "audios/documentacion_tecnica_gs-1.m4a",
+    "transcript": "audios/documentacion_tecnica_gs-1.txt"
+  },
+  {
+    "id": "documentacion_tecnica_gs:2",
+    "bid": "documentacion_tecnica_gs",
+    "idx": 2,
+    "subject": "Documentación técnica",
+    "topic": "U2: Proyectos y memorias técnicas de diseño",
+    "pdf": "pdfs/Documentación técnica en instalaciones eléctricas/U2 Proyectos y memorias tecnicas de diseño.pdf",
+    "audio": "audios/documentacion_tecnica_gs-2.m4a",
+    "transcript": "audios/documentacion_tecnica_gs-2.txt"
+  },
+  {
+    "id": "documentacion_tecnica_gs:3",
+    "bid": "documentacion_tecnica_gs",
+    "idx": 3,
+    "subject": "Documentación técnica",
+    "topic": "U3: Representación gráfica de las instalaciones electrotécnicas",
+    "pdf": "pdfs/Documentación técnica en instalaciones eléctricas/U3 Representacion grafica de las instalaciones electrotecnicas.pdf",
+    "audio": "audios/documentacion_tecnica_gs-3.m4a",
+    "transcript": "audios/documentacion_tecnica_gs-3.txt"
+  },
+  {
+    "id": "documentacion_tecnica_gs:4",
+    "bid": "documentacion_tecnica_gs",
+    "idx": 4,
+    "subject": "Documentación técnica",
+    "topic": "U4: Elaboración de presupuestos y anexos de cálculos",
+    "pdf": "pdfs/Documentación técnica en instalaciones eléctricas/U4 Elaboracion de presupuestos y anexos de calculos.pdf",
+    "audio": "audios/documentacion_tecnica_gs-4.m4a",
+    "transcript": "audios/documentacion_tecnica_gs-4.txt"
+  },
+  {
+    "id": "documentacion_tecnica_gs:5",
+    "bid": "documentacion_tecnica_gs",
+    "idx": 5,
+    "subject": "Documentación técnica",
+    "topic": "U5: Confección de pliegos, manuales, estudios e informes",
+    "pdf": "pdfs/Documentación técnica en instalaciones eléctricas/U5 Confeccion de pliegos, manuales, estudios e informes.pdf",
+    "audio": "audios/documentacion_tecnica_gs-5.m4a",
+    "transcript": "audios/documentacion_tecnica_gs-5.txt"
+  },
+  {
+    "id": "documentacion_tecnica_gs:6",
+    "bid": "documentacion_tecnica_gs",
+    "idx": 6,
+    "subject": "Documentación técnica",
+    "topic": "U6: Tramitación, legalización, inspección y puesta en marcha de instalaciones",
+    "pdf": "pdfs/Documentación técnica en instalaciones eléctricas/U6 Tramitacion, legalizacion, inspeccion y puesta en marcha de instalaciones.pdf",
+    "audio": "audios/documentacion_tecnica_gs-6.m4a",
+    "transcript": "audios/documentacion_tecnica_gs-6.txt"
+  },
+  {
+    "id": "documentacion_tecnica_gs:7",
+    "bid": "documentacion_tecnica_gs",
+    "idx": 7,
+    "subject": "Documentación técnica",
+    "topic": "U7: Software y aplicaciones para instalaciones eléctricas",
+    "pdf": "pdfs/Documentación técnica en instalaciones eléctricas/U7 Sofware y aplicaciones para instalaciones electricas.pdf",
+    "audio": "audios/documentacion_tecnica_gs-7.m4a",
+    "transcript": "audios/documentacion_tecnica_gs-7.txt"
+  },
+  {
+    "id": "documentacion_tecnica_gs:8",
+    "bid": "documentacion_tecnica_gs",
+    "idx": 8,
+    "subject": "Documentación técnica",
+    "topic": "ANX: Simbología eléctrica",
+    "pdf": "pdfs/Documentación técnica en instalaciones eléctricas/ANEXO Simbología Eléctrica.pdf",
+    "audio": "audios/documentacion_tecnica_gs-8.m4a",
+    "transcript": "audios/documentacion_tecnica_gs-8.txt"
+  },
+  {
+    "id": "redes_ct_gs:1",
+    "bid": "redes_ct_gs",
+    "idx": 1,
+    "subject": "Desarrollo de redes y CT",
+    "topic": "U1: Estructura de la red eléctrica",
+    "pdf": "pdfs/Desarrollo de redes eléctricas y centros de transformación/U1 Estructura de la red eléctrica.pdf",
+    "audio": "audios/redes_ct_gs-1.m4a",
+    "transcript": "audios/redes_ct_gs-1.txt"
+  },
+  {
+    "id": "redes_ct_gs:2",
+    "bid": "redes_ct_gs",
+    "idx": 2,
+    "subject": "Desarrollo de redes y CT",
+    "topic": "U2: Redes eléctricas de distribución de media tensión",
+    "pdf": "pdfs/Desarrollo de redes eléctricas y centros de transformación/U2 Redes eléctricas de distribución de media tensión.pdf",
+    "audio": "audios/redes_ct_gs-2.m4a",
+    "transcript": "audios/redes_ct_gs-2.txt"
+  },
+  {
+    "id": "redes_ct_gs:3",
+    "bid": "redes_ct_gs",
+    "idx": 3,
+    "subject": "Desarrollo de redes y CT",
+    "topic": "U3: Centros de transformación de energía eléctrica",
+    "pdf": "pdfs/Desarrollo de redes eléctricas y centros de transformación/U3 Centros de transformación de energía eléctrica.pdf",
+    "audio": "audios/redes_ct_gs-3.m4a",
+    "transcript": "audios/redes_ct_gs-3.txt"
+  },
+  {
+    "id": "redes_ct_gs:4",
+    "bid": "redes_ct_gs",
+    "idx": 4,
+    "subject": "Desarrollo de redes y CT",
+    "topic": "U4: Redes eléctricas de distribución de baja tensión",
+    "pdf": "pdfs/Desarrollo de redes eléctricas y centros de transformación/U4 Redes eléctricas de distribución de baja tensión.pdf",
+    "audio": "audios/redes_ct_gs-4.m4a",
+    "transcript": "audios/redes_ct_gs-4.txt"
+  },
+  {
+    "id": "redes_ct_gs:5",
+    "bid": "redes_ct_gs",
+    "idx": 5,
+    "subject": "Desarrollo de redes y CT",
+    "topic": "U5: Cálculos mecánicos y eléctricos",
+    "pdf": "pdfs/Desarrollo de redes eléctricas y centros de transformación/U5 Cálculos mecánicos y eléctricos.pdf",
+    "audio": "audios/redes_ct_gs-5.m4a",
+    "transcript": "audios/redes_ct_gs-5.txt"
+  },
+  {
+    "id": "redes_ct_gs:6",
+    "bid": "redes_ct_gs",
+    "idx": 6,
+    "subject": "Desarrollo de redes y CT",
+    "topic": "U6: Configuración de centros de transformación y redes eléctricas de baja tensión",
+    "pdf": "pdfs/Desarrollo de redes eléctricas y centros de transformación/U6 Configuración de centros de transformación y redes eléctricas de baja tensión.PDF",
+    "audio": "audios/redes_ct_gs-6.m4a",
+    "transcript": "audios/redes_ct_gs-6.txt"
+  },
+  {
+    "id": "redes_ct_gs:7",
+    "bid": "redes_ct_gs",
+    "idx": 7,
+    "subject": "Desarrollo de redes y CT",
+    "topic": "U7: Proyectos resumidos de centros de transformación y redes de baja tensión",
+    "pdf": "pdfs/Desarrollo de redes eléctricas y centros de transformación/U7 Proyectos resumidos de centros de transformación y redes de baja tensión.pdf",
+    "audio": "audios/redes_ct_gs-7.m4a",
+    "transcript": "audios/redes_ct_gs-7.txt"
+  },
+  {
+    "id": "redes_ct_gs:8",
+    "bid": "redes_ct_gs",
+    "idx": 8,
+    "subject": "Desarrollo de redes y CT",
+    "topic": "U8: Pruebas y ensayos de los centros de transformación",
+    "pdf": "pdfs/Desarrollo de redes eléctricas y centros de transformación/U8 Pruebas y ensayos de los centros de transformación.pdf",
+    "audio": "audios/redes_ct_gs-8.m4a",
+    "transcript": "audios/redes_ct_gs-8.txt"
+  },
+  {
+    "id": "configuracion_instalaciones_gs:1",
+    "bid": "configuracion_instalaciones_gs",
+    "idx": 1,
+    "subject": "Configuración de instalaciones eléctricas",
+    "topic": "U1: Características de las instalaciones de BT",
+    "pdf": "pdfs/Configuración de instalaciones eléctricas/U1 Características de las instalaciones de BT.pdf",
+    "audio": "audios/configuracion_instalaciones_gs-1.m4a",
+    "transcript": "audios/configuracion_instalaciones_gs-1.txt"
+  },
+  {
+    "id": "configuracion_instalaciones_gs:2",
+    "bid": "configuracion_instalaciones_gs",
+    "idx": 2,
+    "subject": "Configuración de instalaciones eléctricas",
+    "topic": "U2: Elementos de las instalaciones de BT I",
+    "pdf": "pdfs/Configuración de instalaciones eléctricas/U2 Elementos de las instalaciones de BT I.pdf",
+    "audio": "audios/configuracion_instalaciones_gs-2.m4a",
+    "transcript": "audios/configuracion_instalaciones_gs-2.txt"
+  },
+  {
+    "id": "configuracion_instalaciones_gs:3",
+    "bid": "configuracion_instalaciones_gs",
+    "idx": 3,
+    "subject": "Configuración de instalaciones eléctricas",
+    "topic": "U3: Elementos de las instalaciones de BT II",
+    "pdf": "pdfs/Configuración de instalaciones eléctricas/U3 Elementos de las instalaciones de BT II.pdf",
+    "audio": "audios/configuracion_instalaciones_gs-3.m4a",
+    "transcript": "audios/configuracion_instalaciones_gs-3.txt"
+  },
+  {
+    "id": "configuracion_instalaciones_gs:4",
+    "bid": "configuracion_instalaciones_gs",
+    "idx": 4,
+    "subject": "Configuración de instalaciones eléctricas",
+    "topic": "U4: Cálculo de instalaciones eléctricas I",
+    "pdf": "pdfs/Configuración de instalaciones eléctricas/U4 Cálculo de instalaciones eléctricas I.pdf",
+    "audio": "audios/configuracion_instalaciones_gs-4.m4a",
+    "transcript": "audios/configuracion_instalaciones_gs-4.txt"
+  },
+  {
+    "id": "configuracion_instalaciones_gs:5",
+    "bid": "configuracion_instalaciones_gs",
+    "idx": 5,
+    "subject": "Configuración de instalaciones eléctricas",
+    "topic": "U5: Cálculo de instalaciones eléctricas II",
+    "pdf": "pdfs/Configuración de instalaciones eléctricas/U5 Cálculo de instalaciones eléctricas II.pdf",
+    "audio": "audios/configuracion_instalaciones_gs-5.m4a",
+    "transcript": "audios/configuracion_instalaciones_gs-5.txt"
+  },
+  {
+    "id": "configuracion_instalaciones_gs:6",
+    "bid": "configuracion_instalaciones_gs",
+    "idx": 6,
+    "subject": "Configuración de instalaciones eléctricas",
+    "topic": "U6: Configuración de instalaciones eléctricas de baja tensión",
+    "pdf": "pdfs/Configuración de instalaciones eléctricas/U6 Configuración de instalaciones eléctricas de baja tensión.pdf",
+    "audio": "audios/configuracion_instalaciones_gs-6.m4a",
+    "transcript": "audios/configuracion_instalaciones_gs-6.txt"
+  },
+  {
+    "id": "configuracion_instalaciones_gs:7",
+    "bid": "configuracion_instalaciones_gs",
+    "idx": 7,
+    "subject": "Configuración de instalaciones eléctricas",
+    "topic": "U7: Proyectos resumidos de instalaciones en edificios e instalaciones fotovoltaicas",
+    "pdf": "pdfs/Configuración de instalaciones eléctricas/U7 Proyectos resumidos de instalaciones en edificios, e instalaciones fotovoltaicas.pdf",
+    "audio": "audios/configuracion_instalaciones_gs-7.m4a",
+    "transcript": "audios/configuracion_instalaciones_gs-7.txt"
+  },
+  {
+    "id": "domoticas_automaticas_gs:1",
+    "bid": "domoticas_automaticas_gs",
+    "idx": 1,
+    "subject": "Domóticas y automáticas",
+    "topic": "U1: Hogares digitales, edificios inteligentes y urbótica en tu ciudad",
+    "pdf": "pdfs/Configuración de instalaciones domoticas/U1 Hogares digitales, edificios inteligentes y urbotica en tu ciudad.pdf",
+    "audio": "audios/domoticas_automaticas_gs-1.m4a",
+    "transcript": "audios/domoticas_automaticas_gs-1.txt"
+  },
+  {
+    "id": "domoticas_automaticas_gs:2",
+    "bid": "domoticas_automaticas_gs",
+    "idx": 2,
+    "subject": "Domóticas y automáticas",
+    "topic": "U2: Instalaciones y dispositivos de automatización",
+    "pdf": "pdfs/Configuración de instalaciones domoticas/U2 Instalaciones y dispositivos de automatizacion.pdf",
+    "audio": "audios/domoticas_automaticas_gs-2.m4a",
+    "transcript": "audios/domoticas_automaticas_gs-2.txt"
+  },
+  {
+    "id": "domoticas_automaticas_gs:3",
+    "bid": "domoticas_automaticas_gs",
+    "idx": 3,
+    "subject": "Domóticas y automáticas",
+    "topic": "U3: Soluciones de automatización preprogramadas",
+    "pdf": "pdfs/Configuración de instalaciones domoticas/U3 Soluciones de automatizacion preprogramadas.pdf",
+    "audio": "audios/domoticas_automaticas_gs-3.m4a",
+    "transcript": "audios/domoticas_automaticas_gs-3.txt"
+  },
+  {
+    "id": "domoticas_automaticas_gs:4",
+    "bid": "domoticas_automaticas_gs",
+    "idx": 4,
+    "subject": "Domóticas y automáticas",
+    "topic": "U4: Sistema de automatización con relés programables",
+    "pdf": "pdfs/Configuración de instalaciones domoticas/U4 Sistema de automatizacion con reles programables.pdf",
+    "audio": "audios/domoticas_automaticas_gs-4.m4a",
+    "transcript": "audios/domoticas_automaticas_gs-4.txt"
+  },
+  {
+    "id": "domoticas_automaticas_gs:5",
+    "bid": "domoticas_automaticas_gs",
+    "idx": 5,
+    "subject": "Domóticas y automáticas",
+    "topic": "U5: Sistemas de automatización basados en corrientes portadoras",
+    "pdf": "pdfs/Configuración de instalaciones domoticas/U5 Sistemas de automatizacion basados en corrientes portadoras.pdf",
+    "audio": "audios/domoticas_automaticas_gs-5.m4a",
+    "transcript": "audios/domoticas_automaticas_gs-5.txt"
+  },
+  {
+    "id": "domoticas_automaticas_gs:6",
+    "bid": "domoticas_automaticas_gs",
+    "idx": 6,
+    "subject": "Domóticas y automáticas",
+    "topic": "U6: Sistemas basados en buses de campo inmóticos: el bus KNX",
+    "pdf": "pdfs/Configuración de instalaciones domoticas/U6 Sistema basados en buses de campo inmoticos el bus KNX.pdf",
+    "audio": "audios/domoticas_automaticas_gs-6.m4a",
+    "transcript": "audios/domoticas_automaticas_gs-6.txt"
+  },
+  {
+    "id": "domoticas_automaticas_gs:7",
+    "bid": "domoticas_automaticas_gs",
+    "idx": 7,
+    "subject": "Domóticas y automáticas",
+    "topic": "U7: Normativa en instalaciones domóticas y automáticas",
+    "pdf": "pdfs/Configuración de instalaciones domoticas/U7 Normativa en instalaciones domoticas y automaticas.pdf",
+    "audio": "audios/domoticas_automaticas_gs-7.m4a",
+    "transcript": "audios/domoticas_automaticas_gs-7.txt"
+  }
+]

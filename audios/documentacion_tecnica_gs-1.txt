@@ -1,0 +1,19 @@
+Repaso breve: Identificación de la documentación técnica y administrativa. Documentación técnica.
+
+Idea 1. Definir y justificar la instalación para ejecutarla y legalizarla correctamente. La documentacion recoge fases, soluciones, normativa, certificados y tramites necesarios para ejecutar y poner en servicio la instalación.
+
+Idea 2. Inscripcion, registro y legalizacion de la instalación. Tras comprobar el funcionamiento, la documentacion debe registrarse ante los organismos correspondientes antes de la puesta en servicio.
+
+Idea 3. Certificado de instalación eléctrica. El certificado recoge que la instalación ha sido comprobada y cumple las condiciones exigibles.
+
+Idea 4. Muy baja tensión, baja tensión y alta tensión. La clasificacion tecnica usa rangos de tensión para distinguir las instalaciones y la reglamentacion aplicable.
+
+Idea 5. La legislacion es de obligado cumplimiento y la normativa concreta criterios tecnicos de aplicacion. El temario diferencia el entorno legislativo del normativo y ambos orientan la documentacion y ejecucion.
+
+Ahora, comprueba lo que recuerdas.
+
+Pregunta 1. ¿Cómo se clasifican tecnicamente las instalaciones electricas según el nivel de tensión? La respuesta es: Muy baja tensión, baja tensión y alta tensión.
+
+Pregunta 2. ¿Qué relación existe entre legislacion y normativa tecnica? La respuesta es: La legislacion es de obligado cumplimiento y la normativa concreta criterios tecnicos de aplicacion.
+
+Fin del repaso. Puedes abrir el PDF del tema para ver esquemas, tablas y fórmulas.

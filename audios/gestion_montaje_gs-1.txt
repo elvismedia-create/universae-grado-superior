@@ -1,0 +1,19 @@
+Repaso breve: Documentación técnica y normativa de aplicación. Gestión del montaje y mantenimiento.
+
+Idea 1. Un estudio completo con escritos, planos y cálculos para establecer como ejecutar el proceso. El proyecto tecnico reune la documentacion necesaria para definir, ejecutar, comprobar y legalizar una instalación.
+
+Idea 2. Memoria descriptiva, pliego de condiciones, presupuesto, planos y esquemas. El temario enumera esos bloques como documentos basicos del proyecto tecnico.
+
+Idea 3. La informacion basica y tecnica de la instalación. La memoria describe objeto, emplazamiento, datos tecnicos, previsiones de carga, protecciones, normativa y conclusiones.
+
+Idea 4. Pliego de condiciones. El pliego fija condiciones tecnicas y administrativas que regulan la ejecucion de la instalación.
+
+Idea 5. Reglamento Electrotecnico de Baja TENSIÓN. El Reglamento Electrotécnico de Baja Tensión, aprobado por el Real Decreto 842/2002, es la referencia principal junto con sus instrucciones técnicas complementarias.
+
+Ahora, comprueba lo que recuerdas.
+
+Pregunta 1. ¿Qué documento expone condiciones minimas, materiales y ejecucion con peso legal y contractual? La respuesta es: Pliego de condiciones.
+
+Pregunta 2. ¿Qué reglamento se cita como legislacion principal para instalaciones de baja tensión en Espana? La respuesta es: Reglamento Electrotecnico de Baja TENSIÓN.
+
+Fin del repaso. Puedes abrir el PDF del tema para ver esquemas, tablas y fórmulas.

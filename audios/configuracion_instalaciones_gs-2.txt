@@ -1,0 +1,21 @@
+Repaso breve: Elementos de las instalaciones de baja tensión I. Configuración de instalaciones eléctricas.
+
+Idea 1. UNE 20460-5-523:2004. Los metodos de instalación y tablas asociadas se estudian con referencia al Reglamento Electrotécnico de Baja Tensión y la UNE 20460-5-523.
+
+Idea 2. Que cumplan seguridad, funcionamiento e influencias externas previstas. La seleccion de materiales debe atender a seguridad, uso, ambiente y requisitos reglamentarios.
+
+Idea 3. Alojar elementos de protección de la linea general de alimentacion en el inicio de la instalación de enlace. La CGP es un elemento clave de la instalación de enlace y protege el arranque hacia la LGA.
+
+Idea 4. Cuando se integran protección y medida en un mismo conjunto según esquema de suministro. Las CGPM combinan funciones de protección y medida en determinados suministros.
+
+Idea 5. I P protección contra solidos y liquidos e I K contra impactos mecanicos. Las envolventes se seleccionan según protección frente a penetracion y choques mecanicos.
+
+Idea 6. H07Z1-K (AS) o RZ1-K (AS). El resumen de tipos por instrucciones técnicas complementarias-baja tensión relaciona la derivacion individual con conductores libres de halogenos o RZ1-K (AS).
+
+Ahora, comprueba lo que recuerdas.
+
+Pregunta 1. ¿Qué indican los grados I P e I K de una envolvente? La respuesta es: I P protección contra solidos y liquidos e I K contra impactos mecanicos.
+
+Pregunta 2. ¿Qué tipo de cable se asocia a una derivacion individual según el resumen del temario? La respuesta es: H07Z1-K (AS) o RZ1-K (AS).
+
+Fin del repaso. Puedes abrir el PDF del tema para ver esquemas, tablas y fórmulas.

@@ -1,0 +1,21 @@
+Repaso breve: INSTALACIONES y dispositivos de automatización. Domóticas y automáticas.
+
+Idea 1. Controlador. Los controladores reciben informacion y generan ordenes para el resto de dispositivos.
+
+Idea 2. Toman informacion del medio y la envian al controlador. Los sensores captan fenomenos fisicos para que el sistema decida actuaciones.
+
+Idea 3. Transformar una orden en una accion sobre la instalación. Persianas, electroválvulas, luminarias o cargas de potencia actuan al recibir ordenes.
+
+Idea 4. Un elemento de control rige todo el sistema. La centralizada es sencilla y economica, pero si falla el controlador central puede caer todo el sistema.
+
+Idea 5. Sensores y actuadores inteligentes pueden comunicarse sin depender de una unidad central. La distribuida mejora robustez porque los elementos tienen inteligencia y se comunican por bus.
+
+Idea 6. Cableados e inalambricos. La red domotica puede apoyarse en bus cableado, red eléctrica, radiofrecuencia u otros medios.
+
+Ahora, comprueba lo que recuerdas.
+
+Pregunta 1. ¿Qué ventaja aporta una arquitectura distribuida? La respuesta es: Sensores y actuadores inteligentes pueden comunicarse sin depender de una unidad central.
+
+Pregunta 2. ¿Qué medios de transmision se usan habitualmente en sistemas domoticos? La respuesta es: Cableados e inalambricos.
+
+Fin del repaso. Puedes abrir el PDF del tema para ver esquemas, tablas y fórmulas.

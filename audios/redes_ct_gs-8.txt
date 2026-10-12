@@ -1,0 +1,19 @@
+Repaso breve: Pruebas y ensayos de los centros de transformación. Desarrollo de redes y CT.
+
+Idea 1. Los de tipo validan el diseno y los de rutina se realizan sobre cada CT o unidad fabricada. La normativa EN 61330 distingue pruebas generales de diseno y pruebas repetidas de fabricacion o montaje.
+
+Idea 2. I P protege frente a solidos y liquidos e I K frente a impactos mecanicos. Los grados de protección valoran penetracion de cuerpos, agua e impactos sobre la envolvente.
+
+Idea 3. Para obtener pérdidas en el hierro y corriente de vacio. El ensayo en vacio caracteriza el comportamiento magnético del transformador sin carga.
+
+Idea 4. Resistencia de tierra. El telurómetro es el equipo habitual para medir la resistencia del electrodo de puesta a tierra.
+
+Idea 5. La seguridad de las personas ante defectos a tierra. Estas medidas comprueban que las tensiones accesibles se mantienen dentro de limites admisibles.
+
+Ahora, comprueba lo que recuerdas.
+
+Pregunta 1. ¿Qué mide el telurómetro? La respuesta es: Resistencia de tierra.
+
+Pregunta 2. ¿Qué se verifica con las medidas de tensión de paso y contacto? La respuesta es: La seguridad de las personas ante defectos a tierra.
+
+Fin del repaso. Puedes abrir el PDF del tema para ver esquemas, tablas y fórmulas.

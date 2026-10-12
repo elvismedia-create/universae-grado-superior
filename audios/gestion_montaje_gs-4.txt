@@ -1,0 +1,19 @@
+Repaso breve: Planificación del montaje. Gestión del montaje y mantenimiento.
+
+Idea 1. Para minimizar tiempos, recursos y desviaciones durante la ejecucion. La planificacion ordena tareas, recursos y plazos para controlar la ejecucion de la obra.
+
+Idea 2. PERT. PERT se utiliza para analizar actividades, dependencias y duraciones dentro de un proyecto.
+
+Idea 3. La secuencia de actividades que condiciona la duracion total del proyecto. Las tareas criticas no tienen holgura suficiente y retrasarlas retrasa el proyecto.
+
+Idea 4. Tareas distribuidas en el tiempo mediante barras. Gantt permite visualizar calendario, duracion y solapes de las actividades.
+
+Idea 5. Verificacion y pruebas. Tras cimentacion, canalizaciones, cableado, mecanismos y protecciones, se verifican y prueban las instalaciones.
+
+Ahora, comprueba lo que recuerdas.
+
+Pregunta 1. ¿Qué muestra un diagrama de Gantt? La respuesta es: Tareas distribuidas en el tiempo mediante barras.
+
+Pregunta 2. ¿Cuál es una fase del proceso de montaje citada en el temario? La respuesta es: Verificacion y pruebas.
+
+Fin del repaso. Puedes abrir el PDF del tema para ver esquemas, tablas y fórmulas.

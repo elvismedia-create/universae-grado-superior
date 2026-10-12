@@ -1,0 +1,21 @@
+Repaso breve: Conceptos básicos. Sistemas y circuitos eléctricos.
+
+Idea 1. Resistencia. La resistencia eléctrica representa la oposición al paso de la corriente y su unidad es el ohmio.
+
+Idea 2. Que el circuito esté cerrado. La corriente necesita un camino cerrado para que las cargas puedan desplazarse a través del conductor.
+
+Idea 3. La intensidad es proporcional a la tensión e inversamente proporcional a la resistencia. La ley de Ohm expresa que la intensidad es igual a la tensión dividida por la resistencia, por lo que aumenta la intensidad si sube la tensión o baja la resistencia.
+
+Idea 4. Parte de la energía se transforma en calor por efecto Joule. El efecto Joule explica las pérdidas caloríficas producidas al circular corriente por una resistencia.
+
+Idea 5. Tiene amplitud, período y frecuencia. La corriente alterna senoidal varía periódicamente y se describe mediante parámetros como amplitud, período y frecuencia.
+
+Idea 6. La relación entre potencia activa, reactiva y aparente. El triángulo de potencias permite relacionar P, Q y S, además del factor de potencia.
+
+Ahora, comprueba lo que recuerdas.
+
+Pregunta 1. ¿Qué caracteriza a una onda de corriente alterna senoidal? La respuesta es: Tiene amplitud, período y frecuencia.
+
+Pregunta 2. ¿Qué representa el triángulo de potencias? La respuesta es: La relación entre potencia activa, reactiva y aparente.
+
+Fin del repaso. Puedes abrir el PDF del tema para ver esquemas, tablas y fórmulas.

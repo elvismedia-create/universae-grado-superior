@@ -1,0 +1,19 @@
+Repaso breve: Confección de pliegos, manuales, estudios e informes. Documentación técnica.
+
+Idea 1. La posibilidad de que un trabajador sufra un dano derivado del trabajo. La gravedad del riesgo se valora combinando probabilidad y severidad del dano.
+
+Idea 2. Deteccion, evaluacion y correccion. El estudio basico de seguridad y salud organiza la prevencion identificando, valorando y corrigiendo riesgos.
+
+Idea 3. Pliego de condiciones. El pliego fija campo de aplicacion, normativa, calidades, ejecucion, ensayos y condiciones de uso.
+
+Idea 4. Organizar controles para asegurar que la ejecucion cumple requisitos establecidos. El plan de calidad se relaciona con sistemas ISO 9000 y con el control de procesos y resultados.
+
+Idea 5. Porque asegura versiones, archivo, acceso y trazabilidad de los documentos del proyecto. La gestion documental incluye soporte fisico, soporte digital y tramitaciones telematicas.
+
+Ahora, comprueba lo que recuerdas.
+
+Pregunta 1. ¿Qué funcion tiene un plan de calidad? La respuesta es: Organizar controles para asegurar que la ejecucion cumple requisitos establecidos.
+
+Pregunta 2. ¿Por qué es importante el control de documentacion? La respuesta es: Porque asegura versiones, archivo, acceso y trazabilidad de los documentos del proyecto.
+
+Fin del repaso. Puedes abrir el PDF del tema para ver esquemas, tablas y fórmulas.

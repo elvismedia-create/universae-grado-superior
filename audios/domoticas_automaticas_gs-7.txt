@@ -1,0 +1,19 @@
+Repaso breve: Normativa en instalaciones domóticas y automáticas. Domóticas y automáticas.
+
+Idea 1. No, se aplica un conjunto de normas de electricidad, edificacion, telecomunicaciones y otros ambitos. El temario indica que la domotica mezcla climatizacion, electricidad, electrónica, edificacion y telecomunicaciones.
+
+Idea 2. instrucciones técnicas complementarias-baja tensión-51. La instrucciones técnicas complementarias-baja tensión-51 da marco electrotecnico a sistemas automaticos en viviendas y edificios.
+
+Idea 3. C11 con interruptor automatico de 10 A. La unidad relaciona la domotica con instrucciones técnicas complementarias-baja tensión-25 y circuito especifico C11.
+
+Idea 4. Manual de usuario y manual del instalador. El manual de usuario recoge uso, mantenimiento y programacion; el del instalador incluye informacion tecnica.
+
+Idea 5. Que el producto cumple requisitos europeos aplicables para su comercializacion. El marcado CE y certificaciones ayudan a verificar cumplimiento en productos domoticos comercializados en Europa.
+
+Ahora, comprueba lo que recuerdas.
+
+Pregunta 1. ¿Qué documentos pide la guia del Reglamento Electrotécnico de Baja Tensión para una instalación domotica? La respuesta es: Manual de usuario y manual del instalador.
+
+Pregunta 2. ¿Qué identifica el marcado CE? La respuesta es: Que el producto cumple requisitos europeos aplicables para su comercializacion.
+
+Fin del repaso. Puedes abrir el PDF del tema para ver esquemas, tablas y fórmulas.

@@ -1,0 +1,19 @@
+Repaso breve: Configuración de centros de transformación y redes eléctricas de baja tensión. Desarrollo de redes y CT.
+
+Idea 1. Corrientes de cortocircuito maximas posibles. El diseno del CT debe considerar esfuerzos termicos y electrodinamicos derivados del cortocircuito.
+
+Idea 2. Acceso desde via publica y proximidad al punto de conexión. La ubicacion debe facilitar conexión, mantenimiento, maniobra, sustitucion de equipos y seguridad.
+
+Idea 3. En forma radial ramificada y con tensión cuatrocientos voltios entre fases y doscientos treinta entre fase y neutro. La unidad indica redes radiales ramificadas, secciones uniformes y criterios de calidad de suministro.
+
+Idea 4. Entre 2,5 m y 6 m. El trazado sobre fachada debe minimizar impacto visual y permitir mantenimiento con alturas adecuadas.
+
+Idea 5. Memoria, cálculos, planos, pliego, presupuesto y estudios anexos. Los proyectos de CT y redes de baja tensión organizan datos tecnicos, justificaciones, planos y condiciones.
+
+Ahora, comprueba lo que recuerdas.
+
+Pregunta 1. ¿Qué altura se indica para redes posadas de baja tensión sobre fachada? La respuesta es: Entre 2,5 m y 6 m.
+
+Pregunta 2. ¿Qué documentos forman parte de la estructura de un proyecto eléctrico? La respuesta es: Memoria, cálculos, planos, pliego, presupuesto y estudios anexos.
+
+Fin del repaso. Puedes abrir el PDF del tema para ver esquemas, tablas y fórmulas.

@@ -1,0 +1,21 @@
+Repaso breve: Transformadores eléctricos. Sistemas y circuitos eléctricos.
+
+Idea 1. Cambiar tensión e intensidad manteniendo aproximadamente la potencia. El transformador permite elevar o reducir tensión; si aumenta la tensión disminuye la corriente para una potencia similar.
+
+Idea 2. Porque reduce la corriente y las pérdidas por efecto Joule. A mayor tensión para la misma potencia, menor intensidad; las pérdidas en linea dependen de la intensidad.
+
+Idea 3. NÚCLEO ferromagnetico y devanados. El transformador se forma con circuitos electricos acoplados magneticamente mediante un núcleo.
+
+Idea 4. PÉRDIDAS de flujo, resistencia de bobinados, histeresis y pérdidas activas. El modelo ideal simplifica el estudio suponiendo ausencia de pérdidas y resistencias internas.
+
+Idea 5. La relación entre potencia util de salida y potencia absorbida. El rendimiento compara la potencia entregada con la absorbida, teniendo en cuenta las pérdidas.
+
+Idea 6. Transformador de intensidad. Los transformadores de intensidad adaptan corrientes altas para instrumentos de medida y protección.
+
+Ahora, comprueba lo que recuerdas.
+
+Pregunta 1. ¿Qué indica el rendimiento de un transformador? La respuesta es: La relación entre potencia util de salida y potencia absorbida.
+
+Pregunta 2. ¿Qué tipo de transformador de medida reduce una corriente elevada a un valor medible y seguro? La respuesta es: Transformador de intensidad.
+
+Fin del repaso. Puedes abrir el PDF del tema para ver esquemas, tablas y fórmulas.

@@ -1,0 +1,21 @@
+Repaso breve: Motores eléctricos. Sistemas y circuitos eléctricos.
+
+Idea 1. Estaticas y dinamicas. El temario distingue maquinas estaticas, como transformadores, y dinamicas, como motores y generadores.
+
+Idea 2. Alternador. El alternador genera tensión y corriente alterna a partir de movimiento mecanico.
+
+Idea 3. Porque el rotor gira a velocidad inferior a la del campo magnético. En el motor asíncrono existe deslizamiento: el rotor no alcanza la velocidad del campo giratorio.
+
+Idea 4. La diferencia relativa entre velocidad de sincronismo y velocidad del rotor. El deslizamiento relaciona la velocidad del campo con la velocidad real del rotor.
+
+Idea 5. Bobinado de arranque y condensador. El condensador y el bobinado auxiliar ayudan a crear el desfase necesario para iniciar el giro.
+
+Idea 6. Tiene par nulo a velocidad inicial y necesita ayuda de arranque. El motor sincrono requiere sistemas auxiliares o comportarse inicialmente como asíncrono para arrancar.
+
+Ahora, comprueba lo que recuerdas.
+
+Pregunta 1. ¿Qué elemento se emplea habitualmente para facilitar el arranque de motores monofasicos? La respuesta es: Bobinado de arranque y condensador.
+
+Pregunta 2. ¿Qué inconveniente presenta el motor sincrono durante el arranque? La respuesta es: Tiene par nulo a velocidad inicial y necesita ayuda de arranque.
+
+Fin del repaso. Puedes abrir el PDF del tema para ver esquemas, tablas y fórmulas.

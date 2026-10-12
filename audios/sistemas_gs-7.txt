@@ -1,0 +1,21 @@
+Repaso breve: Circuitos electrónicos digitales secuenciales. Sistemas y circuitos eléctricos.
+
+Idea 1. Depende de entradas actuales y estados anteriores. Los sistemas secuenciales incorporan memoria, por lo que su salida depende del estado previo.
+
+Idea 2. Un circuito capaz de almacenar un bit de informacion. Los biestables tienen dos estados estables y se usan como elementos basicos de memoria digital.
+
+Idea 3. JK. El biestable JK mejora el comportamiento del RS y permite conmutacion controlada.
+
+Idea 4. Reloj o clock. Los biestables sincronizados cambian de estado en funcion de una señal de reloj.
+
+Idea 5. Para llevar una cuenta y secuenciar operaciones. Los contadores encadenan biestables para generar secuencias binarias.
+
+Idea 6. Son más lentos por tiempos de propagacion acumulados. En los asincronos la señal se propaga de etapa en etapa, acumulando retardos.
+
+Ahora, comprueba lo que recuerdas.
+
+Pregunta 1. ¿Para que sirven los contadores digitales? La respuesta es: Para llevar una cuenta y secuenciar operaciones.
+
+Pregunta 2. ¿Qué inconveniente tienen los contadores asincronos frente a los sincronos? La respuesta es: Son más lentos por tiempos de propagacion acumulados.
+
+Fin del repaso. Puedes abrir el PDF del tema para ver esquemas, tablas y fórmulas.

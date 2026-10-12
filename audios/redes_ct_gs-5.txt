@@ -1,0 +1,19 @@
+Repaso breve: Cálculos mecánicos y eléctricos. Desarrollo de redes y CT.
+
+Idea 1. Tensiones, flechas, vanos, cargas de viento y hielo. Los cálculos mecanicos comprueban esfuerzos del conductor y apoyos según condiciones ambientales.
+
+Idea 2. La flecha es la sagita del conductor y el vano la distancia entre apoyos. Estos conceptos son basicos para el cálculo mecanico de conductores aereos.
+
+Idea 3. Viento, hielo y temperatura según zonas de altitud. El temario usa zonas A, B y C con combinaciones de temperatura, viento y hielo.
+
+Idea 4. Caida de tensión e intensidad admisible de los conductores. Los cálculos electricos verifican que la linea puede transportar potencia dentro de limites tecnicos.
+
+Idea 5. Resistencia, tensiones de defecto, paso y contacto. Los cálculos de tierra aseguran que los defectos no generan tensiones peligrosas.
+
+Ahora, comprueba lo que recuerdas.
+
+Pregunta 1. ¿Qué cálculo eléctrico es necesario en redes de distribución? La respuesta es: Caida de tensión e intensidad admisible de los conductores.
+
+Pregunta 2. ¿Qué se comprueba en el sistema de puesta a tierra de un CT? La respuesta es: Resistencia, tensiones de defecto, paso y contacto.
+
+Fin del repaso. Puedes abrir el PDF del tema para ver esquemas, tablas y fórmulas.

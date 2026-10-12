@@ -1,0 +1,19 @@
+Repaso breve: Centros de transformación de energía eléctrica. Desarrollo de redes y CT.
+
+Idea 1. Reducir la media tensión a baja tensión. El CT adapta la tensión para que la energía pueda distribuirse a usuarios en baja tensión.
+
+Idea 2. Interior, intemperie o subterraneo. El temario distingue CT interiores, de intemperie y subterraneos, entre otras clasificaciones.
+
+Idea 3. Obra civil, celdas de media tensión, transformador, medida y protección de baja tensión. La unidad enumera obra civil, celdas, transformador, equipos de medida, mando y protección.
+
+Idea 4. Para evacuar calor y mantener condiciones termicas admisibles. La ventilacion y renovacion de aire son necesarias por las pérdidas termicas de los equipos.
+
+Idea 5. Abrir el interruptor, comprobar ausencia de tensión y cerrar el seccionador de tierra. Las maniobras de seguridad en CT siguen una secuencia para aislar y poner a tierra antes de intervenir.
+
+Ahora, comprueba lo que recuerdas.
+
+Pregunta 1. ¿Para que sirve la ventilacion de un CT? La respuesta es: Para evacuar calor y mantener condiciones termicas admisibles.
+
+Pregunta 2. ¿Qué maniobra se realiza antes de retirar un panel en una celda? La respuesta es: Abrir el interruptor, comprobar ausencia de tensión y cerrar el seccionador de tierra.
+
+Fin del repaso. Puedes abrir el PDF del tema para ver esquemas, tablas y fórmulas.

@@ -1,0 +1,21 @@
+Repaso breve: Características de las instalaciones de baja tensión. Configuración de instalaciones eléctricas.
+
+Idea 1. Desde la Caja General de PROTECCIÓN hasta receptores, puntos de luz y enchufes. La unidad se centra en las partes de baja tensión de los edificios, desde CGP hasta receptores finales.
+
+Idea 2. Electrificacion, singulares y automatizadas. El temario distingue instalaciones de electrificacion, instalaciones singulares e instalaciones automatizadas.
+
+Idea 3. Utilizacion, estructura general, alimentaciones, influencias externas, compatibilidad y mantenimiento. Antes de disenar hay que valorar uso, alimentacion, condiciones externas, materiales, mantenimiento y seguridad.
+
+Idea 4. Para limitar averias, facilitar mantenimiento y mejorar seguridad de explotacion. La division por circuitos reduce el alcance de fallos y permite seccionamiento y protección adecuados.
+
+Idea 5. Mantener funciones necesarias para seguridad de personas ante emergencia. Los servicios de seguridad alimentan funciones criticas, como alumbrado de emergencia o sistemas de protección.
+
+Idea 6. Visibilidad suficiente para orientar la salida de forma segura. El alumbrado de emergencia permite reconocer recorridos de evacuacion y puntos de seguridad.
+
+Ahora, comprueba lo que recuerdas.
+
+Pregunta 1. ¿Qué finalidad tienen los servicios de seguridad? La respuesta es: Mantener funciones necesarias para seguridad de personas ante emergencia.
+
+Pregunta 2. ¿Qué debe garantizar el alumbrado de emergencia en rutas de evacuacion? La respuesta es: Visibilidad suficiente para orientar la salida de forma segura.
+
+Fin del repaso. Puedes abrir el PDF del tema para ver esquemas, tablas y fórmulas.

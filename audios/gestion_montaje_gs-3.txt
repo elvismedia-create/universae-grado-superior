@@ -1,0 +1,19 @@
+Repaso breve: Gestión del almacén. Gestión del montaje y mantenimiento.
+
+Idea 1. Espacio habilitado para deposito, conservacion y control de mercancias. El almacen garantiza disponibilidad y conservacion de materiales para montaje y mantenimiento.
+
+Idea 2. Zona de almacenamiento. El temario distingue zonas como recepcion, almacenamiento, preparacion o picking y expedicion.
+
+Idea 3. Lo primero que entra es lo primero que sale. FIFO ayuda a evitar acumulaciones y envejecimiento de materiales almacenados.
+
+Idea 4. Para localizar, identificar y seguir materiales. La trazabilidad permite saber donde esta cada material y cual ha sido su recorrido.
+
+Idea 5. MÉTODO de las 5S. Las 5S agrupan clasificar, ordenar, limpiar, estandarizar y mantener la disciplina.
+
+Ahora, comprueba lo que recuerdas.
+
+Pregunta 1. ¿Para que sirven la codificacion y trazabilidad en almacen? La respuesta es: Para localizar, identificar y seguir materiales.
+
+Pregunta 2. ¿Qué metodologia se cita para organizar eficientemente el almacen? La respuesta es: MÉTODO de las 5S.
+
+Fin del repaso. Puedes abrir el PDF del tema para ver esquemas, tablas y fórmulas.

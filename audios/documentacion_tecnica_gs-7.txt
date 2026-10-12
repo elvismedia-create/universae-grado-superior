@@ -1,0 +1,19 @@
+Repaso breve: Software y aplicaciones para instalaciones eléctricas. Documentación técnica.
+
+Idea 1. Para crear planos y esquemas en dos y tres dimensiones con precision. AutoCAD es una herramienta de diseno asistido usada para planos y documentacion grafica.
+
+Idea 2. Las cartesianas usan ejes X, Y, Z; las polares usan distancia y ángulo. El sistema de coordenadas permite introducir puntos con precision en el dibujo tecnico.
+
+Idea 3. CADe_SIMU. CADe_SIMU incorpora elementos electricos y configuraciones para representar y simular esquemas.
+
+Idea 4. DIALux. DIALux permite trabajar con geometria de planos, luminarias y cálculos de iluminacion.
+
+Idea 5. Presto. El temario incluye Presto dentro de los programas informaticos de gestion de costes y presupuestos.
+
+Ahora, comprueba lo que recuerdas.
+
+Pregunta 1. ¿Qué software se usa principalmente para cálculo de alumbrado? La respuesta es: DIALux.
+
+Pregunta 2. ¿Qué herramienta se asocia a gestion de costes y presupuestos? La respuesta es: Presto.
+
+Fin del repaso. Puedes abrir el PDF del tema para ver esquemas, tablas y fórmulas.
