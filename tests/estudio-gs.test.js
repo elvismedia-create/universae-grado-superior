@@ -41,6 +41,23 @@ test('incluye preguntas de IA del mismo tema sin mezclarlas con otro bloque', ()
   assert.equal(errors.locate(course, { ...ai, tema: 'Otro tema' }), null);
 });
 
+test('borra errores del cuaderno y de ambos bancos sin alterar el progreso', () => {
+  const progress = '{"U1: Conceptos básicos":{"active":[1]}}';
+  const bank = { '1': { pregunta: q1, fallos: 3 }, '2': { pregunta: q2, fallos: 2 } };
+  const db = storage({ mastertest_fails: '[1]', academia_banco_fallos: JSON.stringify(bank), mastertest_db: progress });
+  const first = errors.read(db, course);
+  assert.equal(Object.keys(first).length, 2);
+  assert.equal(first['sistemas_gs:0:2'].count, 2);
+  assert.equal(errors.remove(db, course, 'sistemas_gs:0:1'), 1);
+  assert.deepEqual(JSON.parse(db.getItem('mastertest_fails')), []);
+  assert.deepEqual(Object.keys(JSON.parse(db.getItem('academia_banco_fallos'))), ['2']);
+  assert.deepEqual(Object.keys(errors.read(db, course)), ['sistemas_gs:0:2']);
+  assert.equal(db.getItem('mastertest_db'), progress);
+  assert.equal(errors.remove(db, course, ['sistemas_gs:0:2']), 1);
+  assert.deepEqual(errors.read(db, course), {});
+  assert.equal(errors.remove(db, course, 'sistemas_gs:0:2'), 0);
+});
+
 test('mantiene subrayados antiguos al recuperar texto, enlazar una selección y guardar una tarjeta', () => {
   const key = 'universae_pdf_annotations:sistemas_gs:0';
   const old = { 3: [{ type: 'highlight', color: 'yellow', rects: [{ x: .1, y: .2, width: .3, height: .02 }] }] };

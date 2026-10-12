@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="repaso-espaciado.css?v=1.10">
 <link rel="stylesheet" href="plan-diario.css?v=1.8">
 <link rel="stylesheet" href="simulacros-gs.css?v=1.9">
-<link rel="stylesheet" href="estudio-gs.css?v=1.11">
+<link rel="stylesheet" href="estudio-gs.css?v=1.16">
 
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#2563eb">
@@ -136,7 +136,7 @@ body{ margin: 0; padding: 20px; background: var(--bg); color: var(--text); font-
 
 /* === CABECERA === */
 .header-flex { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 25px; }
-.header-buttons { display: flex; gap: 8px; }
+.header-buttons { display: flex; flex-wrap: wrap; gap: 8px; }
 h1{ margin: 0 0 5px 0; color: var(--primary); font-size: 1.8rem; letter-spacing: -0.5px; }
 .subtitle{ color: var(--text-light); font-size: 1rem; margin: 0; }
 
@@ -144,6 +144,17 @@ h1{ margin: 0 0 5px 0; color: var(--primary); font-size: 1.8rem; letter-spacing:
 button { -webkit-appearance: none; appearance: none; border: none; cursor: pointer; font-family: inherit; transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1); }
 .btn-tool { background: var(--bg); color: var(--text-light); border: 1px solid var(--border); padding: 8px 12px; font-size: 0.9rem; border-radius: 10px; display: flex; align-items: center; gap: 5px; font-weight: 600; }
 .btn-theme { font-size: 1.1rem; padding: 6px 10px; }
+.btn-notebook { background: #e9f6ef; color: #176446; border-color: #9bd5b3; font-weight: 750; }
+.btn-notebook:hover { background: #d9f0e3; border-color: #59ad7f; }
+body.dark-mode .btn-notebook { background: #193c32; color: #b7f3d0; border-color: #4a997a; }
+#grid-asignaturas .card-cuaderno { border: 1px solid #9bd5b3; background: #f3faf6; }
+#grid-asignaturas .card-cuaderno::before { background: #23875b; }
+.card-cuaderno .asig-title { color: #176446; }
+.card-cuaderno .asig-info { min-width: 0; }
+.btn-cuaderno { min-height: 44px; padding: 10px 18px; border-radius: 6px; background: #176446; color: #fff; font-weight: 700; white-space: nowrap; }
+.btn-cuaderno:hover { background: #105039; }
+body.dark-mode #grid-asignaturas .card-cuaderno { background: #193c32; border-color: #4a997a; }
+body.dark-mode .card-cuaderno .asig-title { color: #b7f3d0; }
 
 /* === NAVEGACIÓN CON TABS (GS) === */
 .tabs-container {
@@ -567,6 +578,9 @@ button { -webkit-appearance: none; appearance: none; border: none; cursor: point
 .botones-navegacion { display: grid; grid-template-columns: 1fr auto 1fr; gap: 15px; margin-top: 30px; border-top: 1px solid var(--border); padding-top: 20px; }
 
 @media (max-width: 700px) { 
+  .header-buttons { width: 100%; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .header-buttons .btn-tool { min-width: 0; min-height: 40px; justify-content: center; }
+  .header-buttons .btn-notebook { grid-column: 1 / -1; }
   #opciones-grid { grid-template-columns: 1fr; } 
   .opcion-img { max-height: 105px; }
   .asig-card { flex-direction: column; align-items: flex-start; gap: 15px; } 
@@ -911,7 +925,7 @@ svg, svg * {
     <div style="display:flex; align-items:center; gap:16px;">
       <img src="img/universae-shield-logo.png?v=20260909090000" alt="Universae Logo" style="height:64px; width:64px; flex-shrink:0; object-fit:contain;">
       <div>
-        <h1 style="margin:0;">Universae GS <span style="font-size:0.6em; background:#0f766e; color:white; padding:6px 16px; border-radius:25px; font-weight:900; margin-left:8px;">Bloque 1</span> <span style="font-size:0.5em; background:#1e293b; color:white; padding:5px 12px; border-radius:20px; font-weight:800; margin-left:6px;">v1.13</span></h1>
+        <h1 style="margin:0;">Universae GS <span style="font-size:0.6em; background:#0f766e; color:white; padding:6px 16px; border-radius:25px; font-weight:900; margin-left:8px;">Bloque 1</span> <span style="font-size:0.5em; background:#1e293b; color:white; padding:5px 12px; border-radius:20px; font-weight:800; margin-left:6px;">v1.16</span></h1>
         <p class="subtitle" style="margin:4px 0 0 0;">Grado Superior · Anual · Examen en mayo</p>
       </div>
     </div>
@@ -921,13 +935,13 @@ svg, svg * {
     
 
 <div class="header-buttons">
+      <button class="btn-tool btn-notebook" onclick="abrirCuadernoGS()" title="Abrir el cuaderno de errores">Cuaderno de errores</button>
       <button class="btn-tool btn-theme" onclick="toggleTheme()">🌓</button>
       <button class="btn-tool" onclick="abrirPlanDiario()">📅 Plan</button>
       
       <button class="btn-tool" onclick="abrirGestion()">🛠️ Admin</button>
       <button class="btn-tool" id="btn-importar-pdfs" onclick="abrirImportadorPdfs()">📄 PDFs</button>
       <button class="btn-tool" onclick="abrirAnotacionesGS()">Anotaciones</button>
-      <button class="btn-tool" onclick="abrirCuadernoGS()">Errores</button>
       <button class="btn-tool" onclick="verEstadisticas()">📊 Stats</button>
       <button class="btn-tool btn-reset" onclick="borrarDatosGlobales()">🗑️</button>
     </div>
@@ -1016,13 +1030,14 @@ svg, svg * {
 <script src="data-gs-bloque1.js?v=1.9"></script>
 <script src="data-config.js?v=1.9"></script>
 <script src="anotaciones-gs.js?v=1.11"></script>
-<script src="cuaderno-gs.js?v=1.11"></script>
+<script src="cuaderno-gs.js?v=1.16"></script>
 <script src="pdf-local-store.js?v=1.11"></script>
 <!-- MÓDULOS EDUCATIVOS -->
 <script src="taller-gs.js?v=1.6"></script>
 <!-- MOTOR PRINCIPAL -->
 <script src="repaso-espaciado.js?v=1.7"></script>
 <script src="motor.js?v=1.11"></script>
+<script src="navegacion-gs.js?v=1.15"></script>
 <script src="plan-diario.js?v=1.8"></script>
 <script src="simulacros-gs.js?v=1.11"></script>
 <script src="tutor.js?v=1.11"></script>
@@ -1106,7 +1121,7 @@ function generarTabsParaTrimestre(trim) {
   });
 }
 
-// PASO 3: Generar tabs iniciales (T2)
+// PASO 3: Generar tabs iniciales del bloque anual
 generarTabsParaTrimestre(trimestreActual);
 
 
@@ -1114,10 +1129,17 @@ generarTabsParaTrimestre(trimestreActual);
 
 // LOGICA FILTRADO GS
 
+let bloqueRenderToken = 0;
 function filtrarBloque(bid) {
-  window.currentBid = bid;
   const bloque = CONFIGURACION_CURSO.find(b => b.bloque === bid);
   if (!bloque) return;
+  window.currentBid = bid;
+  if (trimestreActual !== bloque.trimestre) {
+    trimestreActual = bloque.trimestre;
+    document.querySelectorAll('.btn-trimestre').forEach(button => button.classList.toggle('active', button.textContent === trimestreActual));
+    generarTabsParaTrimestre(trimestreActual);
+  }
+  const renderToken = ++bloqueRenderToken;
 
   // FIX v70.1: Sincronizar tabs activos con contenido mostrado
   // (usa solo los bloques del trimestre actualmente visible, no todo CONFIGURACION_CURSO)
@@ -1144,7 +1166,17 @@ function filtrarBloque(bid) {
   
   // Cargar contenido real (pequeño delay para que se vea el skeleton)
   setTimeout(() => {
+    if (renderToken !== bloqueRenderToken) return;
     grid.innerHTML = "";
+
+    const errores = Object.values(CuadernoGS.read(localStorage, CONFIGURACION_CURSO))
+      .filter(item => CONFIGURACION_CURSO.some(block => block.bloque === item.bid && block.trimestre === bloque.trimestre));
+    const cardCuaderno = document.createElement('div');
+    cardCuaderno.className = 'asig-card card-cuaderno';
+    cardCuaderno.innerHTML = `<div class="asig-info"><div class="asig-title">Cuaderno de errores</div>
+      <div class="asig-meta">${errores.length} ${errores.length === 1 ? 'pregunta guardada' : 'preguntas guardadas'} en ${bloque.trimestre}</div></div>
+      <button type="button" class="btn-cuaderno" onclick="abrirCuadernoGS()">Abrir cuaderno</button>`;
+    grid.appendChild(cardCuaderno);
   
   
 
@@ -1481,6 +1513,7 @@ function filtrarBloque(bid) {
             <button onclick="iniciarPurgatorio()" style="padding:10px 6px; background:#7c3aed; color:white; border:none; border-radius:10px; font-weight:700; cursor:pointer; font-size:0.85rem;">💀 Purgatorio</button>
             <button onclick="iniciarRepasoRapido()" style="padding:10px 6px; background:#d97706; color:white; border:none; border-radius:10px; font-weight:700; cursor:pointer; font-size:0.85rem;">⚡ Repaso</button>
           </div>
+          <button type="button" onclick="abrirCuadernoGS()" style="width:100%; margin-top:10px; padding:10px; border:1px solid #dc2626; border-radius:6px; background:#fff; color:#991b1b; font-weight:700; cursor:pointer;">Gestionar errores</button>
         `;
         grid.appendChild(cardFallos);
       }
@@ -1607,7 +1640,7 @@ function filtrarBloque(bid) {
   }, 150); // Delay para mostrar skeleton screen GS
 }
 
-// Inicialización con restauración de contexto
+// Inicialización y migración de fallos anteriores
 // Barrido automático de fallos desde historial existente (se ejecuta una sola vez)
 (function migrarFallosDesdeHistorial() {
   try {
@@ -1636,28 +1669,10 @@ function filtrarBloque(bid) {
 })();
 
 setTimeout(() => {
-  // Intentar restaurar contexto guardado
-  const savedContext = localStorage.getItem("mastertest_lastcontext");
-  
-  if (savedContext) {
-    try {
-      const ctx = JSON.parse(savedContext);
-      // Restaurar el bloque donde estaba
-      if (ctx.bid) {
-        filtrarBloque(ctx.bid, null);
-      }
-      // Limpiar el contexto guardado
-      localStorage.removeItem("mastertest_lastcontext");
-    } catch (e) {
-      // Si falla, ir al primer bloque del trimestre actual (T3 por defecto)
-      const first = CONFIGURACION_CURSO.find(b => b.trimestre === trimestreActual) || CONFIGURACION_CURSO[0];
-      if(first) filtrarBloque(first.bloque, null);
-    }
-  } else {
-    // Si no hay contexto guardado, ir al primer bloque del trimestre actual (T3 por defecto)
-    const first = CONFIGURACION_CURSO.find(b => b.trimestre === trimestreActual) || CONFIGURACION_CURSO[0];
-    if(first) filtrarBloque(first.bloque, null);
-  }
+  const savedContext = localStorage.getItem('mastertest_lastcontext');
+  const initial = NavegacionGS.initialBlock(CONFIGURACION_CURSO, trimestreActual, savedContext);
+  localStorage.removeItem('mastertest_lastcontext');
+  if (initial) filtrarBloque(initial.bloque);
 }, 50);
 
 // DEBUG GS: Test de verificación

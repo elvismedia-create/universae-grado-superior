@@ -1,6 +1,6 @@
-// v1.13 - audio retirado de la app
-const APP_VERSION = 'v1.13';
-const BUILD_TIMESTAMP = '20261012-gs-sin-audio-1';
+// v1.16 - colores del cuaderno de errores
+const APP_VERSION = 'v1.16';
+const BUILD_TIMESTAMP = '20261012-gs-cuaderno-colores-1';
 const CACHE_NAME = `universae-gs-${APP_VERSION}-${BUILD_TIMESTAMP}`;
 const OFFLINE_CACHE = 'universae-gs-offline-v1.2';
 const PDF_CACHE = 'universae-gs-pdfs-v1';
@@ -18,6 +18,7 @@ const CRITICAL_ASSETS = [
   './simulacros-gs.css',
   './anotaciones-gs.js',
   './cuaderno-gs.js',
+  './navegacion-gs.js',
   './estudio-gs.css',
   './pdf-local-store.js',
   './tutor.js',
@@ -69,7 +70,7 @@ self.addEventListener('install', (e) => {
 
 // ACTIVACIÓN v90.2: Limpieza y notificación
 self.addEventListener('activate', (e) => {
-  console.log('✨ ACTIVANDO Universae GS v1.13...');
+  console.log('✨ ACTIVANDO Universae GS v1.16...');
 
   e.waitUntil(
     caches.keys()
