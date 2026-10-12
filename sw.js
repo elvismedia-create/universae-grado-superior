@@ -1,10 +1,9 @@
-// v1.12 - microrepasos descargables
-const APP_VERSION = 'v1.12';
-const BUILD_TIMESTAMP = '20261012-gs-audio-1';
+// v1.13 - audio retirado de la app
+const APP_VERSION = 'v1.13';
+const BUILD_TIMESTAMP = '20261012-gs-sin-audio-1';
 const CACHE_NAME = `universae-gs-${APP_VERSION}-${BUILD_TIMESTAMP}`;
 const OFFLINE_CACHE = 'universae-gs-offline-v1.2';
 const PDF_CACHE = 'universae-gs-pdfs-v1';
-const AUDIO_CACHE = 'universae-gs-audio-v1';
 
 // ARCHIVOS CRÍTICOS - DEBEN estar en caché siempre
 const CRITICAL_ASSETS = [
@@ -20,9 +19,6 @@ const CRITICAL_ASSETS = [
   './anotaciones-gs.js',
   './cuaderno-gs.js',
   './estudio-gs.css',
-  './audio-gs.js',
-  './audio-gs.css',
-  './audios/manifest.json',
   './pdf-local-store.js',
   './tutor.js',
   './tutor.css',
@@ -73,7 +69,7 @@ self.addEventListener('install', (e) => {
 
 // ACTIVACIÓN v90.2: Limpieza y notificación
 self.addEventListener('activate', (e) => {
-  console.log('✨ ACTIVANDO Universae GS v1.12...');
+  console.log('✨ ACTIVANDO Universae GS v1.13...');
 
   e.waitUntil(
     caches.keys()
@@ -81,7 +77,7 @@ self.addEventListener('activate', (e) => {
         console.log('📋 Cachés encontrados:', keyList);
         return Promise.all(
           keyList.map(key => {
-            if (key !== CACHE_NAME && key !== OFFLINE_CACHE && key !== PDF_CACHE && key !== AUDIO_CACHE) {
+            if (key !== CACHE_NAME && key !== OFFLINE_CACHE && key !== PDF_CACHE) {
               console.log('🗑️ Eliminando caché antiguo:', key);
               return caches.delete(key);
             }

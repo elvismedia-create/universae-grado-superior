@@ -10,7 +10,6 @@
 <link rel="stylesheet" href="plan-diario.css?v=1.8">
 <link rel="stylesheet" href="simulacros-gs.css?v=1.9">
 <link rel="stylesheet" href="estudio-gs.css?v=1.11">
-<link rel="stylesheet" href="audio-gs.css?v=1.12">
 
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#2563eb">
@@ -912,7 +911,7 @@ svg, svg * {
     <div style="display:flex; align-items:center; gap:16px;">
       <img src="img/universae-shield-logo.png?v=20260909090000" alt="Universae Logo" style="height:64px; width:64px; flex-shrink:0; object-fit:contain;">
       <div>
-        <h1 style="margin:0;">Universae GS <span style="font-size:0.6em; background:#0f766e; color:white; padding:6px 16px; border-radius:25px; font-weight:900; margin-left:8px;">Bloque 1</span> <span style="font-size:0.5em; background:#1e293b; color:white; padding:5px 12px; border-radius:20px; font-weight:800; margin-left:6px;">v1.12</span></h1>
+        <h1 style="margin:0;">Universae GS <span style="font-size:0.6em; background:#0f766e; color:white; padding:6px 16px; border-radius:25px; font-weight:900; margin-left:8px;">Bloque 1</span> <span style="font-size:0.5em; background:#1e293b; color:white; padding:5px 12px; border-radius:20px; font-weight:800; margin-left:6px;">v1.13</span></h1>
         <p class="subtitle" style="margin:4px 0 0 0;">Grado Superior · Anual · Examen en mayo</p>
       </div>
     </div>
@@ -929,7 +928,6 @@ svg, svg * {
       <button class="btn-tool" id="btn-importar-pdfs" onclick="abrirImportadorPdfs()">📄 PDFs</button>
       <button class="btn-tool" onclick="abrirAnotacionesGS()">Anotaciones</button>
       <button class="btn-tool" onclick="abrirCuadernoGS()">Errores</button>
-      <button class="btn-tool" onclick="abrirAudioGS()">Audio</button>
       <button class="btn-tool" onclick="verEstadisticas()">📊 Stats</button>
       <button class="btn-tool btn-reset" onclick="borrarDatosGlobales()">🗑️</button>
     </div>
@@ -989,8 +987,6 @@ svg, svg * {
 
 <div id="pantalla-cuaderno-gs" class="card"></div>
 
-<div id="pantalla-audio-gs" class="card"></div>
-
 <div id="pantalla-test" class="card"></div>
 
 <div id="pantalla-resultados" class="card"></div>
@@ -1022,7 +1018,6 @@ svg, svg * {
 <script src="anotaciones-gs.js?v=1.11"></script>
 <script src="cuaderno-gs.js?v=1.11"></script>
 <script src="pdf-local-store.js?v=1.11"></script>
-<script src="audio-gs.js?v=1.12"></script>
 <!-- MÓDULOS EDUCATIVOS -->
 <script src="taller-gs.js?v=1.6"></script>
 <!-- MOTOR PRINCIPAL -->
@@ -1224,7 +1219,6 @@ function filtrarBloque(bid) {
         <button class="btn-orange" onclick="jugar('carrera', ${idx}, '${bid}')">▶ Entrenar</button>
         ${pendientesRepaso ? `<button class="btn-outline" onclick="jugar('repaso_espaciado', ${idx}, '${bid}')">Repasar hoy (${pendientesRepaso})</button>` : ''}
         ${typeof getPdfButtonHtml === 'function' ? getPdfButtonHtml(bid, idx) : ''}
-        ${PDF_T3_URLS[bid]?.[idx] ? `<button class="btn-outline" onclick="abrirAudioGS('${bid}', ${idx})">Escuchar repaso</button>` : ''}
         ${PDF_T3_URLS[bid]?.[idx] ? `<button class="btn-outline" onclick="abrirTutorTema('${bid}', ${idx})">Tutor de apuntes</button>` : ''}
         ${mostrarBotonIA ? `
           <button class="btn-outline btn-ia-${idx}" style="background:linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color:white; border:none; font-weight:600;">
