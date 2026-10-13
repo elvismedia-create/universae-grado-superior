@@ -353,6 +353,18 @@
         min-width: 54px;
         font-size: 0.82rem;
       }
+      .pdf-zoom-value {
+        width: 64px;
+        min-width: 64px;
+        height: 38px;
+        border: 1px solid rgba(255,255,255,0.18);
+        border-radius: 8px;
+        background: rgba(255,255,255,0.08);
+        color: white;
+        text-align: center;
+        font: inherit;
+        font-weight: 700;
+      }
       .pdf-eraser-icon {
         width: 22px;
         height: 22px;
@@ -402,14 +414,14 @@
       .pdf-draw-layer {
         position: absolute;
         inset: 0;
-        touch-action: pan-y;
+        touch-action: pan-x pan-y;
         cursor: crosshair;
         pointer-events: none;
       }
       .pdf-draw-layer[data-tool="pen"] { pointer-events: auto; }
       .pdf-draw-layer[data-tool="eraser"] {
         pointer-events: auto;
-        touch-action: none;
+        touch-action: pan-x pan-y;
         cursor: cell;
       }
       .pdf-text-layer {
@@ -428,7 +440,7 @@
       }
       .pdf-text-layer[data-tool="highlight"] {
         pointer-events: auto;
-        touch-action: pan-y;
+        touch-action: pan-x pan-y;
         user-select: text;
         -webkit-user-select: text;
         cursor: text;
@@ -465,7 +477,7 @@
         }
         .pdf-viewer-toolbar [data-tool] { order: 0; }
         .pdf-viewer-toolbar [data-action="close"] { order: 1; margin-left: auto; }
-        .pdf-viewer-toolbar :is(.pdf-pen-settings, .pdf-color-btn, .pdf-zoom-btn) { order: 2; }
+        .pdf-viewer-toolbar :is(.pdf-pen-settings, .pdf-color-btn, .pdf-zoom-btn, .pdf-zoom-value) { order: 2; }
         .pdf-viewer-toolbar [data-action="zoom-in"],
         .pdf-viewer-toolbar [data-action="zoom-out"] { display: none; }
         .pdf-tool-btn { font-size: 0.85rem; }
@@ -485,13 +497,7 @@
   }
 
   function getPointerPoint(event, canvas) {
-    const rect = canvas.getBoundingClientRect();
-    const x = rect.width ? (event.clientX - rect.left) / rect.width : 0;
-    const y = rect.height ? (event.clientY - rect.top) / rect.height : 0;
-    return {
-      x: Math.max(0, Math.min(1, x)),
-      y: Math.max(0, Math.min(1, y))
-    };
+    return PdfViewerGeometry.normalizedPoint(canvas.getBoundingClientRect(), event.clientX, event.clientY);
   }
 
   function drawStroke(ctx, stroke, width, height) {
@@ -603,6 +609,7 @@
       <button class="pdf-color-btn" data-color="rgba(239,68,68,0.18)" style="background:#fecaca;" title="Rojo suave" aria-label="Rojo suave"></button>
       <button class="pdf-tool-btn" data-action="zoom-out" title="Alejar" aria-label="Alejar">−</button>
       <button class="pdf-tool-btn pdf-zoom-btn" data-action="zoom-reset" title="Restablecer zoom" aria-label="Restablecer zoom">100%</button>
+      <input class="pdf-zoom-value" data-action="zoom-value" type="number" min="75" max="300" step="5" value="100" aria-label="Zoom del PDF en porcentaje" title="Zoom del PDF en porcentaje">
       <button class="pdf-tool-btn" data-action="zoom-in" title="Acercar" aria-label="Acercar">+</button>
       <button class="pdf-tool-btn" data-action="notes" title="Anotaciones PDF" aria-label="Anotaciones PDF">▤</button>
       <button class="pdf-tool-btn" data-action="close" title="Cerrar" aria-label="Cerrar">×</button>
@@ -648,6 +655,16 @@
     toolbar.querySelector('[data-action="zoom-in"]').addEventListener('click', () => actions.setZoom(state.zoom + 0.15, actions.getViewportCenter()));
     toolbar.querySelector('[data-action="zoom-out"]').addEventListener('click', () => actions.setZoom(state.zoom - 0.15, actions.getViewportCenter()));
     toolbar.querySelector('[data-action="zoom-reset"]').addEventListener('click', () => actions.setZoom(1, actions.getViewportCenter()));
+    const zoomInput = toolbar.querySelector('[data-action="zoom-value"]');
+    const applyZoomValue = () => {
+      const value = Number(zoomInput.value);
+      actions.setZoom(zoomInput.value && Number.isFinite(value) ? value / 100 : state.zoom, actions.getViewportCenter());
+    };
+    zoomInput.addEventListener('change', applyZoomValue);
+    zoomInput.addEventListener('blur', applyZoomValue);
+    zoomInput.addEventListener('keydown', event => {
+      if (event.key === 'Enter') { event.preventDefault(); applyZoomValue(); zoomInput.blur(); }
+    });
     return toolbar;
   }
 
@@ -671,23 +688,33 @@
   function attachPinchZoom(pagesContainer, zoomSurface, state, actions) {
     let startDistance = 0;
     let startZoom = 1;
+    let lastCenter = null;
 
     pagesContainer.addEventListener('touchstart', event => {
       if (event.touches.length !== 2) return;
       startDistance = distanceBetweenTouches(event.touches[0], event.touches[1]);
       startZoom = state.zoom;
+      lastCenter = getTouchCenter(event.touches[0], event.touches[1]);
     }, { passive: true });
 
     pagesContainer.addEventListener('touchmove', event => {
       if (event.touches.length !== 2 || !startDistance) return;
       event.preventDefault();
       const nextDistance = distanceBetweenTouches(event.touches[0], event.touches[1]);
-      actions.setZoom(startZoom * (nextDistance / startDistance), getTouchCenter(event.touches[0], event.touches[1]));
+      const center = getTouchCenter(event.touches[0], event.touches[1]);
+      actions.setZoom(startZoom * (nextDistance / startDistance), center);
+      if (lastCenter) {
+        const movement = PdfViewerGeometry.panShift(lastCenter, center);
+        pagesContainer.scrollLeft -= movement.x;
+        pagesContainer.scrollTop -= movement.y;
+      }
+      lastCenter = center;
     }, { passive: false });
 
     pagesContainer.addEventListener('touchend', event => {
-      if (event.touches.length < 2) startDistance = 0;
+      if (event.touches.length < 2) { startDistance = 0; lastCenter = null; }
     }, { passive: true });
+    pagesContainer.addEventListener('touchcancel', () => { startDistance = 0; lastCenter = null; }, { passive: true });
 
     pagesContainer.addEventListener('wheel', event => {
       if (!event.ctrlKey && !event.metaKey) return;
@@ -705,8 +732,7 @@
       const baseHeight = Number(wrap.dataset.baseHeight);
       if (!baseWidth || !baseHeight) return;
 
-      const width = Math.round(baseWidth * zoom);
-      const height = Math.round(baseHeight * zoom);
+      const { width, height } = PdfViewerGeometry.scaledSize(baseWidth, baseHeight, zoom);
       wrap.style.width = `${width}px`;
       wrap.style.height = `${height}px`;
 
@@ -724,39 +750,20 @@
 
     let activeStroke = null;
     let pointerId = null;
-    let pointerStart = null;
 
     function ensurePage() {
       if (!annotations[pageNumber]) annotations[pageNumber] = [];
       return annotations[pageNumber];
     }
 
-    function discardDraftStroke() {
-      if (activeStroke) {
-        annotations[pageNumber] = ensurePage().filter(stroke => stroke !== activeStroke);
-      }
-      activeStroke = null;
-      pointerId = null;
-      pointerStart = null;
-    }
-
-    function isVerticalScrollIntent(start, point, canvas) {
-      const dx = Math.abs((point.x - start.x) * canvas.width);
-      const dy = Math.abs((point.y - start.y) * canvas.height);
-      return dy > 14 && dy > dx * 1.25;
-    }
-
     canvas.addEventListener('pointerdown', event => {
-      if (state.tool !== 'pen' && state.tool !== 'eraser') return;
+      if ((state.tool !== 'pen' && state.tool !== 'eraser') || !PdfViewerGeometry.isAnnotationPointer(event.pointerType)) return;
       pointerId = event.pointerId;
-      if (state.tool === 'eraser' || event.pointerType !== 'touch') {
-        event.preventDefault();
-        canvas.setPointerCapture(pointerId);
-      }
+      event.preventDefault();
+      canvas.setPointerCapture(pointerId);
       state.currentPage = pageNumber;
 
       const point = getPointerPoint(event, canvas);
-      pointerStart = point;
       if (state.tool === 'eraser') {
         annotations[pageNumber] = erasePointFromStrokes(point, ensurePage(), canvas, state);
         redrawAnnotations(canvas, annotations[pageNumber]);
@@ -775,11 +782,6 @@
     canvas.addEventListener('pointermove', event => {
       if (event.pointerId !== pointerId) return;
       const point = getPointerPoint(event, canvas);
-
-      if (state.tool === 'pen' && event.pointerType === 'touch' && pointerStart && isVerticalScrollIntent(pointerStart, point, canvas)) {
-        discardDraftStroke();
-        return;
-      }
 
       event.preventDefault();
 
@@ -802,7 +804,6 @@
       }
       activeStroke = null;
       pointerId = null;
-      pointerStart = null;
       save();
     }
 
@@ -846,24 +847,6 @@
       }];
     }
 
-    function mergeLineRects(rects) {
-      const lines = [];
-      rects.sort((a, b) => a.y - b.y || a.x - b.x).forEach(rect => {
-        const line = lines.find(item => Math.abs((item.y + item.height / 2) - (rect.y + rect.height / 2)) <= Math.min(item.height, rect.height) * 0.4);
-        if (!line) {
-          lines.push({ ...rect });
-          return;
-        }
-        const right = Math.max(line.x + line.width, rect.x + rect.width);
-        const bottom = Math.max(line.y + line.height, rect.y + rect.height);
-        line.x = Math.min(line.x, rect.x);
-        line.y = Math.min(line.y, rect.y);
-        line.width = right - line.x;
-        line.height = bottom - line.y;
-      });
-      return lines;
-    }
-
     function redrawDrag(rects) {
       const saved = annotations[drag.canvas.dataset.page] || [];
       const strokes = rects.length ? [...saved, { type: 'highlight', color: state.color, rects }] : saved;
@@ -897,63 +880,8 @@
       redrawAnnotations(canvas, annotations[canvas.dataset.page] || []);
     }
 
-    function saveSelection() {
-      if (state.tool !== 'highlight') return;
-      const selection = window.getSelection();
-      if (!selection || selection.isCollapsed || !selection.toString().trim()) return;
-      const anchor = selection.anchorNode?.parentElement?.closest('.pdf-text-layer');
-      const focus = selection.focusNode?.parentElement?.closest('.pdf-text-layer');
-      if (!anchor || !focus || !shell.contains(anchor) || !shell.contains(focus)) return;
-
-      const selectedRects = [...selection.getRangeAt(0).getClientRects()];
-      let saved = false;
-      shell.querySelectorAll('.pdf-draw-layer').forEach(canvas => {
-        const pageRect = canvas.getBoundingClientRect();
-        const rects = mergeLineRects(selectedRects.map(rect => {
-          const left = Math.max(rect.left, pageRect.left);
-          const right = Math.min(rect.right, pageRect.right);
-          const top = Math.max(rect.top, pageRect.top);
-          const bottom = Math.min(rect.bottom, pageRect.bottom);
-          if (right - left < 2 || bottom - top < 2) return null;
-          return {
-            x: (left - pageRect.left) / pageRect.width,
-            y: (top - pageRect.top) / pageRect.height,
-            width: (right - left) / pageRect.width,
-            height: (bottom - top) / pageRect.height
-          };
-        }).filter(Boolean));
-        if (!rects.length) return;
-
-        const pageNumber = canvas.dataset.page;
-        const text = AnotacionesGS.extractText(canvas.parentElement.querySelector('.pdf-text-layer'), rects, pageRect) || selection.toString().trim();
-        const relinked = AnotacionesGS.relinkIfPending(key, pageNumber, text, annotations, () => saveAnnotations(key, annotations));
-        if (relinked) {
-          AnotacionesGS.onHighlight(shell, key, info, pageNumber, relinked.index, relinked.stroke, () => saveAnnotations(key, annotations));
-          saved = true;
-          return;
-        }
-        if (!annotations[pageNumber]) annotations[pageNumber] = [];
-        const stroke = { type: 'highlight', color: state.color, rects, text };
-        AnotacionesGS.idFor(stroke);
-        annotations[pageNumber].push(stroke);
-        redrawAnnotations(canvas, annotations[pageNumber]);
-        state.currentPage = Number(pageNumber);
-        saved = true;
-        AnotacionesGS.onHighlight(shell, key, info, pageNumber, annotations[pageNumber].length - 1, stroke, () => saveAnnotations(key, annotations));
-      });
-
-      if (saved) {
-        saveAnnotations(key, annotations);
-        selection.removeAllRanges();
-      }
-    }
-
-    pagesContainer.addEventListener('pointerup', event => {
-      if (state.tool === 'highlight' && event.pointerType === 'mouse') requestAnimationFrame(saveSelection);
-    });
-
     pagesContainer.addEventListener('pointerdown', event => {
-      if (state.tool !== 'highlight' || !['touch', 'pen'].includes(event.pointerType)) return;
+      if (state.tool !== 'highlight' || !PdfViewerGeometry.isAnnotationPointer(event.pointerType)) return;
       if (!event.isPrimary) {
         if (drag) finishDrag({ pointerId: drag.pointerId }, false);
         return;
@@ -968,18 +896,13 @@
         .filter(span => span.textContent.trim())
         .map(span => span.getBoundingClientRect())
         .filter(rect => Math.abs(rect.top + rect.height / 2 - lineY) <= Math.max(8, startRect.height * 0.55));
-      if (event.pointerType === 'pen') event.preventDefault();
+      event.preventDefault();
       window.getSelection()?.removeAllRanges();
       drag = { pointerId: event.pointerId, pointerType: event.pointerType, x: event.clientX, y: event.clientY, canvas, lineRects, lineRect: startRect };
     });
 
     shell.addEventListener('pointermove', event => {
       if (state.tool !== 'highlight' || !drag || event.pointerId !== drag.pointerId) return;
-      if (drag.pointerType === 'touch' && Math.abs(event.clientY - drag.y) > 12 &&
-          Math.abs(event.clientY - drag.y) > Math.abs(event.clientX - drag.x) * 1.25) {
-        finishDrag(event, false);
-        return;
-      }
       event.preventDefault();
       redrawDrag(dragRects(event.clientX));
     });
@@ -1075,6 +998,8 @@
           resetButton.textContent = `${Math.round(state.zoom * 100)}%`;
           resetButton.title = `Restablecer zoom (${Math.round(state.zoom * 100)}%)`;
         }
+        const zoomInput = shell.querySelector('[data-action="zoom-value"]');
+        if (zoomInput) zoomInput.value = String(Math.round(state.zoom * 100));
       }
     };
 

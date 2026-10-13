@@ -957,7 +957,7 @@ svg, svg * {
     <div class="home-brand">
       <img src="img/universae-shield-logo.png?v=20260909090000" alt="Universae Logo" width="64" height="64">
       <div class="home-brand-copy">
-        <h1>Universae GS <span class="brand-badge brand-block">Bloque 1</span> <span class="brand-badge brand-version">v1.18</span></h1>
+        <h1>Universae GS <span class="brand-badge brand-block">Bloque 1</span> <span class="brand-badge brand-version">v1.19</span></h1>
         <p class="subtitle">Grado Superior · Anual · Examen en mayo</p>
       </div>
     </div>
@@ -995,8 +995,8 @@ svg, svg * {
 
   <div class="dominio-selector" role="group" aria-label="Ritmo de dominio">
     <span>Dominio</span>
-    <label><input type="radio" name="dominio-modo" value="rapido">🚀 Rápido · 2</label>
-    <label><input type="radio" name="dominio-modo" value="lento">🐢 Lento · 4</label>
+    <label><input type="radio" name="dominio-modo" value="rapido">🚀 Rápido · 1</label>
+    <label><input type="radio" name="dominio-modo" value="lento">🐢 Lento · 3</label>
   </div>
 
   <!-- Tabs de navegación GS -->
@@ -1067,13 +1067,14 @@ svg, svg * {
 <script src="data-especial.js?v=20260414071000"></script>
 <script src="data-gs-bloque1.js?v=1.9"></script>
 <script src="data-config.js?v=1.9"></script>
-<script src="anotaciones-gs.js?v=1.11"></script>
+<script src="anotaciones-gs.js?v=1.19"></script>
 <script src="cuaderno-gs.js?v=1.17"></script>
-<script src="pdf-local-store.js?v=1.11"></script>
+<script src="pdf-viewer-geometry.js?v=1.19"></script>
+<script src="pdf-local-store.js?v=1.19"></script>
 <!-- MÓDULOS EDUCATIVOS -->
-<script src="taller-gs.js?v=1.6"></script>
+<script src="taller-gs.js?v=1.19"></script>
 <!-- MOTOR PRINCIPAL -->
-<script src="repaso-espaciado.js?v=1.18"></script>
+<script src="repaso-espaciado.js?v=1.19"></script>
 <script src="motor.js?v=1.18"></script>
 <script src="navegacion-gs.js?v=1.18"></script>
 <script src="plan-diario.js?v=1.8"></script>
@@ -1094,7 +1095,7 @@ const grid = document.getElementById("grid-asignaturas");
 const selectorTrimestres = document.getElementById("selector-trimestres");
 const hasSavedLocation = Boolean(localStorage.getItem(NavegacionGS.KEY));
 const savedLocation = NavegacionGS.readLocation(CONFIGURACION_CURSO, localStorage);
-const dominioMode = document.querySelector(`input[name="dominio-modo"][value="${RepasoEspaciado.targetReviews(localStorage) === 2 ? 'rapido' : 'lento'}"]`);
+const dominioMode = document.querySelector(`input[name="dominio-modo"][value="${RepasoEspaciado.targetReviews(localStorage) === 1 ? 'rapido' : 'lento'}"]`);
 dominioMode.checked = true;
 document.querySelectorAll('input[name="dominio-modo"]').forEach(input => {
   input.onchange = () => { if (input.checked) localStorage.setItem(RepasoEspaciado.MODE_KEY, input.value); };
@@ -1199,6 +1200,14 @@ function filtrarBloque(bid, selectedIdx, focusCard = false) {
       tab.classList.add("active");
     }
   });
+  const activeTab = tabsBloques.querySelector('.tab-btn.active');
+  if (activeTab) {
+    const left = activeTab.offsetLeft - tabsBloques.offsetLeft;
+    if (left < tabsBloques.scrollLeft) tabsBloques.scrollLeft = left;
+    else if (left + activeTab.offsetWidth > tabsBloques.scrollLeft + tabsBloques.clientWidth) {
+      tabsBloques.scrollLeft = left + activeTab.offsetWidth - tabsBloques.clientWidth;
+    }
+  }
 
   // Mostrar skeleton screens mientras carga GS
   grid.innerHTML = `

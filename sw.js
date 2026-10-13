@@ -1,6 +1,6 @@
-// v1.18 - dominio configurable y ubicacion recordada
-const APP_VERSION = 'v1.18';
-const BUILD_TIMESTAMP = '20261013-gs-dominio-ubicacion-1';
+// v1.19 - visor PDF tactil y dominio 1/3
+const APP_VERSION = 'v1.19';
+const BUILD_TIMESTAMP = '20261013-gs-visor-dominio-1';
 const CACHE_NAME = `universae-gs-${APP_VERSION}-${BUILD_TIMESTAMP}`;
 const OFFLINE_CACHE = 'universae-gs-offline-v1.2';
 const PDF_CACHE = 'universae-gs-pdfs-v1';
@@ -21,6 +21,7 @@ const CRITICAL_ASSETS = [
   './navegacion-gs.js',
   './estudio-gs.css',
   './pdf-local-store.js',
+  './pdf-viewer-geometry.js',
   './tutor.js',
   './tutor.css',
   './vendor/pdfjs/pdf.mjs',
@@ -70,7 +71,7 @@ self.addEventListener('install', (e) => {
 
 // ACTIVACIÓN v90.2: Limpieza y notificación
 self.addEventListener('activate', (e) => {
-  console.log('✨ ACTIVANDO Universae GS v1.18...');
+  console.log('✨ ACTIVANDO Universae GS v1.19...');
 
   e.waitUntil(
     caches.keys()

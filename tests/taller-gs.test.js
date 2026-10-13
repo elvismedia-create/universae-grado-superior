@@ -1,6 +1,6 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
-const { casos, evaluar } = require('../taller-gs.js');
+const { casos, evaluar, symbolCropOffset } = require('../taller-gs.js');
 const apuntes = require('../apuntes/tutor-index.json');
 
 function answer(stage) {
@@ -30,6 +30,12 @@ test('cada practica enlaza una pagina real del PDF correspondiente', () => {
       if (stage.visual?.page) assert.ok(pdf.pages.some(page => page.number === stage.visual.page), item.id);
     }
   }
+});
+
+test('los recortes de simbolos usan el origen de su propia pagina', () => {
+  assert.equal(symbolCropOffset({ page: 6, row: 0 }), 424.5);
+  assert.equal(symbolCropOffset({ page: 6, row: 5 }), 840);
+  assert.ok(Math.abs(symbolCropOffset({ page: 2, row: 4 }) - 532.9) < 0.001);
 });
 
 test('una respuesta vacia nunca se acepta', () => {

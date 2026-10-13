@@ -182,7 +182,8 @@
     return { checks, resultCorrect, unitCorrect, allCorrect: checks.every(Boolean) && resultCorrect && unitCorrect };
   }
 
-  if (typeof module !== 'undefined' && module.exports) module.exports = { casos, evaluar };
+  const symbolCropOffset = visual => (visual.page === 6 ? 424.5 : 200.5) + visual.row * 83.1;
+  if (typeof module !== 'undefined' && module.exports) module.exports = { casos, evaluar, symbolCropOffset };
   root.TALLER_GS_CASOS = casos;
   if (!root.document) return;
 
@@ -245,7 +246,7 @@
     if (typeof visual === 'string') {
       return `<div class="tgs-diagram" role="img" aria-label="Esquema: ${escape(visual)}">${visual.split('→').map((part, index) => `${index ? '<span class="tgs-connector" aria-hidden="true">→</span>' : ''}<span class="tgs-node">${escape(part.trim())}</span>`).join('')}</div>`;
     }
-    const offset = 424.5 + visual.row * 83.1;
+    const offset = symbolCropOffset(visual);
     return `<div class="tgs-symbol-frame"><span>Fragmento del anexo · pág. ${visual.page}</span><div class="tgs-symbol page-${visual.page}" style="background-position: -231px -${offset}px" role="img" aria-label="Símbolo eléctrico para identificar"></div></div>`;
   }
 

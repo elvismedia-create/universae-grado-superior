@@ -68,12 +68,8 @@ test('el test normal guarda fecha y exige dias distintos para dominar', () => {
   assert.equal(state.dom.length, 0);
 });
 
-test('el modo rápido llega a dominio con el segundo repaso seguro y conserva la ubicación al salir', () => {
-  const prior = { streak: 1, dueDate: '2026-10-01', lastReviewDate: '2026-09-30', mastered: false };
-  const initial = {
-    [srs.MODE_KEY]: 'rapido',
-    mastertest_db: JSON.stringify({ [topic.nombre]: { active: [question.id], master_index: 1, stats: {}, dom: [], srs: { [question.id]: prior } } })
-  };
+test('el modo rápido domina con un acierto seguro y conserva la ubicación al salir', () => {
+  const initial = { [srs.MODE_KEY]: 'rapido' };
   const { context, storage } = harness(initial);
   context.jugar('carrera', 0, 'sistemas_gs');
   context.clickOpcion(vm.runInContext('preguntasJuego[0].opciones.indexOf("Correcta")', context));

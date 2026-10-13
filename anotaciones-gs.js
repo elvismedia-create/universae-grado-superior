@@ -158,7 +158,11 @@
         };
       });
     };
-    host.querySelector('#notes-back').onclick = () => { filtrarBloque(CONFIGURACION_CURSO[0].bloque); mostrarPantalla('pantalla-inicio'); };
+    host.querySelector('#notes-back').onclick = () => {
+      const location = NavegacionGS.readLocation(CONFIGURACION_CURSO, localStorage);
+      filtrarBloque(location.bid, location.idx, true);
+      mostrarPantalla('pantalla-inicio');
+    };
     host.querySelectorAll('.study-filters input, .study-filters select').forEach(control => control.addEventListener('input', render));
     host.querySelector('#notes-review').disabled = !items.some(item => item.stroke.text);
     host.querySelector('#notes-review').onclick = () => startReview(filtered().filter(item => item.stroke.text));
