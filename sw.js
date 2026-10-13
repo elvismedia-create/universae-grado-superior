@@ -1,6 +1,6 @@
-// v1.17 - borrado del cuaderno y tests interrumpidos
-const APP_VERSION = 'v1.17';
-const BUILD_TIMESTAMP = '20261013-gs-cuaderno-borrado-1';
+// v1.18 - dominio configurable y ubicacion recordada
+const APP_VERSION = 'v1.18';
+const BUILD_TIMESTAMP = '20261013-gs-dominio-ubicacion-1';
 const CACHE_NAME = `universae-gs-${APP_VERSION}-${BUILD_TIMESTAMP}`;
 const OFFLINE_CACHE = 'universae-gs-offline-v1.2';
 const PDF_CACHE = 'universae-gs-pdfs-v1';
@@ -70,7 +70,7 @@ self.addEventListener('install', (e) => {
 
 // ACTIVACIÓN v90.2: Limpieza y notificación
 self.addEventListener('activate', (e) => {
-  console.log('✨ ACTIVANDO Universae GS v1.17...');
+  console.log('✨ ACTIVANDO Universae GS v1.18...');
 
   e.waitUntil(
     caches.keys()

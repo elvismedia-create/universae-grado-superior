@@ -2,25 +2,37 @@ const test = require('node:test');
 const assert = require('node:assert/strict');
 const srs = require('../repaso-espaciado.js');
 
-test('requiere tres repasos seguros en fechas separadas', () => {
-  const first = srs.review(null, true, 'sabia', '2026-10-08');
+test('modo lento requiere cuatro repasos seguros en fechas separadas', () => {
+  const first = srs.review(null, true, 'sabia', '2026-10-08', 4);
   assert.deepEqual([first.streak, first.dueDate, first.mastered], [1, '2026-10-09', false]);
 
-  const sameDay = srs.review(first, true, 'sabia', '2026-10-08');
+  const sameDay = srs.review(first, true, 'sabia', '2026-10-08', 4);
   assert.deepEqual([sameDay.streak, sameDay.dueDate], [1, '2026-10-09']);
 
-  const second = srs.review(sameDay, true, 'sabia', '2026-10-09');
+  const second = srs.review(sameDay, true, 'sabia', '2026-10-09', 4);
   assert.deepEqual([second.streak, second.dueDate, second.mastered], [2, '2026-10-12', false]);
 
-  const early = srs.review(second, true, 'sabia', '2026-10-10');
+  const early = srs.review(second, true, 'sabia', '2026-10-10', 4);
   assert.deepEqual([early.streak, early.dueDate], [2, '2026-10-12']);
 
-  const third = srs.review(early, true, 'sabia', '2026-10-12');
-  assert.deepEqual([third.streak, third.dueDate, third.mastered], [3, '2026-10-19', true]);
+  const third = srs.review(early, true, 'sabia', '2026-10-12', 4);
+  assert.deepEqual([third.streak, third.dueDate, third.mastered], [3, '2026-10-19', false]);
+  const fourth = srs.review(third, true, 'sabia', '2026-10-19', 4);
+  assert.deepEqual([fourth.streak, fourth.mastered], [4, true]);
+});
+
+test('modo rápido domina tras dos dias y no cuenta repeticiones del mismo día', () => {
+  const first = srs.review(null, true, 'sabia', '2026-10-08', 2);
+  const repeated = srs.review(first, true, 'sabia', '2026-10-08', 2);
+  const second = srs.review(repeated, true, 'sabia', '2026-10-09', 2);
+  assert.deepEqual([repeated.streak, repeated.mastered], [1, false]);
+  assert.deepEqual([second.streak, second.mastered], [2, true]);
+  assert.equal(srs.targetReviews({ getItem: () => 'rapido' }), 2);
+  assert.equal(srs.targetReviews({ getItem: () => null }), 4);
 });
 
 test('dudas, descarte y fallos no consolidan el dominio', () => {
-  const mastered = srs.review({ streak: 2, dueDate: '2026-10-08' }, true, 'sabia', '2026-10-08');
+  const mastered = srs.review({ streak: 3, dueDate: '2026-10-08' }, true, 'sabia', '2026-10-08', 4);
   const doubt = srs.review(mastered, true, 'duda', '2026-10-19');
   assert.deepEqual([doubt.streak, doubt.dueDate, doubt.mastered], [1, '2026-10-20', false]);
 
@@ -36,9 +48,16 @@ test('preserva preguntas antiguas dominadas y las cita para revisar', () => {
   assert.equal(srs.dueQuestions(state, [{ id: 41 }, { id: 42 }], '2026-10-08').length, 1);
   srs.ensureState(state, '2026-10-08');
   assert.equal(state.srs[41].streak, 3);
+  assert.equal(state.srs[41].mastered, true);
   assert.equal(state.srs[41].dueDate, '2026-10-08');
   assert.equal(srs.dueQuestions(state, [{ id: 41 }, { id: 42 }], '2026-10-08').length, 1);
   assert.equal(srs.dueQuestions(state, [{ id: 41 }], '2026-10-07').length, 0);
+});
+
+test('no pierde una pregunta ya dominada al cambiar al modo lento', () => {
+  const old = { streak: 3, mastered: true, dueDate: '2026-10-08', lastReviewDate: '2026-10-07' };
+  assert.equal(srs.review(old, true, 'sabia', '2026-10-08', 4).mastered, true);
+  assert.equal(srs.review(old, true, 'duda', '2026-10-08', 4).mastered, false);
 });
 
 test('suma dias de calendario local incluso en cambio de hora', () => {

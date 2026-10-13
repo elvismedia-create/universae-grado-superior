@@ -254,6 +254,7 @@ function detenerReloj() { if (intervaloReloj) clearInterval(intervaloReloj); int
    ========================================================= */
 function jugar(modo, idx, bid, limit, reason = '') {
   if (modo === 'global' && typeof idx === 'number') limit = idx;
+  if (bid && typeof idx === 'number') NavegacionGS.saveLocation(CONFIGURACION_CURSO, localStorage, bid, idx);
   lastContext = { modo, idx, bid, limit, reason };
   modoActual = modo; 
   indice = 0; 
@@ -614,7 +615,8 @@ function finalizar() {
 
     if (esEstudio && respIdx !== null) {
       const confidence = esCorrecta ? (confianzaUsuario[i] || 'duda') : 'fallo';
-      const record = RepasoEspaciado.review(estado.srs[p.id], esCorrecta, confidence, hoy);
+      const record = RepasoEspaciado.review(estado.srs[p.id], esCorrecta, confidence, hoy,
+        RepasoEspaciado.targetReviews(localStorage));
       estado.srs[p.id] = record;
       estado.stats[p.id] = record.streak;
       records[p.id] = record;
@@ -927,15 +929,6 @@ function iniciarTestSemestralMaquinas(n) {
 }
 function volverAlMenu() { 
   detenerReloj(); 
-  
-  // Guardar contexto solo si tiene un bloque válido
-  if (lastContext && lastContext.bid) {
-    localStorage.setItem("mastertest_lastcontext", JSON.stringify(lastContext));
-  } else {
-    // Si no hay bloque válido, limpiar cualquier contexto guardado
-    localStorage.removeItem("mastertest_lastcontext");
-  }
-  
   mostrarPantalla("pantalla-inicio"); 
   location.reload(); 
 }

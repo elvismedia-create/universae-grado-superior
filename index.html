@@ -137,7 +137,22 @@ body{ margin: 0; padding: 20px; background: var(--bg); color: var(--text); font-
 /* === CABECERA === */
 .header-flex { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 25px; }
 .header-buttons { display: flex; flex-wrap: wrap; gap: 8px; }
-h1{ margin: 0 0 5px 0; color: var(--primary); font-size: 1.8rem; letter-spacing: -0.5px; }
+.home-header { display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px; }
+.home-brand { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.home-brand-copy { min-width: 0; }
+.home-brand h1 { margin: 0; display: flex; align-items: center; flex-wrap: wrap; gap: 6px; }
+.home-brand .brand-badge { font-size: 0.55em; padding: 4px 9px; border-radius: 6px; color: #fff; font-weight: 800; white-space: nowrap; }
+.home-brand .brand-block { background: #0f766e; }
+.home-brand .brand-version { background: #1e293b; }
+.home-header .header-buttons { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+.home-header .header-buttons .btn-tool { justify-content: center; min-width: 0; min-height: 42px; text-align: center; }
+.dominio-selector { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
+.dominio-selector > span { font-weight: 700; color: var(--text-light); margin-right: 4px; }
+.dominio-selector label { display: inline-flex; align-items: center; justify-content: center; min-height: 42px; padding: 8px 12px; border: 1px solid var(--border); border-radius: 6px; background: var(--card); color: var(--text); font-weight: 700; cursor: pointer; }
+.dominio-selector label:has(input:checked) { border-color: var(--primary); background: var(--primary-light); color: var(--primary); }
+.dominio-selector input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.dominio-selector label:has(input:focus-visible) { outline: 2px solid var(--primary); outline-offset: 2px; }
+h1{ margin: 0 0 5px 0; color: var(--primary); font-size: 1.8rem; letter-spacing: 0; }
 .subtitle{ color: var(--text-light); font-size: 1rem; margin: 0; }
 
 /* === BOTONES GENERALES === */
@@ -160,6 +175,10 @@ body.dark-mode .card-cuaderno .asig-title { color: #b7f3d0; }
 .tabs-container {
   margin-bottom: 30px;
   border-bottom: 2px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: var(--card);
 }
 
 .tabs-scroll {
@@ -590,6 +609,19 @@ body.dark-mode .card-cuaderno .asig-title { color: #b7f3d0; }
   .gestion-img-box { width: 100%; height: 150px; } 
   .btn-pill-right { width: 100%; }
 }
+@media (max-width: 700px) {
+  .home-header .header-buttons { width: 100%; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .home-header .header-buttons .btn-notebook { grid-column: auto; }
+}
+@media (max-width: 500px) {
+  body { padding: 10px; }
+  #pantalla-inicio { padding: 16px; }
+  .home-brand img { width: 44px; height: 44px; }
+  .home-brand h1 { font-size: 1.25rem; }
+  .home-brand .subtitle { font-size: 0.85rem; }
+  .dominio-selector > span { width: 100%; }
+  .dominio-selector label { flex: 1 1 0; font-size: 0.85rem; padding-inline: 6px; }
+}
 
 /* === GAMIFICACIÓN: RACHA DE FUEGO (MODO RELAX/SUAVE) === */
 #racha-float {
@@ -921,12 +953,12 @@ svg, svg * {
 </div>
 
 <div id="pantalla-inicio" class="card active">
-  <div class="header-flex">
-    <div style="display:flex; align-items:center; gap:16px;">
-      <img src="img/universae-shield-logo.png?v=20260909090000" alt="Universae Logo" style="height:64px; width:64px; flex-shrink:0; object-fit:contain;">
-      <div>
-        <h1 style="margin:0;">Universae GS <span style="font-size:0.6em; background:#0f766e; color:white; padding:6px 16px; border-radius:25px; font-weight:900; margin-left:8px;">Bloque 1</span> <span style="font-size:0.5em; background:#1e293b; color:white; padding:5px 12px; border-radius:20px; font-weight:800; margin-left:6px;">v1.17</span></h1>
-        <p class="subtitle" style="margin:4px 0 0 0;">Grado Superior · Anual · Examen en mayo</p>
+  <div class="header-flex home-header">
+    <div class="home-brand">
+      <img src="img/universae-shield-logo.png?v=20260909090000" alt="Universae Logo" width="64" height="64">
+      <div class="home-brand-copy">
+        <h1>Universae GS <span class="brand-badge brand-block">Bloque 1</span> <span class="brand-badge brand-version">v1.18</span></h1>
+        <p class="subtitle">Grado Superior · Anual · Examen en mayo</p>
       </div>
     </div>
 
@@ -959,6 +991,12 @@ svg, svg * {
   <div class="trimestre-selector">
     <span class="trimestre-label">📅 Bloque:</span>
     <div class="trimestre-btns" id="selector-trimestres"></div>
+  </div>
+
+  <div class="dominio-selector" role="group" aria-label="Ritmo de dominio">
+    <span>Dominio</span>
+    <label><input type="radio" name="dominio-modo" value="rapido">🚀 Rápido · 2</label>
+    <label><input type="radio" name="dominio-modo" value="lento">🐢 Lento · 4</label>
   </div>
 
   <!-- Tabs de navegación GS -->
@@ -1035,9 +1073,9 @@ svg, svg * {
 <!-- MÓDULOS EDUCATIVOS -->
 <script src="taller-gs.js?v=1.6"></script>
 <!-- MOTOR PRINCIPAL -->
-<script src="repaso-espaciado.js?v=1.7"></script>
-<script src="motor.js?v=1.17"></script>
-<script src="navegacion-gs.js?v=1.15"></script>
+<script src="repaso-espaciado.js?v=1.18"></script>
+<script src="motor.js?v=1.18"></script>
+<script src="navegacion-gs.js?v=1.18"></script>
 <script src="plan-diario.js?v=1.8"></script>
 <script src="simulacros-gs.js?v=1.11"></script>
 <script src="tutor.js?v=1.11"></script>
@@ -1054,10 +1092,17 @@ const selectorBtn = document.querySelector(".selector-btn");
 const tabsBloques = document.getElementById("tabs-bloques");
 const grid = document.getElementById("grid-asignaturas");
 const selectorTrimestres = document.getElementById("selector-trimestres");
+const hasSavedLocation = Boolean(localStorage.getItem(NavegacionGS.KEY));
+const savedLocation = NavegacionGS.readLocation(CONFIGURACION_CURSO, localStorage);
+const dominioMode = document.querySelector(`input[name="dominio-modo"][value="${RepasoEspaciado.targetReviews(localStorage) === 2 ? 'rapido' : 'lento'}"]`);
+dominioMode.checked = true;
+document.querySelectorAll('input[name="dominio-modo"]').forEach(input => {
+  input.onchange = () => { if (input.checked) localStorage.setItem(RepasoEspaciado.MODE_KEY, input.value); };
+});
 
 // PASO 1: Generar botones de trimestres
 const trimestresUnicos = [...new Set(CONFIGURACION_CURSO.map(b => b.trimestre))];
-let trimestreActual = trimestresUnicos.includes("B1") ? "B1" : trimestresUnicos[0];
+let trimestreActual = savedLocation?.trimester || (trimestresUnicos.includes("B1") ? "B1" : trimestresUnicos[0]);
 
 trimestresUnicos.forEach(trim => {
   const btnTrim = document.createElement("button");
@@ -1130,9 +1175,12 @@ generarTabsParaTrimestre(trimestreActual);
 // LOGICA FILTRADO GS
 
 let bloqueRenderToken = 0;
-function filtrarBloque(bid) {
+function filtrarBloque(bid, selectedIdx, focusCard = false) {
   const bloque = CONFIGURACION_CURSO.find(b => b.bloque === bid);
   if (!bloque) return;
+  const previous = NavegacionGS.readLocation(CONFIGURACION_CURSO, localStorage);
+  const idxToSave = selectedIdx ?? (previous?.bid === bid ? previous.idx : 0);
+  NavegacionGS.saveLocation(CONFIGURACION_CURSO, localStorage, bid, idxToSave);
   window.currentBid = bid;
   if (trimestreActual !== bloque.trimestre) {
     trimestreActual = bloque.trimestre;
@@ -1208,6 +1256,8 @@ function filtrarBloque(bid) {
 
     const card = document.createElement("div");
     card.className = "asig-card"; 
+    card.dataset.subjectIndex = String(idx);
+    card.addEventListener('click', () => NavegacionGS.saveLocation(CONFIGURACION_CURSO, localStorage, bid, idx));
     
     // Verificar si hay preguntas IA generadas para este tema GS
     const preguntasIA = preguntasIAStorage ? preguntasIAStorage.filter(p => p.tema === asig.nombre).length : 0;
@@ -1636,6 +1686,12 @@ function filtrarBloque(bid) {
   stripContainer.appendChild(cardFlashcards);
 
   grid.appendChild(stripContainer);
+  if (focusCard) {
+    const selectedCard = grid.querySelector(`[data-subject-index="${idxToSave}"]`);
+    selectedCard?.scrollIntoView({ block: 'center', inline: 'nearest' });
+    const activeTab = tabsBloques.querySelector('.tab-btn.active');
+    if (activeTab) tabsBloques.scrollLeft = activeTab.offsetLeft - tabsBloques.offsetLeft;
+  }
   
   }, 150); // Delay para mostrar skeleton screen GS
 }
@@ -1669,10 +1725,8 @@ function filtrarBloque(bid) {
 })();
 
 setTimeout(() => {
-  const savedContext = localStorage.getItem('mastertest_lastcontext');
-  const initial = NavegacionGS.initialBlock(CONFIGURACION_CURSO, trimestreActual, savedContext);
   localStorage.removeItem('mastertest_lastcontext');
-  if (initial) filtrarBloque(initial.bloque);
+  if (savedLocation) filtrarBloque(savedLocation.bid, savedLocation.idx, hasSavedLocation);
 }, 50);
 
 // DEBUG GS: Test de verificación

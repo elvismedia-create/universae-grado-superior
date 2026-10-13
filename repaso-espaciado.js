@@ -2,6 +2,8 @@
   'use strict';
 
   const intervals = [1, 3, 7, 14, 30, 60];
+  const MODE_KEY = 'universae_gs_dominio_modo_v1';
+  const targetReviews = storage => storage.getItem(MODE_KEY) === 'rapido' ? 2 : 4;
 
   function dayKey(date = new Date()) {
     const value = date instanceof Date ? date : new Date(date);
@@ -22,7 +24,8 @@
           intervalDays: 0,
           dueDate: today,
           lastReviewDate: null,
-          confidence: 'anterior'
+          confidence: 'anterior',
+          mastered: true
         };
       }
     }
@@ -40,7 +43,7 @@
       (!srs[question.id] && legacy.has(question.id)));
   }
 
-  function review(previous, correct, confidence, today = dayKey()) {
+  function review(previous, correct, confidence, today = dayKey(), requiredReviews = 4) {
     const prior = previous && typeof previous === 'object' ? previous : {};
     const oldStreak = Number.isInteger(prior.streak) && prior.streak > 0 ? prior.streak : 0;
     const validConfidence = correct && ['sabia', 'duda', 'descarte'].includes(confidence)
@@ -66,11 +69,11 @@
       dueDate,
       lastReviewDate: today,
       confidence: validConfidence,
-      mastered: streak >= 3
+      mastered: validConfidence === 'sabia' && (prior.mastered === true || streak >= requiredReviews)
     };
   }
 
-  const api = { dayKey, addDays, ensureState, isDue, dueQuestions, review };
+  const api = { MODE_KEY, targetReviews, dayKey, addDays, ensureState, isDue, dueQuestions, review };
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
   root.RepasoEspaciado = api;
 })(typeof window !== 'undefined' ? window : globalThis);

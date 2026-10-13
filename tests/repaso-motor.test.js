@@ -5,6 +5,7 @@ const path = require('node:path');
 const vm = require('node:vm');
 const srs = require('../repaso-espaciado.js');
 const notebook = require('../cuaderno-gs.js');
+const navigation = require('../navegacion-gs.js');
 
 const question = {
   id: 410101,
@@ -14,7 +15,7 @@ const question = {
   explicacion: 'Explicación'
 };
 const topic = { nombre: 'U1: Conceptos básicos', data: [question] };
-const config = [{ bloque: 'sistemas_gs', titulo_boton: 'Sistemas y circuitos', asignaturas: [topic] }];
+const config = [{ bloque: 'sistemas_gs', trimestre: 'B1', titulo_boton: 'Sistemas y circuitos', asignaturas: [topic] }];
 
 function harness(initial = {}, course = config) {
   const storage = new Map(Object.entries(initial));
@@ -26,6 +27,7 @@ function harness(initial = {}, course = config) {
   const context = vm.createContext({
     RepasoEspaciado: srs,
     CuadernoGS: notebook,
+    NavegacionGS: navigation,
     CONFIGURACION_CURSO: course,
     localStorage: {
       getItem: key => storage.get(key) ?? null,
@@ -34,6 +36,7 @@ function harness(initial = {}, course = config) {
     },
     document: { querySelectorAll: () => [], getElementById: element },
     window: { AudioContext: class {}, scrollTo() {} },
+    location: { reload() {} },
     setTimeout() {},
     clearInterval() {},
     console: { log() {}, warn() {}, error() {} },
@@ -63,6 +66,24 @@ test('el test normal guarda fecha y exige dias distintos para dominar', () => {
   state = JSON.parse(storage.get('mastertest_db'))[topic.nombre];
   assert.equal(state.srs[question.id].streak, 1);
   assert.equal(state.dom.length, 0);
+});
+
+test('el modo rápido llega a dominio con el segundo repaso seguro y conserva la ubicación al salir', () => {
+  const prior = { streak: 1, dueDate: '2026-10-01', lastReviewDate: '2026-09-30', mastered: false };
+  const initial = {
+    [srs.MODE_KEY]: 'rapido',
+    mastertest_db: JSON.stringify({ [topic.nombre]: { active: [question.id], master_index: 1, stats: {}, dom: [], srs: { [question.id]: prior } } })
+  };
+  const { context, storage } = harness(initial);
+  context.jugar('carrera', 0, 'sistemas_gs');
+  context.clickOpcion(vm.runInContext('preguntasJuego[0].opciones.indexOf("Correcta")', context));
+  context.registrarConfianza('sabia');
+  const state = JSON.parse(storage.get('mastertest_db'))[topic.nombre];
+  assert.equal(state.srs[question.id].mastered, true);
+  assert.deepEqual(state.dom, [question.id]);
+  context.volverAlMenu();
+  assert.deepEqual(JSON.parse(storage.get(navigation.KEY)), { trimester: 'B1', bid: 'sistemas_gs', idx: 0 });
+  assert.equal(storage.has('mastertest_lastcontext'), false);
 });
 
 test('salir de un test guarda solo respuestas incorrectas y omite preguntas sin responder', () => {
