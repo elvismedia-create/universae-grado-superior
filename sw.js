@@ -1,6 +1,6 @@
-// v1.16 - colores del cuaderno de errores
-const APP_VERSION = 'v1.16';
-const BUILD_TIMESTAMP = '20261012-gs-cuaderno-colores-1';
+// v1.17 - borrado del cuaderno y tests interrumpidos
+const APP_VERSION = 'v1.17';
+const BUILD_TIMESTAMP = '20261013-gs-cuaderno-borrado-1';
 const CACHE_NAME = `universae-gs-${APP_VERSION}-${BUILD_TIMESTAMP}`;
 const OFFLINE_CACHE = 'universae-gs-offline-v1.2';
 const PDF_CACHE = 'universae-gs-pdfs-v1';
@@ -70,7 +70,7 @@ self.addEventListener('install', (e) => {
 
 // ACTIVACIÓN v90.2: Limpieza y notificación
 self.addEventListener('activate', (e) => {
-  console.log('✨ ACTIVANDO Universae GS v1.16...');
+  console.log('✨ ACTIVANDO Universae GS v1.17...');
 
   e.waitUntil(
     caches.keys()

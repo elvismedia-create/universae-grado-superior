@@ -41,21 +41,40 @@ test('incluye preguntas de IA del mismo tema sin mezclarlas con otro bloque', ()
   assert.equal(errors.locate(course, { ...ai, tema: 'Otro tema' }), null);
 });
 
-test('borra errores del cuaderno y de ambos bancos sin alterar el progreso', () => {
+test('borra un error del cuaderno sin tocar otros bancos y no reaparece hasta fallar de nuevo', () => {
   const progress = '{"U1: Conceptos básicos":{"active":[1]}}';
   const bank = { '1': { pregunta: q1, fallos: 3 }, '2': { pregunta: q2, fallos: 2 } };
-  const db = storage({ mastertest_fails: '[1]', academia_banco_fallos: JSON.stringify(bank), mastertest_db: progress });
+  const annotations = '{"1":[{"type":"highlight"}]}';
+  const db = storage({ mastertest_fails: '[1]', academia_banco_fallos: JSON.stringify(bank), mastertest_db: progress,
+    'universae_pdf_annotations:sistemas_gs:0': annotations });
   const first = errors.read(db, course);
   assert.equal(Object.keys(first).length, 2);
   assert.equal(first['sistemas_gs:0:2'].count, 2);
   assert.equal(errors.remove(db, course, 'sistemas_gs:0:1'), 1);
-  assert.deepEqual(JSON.parse(db.getItem('mastertest_fails')), []);
-  assert.deepEqual(Object.keys(JSON.parse(db.getItem('academia_banco_fallos'))), ['2']);
+  assert.equal(db.getItem('mastertest_fails'), '[1]');
+  assert.equal(db.getItem('academia_banco_fallos'), JSON.stringify(bank));
   assert.deepEqual(Object.keys(errors.read(db, course)), ['sistemas_gs:0:2']);
   assert.equal(db.getItem('mastertest_db'), progress);
-  assert.equal(errors.remove(db, course, ['sistemas_gs:0:2']), 1);
+  assert.equal(db.getItem('universae_pdf_annotations:sistemas_gs:0'), annotations);
+  assert.equal(errors.record(db, course, q1, 'Vatio', 'test').count, 1);
+  assert.deepEqual(Object.keys(errors.read(db, course)).sort(), ['sistemas_gs:0:1', 'sistemas_gs:0:2']);
+  assert.deepEqual(JSON.parse(db.getItem(errors.HIDDEN_KEY)), []);
+});
+
+test('borrar todo vacía el cuaderno incluso con fallos importados y conserva los demás sistemas', () => {
+  const db = storage({ mastertest_fails: '[1]', academia_banco_fallos: JSON.stringify({ '2': { pregunta: q2, fallos: 2 } }),
+    mastertest_db: '{"U1: Conceptos básicos":{"dom":[1]}}', universae_gs_simulacro_history_v1: '[{"score":5}]' });
+  assert.equal(Object.keys(errors.read(db, course)).length, 2);
+  assert.equal(errors.clearAll(db, course), 2);
   assert.deepEqual(errors.read(db, course), {});
-  assert.equal(errors.remove(db, course, 'sistemas_gs:0:2'), 0);
+  assert.deepEqual(errors.read(db, course), {});
+  assert.equal(db.getItem('mastertest_fails'), '[1]');
+  assert.equal(JSON.parse(db.getItem('academia_banco_fallos'))['2'].fallos, 2);
+  assert.equal(db.getItem('mastertest_db'), '{"U1: Conceptos básicos":{"dom":[1]}}');
+  assert.equal(db.getItem('universae_gs_simulacro_history_v1'), '[{"score":5}]');
+  assert.equal(errors.clearAll(db, course), 0);
+  assert.equal(errors.record(db, course, q2, 'A', 'simulacro').count, 1);
+  assert.deepEqual(Object.keys(errors.read(db, course)), ['sistemas_gs:0:2']);
 });
 
 test('mantiene subrayados antiguos al recuperar texto, enlazar una selección y guardar una tarjeta', () => {

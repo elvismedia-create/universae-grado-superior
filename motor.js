@@ -9,6 +9,7 @@ let modoActual = "";
 let asignaturaActualObj = null;
 let lastContext = null;
 let confianzaUsuario = [];
+let testFinalizado = false;
 const esModoEstudio = () => ['carrera', 'repaso_espaciado', 'plan_fallos', 'plan_nuevo', 'cuaderno'].includes(modoActual);
 
 // VARIABLES DE GAMIFICACIÓN
@@ -256,6 +257,7 @@ function jugar(modo, idx, bid, limit, reason = '') {
   lastContext = { modo, idx, bid, limit, reason };
   modoActual = modo; 
   indice = 0; 
+  testFinalizado = false;
   
   // === GESTIÓN DE RACHA INICIAL ===
   if (modo === 'muerte_subita') {
@@ -555,6 +557,7 @@ function clickOpcion(i) {
   
   // AGREGAR ANIMACIONES v67.24
   setTimeout(() => {
+    if (testFinalizado) return;
     const opciones = document.querySelectorAll('.opcion');
     if (esCorrecta) {
       opciones[i].classList.add('correcta');
@@ -566,6 +569,7 @@ function clickOpcion(i) {
   if (esCorrecta && esModoEstudio()) return;
   const answeredIndex = indice;
   setTimeout(() => {
+    if (testFinalizado) return;
     if (indice !== answeredIndex) return;
     if (indice < preguntasJuego.length - 1) { indice++; renderPregunta(); } else finalizar();
   }, 800);
@@ -579,6 +583,8 @@ function registrarConfianza(value) {
 }
 
 function finalizar() {
+  if (testFinalizado) return;
+  testFinalizado = true;
   detenerReloj(); 
   let aciertos = 0; let html = "";
   const db = loadDatabase();
@@ -890,7 +896,9 @@ function iniciarTestPersonalizado(n) {
     CONFIGURACION_CURSO.forEach(b => b.asignaturas.forEach(a => { if(sel.includes(a.nombre)) preguntasJuego.push(...a.data); }));
     preguntasJuego = shuffle(preguntasJuego).slice(0, n);
     preguntasJuego = preguntasJuego.map(p => ({ ...p, opciones: shuffle([...p.opciones]) }));
-    modoActual = "personalizado"; indice = 0; respuestasUsuario = new Array(preguntasJuego.length).fill(null);
+    modoActual = "personalizado"; indice = 0; testFinalizado = false;
+    respuestasUsuario = new Array(preguntasJuego.length).fill(null);
+    confianzaUsuario = new Array(preguntasJuego.length).fill(null);
     iniciarReloj(n); mostrarPantalla("pantalla-test"); renderPregunta();
 }
 function iniciarTestSemestral(n) {

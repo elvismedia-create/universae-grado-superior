@@ -1,12 +1,17 @@
 (function (root) {
   'use strict';
   const KEY = 'universae_gs_cuaderno_errores_v1';
+  const HIDDEN_KEY = 'universae_gs_cuaderno_ocultos_v1';
   const REASONS = {
     conceptos: 'Confusión de conceptos', formula: 'Fórmula incorrecta', unidades: 'Unidades',
     lectura: 'Lectura apresurada', otro: 'Otro'
   };
   const parse = (storage, key, fallback) => {
     try { return JSON.parse(storage.getItem(key)) ?? fallback; } catch (_) { return fallback; }
+  };
+  const hiddenKeys = storage => {
+    const keys = parse(storage, HIDDEN_KEY, []);
+    return new Set(Array.isArray(keys) ? keys : []);
   };
   const escape = value => String(value ?? '').replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]);
 
@@ -27,16 +32,20 @@
 
   function read(storage, config) {
     const records = parse(storage, KEY, {});
+    const hidden = hiddenKeys(storage);
     const fails = parse(storage, 'mastertest_fails', []);
     const bank = parse(storage, 'academia_banco_fallos', {});
     const aiQuestions = parse(storage, 'mastertest_ia_preguntas', []);
     let changed = false;
+    for (const key of hidden) {
+      if (records[key]) { delete records[key]; changed = true; }
+    }
     for (const id of Array.isArray(fails) ? fails : []) {
       const aiQuestion = Array.isArray(aiQuestions) ? aiQuestions.find(item => String(item.id) === String(id)) : null;
       const found = locate(config, { id }) || (aiQuestion && locate(config, aiQuestion));
       if (!found) continue;
       const key = `${found.bid}:${found.idx}:${id}`;
-      if (records[key]) continue;
+      if (records[key] || hidden.has(key)) continue;
       records[key] = { key, bid: found.bid, idx: found.idx, subject: found.subject, topic: found.topic,
         questionId: id, question: found.question.texto, selected: '', correct: found.question.correctaTexto,
         explanation: found.question.explicacion || '', reason: '', count: 1, source: 'test anterior', updated: null };
@@ -48,7 +57,7 @@
       const found = locate(config, question);
       if (!found) continue;
       const key = `${found.bid}:${found.idx}:${question.id}`;
-      if (records[key]) continue;
+      if (records[key] || hidden.has(key)) continue;
       records[key] = { key, bid: found.bid, idx: found.idx, subject: found.subject, topic: found.topic,
         questionId: question.id, question: found.question.texto, selected: '', correct: found.question.correctaTexto,
         explanation: found.question.explicacion || '', reason: '', count: Math.max(1, Number(entry.fallos) || 1),
@@ -70,6 +79,8 @@
       explanation: question.explicacion || previous?.explanation || '', reason: previous?.reason || '',
       count: (previous?.count || 0) + 1, source, updated: new Date().toISOString() };
     storage.setItem(KEY, JSON.stringify(records));
+    const hidden = hiddenKeys(storage);
+    if (hidden.delete(key)) storage.setItem(HIDDEN_KEY, JSON.stringify([...hidden]));
     return records[key];
   }
 
@@ -87,23 +98,16 @@
     const selected = new Set(Array.isArray(keys) ? keys : [keys]);
     const removed = Object.values(records).filter(item => selected.has(item.key));
     if (!removed.length) return 0;
+    const hidden = hiddenKeys(storage);
+    for (const item of removed) hidden.add(item.key);
+    storage.setItem(HIDDEN_KEY, JSON.stringify([...hidden]));
     for (const item of removed) delete records[item.key];
     storage.setItem(KEY, JSON.stringify(records));
-    const fails = parse(storage, 'mastertest_fails', []);
-    if (Array.isArray(fails)) {
-      const ids = new Set(removed.map(item => String(item.questionId)));
-      storage.setItem('mastertest_fails', JSON.stringify(fails.filter(id => !ids.has(String(id)))));
-    }
-    const bank = parse(storage, 'academia_banco_fallos', {});
-    if (bank && typeof bank === 'object' && !Array.isArray(bank)) {
-      for (const [bankKey, entry] of Object.entries(bank)) {
-        const question = entry?.pregunta;
-        const found = question && locate(config, question);
-        if (found && selected.has(`${found.bid}:${found.idx}:${question.id}`)) delete bank[bankKey];
-      }
-      storage.setItem('academia_banco_fallos', JSON.stringify(bank));
-    }
     return removed.length;
+  }
+
+  function clearAll(storage, config) {
+    return remove(storage, config, Object.keys(read(storage, config)));
   }
 
   function related(config, storage, bid, idx, reason) {
@@ -116,7 +120,7 @@
     return ranked.slice(0, 10).map(item => item.question);
   }
 
-  const api = { KEY, REASONS, locate, read, record, setReason, remove, related };
+  const api = { KEY, HIDDEN_KEY, REASONS, locate, read, record, setReason, remove, clearAll, related };
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
   root.CuadernoGS = api;
   if (!root.document) return;
@@ -129,7 +133,7 @@
       <div class="study-filters"><label>Buscar<input id="error-search" type="search" placeholder="Pregunta o tema"></label>
       <label>Asignatura<select id="error-subject"><option value="">Todas</option>${CONFIGURACION_CURSO.map(block => `<option value="${escape(block.bloque)}">${escape(block.titulo_boton)}</option>`).join('')}</select></label>
       <label>Motivo<select id="error-reason"><option value="">Todos</option>${Object.entries(REASONS).map(([value, label]) => `<option value="${value}">${label}</option>`).join('')}</select></label></div>
-      <div class="error-list-head"><strong id="error-count"></strong><button type="button" id="error-clear" class="error-delete">Borrar visibles</button></div>
+      <div class="error-list-head"><strong id="error-count"></strong><button type="button" id="error-clear" class="error-delete">Borrar todo</button></div>
       <div id="error-list" class="study-list"></div>
       ${historic.length ? `<details class="study-legacy"><summary>Simulacros anteriores (${historic.length})</summary><p>Estos intentos solo guardaban resultados por tema; no se pueden recuperar las respuestas individuales.</p><ul>${historic.slice(-10).reverse().map(item => `<li>${escape(item.date)} · ${escape(CONFIGURACION_CURSO.find(block => block.bloque === item.bid)?.titulo_boton || item.bid)} · ${item.wrong || 0} fallos${item.topics?.length ? ` · ${item.topics.filter(topic => topic.wrong).map(topic => `${escape(topic.topic)}: ${topic.wrong}`).join(' · ')}` : ''}</li>`).join('')}</ul></details>` : ''}`;
     const list = host.querySelector('#error-list');
@@ -140,7 +144,7 @@
       const filtered = records.filter(item => (!subject || item.bid === subject) && (!reason || item.reason === reason)
         && `${item.question} ${item.topic}`.toLocaleLowerCase('es').includes(query));
       host.querySelector('#error-count').textContent = `${filtered.length} ${filtered.length === 1 ? 'error' : 'errores'}`;
-      host.querySelector('#error-clear').disabled = !filtered.length;
+      host.querySelector('#error-clear').disabled = !records.length;
       list.innerHTML = filtered.length ? filtered.map(item => `<article class="study-item error-entry" data-key="${escape(item.key)}" data-reason="${escape(item.reason || 'pendiente')}">
         <div class="study-meta">${escape(item.subject)} · ${escape(item.topic)}</div>
         <h2>${escape(item.question)}</h2>
@@ -155,17 +159,16 @@
         article.querySelector('select').onchange = event => { setReason(localStorage, CONFIGURACION_CURSO, item.key, event.target.value); item.reason = event.target.value; article.dataset.reason = event.target.value || 'pendiente'; };
         article.querySelector('.error-practice').onclick = () => jugar('cuaderno', item.idx, item.bid, undefined, item.reason);
         article.querySelector('.error-delete-one').onclick = () => {
-          if (!confirm('¿Borrar este error del cuaderno y de la zona de fallos? El progreso de los tests se conserva.')) return;
+          if (!confirm('¿Borrar este error del cuaderno? Seguirá disponible en los demás modos de fallos.')) return;
           remove(localStorage, CONFIGURACION_CURSO, item.key);
           records = records.filter(record => record.key !== item.key);
           update();
         };
       });
       host.querySelector('#error-clear').onclick = () => {
-        if (!filtered.length || !confirm(`¿Borrar ${filtered.length} ${filtered.length === 1 ? 'error visible' : 'errores visibles'}? El progreso de los tests se conserva.`)) return;
-        remove(localStorage, CONFIGURACION_CURSO, filtered.map(item => item.key));
-        const removed = new Set(filtered.map(item => item.key));
-        records = records.filter(item => !removed.has(item.key));
+        if (!records.length || !confirm(`¿Borrar los ${records.length} errores del cuaderno, incluidos los ocultos por filtros? El progreso y los demás modos de fallos se conservan.`)) return;
+        clearAll(localStorage, CONFIGURACION_CURSO);
+        records = [];
         update();
       };
     };

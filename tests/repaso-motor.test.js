@@ -65,6 +65,29 @@ test('el test normal guarda fecha y exige dias distintos para dominar', () => {
   assert.equal(state.dom.length, 0);
 });
 
+test('salir de un test guarda solo respuestas incorrectas y omite preguntas sin responder', () => {
+  const second = { ...question, id: 410102, texto: 'Pregunta correcta' };
+  const third = { ...question, id: 410103, texto: 'Pregunta sin responder' };
+  const threeQuestions = [{ ...config[0], asignaturas: [{ ...topic, data: [question, second, third] }] }];
+  const { context, storage, elements } = harness({}, threeQuestions);
+  context.jugar('carrera', 0, 'sistemas_gs');
+  context.clickOpcion(vm.runInContext('preguntasJuego[0].opciones.indexOf("Incorrecta")', context));
+  context.siguiente();
+  context.clickOpcion(vm.runInContext('preguntasJuego[1].opciones.indexOf("Correcta")', context));
+  context.salir();
+  const saved = notebook.read(context.localStorage, threeQuestions);
+  assert.deepEqual(Object.keys(saved), ['sistemas_gs:0:410101']);
+  assert.equal(saved['sistemas_gs:0:410101'].selected, 'Incorrecta');
+  assert.deepEqual(JSON.parse(storage.get('mastertest_fails')), [410101]);
+  const state = JSON.parse(storage.get('mastertest_db'))[topic.nombre];
+  assert.ok(state.srs[question.id]);
+  assert.ok(state.srs[second.id]);
+  assert.equal(state.srs[third.id], undefined);
+  assert.ok(elements.get('pantalla-resultados').innerHTML.includes('Resultado'));
+  context.finalizar();
+  assert.equal(notebook.read(context.localStorage, threeQuestions)['sistemas_gs:0:410101'].count, 1);
+});
+
 test('avanza sin valorar un acierto y lo registra como duda, también al finalizar', () => {
   const second = { ...question, id: 410102, texto: 'Segunda pregunta' };
   const twoQuestions = [{ ...config[0], asignaturas: [{ ...topic, data: [question, second] }] }];
