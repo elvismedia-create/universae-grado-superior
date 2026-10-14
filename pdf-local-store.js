@@ -418,7 +418,7 @@
         cursor: crosshair;
         pointer-events: none;
       }
-      .pdf-draw-layer[data-tool="pen"] { pointer-events: auto; }
+      .pdf-draw-layer[data-tool="pen"] { pointer-events: auto; touch-action: pan-x pan-y; }
       .pdf-draw-layer[data-tool="eraser"] {
         pointer-events: auto;
         touch-action: pan-x pan-y;
@@ -692,6 +692,7 @@
 
     pagesContainer.addEventListener('touchstart', event => {
       if (event.touches.length !== 2) return;
+      state.pinching = true;
       startDistance = distanceBetweenTouches(event.touches[0], event.touches[1]);
       startZoom = state.zoom;
       lastCenter = getTouchCenter(event.touches[0], event.touches[1]);
@@ -712,9 +713,9 @@
     }, { passive: false });
 
     pagesContainer.addEventListener('touchend', event => {
-      if (event.touches.length < 2) { startDistance = 0; lastCenter = null; }
+      if (event.touches.length < 2) { startDistance = 0; lastCenter = null; state.pinching = false; }
     }, { passive: true });
-    pagesContainer.addEventListener('touchcancel', () => { startDistance = 0; lastCenter = null; }, { passive: true });
+    pagesContainer.addEventListener('touchcancel', () => { startDistance = 0; lastCenter = null; state.pinching = false; }, { passive: true });
 
     pagesContainer.addEventListener('wheel', event => {
       if (!event.ctrlKey && !event.metaKey) return;
@@ -757,7 +758,7 @@
     }
 
     canvas.addEventListener('pointerdown', event => {
-      if ((state.tool !== 'pen' && state.tool !== 'eraser') || !PdfViewerGeometry.isAnnotationPointer(event.pointerType)) return;
+      if ((state.tool !== 'pen' && state.tool !== 'eraser') || state.pinching || !PdfViewerGeometry.isAnnotationPointer(event.pointerType)) return;
       pointerId = event.pointerId;
       event.preventDefault();
       canvas.setPointerCapture(pointerId);
@@ -881,7 +882,7 @@
     }
 
     pagesContainer.addEventListener('pointerdown', event => {
-      if (state.tool !== 'highlight' || !PdfViewerGeometry.isAnnotationPointer(event.pointerType)) return;
+      if (state.tool !== 'highlight' || state.pinching || !PdfViewerGeometry.isAnnotationPointer(event.pointerType)) return;
       if (!event.isPrimary) {
         if (drag) finishDrag({ pointerId: drag.pointerId }, false);
         return;
@@ -949,6 +950,7 @@
       color: 'rgba(255,235,59,0.50)',
       width: 18,
       zoom: 1,
+      pinching: false,
       currentPage: 1
     };
 

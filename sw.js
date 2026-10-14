@@ -1,6 +1,6 @@
-// v1.19 - visor PDF tactil y dominio 1/3
-const APP_VERSION = 'v1.19';
-const BUILD_TIMESTAMP = '20261013-gs-visor-dominio-1';
+// v1.20 - desplazamiento nativo del visor PDF
+const APP_VERSION = 'v1.20';
+const BUILD_TIMESTAMP = '20261014-gs-visor-inercia-1';
 const CACHE_NAME = `universae-gs-${APP_VERSION}-${BUILD_TIMESTAMP}`;
 const OFFLINE_CACHE = 'universae-gs-offline-v1.2';
 const PDF_CACHE = 'universae-gs-pdfs-v1';
@@ -71,7 +71,7 @@ self.addEventListener('install', (e) => {
 
 // ACTIVACIÓN v90.2: Limpieza y notificación
 self.addEventListener('activate', (e) => {
-  console.log('✨ ACTIVANDO Universae GS v1.19...');
+  console.log('✨ ACTIVANDO Universae GS v1.20...');
 
   e.waitUntil(
     caches.keys()
