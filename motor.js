@@ -775,7 +775,7 @@ function verEstadisticas() {
     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
       <h1 style="margin:0;">📊 Stats</h1>
       <div style="background:#10b981; color:white; padding:8px 16px; border-radius:20px; font-weight:900; font-size:0.9rem; box-shadow:0 2px 8px rgba(16,185,129,0.3);">
-        v1.11
+        v1.21
       </div>
     </div>
     <div class="stats-grid">
@@ -803,6 +803,10 @@ function verEstadisticas() {
       <button class="btn-outline" onclick="descargarProgreso()">⬇️ Backup</button>
       <button class="btn-upload" onclick="document.getElementById('input-carga').click()">⬆️ Cargar</button>
       <input type="file" id="input-carga" style="display:none" onchange="cargarProgreso(this)">
+    </div>
+    <div class="stats-reset">
+      <div><strong>Datos de este dispositivo</strong><p>Borrar elimina el progreso, las anotaciones y los ajustes locales de esta app. No se puede deshacer.</p></div>
+      <button class="btn-outline" type="button" onclick="borrarDatosGlobales()">Borrar datos locales</button>
     </div>
     <button class="btn-outline" onclick="volverAlMenu()" style="width:100%;margin-top:20px;">⬅ Volver</button>
   `;
@@ -933,7 +937,9 @@ function volverAlMenu() {
   location.reload(); 
 }
 function mostrarPantalla(id) { document.querySelectorAll(".card").forEach(c => c.classList.remove("active")); document.getElementById(id).classList.add("active"); window.scrollTo(0,0); }
-function borrarDatosGlobales() { if (confirm("¿Borrar todo?")) { localStorage.clear(); location.reload(); } }
+function borrarDatosGlobales() {
+  BorradoGS.confirmAndClear(localStorage, message => window.prompt(message), () => location.reload());
+}
 function anterior() { if (indice > 0) { indice--; renderPregunta(); } }
 function siguiente() {
   const respuesta = respuestasUsuario[indice];

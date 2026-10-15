@@ -1,6 +1,6 @@
-// v1.20 - desplazamiento nativo del visor PDF
-const APP_VERSION = 'v1.20';
-const BUILD_TIMESTAMP = '20261014-gs-visor-inercia-1';
+// v1.21 - borrado local confirmado desde Stats
+const APP_VERSION = 'v1.21';
+const BUILD_TIMESTAMP = '20261014-gs-stats-borrado-1';
 const CACHE_NAME = `universae-gs-${APP_VERSION}-${BUILD_TIMESTAMP}`;
 const OFFLINE_CACHE = 'universae-gs-offline-v1.2';
 const PDF_CACHE = 'universae-gs-pdfs-v1';
@@ -10,6 +10,7 @@ const CRITICAL_ASSETS = [
   './',
   './index.html',
   './motor.js',
+  './borrado-gs.js',
   './repaso-espaciado.js',
   './repaso-espaciado.css',
   './plan-diario.js',
@@ -71,7 +72,7 @@ self.addEventListener('install', (e) => {
 
 // ACTIVACIÓN v90.2: Limpieza y notificación
 self.addEventListener('activate', (e) => {
-  console.log('✨ ACTIVANDO Universae GS v1.20...');
+  console.log('✨ ACTIVANDO Universae GS v1.21...');
 
   e.waitUntil(
     caches.keys()

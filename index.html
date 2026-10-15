@@ -466,6 +466,9 @@ body.dark-mode .card-cuaderno .asig-title { color: #b7f3d0; }
 .gestion-grid button:hover { transform: translateY(-2px); }
 .gestion-grid button:active { transform: translateY(0); }
 .btn-upload { border: 2px dashed var(--border); background: var(--bg); color: var(--text-light); width: 100%; padding: 12px; border-radius: 12px; font-weight: 700; }
+.stats-reset { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--border); }
+.stats-reset p { margin: 5px 0 0; color: var(--text-light); font-size: 0.9rem; line-height: 1.4; }
+.stats-reset button { border-color: var(--danger); color: var(--danger-dark); }
 .gestion-item { border: 1px solid var(--border); border-radius: 12px; padding: 15px; margin-bottom: 15px; background: var(--bg); display: grid; grid-template-columns: 100px 1fr; gap: 20px; align-items: start; }
 .gestion-img-box { width: 100px; height: 100px; background: var(--card); border-radius: 8px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border); overflow: hidden; }
 .gestion-img-box img { max-width: 100%; max-height: 100%; object-fit: cover; }
@@ -957,7 +960,7 @@ svg, svg * {
     <div class="home-brand">
       <img src="img/universae-shield-logo.png?v=20260909090000" alt="Universae Logo" width="64" height="64">
       <div class="home-brand-copy">
-        <h1>Universae GS <span class="brand-badge brand-block">Bloque 1</span> <span class="brand-badge brand-version">v1.20</span></h1>
+        <h1>Universae GS <span class="brand-badge brand-block">Bloque 1</span> <span class="brand-badge brand-version">v1.21</span></h1>
         <p class="subtitle">Grado Superior · Anual · Examen en mayo</p>
       </div>
     </div>
@@ -975,7 +978,6 @@ svg, svg * {
       <button class="btn-tool" id="btn-importar-pdfs" onclick="abrirImportadorPdfs()">📄 PDFs</button>
       <button class="btn-tool" onclick="abrirAnotacionesGS()">Anotaciones</button>
       <button class="btn-tool" onclick="verEstadisticas()">📊 Stats</button>
-      <button class="btn-tool btn-reset" onclick="borrarDatosGlobales()">🗑️</button>
     </div>
 
 
@@ -1075,7 +1077,8 @@ svg, svg * {
 <script src="taller-gs.js?v=1.19"></script>
 <!-- MOTOR PRINCIPAL -->
 <script src="repaso-espaciado.js?v=1.19"></script>
-<script src="motor.js?v=1.18"></script>
+<script src="borrado-gs.js?v=1.21"></script>
+<script src="motor.js?v=1.21"></script>
 <script src="navegacion-gs.js?v=1.18"></script>
 <script src="plan-diario.js?v=1.8"></script>
 <script src="simulacros-gs.js?v=1.11"></script>
