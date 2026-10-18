@@ -11,15 +11,22 @@
     } catch (_) { return []; }
   }
 
-  function validate(proposal) {
+  function validateDraft(proposal) {
     const texto = clean(proposal?.texto);
     const correctaTexto = clean(proposal?.correctaTexto);
+    return texto.length >= 12 && texto.length <= 500 && correctaTexto.length >= 1 && correctaTexto.length <= 300
+      ? { texto, correctaTexto } : null;
+  }
+
+  function validate(proposal) {
+    const draft = validateDraft(proposal);
+    if (!draft) return null;
+    const { texto, correctaTexto } = draft;
     const incorrectas = Array.isArray(proposal?.incorrectas)
       ? proposal.incorrectas.map(clean)
       : Array.isArray(proposal?.opciones) ? proposal.opciones.filter(option => identity(option) !== identity(correctaTexto)).map(clean) : [];
     const opciones = [correctaTexto, ...incorrectas];
-    if (texto.length < 12 || texto.length > 500 || opciones.length !== 4 ||
-      opciones.some(option => !option || option.length > 300) ||
+    if (opciones.length !== 4 || opciones.some(option => !option || option.length > 300) ||
       new Set(opciones.map(identity)).size !== 4) return null;
     return { texto, correctaTexto, opciones, explicacion: clean(proposal.explicacion).slice(0, 700) };
   }
@@ -48,7 +55,7 @@
     return { ok: true, question: entry };
   }
 
-  const api = { KEY, read, validate, confirm, identity };
+  const api = { KEY, read, validateDraft, validate, confirm, identity };
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
   root.PreguntasSubrayadoGS = api;
 })(typeof window !== 'undefined' ? window : globalThis);

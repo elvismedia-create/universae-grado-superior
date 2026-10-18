@@ -95,6 +95,7 @@ body.dark-mode .error-delete:hover:not(:disabled) { background: #48282b; }
 .study-proposal textarea { min-height: 66px; resize: vertical; }
 .study-proposal .study-actions { margin: 4px 0 0; }
 .study-proposal .study-error { color: #9b3030; margin: 0; }
+.study-approved { margin: 0; padding: 9px; background: #eaf3f6; border-left: 3px solid #0f766e; line-height: 1.45; overflow-wrap: anywhere; }
 .study-confirmed { margin: 0; padding: 12px; color: #176047; background: #eaf7f0; border-radius: 6px; }
 .pdf-study-composer:has(.study-proposal) { max-height: min(72dvh, 720px); }
 @media (max-width: 600px) {

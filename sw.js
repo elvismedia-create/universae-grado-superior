@@ -1,6 +1,6 @@
-// v1.22 - preguntas revisadas desde subrayados
-const APP_VERSION = 'v1.22';
-const BUILD_TIMESTAMP = '20261018-gs-preguntas-subrayado-1';
+// v1.23 - revision de preguntas en dos fases
+const APP_VERSION = 'v1.23';
+const BUILD_TIMESTAMP = '20261018-gs-preguntas-dos-fases-1';
 const CACHE_NAME = `universae-gs-${APP_VERSION}-${BUILD_TIMESTAMP}`;
 const OFFLINE_CACHE = 'universae-gs-offline-v1.2';
 const PDF_CACHE = 'universae-gs-pdfs-v1';
@@ -73,7 +73,7 @@ self.addEventListener('install', (e) => {
 
 // ACTIVACIÓN v90.2: Limpieza y notificación
 self.addEventListener('activate', (e) => {
-  console.log('✨ ACTIVANDO Universae GS v1.22...');
+  console.log('✨ ACTIVANDO Universae GS v1.23...');
 
   e.waitUntil(
     caches.keys()
