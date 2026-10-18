@@ -442,6 +442,8 @@ function renderPregunta() {
         <button type="button" aria-label="Por descarte" title="Por descarte" onclick="registrarConfianza('descarte')">✂️</button>
       </div>
     </div>` : '';
+  const fuentePdf = p.fuente?.bid && Number.isInteger(p.fuente?.idx) && Number.isInteger(p.fuente?.pagina)
+    ? `<button type="button" class="btn-outline" id="pregunta-fuente-pdf" style="margin:8px 0 14px;">Ver fragmento en PDF · página ${p.fuente.pagina}</button>` : '';
 
   let rachaHtml = "";
   if (rachaActual >= 2) {
@@ -464,6 +466,7 @@ function renderPregunta() {
     </div>
     ${visual}
     <div class="pregunta-box">${p.texto}</div>
+    ${fuentePdf}
     <div id="opciones-grid">
       ${p.opciones.map((op, i) => renderOpcionHtml(p, op, i)).join("")}
     </div>
@@ -474,6 +477,8 @@ function renderPregunta() {
       <button class="btn-orange" onclick="siguiente()">${indice===preguntasJuego.length-1 ? 'Finalizar' : 'Siguiente ➡'}</button>
     </div>
   `;
+  document.getElementById('pregunta-fuente-pdf')?.addEventListener?.('click', () =>
+    abrirPdfTema(p.fuente.bid, p.fuente.idx, p.fuente.pagina));
   
   // Añadir event listener al botón de favoritos después de renderizar
   setTimeout(() => {
@@ -1886,8 +1891,10 @@ function guardarPreguntasIA() {
 
 // Obtener preguntas IA de un tema
 function obtenerPreguntasIATema(nombreTema) {
+  try { preguntasIAStorage = JSON.parse(localStorage.getItem('mastertest_ia_preguntas')) || []; } catch (_) { preguntasIAStorage = []; }
   return preguntasIAStorage.filter(p => p.tema === nombreTema);
 }
+window.actualizarPreguntasIAStorageGS = () => { obtenerPreguntasIATema(''); };
 
 // Generar preguntas con IA
 async function generarPreguntasIA(tema, cantidad = 10) {

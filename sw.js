@@ -1,6 +1,6 @@
-// v1.21 - borrado local confirmado desde Stats
-const APP_VERSION = 'v1.21';
-const BUILD_TIMESTAMP = '20261014-gs-stats-borrado-1';
+// v1.22 - preguntas revisadas desde subrayados
+const APP_VERSION = 'v1.22';
+const BUILD_TIMESTAMP = '20261018-gs-preguntas-subrayado-1';
 const CACHE_NAME = `universae-gs-${APP_VERSION}-${BUILD_TIMESTAMP}`;
 const OFFLINE_CACHE = 'universae-gs-offline-v1.2';
 const PDF_CACHE = 'universae-gs-pdfs-v1';
@@ -18,6 +18,7 @@ const CRITICAL_ASSETS = [
   './simulacros-gs.js',
   './simulacros-gs.css',
   './anotaciones-gs.js',
+  './preguntas-subrayado-gs.js',
   './cuaderno-gs.js',
   './navegacion-gs.js',
   './estudio-gs.css',
@@ -72,7 +73,7 @@ self.addEventListener('install', (e) => {
 
 // ACTIVACIÓN v90.2: Limpieza y notificación
 self.addEventListener('activate', (e) => {
-  console.log('✨ ACTIVANDO Universae GS v1.21...');
+  console.log('✨ ACTIVANDO Universae GS v1.22...');
 
   e.waitUntil(
     caches.keys()

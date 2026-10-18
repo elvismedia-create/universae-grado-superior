@@ -85,6 +85,18 @@ body.dark-mode .error-delete:hover:not(:disabled) { background: #48282b; }
 .pdf-study-composer form[hidden] { display: none; }
 .pdf-study-composer label { display: grid; gap: 6px; font-weight: 650; }
 .pdf-study-composer textarea { background: #fff; color: #182337; }
+.pdf-study-composer [data-finish][hidden] { display: none; }
+.pdf-study-composer [data-finish] { width: 100%; margin-top: 8px; }
+.study-proposals { display: grid; gap: 12px; }
+.study-proposal { display: grid; gap: 8px; padding: 12px; border: 1px solid #cbd5df; border-radius: 6px; background: #f8fafb; }
+.study-proposal strong { color: #0f5b5c; }
+.study-proposal label { display: grid; gap: 4px; font-size: .82rem; font-weight: 650; }
+.study-proposal input, .study-proposal textarea { box-sizing: border-box; width: 100%; min-height: 40px; padding: 8px; border: 1px solid #cbd5df; border-radius: 5px; background: #fff; color: #182337; font: inherit; }
+.study-proposal textarea { min-height: 66px; resize: vertical; }
+.study-proposal .study-actions { margin: 4px 0 0; }
+.study-proposal .study-error { color: #9b3030; margin: 0; }
+.study-confirmed { margin: 0; padding: 12px; color: #176047; background: #eaf7f0; border-radius: 6px; }
+.pdf-study-composer:has(.study-proposal) { max-height: min(72dvh, 720px); }
 @media (max-width: 600px) {
   .study-head h1 { font-size: 1.2rem; }
   .error-entry-fields { grid-template-columns: 1fr; }
@@ -92,4 +104,6 @@ body.dark-mode .error-delete:hover:not(:disabled) { background: #48282b; }
   .pdf-study-composer { max-height: 55dvh; }
   .pdf-study-composer .study-actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .pdf-study-composer .study-actions button { white-space: normal; }
+  .pdf-study-composer:has(.study-proposal) { max-height: 78dvh; }
+  .study-proposal .study-actions { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }

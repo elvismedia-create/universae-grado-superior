@@ -90,33 +90,58 @@
     const quoted = item.stroke.text || '';
     panel.innerHTML = `<div class="study-head"><strong>Página ${item.page} · ${escape(item.topic)}</strong><button type="button" data-close aria-label="Cerrar">×</button></div>
       <blockquote>${quoted ? escape(quoted) : 'No se pudo recuperar el texto. Puedes volver a seleccionarlo desde Anotaciones PDF.'}</blockquote>
-      <div class="study-actions"><button type="button" data-kind="card" ${quoted ? '' : 'disabled'}>Crear tarjeta</button><button type="button" data-kind="doubt" ${quoted ? '' : 'disabled'}>Guardar duda</button><button type="button" data-kind="question" ${quoted ? '' : 'disabled'}>Escribir pregunta</button><button type="button" data-kind="tutor" ${quoted ? '' : 'disabled'}>Pedir pregunta al tutor</button></div>
-      <form hidden><label class="study-prompt-label">Pregunta<textarea name="prompt" required maxlength="500"></textarea></label><button type="submit">Guardar</button></form>`;
+      <div class="study-actions"><button type="button" data-generate ${quoted.trim().length >= 25 ? '' : 'disabled'}>Crear preguntas del subrayado</button></div>
+      <div class="study-proposals" aria-live="polite"></div>
+      <button type="button" data-finish hidden>No crear ninguna</button>`;
     shell.append(panel);
     panel.querySelector('[data-close]').onclick = () => panel.remove();
-    panel.querySelectorAll('[data-kind]').forEach(button => button.onclick = () => {
-      const kind = button.dataset.kind;
-      if (kind === 'tutor') {
-        if (!quoted) return;
-        shell.querySelector('[data-action="close"]').click();
-        root.abrirTutorFragmento?.(item.bid, item.idx, item.page, quoted);
-        return;
+    panel.querySelector('[data-finish]').onclick = () => panel.remove();
+    panel.querySelector('[data-generate]').onclick = async event => {
+      const button = event.currentTarget;
+      const output = panel.querySelector('.study-proposals');
+      button.disabled = true;
+      output.textContent = 'Preparando preguntas…';
+      try {
+        const response = await fetch('/api/preguntas-subrayado', { method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ bid: item.bid, idx: item.idx, pagina: item.page, fragmento: quoted }) });
+        const data = await response.json();
+        if (!response.ok) throw new Error(data.error || 'No se pudieron crear preguntas.');
+        if (!panel.isConnected) return;
+        const proposals = data.preguntas || [];
+        panel.querySelector('[data-finish]').hidden = false;
+        output.innerHTML = proposals.map((proposal, index) => `<form class="study-proposal" data-index="${index}">
+          <strong>Propuesta ${index + 1}</strong>
+          <label>Pregunta<textarea name="texto" maxlength="500" required readonly>${escape(proposal.texto)}</textarea></label>
+          <label>Respuesta correcta<input name="correctaTexto" maxlength="300" required readonly value="${escape(proposal.correctaTexto)}"></label>
+          ${proposal.opciones.slice(1).map((option, i) => `<label>Respuesta incorrecta ${i + 1}<input name="incorrecta${i}" maxlength="300" required readonly value="${escape(option)}"></label>`).join('')}
+          <p class="study-error" role="alert"></p>
+          <div class="study-actions"><button type="submit">Confirmar y añadir</button><button type="button" data-edit>Modificar</button></div>
+        </form>`).join('');
+        output.querySelectorAll('form').forEach(form => {
+          form.querySelector('[data-edit]').onclick = () => {
+            form.querySelectorAll('textarea, input').forEach(field => field.readOnly = false);
+            form.querySelector('[name="texto"]').focus();
+          };
+          form.onsubmit = submitEvent => {
+            submitEvent.preventDefault();
+            if (!item.stroke.id) { idFor(item.stroke); save(); }
+            const context = { tema: item.topic, bid: item.bid, idx: item.idx, pagina: item.page,
+              fragmento: quoted, marcaId: item.stroke.id };
+            const base = CONFIGURACION_CURSO.find(block => block.bloque === item.bid)?.asignaturas[item.idx]?.data || [];
+            const result = root.PreguntasSubrayadoGS.confirm(localStorage, context, {
+              texto: form.elements.texto.value, correctaTexto: form.elements.correctaTexto.value,
+              incorrectas: [0, 1, 2].map(i => form.elements[`incorrecta${i}`].value),
+              explicacion: proposals[Number(form.dataset.index)].explicacion
+            }, base);
+            if (!result.ok) { form.querySelector('.study-error').textContent = result.error; return; }
+            root.actualizarPreguntasIAStorageGS?.();
+            panel.querySelector('[data-finish]').textContent = 'Terminar';
+            form.replaceWith(Object.assign(document.createElement('p'), { className: 'study-confirmed', textContent: `Pregunta ${Number(form.dataset.index) + 1} añadida al tema.` }));
+          };
+        });
+      } catch (error) {
+        if (panel.isConnected) { output.textContent = error.message || 'No se pudieron crear preguntas.'; button.disabled = false; }
       }
-      const form = panel.querySelector('form');
-      form.hidden = false;
-      form.dataset.kind = kind;
-      panel.querySelector('.study-prompt-label').firstChild.textContent = kind === 'doubt' ? 'Tu duda' : 'Pregunta para repasar';
-      form.elements.prompt.value = item.stroke.note?.prompt || '';
-      form.elements.prompt.focus();
-    });
-    panel.querySelector('form').onsubmit = event => {
-      event.preventDefault();
-      const form = event.currentTarget;
-      const prompt = form.elements.prompt.value.trim();
-      if (!prompt) return;
-      item.stroke.note = { ...(item.stroke.note || {}), kind: form.dataset.kind, prompt };
-      save();
-      panel.remove();
     };
   }
 
