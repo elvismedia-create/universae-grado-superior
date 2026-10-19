@@ -776,11 +776,12 @@ function verEstadisticas() {
     }
   }));
   
+  document.getElementById('pantalla-estadisticas').dataset.view = 'stats';
   document.getElementById("pantalla-estadisticas").innerHTML = `
     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
       <h1 style="margin:0;">📊 Stats</h1>
       <div style="background:#10b981; color:white; padding:8px 16px; border-radius:20px; font-weight:900; font-size:0.9rem; box-shadow:0 2px 8px rgba(16,185,129,0.3);">
-        v1.21
+        v1.24
       </div>
     </div>
     <div class="stats-grid">
@@ -803,7 +804,7 @@ function verEstadisticas() {
       <button class="btn-outline" onclick="abrirMapaMental()">🗺️ Mapa Mental</button>
       <button class="btn-outline" onclick="abrirAyuda()">❓ Ayuda</button>
       <button class="btn-outline" onclick="buscarActualizaciones()">🔄 Actualizar</button>
-      <button class="btn-outline" onclick="verEstadisticasIA()">🤖 Preguntas IA</button>
+      <button class="btn-outline" onclick="verEstadisticasIA()">Preguntas creadas</button>
       <button class="btn-outline" onclick="verEstadisticasExplicaciones()">📚 Estudios</button>
       <button class="btn-outline" onclick="descargarProgreso()">⬇️ Backup</button>
       <button class="btn-upload" onclick="document.getElementById('input-carga').click()">⬆️ Cargar</button>
@@ -1894,7 +1895,10 @@ function obtenerPreguntasIATema(nombreTema) {
   try { preguntasIAStorage = JSON.parse(localStorage.getItem('mastertest_ia_preguntas')) || []; } catch (_) { preguntasIAStorage = []; }
   return preguntasIAStorage.filter(p => p.tema === nombreTema);
 }
-window.actualizarPreguntasIAStorageGS = () => { obtenerPreguntasIATema(''); };
+window.actualizarPreguntasIAStorageGS = (bid, idx) => {
+  obtenerPreguntasIATema('');
+  if (bid && Number.isInteger(idx) && typeof filtrarBloque === 'function') filtrarBloque(bid, idx, false, true);
+};
 
 // Generar preguntas con IA
 async function generarPreguntasIA(tema, cantidad = 10) {
@@ -2124,57 +2128,52 @@ function obtenerTodasLasPreguntasTema(nombreTema) {
 }
 
 // Estadísticas de IA
-function verEstadisticasIA() {
-  const totalIA = preguntasIAStorage.length;
-  const porTema = {};
-  
-  preguntasIAStorage.forEach(p => {
-    porTema[p.tema] = (porTema[p.tema] || 0) + 1;
+function verEstadisticasIA(nombreTema = null, soloSubrayado = false) {
+  preguntasIAStorage = PreguntasSubrayadoGS.read(localStorage);
+  const preguntas = PreguntasSubrayadoGS.list(localStorage, nombreTema, soloSubrayado);
+  const escape = value => String(value ?? '').replace(/[&<>"']/g, char =>
+    ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]);
+  const host = document.getElementById('pantalla-estadisticas');
+  host.dataset.view = 'generated';
+  host.dataset.tema = nombreTema || '';
+  host.dataset.onlyHighlights = soloSubrayado ? 'true' : 'false';
+  host.innerHTML = `<div class="header-flex generated-head"><h1>${nombreTema ? 'Preguntas del subrayado' : 'Preguntas creadas'}</h1>
+    <button class="btn-outline" id="generated-back">Volver</button></div>
+    ${nombreTema ? `<p class="study-meta">${escape(nombreTema)}</p>` : ''}
+    <p class="study-meta">${preguntas.length} ${preguntas.length === 1 ? 'pregunta guardada' : 'preguntas guardadas'} en este dispositivo</p>
+    ${preguntas.length ? `<label class="generated-search">Buscar pregunta<input type="search" id="generated-search"></label>
+      <div class="generated-list">${preguntas.map((p, index) => `<details class="generated-question">
+        <summary><span>${escape(p.tema || 'Tema')}</span><strong>${escape(p.texto || 'Pregunta sin enunciado')}</strong></summary>
+        <div class="generated-answer"><b>Respuesta correcta</b><p>${escape(p.correctaTexto || '')}</p></div>
+        <div class="generated-options"><b>Respuestas incorrectas</b><ol>${(Array.isArray(p.opciones) ? p.opciones.filter(option => option !== p.correctaTexto) : []).map(option => `<li>${escape(option)}</li>`).join('')}</ol></div>
+        ${p.explicacion ? `<p class="generated-explanation"><b>Explicación</b><br>${escape(p.explicacion)}</p>` : ''}
+        ${p.fuente?.fragmento ? `<div class="generated-source"><b>Subrayado · página ${Number(p.fuente.pagina) || 1}</b>
+          <blockquote>${escape(p.fuente.fragmento)}</blockquote><button type="button" class="btn-outline" data-pdf-index="${index}">Abrir página del PDF</button></div>` : ''}
+      </details>`).join('')}</div>` : '<p>No hay preguntas guardadas en esta selección.</p>'}
+    ${!nombreTema && preguntas.length ? '<button type="button" class="btn-outline" id="generated-clear">Eliminar todas las preguntas IA</button>' : ''}`;
+  host.querySelector('#generated-back').onclick = () => nombreTema ? mostrarPantalla('pantalla-inicio') : verEstadisticas();
+  host.querySelector('#generated-search')?.addEventListener('input', event => {
+    const query = event.target.value.toLocaleLowerCase('es');
+    host.querySelectorAll('.generated-question').forEach(entry => {
+      entry.hidden = !entry.textContent.toLocaleLowerCase('es').includes(query);
+    });
   });
-
-  let listaHtml = '';
-  for (const tema in porTema) {
-    listaHtml += `
-      <div style="display:flex; justify-content:space-between; padding:12px; background:white; border-radius:8px; margin-bottom:8px;">
-        <span>${tema}</span>
-        <span style="font-weight:700; color:var(--primary);">${porTema[tema]} preguntas</span>
-      </div>
-    `;
-  }
-
-  document.getElementById("pantalla-estadisticas").innerHTML = `
-    <div class="header-flex" style="margin-bottom:20px;">
-      <h1>🤖 Preguntas Generadas por IA</h1>
-      <button class="btn-outline" onclick="verEstadisticas()">⬅ Volver</button>
-    </div>
-
-    <div style="background:var(--primary-light); padding:20px; border-radius:12px; border-left:4px solid var(--primary); margin-bottom:30px; text-align:center;">
-      <div style="font-size:3rem; font-weight:700; color:var(--primary); margin-bottom:10px;">${totalIA}</div>
-      <div style="font-size:1.1rem; font-weight:600;">Preguntas generadas con IA</div>
-      <div style="font-size:0.9rem; color:var(--text-light); margin-top:5px;">Integradas en tus temas</div>
-    </div>
-
-    ${totalIA > 0 ? `
-      <h3 style="margin-bottom:15px;">📊 Por tema:</h3>
-      ${listaHtml}
-
-      <div style="margin-top:30px; display:grid; gap:15px;">
-        <button class="btn-outline" onclick="if(confirm('¿Eliminar TODAS las preguntas IA?')) { preguntasIAStorage = []; guardarPreguntasIA(); verEstadisticasIA(); }" style="width:100%;">
-          🗑️ Eliminar todas las preguntas IA
-        </button>
-      </div>
-    ` : `
-      <div style="background:var(--bg); padding:30px; border-radius:12px; text-align:center;">
-        <div style="font-size:2rem; margin-bottom:15px;">🎯</div>
-        <h3 style="margin-bottom:10px;">Aún no has generado preguntas</h3>
-        <p style="color:var(--text-light);">Domina un tema al 100% y aparecerá el botón para generar preguntas nuevas con IA.</p>
-      </div>
-    `}
-
-    <button class="btn-outline" onclick="verEstadisticas()" style="width:100%; margin-top:20px;">⬅ Volver a Stats</button>
-  `;
-  
-  mostrarPantalla("pantalla-estadisticas");
+  host.querySelectorAll('[data-pdf-index]').forEach(button => button.onclick = () => {
+    const source = preguntas[Number(button.dataset.pdfIndex)]?.fuente;
+    if (source?.bid && Number.isInteger(source.idx) && Number.isInteger(source.pagina)) {
+      abrirPdfTema(source.bid, source.idx, source.pagina);
+    }
+  });
+  const clear = host.querySelector('#generated-clear');
+  if (clear) clear.onclick = () => {
+    if (!confirm('¿Eliminar TODAS las preguntas IA guardadas en este dispositivo?')) return;
+    preguntasIAStorage = [];
+    guardarPreguntasIA();
+    const location = NavegacionGS.readLocation(CONFIGURACION_CURSO, localStorage);
+    window.actualizarPreguntasIAStorageGS(location.bid, location.idx);
+    verEstadisticasIA();
+  };
+  mostrarPantalla('pantalla-estadisticas');
 }
 
 // Estadísticas de explicaciones

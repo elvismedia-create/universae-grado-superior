@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="repaso-espaciado.css?v=1.10">
 <link rel="stylesheet" href="plan-diario.css?v=1.8">
 <link rel="stylesheet" href="simulacros-gs.css?v=1.9">
-<link rel="stylesheet" href="estudio-gs.css?v=1.23">
+<link rel="stylesheet" href="estudio-gs.css?v=1.24">
 
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#2563eb">
@@ -960,7 +960,7 @@ svg, svg * {
     <div class="home-brand">
       <img src="img/universae-shield-logo.png?v=20260909090000" alt="Universae Logo" width="64" height="64">
       <div class="home-brand-copy">
-        <h1>Universae GS <span class="brand-badge brand-block">Bloque 1</span> <span class="brand-badge brand-version">v1.23</span></h1>
+        <h1>Universae GS <span class="brand-badge brand-block">Bloque 1</span> <span class="brand-badge brand-version">v1.24</span></h1>
         <p class="subtitle">Grado Superior · Anual · Examen en mayo</p>
       </div>
     </div>
@@ -1069,7 +1069,7 @@ svg, svg * {
 <script src="data-especial.js?v=20260414071000"></script>
 <script src="data-gs-bloque1.js?v=1.9"></script>
 <script src="data-config.js?v=1.9"></script>
-<script src="preguntas-subrayado-gs.js?v=1.23"></script>
+<script src="preguntas-subrayado-gs.js?v=1.24"></script>
 <script src="anotaciones-gs.js?v=1.23"></script>
 <script src="cuaderno-gs.js?v=1.17"></script>
 <script src="pdf-viewer-geometry.js?v=1.19"></script>
@@ -1079,7 +1079,7 @@ svg, svg * {
 <!-- MOTOR PRINCIPAL -->
 <script src="repaso-espaciado.js?v=1.19"></script>
 <script src="borrado-gs.js?v=1.21"></script>
-<script src="motor.js?v=1.22"></script>
+<script src="motor.js?v=1.24"></script>
 <script src="navegacion-gs.js?v=1.18"></script>
 <script src="plan-diario.js?v=1.8"></script>
 <script src="simulacros-gs.js?v=1.11"></script>
@@ -1180,7 +1180,7 @@ generarTabsParaTrimestre(trimestreActual);
 // LOGICA FILTRADO GS
 
 let bloqueRenderToken = 0;
-function filtrarBloque(bid, selectedIdx, focusCard = false) {
+function filtrarBloque(bid, selectedIdx, focusCard = false, immediate = false) {
   const bloque = CONFIGURACION_CURSO.find(b => b.bloque === bid);
   if (!bloque) return;
   const previous = NavegacionGS.readLocation(CONFIGURACION_CURSO, localStorage);
@@ -1214,7 +1214,7 @@ function filtrarBloque(bid, selectedIdx, focusCard = false) {
   }
 
   // Mostrar skeleton screens mientras carga GS
-  grid.innerHTML = `
+  if (!immediate) grid.innerHTML = `
     ${[1, 2, 3].map(() => `
       <div class="skeleton-card">
         <div class="skeleton skeleton-title"></div>
@@ -1226,7 +1226,7 @@ function filtrarBloque(bid, selectedIdx, focusCard = false) {
   `;
   
   // Cargar contenido real (pequeño delay para que se vea el skeleton)
-  setTimeout(() => {
+  const renderCards = () => {
     if (renderToken !== bloqueRenderToken) return;
     grid.innerHTML = "";
 
@@ -1273,7 +1273,8 @@ function filtrarBloque(bid, selectedIdx, focusCard = false) {
     card.addEventListener('click', () => NavegacionGS.saveLocation(CONFIGURACION_CURSO, localStorage, bid, idx));
     
     // Verificar si hay preguntas IA generadas para este tema GS
-    const preguntasIA = preguntasIAStorage ? preguntasIAStorage.filter(p => p.tema === asig.nombre).length : 0;
+    const preguntasIA = PreguntasSubrayadoGS.list(localStorage, asig.nombre).length;
+    const preguntasSubrayado = PreguntasSubrayadoGS.list(localStorage, asig.nombre, true).length;
     const totalConIA = totalPreg + preguntasIA;
     
     // Contar dominadas IA desde estructura separada GS
@@ -1312,6 +1313,7 @@ function filtrarBloque(bid, selectedIdx, focusCard = false) {
       </div>
       <div style="display:flex; flex-direction:column; gap:10px;">
         <button class="btn-orange" onclick="jugar('carrera', ${idx}, '${bid}')">▶ Entrenar</button>
+        ${preguntasSubrayado ? `<button type="button" class="btn-outline btn-highlight-questions">Ver preguntas del subrayado (${preguntasSubrayado})</button>` : ''}
         ${pendientesRepaso ? `<button class="btn-outline" onclick="jugar('repaso_espaciado', ${idx}, '${bid}')">Repasar hoy (${pendientesRepaso})</button>` : ''}
         ${typeof getPdfButtonHtml === 'function' ? getPdfButtonHtml(bid, idx) : ''}
         ${PDF_T3_URLS[bid]?.[idx] ? `<button class="btn-outline" onclick="abrirTutorTema('${bid}', ${idx})">Tutor de apuntes</button>` : ''}
@@ -1323,6 +1325,7 @@ function filtrarBloque(bid, selectedIdx, focusCard = false) {
       </div>
     `;
     grid.appendChild(card);
+    card.querySelector('.btn-highlight-questions')?.addEventListener('click', () => verEstadisticasIA(asig.nombre, true));
     
     // DEBUG GS: Logging extremo
     console.log('🔍 Card agregada, idx:', idx, 'tema:', asig.nombre, 'mostrarBotonIA:', mostrarBotonIA);
@@ -1706,7 +1709,9 @@ function filtrarBloque(bid, selectedIdx, focusCard = false) {
     if (activeTab) tabsBloques.scrollLeft = activeTab.offsetLeft - tabsBloques.offsetLeft;
   }
   
-  }, 150); // Delay para mostrar skeleton screen GS
+  };
+  if (immediate) renderCards();
+  else setTimeout(renderCards, 150); // Delay para mostrar skeleton screen GS
 }
 
 // Inicialización y migración de fallos anteriores
@@ -1741,6 +1746,16 @@ setTimeout(() => {
   localStorage.removeItem('mastertest_lastcontext');
   if (savedLocation) filtrarBloque(savedLocation.bid, savedLocation.idx, hasSavedLocation);
 }, 50);
+
+window.addEventListener('storage', event => {
+  if (event.key !== PreguntasSubrayadoGS.KEY) return;
+  const location = NavegacionGS.readLocation(CONFIGURACION_CURSO, localStorage);
+  window.actualizarPreguntasIAStorageGS(location.bid, location.idx);
+  const stats = document.getElementById('pantalla-estadisticas');
+  if (stats.dataset.view === 'generated' && stats.classList.contains('active')) {
+    verEstadisticasIA(stats.dataset.tema || null, stats.dataset.onlyHighlights === 'true');
+  }
+});
 
 // DEBUG GS: Test de verificación
 setTimeout(() => {

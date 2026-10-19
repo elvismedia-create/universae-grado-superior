@@ -150,7 +150,7 @@
           explicacion: generated.explicacion }, base);
         if (!result.ok) { form.querySelector('.study-error').textContent = result.error; return; }
         if (!alreadyLinked) save();
-        root.actualizarPreguntasIAStorageGS?.();
+        root.actualizarPreguntasIAStorageGS?.(item.bid, item.idx);
         panel.querySelector('[data-finish]').textContent = 'Terminar';
         form.replaceWith(Object.assign(document.createElement('p'), { className: 'study-confirmed', textContent: `Pregunta ${index + 1} añadida al tema.` }));
       };

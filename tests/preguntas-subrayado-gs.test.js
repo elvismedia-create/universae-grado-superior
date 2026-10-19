@@ -32,7 +32,19 @@ test('solo añade la pregunta confirmada con su página, fragmento y cuatro opci
   assert.deepEqual(result.question.fuente, { bid: context.bid, idx: context.idx, pagina: 4,
     fragmento: context.fragmento, marcaId: 'mark-1' });
   assert.equal(questions.read(db).length, 1);
+  assert.equal(questions.list(db, context.tema, true).length, 1);
+  assert.equal(questions.list(db, 'U2: Sistemas trifásicos', true).length, 0);
   assert.equal(db.getItem('mastertest_db'), '{"U1: Conceptos básicos":{"active":[1]}}');
+});
+
+test('el listado distingue preguntas del subrayado de otras preguntas IA sin cambiar el banco', () => {
+  const existing = { id: 77, tema: context.tema, texto: 'Pregunta IA general', origen: 'ia' };
+  const db = storage({ [questions.KEY]: JSON.stringify([existing]) });
+  const added = questions.confirm(db, context, proposal);
+  assert.equal(added.ok, true);
+  assert.equal(questions.list(db, context.tema).length, 2);
+  assert.deepEqual(questions.list(db, context.tema, true).map(p => p.id), [added.question.id]);
+  assert.equal(questions.read(db)[0].id, 77);
 });
 
 test('rechaza opciones repetidas, preguntas duplicadas y enunciados ya presentes en el tema', () => {

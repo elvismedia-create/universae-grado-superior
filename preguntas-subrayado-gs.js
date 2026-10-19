@@ -11,6 +11,11 @@
     } catch (_) { return []; }
   }
 
+  function list(storage, tema = null, onlyHighlights = false) {
+    return read(storage).filter(question => (!tema || question.tema === tema) &&
+      (!onlyHighlights || Boolean(question.fuente?.fragmento)));
+  }
+
   function validateDraft(proposal) {
     const texto = clean(proposal?.texto);
     const correctaTexto = clean(proposal?.correctaTexto);
@@ -55,7 +60,7 @@
     return { ok: true, question: entry };
   }
 
-  const api = { KEY, read, validateDraft, validate, confirm, identity };
+  const api = { KEY, read, list, validateDraft, validate, confirm, identity };
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
   root.PreguntasSubrayadoGS = api;
 })(typeof window !== 'undefined' ? window : globalThis);

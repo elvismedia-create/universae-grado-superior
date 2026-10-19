@@ -6,6 +6,7 @@ const vm = require('node:vm');
 const srs = require('../repaso-espaciado.js');
 const notebook = require('../cuaderno-gs.js');
 const navigation = require('../navegacion-gs.js');
+const generated = require('../preguntas-subrayado-gs.js');
 
 const question = {
   id: 410101,
@@ -21,7 +22,7 @@ function harness(initial = {}, course = config) {
   const storage = new Map(Object.entries(initial));
   const elements = new Map();
   const element = id => {
-    if (!elements.has(id)) elements.set(id, { innerHTML: '', classList: { add() {}, remove() {} } });
+    if (!elements.has(id)) elements.set(id, { innerHTML: '', dataset: {}, classList: { add() {}, remove() {} } });
     return elements.get(id);
   };
   const context = vm.createContext({
@@ -80,6 +81,38 @@ test('el modo rápido domina con un acierto seguro y conserva la ubicación al s
   context.volverAlMenu();
   assert.deepEqual(JSON.parse(storage.get(navigation.KEY)), { trimester: 'B1', bid: 'sistemas_gs', idx: 0 });
   assert.equal(storage.has('mastertest_lastcontext'), false);
+});
+
+test('confirmar una pregunta del subrayado refresca al instante la tarjeta del tema', () => {
+  const { context, storage } = harness();
+  const calls = [];
+  context.filtrarBloque = (...args) => calls.push(args);
+  const saved = generated.confirm(context.localStorage,
+    { bid: 'sistemas_gs', idx: 0, tema: topic.nombre, pagina: 4, fragmento: 'La resistencia se mide en ohmios.' },
+    { texto: '¿Qué unidad mide la resistencia?', correctaTexto: 'Ohmio', incorrectas: ['Voltio', 'Vatio', 'Amperio'] });
+  assert.equal(saved.ok, true);
+  context.window.actualizarPreguntasIAStorageGS('sistemas_gs', 0);
+  assert.deepEqual(calls, [['sistemas_gs', 0, false, true]]);
+  assert.equal(JSON.parse(storage.get(generated.KEY)).length, 1);
+  assert.equal(context.obtenerPreguntasIATema(topic.nombre).length, 1);
+});
+
+test('la vista de preguntas enseña la respuesta y la página real del PDF', () => {
+  const { context, elements } = harness();
+  const host = context.document.getElementById('pantalla-estadisticas');
+  host.querySelector = selector => selector === '#generated-back' ? { onclick: null } : null;
+  host.querySelectorAll = () => [];
+  context.PreguntasSubrayadoGS = generated;
+  generated.confirm(context.localStorage,
+    { bid: 'sistemas_gs', idx: 0, tema: topic.nombre, pagina: 4, fragmento: 'La resistencia se mide en ohmios.' },
+    { texto: '¿Qué unidad mide la resistencia?', correctaTexto: 'Ohmio', incorrectas: ['Voltio', 'Vatio', 'Amperio'] });
+  context.verEstadisticasIA(topic.nombre, true);
+  const html = elements.get('pantalla-estadisticas').innerHTML;
+  assert.match(html, /Preguntas del subrayado/);
+  assert.match(html, /¿Qué unidad mide la resistencia\?/);
+  assert.match(html, /Respuesta correcta/);
+  assert.match(html, /Subrayado · página 4/);
+  assert.match(html, /Abrir página del PDF/);
 });
 
 test('salir de un test guarda solo respuestas incorrectas y omite preguntas sin responder', () => {
