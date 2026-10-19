@@ -1,6 +1,6 @@
-// v1.24 - listado y refresco inmediato de preguntas
-const APP_VERSION = 'v1.24';
-const BUILD_TIMESTAMP = '20261019-gs-preguntas-visibles-1';
+// v1.26 - trazo de Pencil sin desplazamiento
+const APP_VERSION = 'v1.26';
+const BUILD_TIMESTAMP = '20261019-gs-pen-scroll-1';
 const CACHE_NAME = `universae-gs-${APP_VERSION}-${BUILD_TIMESTAMP}`;
 const OFFLINE_CACHE = 'universae-gs-offline-v1.2';
 const PDF_CACHE = 'universae-gs-pdfs-v1';
@@ -73,7 +73,7 @@ self.addEventListener('install', (e) => {
 
 // ACTIVACIÓN v90.2: Limpieza y notificación
 self.addEventListener('activate', (e) => {
-  console.log('✨ ACTIVANDO Universae GS v1.24...');
+  console.log('✨ ACTIVANDO Universae GS v1.26...');
 
   e.waitUntil(
     caches.keys()

@@ -108,3 +108,32 @@ test('aprobar una fase no altera el progreso ni añade preguntas; solo confirma 
   assert.equal(questions.read(db).length, 1);
   assert.equal(db.getItem('mastertest_db'), '{"U1: Conceptos básicos":{"dom":[1]}}');
 });
+
+test('pedir más excluye las propuestas anteriores y devuelve solo preguntas nuevas', async () => {
+  const oldKey = process.env.ANTHROPIC_API_KEY;
+  const oldFetch = global.fetch;
+  process.env.ANTHROPIC_API_KEY = 'test-key';
+  let sent;
+  global.fetch = async (_, options) => {
+    sent = JSON.parse(options.body);
+    return { ok: true, json: async () => ({ content: [{ type: 'text', text: JSON.stringify({ preguntas: [
+      { texto: proposal.texto, correctaTexto: proposal.correctaTexto },
+      { texto: '¿Qué limita la intensidad de corriente?', correctaTexto: 'La resistencia' }
+    ] }) }] }) };
+  };
+  const res = { statusCode: 200, setHeader() {}, status(code) { this.statusCode = code; return this; }, json(data) { this.body = data; return this; } };
+  try {
+    await handler({ method: 'POST', body: { ...context, fase: 'preguntas', excluir: [proposal.texto] } }, res);
+    assert.equal(res.statusCode, 200);
+    assert.deepEqual(res.body.preguntas.map(question => question.texto), ['¿Qué limita la intensidad de corriente?']);
+    assert.deepEqual(JSON.parse(sent.messages[0].content).preguntasExistentes, [proposal.texto]);
+    const exhausted = { statusCode: 200, setHeader() {}, status(code) { this.statusCode = code; return this; }, json(data) { this.body = data; return this; } };
+    await handler({ method: 'POST', body: { ...context, fase: 'preguntas', excluir: [proposal.texto, '¿Qué limita la intensidad de corriente?'] } }, exhausted);
+    assert.equal(exhausted.statusCode, 200);
+    assert.deepEqual(exhausted.body.preguntas, []);
+  } finally {
+    global.fetch = oldFetch;
+    if (oldKey === undefined) delete process.env.ANTHROPIC_API_KEY;
+    else process.env.ANTHROPIC_API_KEY = oldKey;
+  }
+});

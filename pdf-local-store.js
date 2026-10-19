@@ -727,6 +727,16 @@
     }, { passive: false });
   }
 
+  function attachPenScrollGuard(pagesContainer, state) {
+    const preventPenScroll = event => {
+      if (state.tool !== 'pen' || event.touches?.length !== 1) return;
+      const isStylus = Array.from(event.changedTouches || []).some(touch => touch.touchType === 'stylus');
+      if (isStylus || state.activePenPointerId !== null) event.preventDefault();
+    };
+    pagesContainer.addEventListener('touchstart', preventPenScroll, { capture: true, passive: false });
+    pagesContainer.addEventListener('touchmove', preventPenScroll, { capture: true, passive: false });
+  }
+
   function applyPageZoom(zoomSurface, zoom) {
     zoomSurface.querySelectorAll('.pdf-page-wrap').forEach(wrap => {
       const baseWidth = Number(wrap.dataset.baseWidth);
@@ -760,6 +770,7 @@
     canvas.addEventListener('pointerdown', event => {
       if ((state.tool !== 'pen' && state.tool !== 'eraser') || state.pinching || !PdfViewerGeometry.isAnnotationPointer(event.pointerType)) return;
       pointerId = event.pointerId;
+      if (state.tool === 'pen' && event.pointerType === 'pen') state.activePenPointerId = pointerId;
       event.preventDefault();
       canvas.setPointerCapture(pointerId);
       state.currentPage = pageNumber;
@@ -804,6 +815,7 @@
         annotations[pageNumber] = ensurePage().filter(stroke => stroke !== activeStroke);
       }
       activeStroke = null;
+      if (state.activePenPointerId === pointerId) state.activePenPointerId = null;
       pointerId = null;
       save();
     }
@@ -951,6 +963,7 @@
       width: 18,
       zoom: 1,
       pinching: false,
+      activePenPointerId: null,
       currentPage: 1
     };
 
@@ -1009,6 +1022,7 @@
     shell.appendChild(pagesContainer);
     document.body.appendChild(shell);
     attachPinchZoom(pagesContainer, zoomSurface, state, actions);
+    attachPenScrollGuard(pagesContainer, state);
     attachTextHighlighter(shell, pagesContainer, state, annotations, key, info);
 
     try {

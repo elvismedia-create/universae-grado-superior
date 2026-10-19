@@ -91,6 +91,7 @@
     panel.innerHTML = `<div class="study-head"><strong>Página ${item.page} · ${escape(item.topic)}</strong><button type="button" data-close aria-label="Cerrar">×</button></div>
       <blockquote>${quoted ? escape(quoted) : 'No se pudo recuperar el texto. Puedes volver a seleccionarlo desde Anotaciones PDF.'}</blockquote>
       <div class="study-actions"><button type="button" data-generate ${quoted.trim().length >= 25 ? '' : 'disabled'}>Crear preguntas del subrayado</button></div>
+      <p class="study-more-status" role="status"></p>
       <div class="study-proposals" aria-live="polite"></div>
       <button type="button" data-finish hidden>No crear ninguna</button>`;
     shell.append(panel);
@@ -104,6 +105,8 @@
       return data;
     };
     const base = CONFIGURACION_CURSO.find(block => block.bloque === item.bid)?.asignaturas[item.idx]?.data || [];
+    const shown = new Set();
+    let nextIndex = 0;
     const renderDraft = (form, draft, index) => {
       form.innerHTML = `<strong>Propuesta ${index + 1} · 1 de 2</strong>
         <label>Pregunta<textarea name="texto" maxlength="500" required>${escape(draft.texto)}</textarea></label>
@@ -158,17 +161,36 @@
     panel.querySelector('[data-generate]').onclick = async event => {
       const button = event.currentTarget;
       const output = panel.querySelector('.study-proposals');
+      const status = panel.querySelector('.study-more-status');
       button.disabled = true;
-      output.textContent = 'Preparando preguntas…';
+      status.textContent = 'Buscando más preguntas en este fragmento…';
       try {
-        const data = await request('preguntas');
+        const saved = root.PreguntasSubrayadoGS.read(localStorage).filter(p => p.tema === item.topic);
+        const edited = [...output.querySelectorAll('[name="texto"]')].map(field => field.value);
+        const exclude = [...new Set([...base, ...saved].map(p => p.texto).filter(Boolean).concat([...shown], edited))];
+        const data = await request('preguntas', { excluir: exclude });
         if (!panel.isConnected) return;
-        const proposals = data.preguntas || [];
+        const proposals = (data.preguntas || []).filter(proposal => {
+          const key = root.PreguntasSubrayadoGS.identity(proposal.texto);
+          if (shown.has(key) || exclude.some(text => root.PreguntasSubrayadoGS.identity(text) === key)) return false;
+          shown.add(key);
+          return true;
+        });
         panel.querySelector('[data-finish]').hidden = false;
-        output.innerHTML = proposals.map(() => '<form class="study-proposal"></form>').join('');
-        output.querySelectorAll('form').forEach((form, index) => renderDraft(form, proposals[index], index));
+        proposals.forEach(proposal => {
+          const form = document.createElement('form');
+          form.className = 'study-proposal';
+          output.append(form);
+          renderDraft(form, proposal, nextIndex++);
+        });
+        button.textContent = 'Generar más preguntas';
+        status.textContent = proposals.length
+          ? `${proposals.length} pregunta${proposals.length === 1 ? '' : 's'} nueva${proposals.length === 1 ? '' : 's'} para revisar.`
+          : 'No he encontrado más preguntas diferentes en este fragmento. Prueba a ampliar el subrayado.';
       } catch (error) {
-        if (panel.isConnected) { output.textContent = error.message || 'No se pudieron crear preguntas.'; button.disabled = false; }
+        if (panel.isConnected) status.textContent = error.message || 'No se pudieron crear preguntas.';
+      } finally {
+        if (panel.isConnected) button.disabled = false;
       }
     };
   }

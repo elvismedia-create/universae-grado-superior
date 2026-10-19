@@ -80,6 +80,8 @@ body.dark-mode .error-delete:hover:not(:disabled) { background: #48282b; }
   box-sizing: border-box; padding: 14px max(16px, env(safe-area-inset-right)) max(14px, env(safe-area-inset-bottom));
   background: #fff; color: #182337; border-top: 2px solid #0f766e; box-shadow: 0 -8px 24px #0005; }
 .pdf-study-composer .study-head strong { font-size: .9rem; }
+.pdf-study-composer .study-more-status { margin: 8px 0; font-size: .88rem; }
+.pdf-study-composer .study-more-status:empty { display: none; }
 .pdf-study-composer blockquote { margin: 10px 0; padding-left: 10px; border-left: 3px solid #0f766e; max-height: 90px; overflow: auto; font-size: .85rem; line-height: 1.4; }
 .pdf-study-composer form { display: grid; gap: 8px; }
 .pdf-study-composer form[hidden] { display: none; }
